@@ -1,13 +1,11 @@
 <!doctype html>
-
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Front Matter MD 生成器</title>
+  <title>自用Markdown生成器</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* small extra styles */
     pre { white-space: pre-wrap; word-wrap: break-word; }
     .textarea-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Sans Mono", monospace; }
   </style>
@@ -17,96 +15,97 @@
     <header class="mb-6">
       <h1 class="text-2xl font-semibold">Front Matter Markdown 生成器</h1>
       <p class="text-sm text-slate-600">输入标题与正文，自动生成 2~3 个分类和标签；同时生成 `_posts` 文件名与完整 Markdown（含 Front Matter）。</p>
-    </header><main class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-  <!-- left: form -->
-  <section class="bg-white p-5 rounded-xl shadow-sm">
-    <div class="space-y-4">
-      <label class="block">
-        <div class="text-sm font-medium">标题（title）</div>
-        <input id="title" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="在此输入标题" />
-      </label>
+    </header>
 
-      <label class="block">
-        <div class="text-sm font-medium">页面名 / slug（用于文件名，自动生成但可修改）</div>
-        <input id="slug" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="my-first-post" />
-        <p class="text-xs text-slate-500 mt-1">如果留空会由标题自动生成 slug（仅允许 a-z0-9 和短横线）</p>
-      </label>
+    <main class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- 左侧：输入表单 -->
+      <section class="bg-white p-5 rounded-xl shadow-sm">
+        <div class="space-y-4">
+          <label class="block">
+            <div class="text-sm font-medium">标题（title）</div>
+            <input id="title" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="在此输入标题" />
+          </label>
 
-      <label class="block">
-        <div class="text-sm font-medium">正文（content / Markdown）</div>
-        <textarea id="content" rows="10" class="mt-1 block w-full rounded-md border px-3 py-2 textarea-mono" placeholder="在此输入文章内容（支持 Markdown）"></textarea>
-      </label>
+          <label class="block">
+            <div class="text-sm font-medium">页面名 / slug（用于文件名，自动生成但可修改）</div>
+            <input id="slug" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="my-first-post" />
+            <p class="text-xs text-slate-500 mt-1">如果留空会由标题自动生成 slug（仅允许 a-z0-9 和短横线）</p>
+          </label>
 
-      <div class="flex items-center gap-3">
-        <button id="auto-gen" class="px-3 py-2 rounded bg-indigo-600 text-white">🪄 自动生成分类与标签</button>
-        <button id="regen" class="px-3 py-2 rounded border">🔁 重新生成（随机化/刷新）</button>
-        <label class="ml-auto flex items-center gap-2 text-sm">
-          <input id="autoPreview" type="checkbox" checked class="w-4 h-4" /> <span>输入后自动更新</span>
-        </label>
-      </div>
+          <label class="block">
+            <div class="text-sm font-medium">正文（content / Markdown）</div>
+            <textarea id="content" rows="10" class="mt-1 block w-full rounded-md border px-3 py-2 textarea-mono" placeholder="在此输入文章内容（支持 Markdown）"></textarea>
+          </label>
 
-      <div class="grid grid-cols-2 gap-3">
-        <label>
-          <div class="text-sm font-medium">分类（categories，2~3）</div>
-          <input id="categories" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="技术, 博客" />
-        </label>
-        <label>
-          <div class="text-sm font-medium">标签（tags，2~3）</div>
-          <input id="tags" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="Jekyll, GitHub, 教程" />
-        </label>
-      </div>
+          <div class="flex items-center gap-3">
+            <button id="auto-gen" class="px-3 py-2 rounded bg-indigo-600 text-white">🪄 自动生成分类与标签</button>
+            <button id="regen" class="px-3 py-2 rounded border">🔁 重新生成（随机化/刷新）</button>
+            <label class="ml-auto flex items-center gap-2 text-sm">
+              <input id="autoPreview" type="checkbox" checked class="w-4 h-4" /> <span>输入后自动更新</span>
+            </label>
+          </div>
 
-      <div class="flex items-center gap-3">
-        <label class="text-sm">时间格式：</label>
-        <select id="timeFormat" class="rounded border px-2 py-1">
-          <option value="auto">自动（本地时区偏移）</option>
-          <option value="+0800">强制 +0800</option>
-          <option value="Z">UTC (Z)</option>
-        </select>
-        <div class="ml-auto text-sm text-slate-500">生成文件名与 Markdown 会显示当前时间</div>
-      </div>
+          <div class="grid grid-cols-2 gap-3">
+            <label>
+              <div class="text-sm font-medium">分类（categories，2~3）</div>
+              <input id="categories" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="技术, 博客" />
+            </label>
+            <label>
+              <div class="text-sm font-medium">标签（tags，2~3）</div>
+              <input id="tags" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="Jekyll, GitHub, 教程" />
+            </label>
+          </div>
 
-      <div class="flex gap-2">
-        <button id="copyFront" class="px-3 py-2 rounded bg-emerald-600 text-white">复制 Markdown</button>
-        <button id="copyFilename" class="px-3 py-2 rounded bg-amber-600 text-white">复制文件名</button>
-        <button id="downloadMd" class="px-3 py-2 rounded border ml-auto">下载 .md 文件</button>
-      </div>
-    </div>
-  </section>
+          <div class="flex items-center gap-3">
+            <label class="text-sm">时间格式：</label>
+            <select id="timeFormat" class="rounded border px-2 py-1">
+              <option value="auto">自动（本地时区偏移）</option>
+              <option value="+0800">强制 +0800</option>
+              <option value="Z">UTC (Z)</option>
+            </select>
+            <div class="ml-auto text-sm text-slate-500">生成文件名与 Markdown 会显示当前时间</div>
+          </div>
 
-  <!-- right: outputs -->
-  <section class="bg-white p-5 rounded-xl shadow-sm flex flex-col">
-    <div class="mb-4">
-      <div class="flex items-center justify-between">
-        <h2 class="text-lg font-medium">生成结果</h2>
-        <div class="text-sm text-slate-500">实时预览 Front Matter + 内容</div>
-      </div>
-    </div>
-
-    <div class="space-y-4 flex-1 flex flex-col">
-      <div>
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-sm font-medium">文件名（用于 _posts）</div>
-          <button id="editFilename" class="text-xs text-indigo-600">编辑</button>
+          <div class="flex gap-2">
+            <button id="copyFront" class="px-3 py-2 rounded bg-emerald-600 text-white">复制 Markdown</button>
+            <button id="copyFilename" class="px-3 py-2 rounded bg-amber-600 text-white">复制文件名</button>
+            <button id="downloadMd" class="px-3 py-2 rounded border ml-auto">下载 .md 文件</button>
+          </div>
         </div>
-        <pre id="filename" class="p-3 rounded border bg-slate-100 textarea-mono">_posts/2025-10-07-my-first-post.md</pre>
-      </div>
+      </section>
 
-      <div class="flex-1">
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-sm font-medium">完整 Markdown（含 Front Matter）</div>
-          <div class="text-xs text-slate-500">可复制到 `_posts`</div>
+      <!-- 右侧：输出区 -->
+      <section class="bg-white p-5 rounded-xl shadow-sm flex flex-col">
+        <div class="mb-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-lg font-medium">生成结果</h2>
+            <div class="text-sm text-slate-500">实时预览 Front Matter + 内容</div>
+          </div>
         </div>
-        <pre id="markdown" class="p-3 rounded border bg-slate-50 textarea-mono overflow-auto" style="min-height:220px"></pre>
-      </div>
-    </div>
-  </section>
-</main>
 
-<footer class="mt-6 text-sm text-slate-500">提示：生成的分类与标签可手动修改；按你的需求我已默认生成 2~3 项。</footer>
+        <div class="space-y-4 flex-1 flex flex-col">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <div class="text-sm font-medium">文件名（用于 _posts）</div>
+            </div>
+            <pre id="filename" class="p-3 rounded border bg-slate-100 textarea-mono">_posts/xxxx-xx-xx-your-post.md</pre>
+          </div>
 
-  </div><script>
-// --- utility helpers ---
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-2">
+              <div class="text-sm font-medium">完整 Markdown（含 Front Matter）</div>
+              <div class="text-xs text-slate-500">可复制到 `_posts`</div>
+            </div>
+            <pre id="markdown" class="p-3 rounded border bg-slate-50 textarea-mono overflow-auto" style="min-height:220px"></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-6 text-sm text-slate-500">提示：生成的分类与标签可手动修改；默认 2~3 项。</footer>
+  </div>
+
+<script>
 function nowFormatted(formatMode){
   const d = new Date();
   const pad = (n)=>String(n).padStart(2,'0');
@@ -116,12 +115,10 @@ function nowFormatted(formatMode){
   const hh = pad(d.getHours());
   const mm = pad(d.getMinutes());
   const ss = pad(d.getSeconds());
-
   let tz = '';
   if(formatMode === 'Z') tz = 'Z';
   else {
-    // offset minutes
-    const off = -d.getTimezoneOffset(); // minutes ahead of UTC
+    const off = -d.getTimezoneOffset();
     const sign = off >= 0 ? '+' : '-';
     const abs = Math.abs(off);
     const tH = String(Math.floor(abs/60)).padStart(2,'0');
@@ -135,10 +132,6 @@ function nowFormatted(formatMode){
 function slugify(text){
   if(!text) return '';
   text = text.trim().toLowerCase();
-  // replace Chinese spaces and punctuation -> keep alphanum and hyphen
-  // Use a simple approach: remove non-ascii letters/digits and replace spaces with -
-  // For Chinese titles, attempt pinyin fallback is out-of-scope; we'll keep unicode letters by replacing spaces with '-'
-  // Keep only letters, numbers, hyphens
   let s = text.replace(/\s+/g, '-');
   s = s.replace(/[^a-z0-9\-]/g, '-');
   s = s.replace(/-+/g, '-');
@@ -146,18 +139,11 @@ function slugify(text){
   return s || 'post';
 }
 
-// stopwords (simple) - English + common Chinese particles
-const STOPWORDS = new Set([
-  '的','了','是','和','在','我','有','就','不','人','都','一个','上','也','很','到','说','要','为','与','著','这','that','the','and','or','a','an','of','to','in','on','for','with','by','is','are','it','as','be','this','you'
-]);
+const STOPWORDS = new Set(['的','了','是','和','在','我','有','就','不','人','都','一个','上','也','很','到','说','要','为','与','著','这','that','the','and','or','a','an','of','to','in','on','for','with','by','is','are','it','as','be','this','you']);
 
 function tokenize(text){
   if(!text) return [];
-  // split by non-word (supports Chinese characters as single tokens)
-  // We want to keep Chinese characters sequences and latin words
-  // We'll separate by punctuation and linebreaks
-  const parts = text.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
-  return parts;
+  return text.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
 }
 
 function topKeywords(text, maxCount=3){
@@ -166,16 +152,15 @@ function topKeywords(text, maxCount=3){
   for(const t of tokens){
     const low = t.toLowerCase();
     if(STOPWORDS.has(low)) continue;
-    if(low.length<=1) continue; // skip single-char tokens (most likely noise)
+    if(low.length<=1) continue;
     freq[low] = (freq[low]||0) + 1;
   }
   const arr = Object.keys(freq).map(k=>({k,v:freq[k]})).sort((a,b)=>b.v-a.v);
   return arr.slice(0,maxCount).map(o=>o.k);
 }
 
-// category mapping rules (simple keyword sets)
 const CATEGORY_RULES = [
-  {keys: ['javascrip','javascript','html','css','前端','react','vue','nuxt','next','tailwind','css','web'], cat: '前端'},
+  {keys: ['javascrip','javascript','html','css','前端','react','vue','nuxt','next','tailwind','web'], cat: '前端'},
   {keys: ['python','爬虫','django','flask','数据','data','pandas','numpy','机器学习'], cat: '数据/工程'},
   {keys: ['git','github','jekyll','cherry','chirpy','博客','pages','hexo'], cat: '博客'},
   {keys: ['生活','旅行','日记','随笔','记录','心情'], cat: '生活'},
@@ -192,20 +177,14 @@ function suggestCategories(title, content){
       if(text.includes(k)) { hits.add(rule.cat); break; }
     }
   }
-  // If none matched, fallback
   if(hits.size===0){
-    // try to pick based on top keywords
     const kw = topKeywords(text, 3);
-    if(kw.length>0) return kw.slice(0,3).map(w => capitalize(w));
+    if(kw.length>0) return kw.slice(0,3).map(w => w.charAt(0).toUpperCase()+w.slice(1));
     return ['杂谈'];
   }
-  // return up to 3
   return Array.from(hits).slice(0,3);
 }
 
-function capitalize(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
-
-// --- DOM & logic ---
 const titleEl = document.getElementById('title');
 const contentEl = document.getElementById('content');
 const slugEl = document.getElementById('slug');
@@ -221,15 +200,12 @@ const downloadMdBtn = document.getElementById('downloadMd');
 const timeFormatEl = document.getElementById('timeFormat');
 const autoPreviewEl = document.getElementById('autoPreview');
 
-let autoUpdate = true;
 let debounceTimer = null;
 
 function buildFilename(dateStr, slug){
-  // dateStr like 2025-10-07 12:34:56 +0800 -> take YYYY-MM-DD
   const m = dateStr.match(/^(\d{4}-\d{2}-\d{2})/);
   const datePart = m ? m[1] : new Date().toISOString().slice(0,10);
-  const file = `${datePart}-${slug}.md`;
-  return `_posts/${file}`;
+  return `_posts/${datePart}-${slug}.md`;
 }
 
 function buildFrontMatter(obj){
@@ -243,42 +219,18 @@ function generateAll(){
   const content = contentEl.value.trim();
   let slug = slugEl.value.trim();
   if(!slug){ slug = slugify(title) || 'post'; slugEl.value = slug; }
-
-  // time format
   const fmt = timeFormatEl.value;
   const dateStr = nowFormatted(fmt==='auto'? 'auto' : fmt);
-  const lastStr = dateStr;
-
-  // categories and tags if empty, auto-generate
-  let cats = categoriesEl.value.split(',').map(s=>s.trim()).filter(Boolean);
-  let tags = tagsEl.value.split(',').map(s=>s.trim()).filter(Boolean);
-  if(cats.length===0){
-    cats = suggestCategories(title, content);
-  }
-  if(tags.length===0){
-    const kws = topKeywords(title+' '+content, 5);
-    // prefer title words first
-    const titleKw = topKeywords(title,3);
-    const chosen = [...new Set([...titleKw, ...kws])].slice(0,3);
-    tags = chosen.map(t=> (t.length>20? t.slice(0,20): t));
-  }
-
-  // ensure 2~3 items
-  if(cats.length>3) cats = cats.slice(0,3);
-  if(cats.length<2) cats = Array.from(new Set([...cats, '杂谈'])).slice(0,2);
-  if(tags.length>3) tags = tags.slice(0,3);
-  if(tags.length<2){
-    tags = Array.from(new Set([...tags, '博客'])).slice(0,2);
-  }
-
-  categoriesEl.value = cats.join(', ');
-  tagsEl.value = tags.join(', ');
-
+  const cats = categoriesEl.value.split(',').map(s=>s.trim()).filter(Boolean);
+  const tags = tagsEl.value.split(',').map(s=>s.trim()).filter(Boolean);
+  const fullCats = cats.length ? cats : suggestCategories(title, content);
+  const fullTags = tags.length ? tags : topKeywords(title+' '+content,3);
   const filename = buildFilename(dateStr, slug);
   filenameEl.textContent = filename;
-
-  const front = buildFrontMatter({title, date: dateStr, last_modified_at: lastStr, categories: cats, tags: tags, content});
-  markdownEl.textContent = front;
+  markdownEl.textContent = buildFrontMatter({
+    title, date: dateStr, last_modified_at: dateStr,
+    categories: fullCats, tags: fullTags, content
+  });
 }
 
 function debounceGenerate(){
@@ -287,54 +239,39 @@ function debounceGenerate(){
   debounceTimer = setTimeout(generateAll, 500);
 }
 
-// events
 titleEl.addEventListener('input', debounceGenerate);
 contentEl.addEventListener('input', debounceGenerate);
 slugEl.addEventListener('input', debounceGenerate);
 timeFormatEl.addEventListener('change', generateAll);
-autoGenBtn.addEventListener('click', (e)=>{ e.preventDefault(); generateAll(); });
-regenBtn.addEventListener('click', (e)=>{ e.preventDefault();
-  // small randomization: shuffle tags
-  const currentTags = tagsEl.value.split(',').map(s=>s.trim()).filter(Boolean);
-  const shuffled = currentTags.sort(()=>Math.random()-0.5).slice(0,3);
-  tagsEl.value = shuffled.join(', ');
-  // regenerate categories by re-calling suggestion
-  const cats = suggestCategories(titleEl.value, contentEl.value);
-  categoriesEl.value = (cats.length? cats.slice(0,2).join(', ') : categoriesEl.value);
-  generateAll();
-});
-
+autoGenBtn.addEventListener('click', e=>{e.preventDefault();generateAll();});
+regenBtn.addEventListener('click', e=>{e.preventDefault();generateAll();});
 copyFrontBtn.addEventListener('click', async ()=>{
-  try{
-    await navigator.clipboard.writeText(markdownEl.textContent);
-    copyFrontBtn.textContent = '已复制 ✓';
-    setTimeout(()=>copyFrontBtn.textContent = '复制 Markdown',1200);
-  }catch(err){ alert('复制失败，请手动复制：' + err); }
+  await navigator.clipboard.writeText(markdownEl.textContent);
+  copyFrontBtn.textContent='已复制 ✓';
+  setTimeout(()=>copyFrontBtn.textContent='复制 Markdown',1000);
 });
-
 copyFilenameBtn.addEventListener('click', async ()=>{
-  try{ await navigator.clipboard.writeText(filenameEl.textContent.trim());
-    copyFilenameBtn.textContent = '已复制 ✓';
-    setTimeout(()=>copyFilenameBtn.textContent = '复制文件名',1200);
-  }catch(err){ alert('复制失败：'+err); }
+  await navigator.clipboard.writeText(filenameEl.textContent.trim());
+  copyFilenameBtn.textContent='已复制 ✓';
+  setTimeout(()=>copyFilenameBtn.textContent='复制文件名',1000);
 });
-
 downloadMdBtn.addEventListener('click', ()=>{
   const name = filenameEl.textContent.replace(/^_posts\//,'');
   const blob = new Blob([markdownEl.textContent], {type:'text/markdown;charset=utf-8'});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = name;
-  document.body.appendChild(a); a.click(); a.remove();
+  const a=document.createElement('a');
+  a.href=url;a.download=name;a.click();
   URL.revokeObjectURL(url);
 });
 
-// initial sample
-titleEl.value = 'Jekyll 博客搭建记录';
-contentEl.value = '我在 GitHub Pages 上用 Chirpy 主题搭建了个人博客，遇到了一些配置问题，包括 _config.yml 和部署流程。记录搭建步骤、常见错误与解决方法。';
+// 初始化为空
+titleEl.value = '';
+contentEl.value = '';
 slugEl.value = '';
-
-// initial generate
-generateAll();
-</script></body>
+categoriesEl.value = '';
+tagsEl.value = '';
+markdownEl.textContent = '';
+filenameEl.textContent = '_posts/xxxx-xx-xx-your-post.md';
+</script>
+</body>
 </html>
