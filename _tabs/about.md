@@ -15,14 +15,15 @@ about_page: true
 
 <div class="intro">
   <h1>王维</h1>
-  <p>故乡 <strong>连云港</strong>，目前居住于 <strong>杭州</strong>。兴趣广泛，秉持 <strong>终身学习</strong> 的目标，不断探索新的知识与技能。</p>
+  <p>故乡 <strong>连云港</strong>，现居 <strong>杭州</strong>。兴趣广泛，秉持 <strong>终身学习</strong> 的理念，不断探索新的知识与技能。</p>
+  <p>精通平面设计，熟练使用 Adobe Photoshop (Ps) 和 Illustrator (Ai)。曾有多年电商运营经验，也做过电视购物业务。</p>
 </div>
 
 </div>
 
 ---
 
-## 🗂 三栏概览
+## 🗂 个人信息与专业技能
 
 <div class="three-columns">
 
@@ -33,8 +34,8 @@ about_page: true
 - **目标**: 终身学习  
 
 ### 🎯 专业技能
-- **平面设计**: 精通 Adobe Photoshop (Ps) 和 Illustrator (Ai)  
-- **电商与营销**: 多年电商运营经验，曾从事电视购物业务  
+- **平面设计**: 精通 Ps 和 Ai  
+- **电商与营销**: 多年电商运营经验，电视购物业务经验  
 - **食品包装采购**: 熟悉各类食品包装材料、工艺及成本控制  
 
 ### 🎨 爱好
