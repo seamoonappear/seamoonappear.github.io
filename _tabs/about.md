@@ -120,6 +120,7 @@ about_page: true
     <ul>
       <li>阅读与写作</li>
       <li>旅行与摄影</li>
+      <li>书法和鉴赏</li>
       <li>音乐欣赏</li>
       <li>烹饪与美食探索</li>
       <li>新技术与设计趋势学习</li>
