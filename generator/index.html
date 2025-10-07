@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chirpy Front Matter 生成器 | 图片开关+分类优化</title>
+  <title>Chirpy Front Matter 生成器 | 自动更新时间 + 图片路径优化</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen">
   <div class="max-w-6xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6 text-center">🪶 Chirpy 风格 Front Matter 生成器（图片可选 + 分类优化）</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">🪶 Chirpy Front Matter 生成器（支持本地图片路径）</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- 左侧输入 -->
@@ -45,13 +45,13 @@
           <input id="tags" type="text" class="w-full border rounded p-2" placeholder="如：Jekyll, Chirpy, 博客">
         </div>
 
-        <!-- 图片可选部分 -->
+        <!-- 图片选项 -->
         <div>
           <label class="flex items-center space-x-2 mb-2">
             <input id="use-image" type="checkbox" class="w-4 h-4">
-            <span class="font-semibold">启用封面图片</span>
+            <span class="font-semibold">启用封面图片（来自 assets/img/）</span>
           </label>
-          <input id="image-url" type="text" class="w-full border rounded p-2 hidden" placeholder="输入图片 URL，将插在文章最前">
+          <input id="image-file" type="text" class="w-full border rounded p-2 hidden" placeholder="输入图片文件名，例如 cover1.jpg">
         </div>
 
         <div class="flex items-center gap-2">
@@ -66,8 +66,8 @@
           <h2 class="text-xl font-semibold">📝 生成结果</h2>
           <div class="space-x-2">
             <button id="copy-btn" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">复制 Markdown</button>
-            <button id="copy-filename-btn" class="bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-700">复制 posts 文件名</button>
-            <button id="download-btn" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700">下载 .md 文件</button>
+            <button id="copy-filename-btn" class="bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-700">复制文件名</button>
+            <button id="download-btn" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700">下载 .md</button>
           </div>
         </div>
         <p class="text-sm text-gray-500 mb-2">文件路径：<span id="filename" class="font-mono"></span></p>
@@ -87,15 +87,15 @@
     const categoriesEl = document.getElementById('categories');
     const tagsEl = document.getElementById('tags');
     const useImageEl = document.getElementById('use-image');
-    const imageUrlEl = document.getElementById('image-url');
+    const imageFileEl = document.getElementById('image-file');
     const markdownEl = document.getElementById('markdown');
     const filenameEl = document.getElementById('filename');
     const imagePreview = document.getElementById('image-preview');
 
     useImageEl.addEventListener('change', () => {
-      imageUrlEl.classList.toggle('hidden', !useImageEl.checked);
+      imageFileEl.classList.toggle('hidden', !useImageEl.checked);
       if (!useImageEl.checked) {
-        imageUrlEl.value = '';
+        imageFileEl.value = '';
         imagePreview.style.display = 'none';
       }
     });
@@ -125,6 +125,7 @@
       const cats = selectedCats.length ? selectedCats : ['杂谈'];
       const tags = tagsEl.value ? tagsEl.value.split(',').map(t=>t.trim()) : autoGenerateTags();
       const date = formatDate();
+      const lastModified = formatDate();
       const summary = content.slice(0,80).replace(/\n/g,' ');
       const description = summary || '（请填写文章摘要）';
       const filename = `_posts/${new Date().toISOString().slice(0,10)}-${slug}.md`;
@@ -133,16 +134,18 @@
       let fm = `---\n`+
 `title: ${title}\n`+
 `date: ${date}\n`+
+`last_modified_at: ${lastModified}\n`+
 `categories: [${cats.join(', ')}]\n`+
 `tags: [${tags.join(', ')}]\n`+
 `description: >-\n  ${description}\n`;
 
       let imgMarkdown = '';
-      const imgUrl = imageUrlEl.value.trim();
-      if(useImageEl.checked && imgUrl) {
-        fm += `image:\n  path: ${imgUrl}\n  alt: 封面图\n`;
-        imgMarkdown = `![封面图](${imgUrl})\n\n`;
-        imagePreview.src = imgUrl;
+      const imgFile = imageFileEl.value.trim();
+      if(useImageEl.checked && imgFile) {
+        const imgPath = `/assets/img/${imgFile}`;
+        fm += `image:\n  path: ${imgPath}\n  alt: 封面图\n`;
+        imgMarkdown = `![封面图](${imgPath})\n\n`;
+        imagePreview.src = imgPath;
         imagePreview.style.display = 'block';
       } else {
         imagePreview.style.display = 'none';
@@ -172,13 +175,13 @@
     document.getElementById('copy-btn').addEventListener('click', ()=>copyToClipboard(markdownEl.value));
     document.getElementById('copy-filename-btn').addEventListener('click', ()=>copyToClipboard(filenameEl.textContent));
     document.getElementById('clear-btn').addEventListener('click', ()=>{
-      titleEl.value=''; slugEl.value=''; contentEl.value=''; tagsEl.value=''; imageUrlEl.value='';
-      useImageEl.checked=false; imageUrlEl.classList.add('hidden');
+      titleEl.value=''; slugEl.value=''; contentEl.value=''; tagsEl.value=''; imageFileEl.value='';
+      useImageEl.checked=false; imageFileEl.classList.add('hidden');
       Array.from(categoriesEl.options).forEach(o=>o.selected=false);
       markdownEl.value=''; filenameEl.textContent=''; imagePreview.style.display='none';
     });
 
-    [titleEl, slugEl, contentEl, imageUrlEl].forEach(el=>el.addEventListener('input', generateMarkdown));
+    [titleEl, slugEl, contentEl, imageFileEl].forEach(el=>el.addEventListener('input', generateMarkdown));
   </script>
 </body>
 </html>
