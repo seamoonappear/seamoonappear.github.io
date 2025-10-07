@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Front Matter Markdown 生成器 | Chirpy 优化版</title>
+  <title>Chirpy Front Matter 生成器 | 升级版</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen">
   <div class="max-w-6xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6 text-center">🪶 Chirpy 风格 Front Matter 生成器</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">🪶 Chirpy 风格 Front Matter 生成器（升级版）</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- 左侧表单 -->
@@ -25,17 +25,30 @@
           <label class="block font-semibold mb-1">正文内容</label>
           <textarea id="content" rows="8" class="w-full border rounded p-2" placeholder="输入正文"></textarea>
         </div>
-        <div class="flex items-center justify-between">
-          <button id="generate-btn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🪄 生成分类与标签</button>
-          <button id="clear-btn" class="text-gray-500 border px-3 py-2 rounded hover:bg-gray-100">清空</button>
+        <div>
+          <label class="block font-semibold mb-1">分类</label>
+          <select id="categories" multiple class="w-full border rounded p-2">
+            <option value="工作">工作</option>
+            <option value="生活">生活</option>
+            <option value="情感">情感</option>
+            <option value="爱好">爱好</option>
+            <option value="感悟">感悟</option>
+            <option value="探索">探索</option>
+            <option value="学习">学习</option>
+          </select>
+          <p class="text-sm text-gray-500 mt-1">按住 Ctrl / Command 可多选</p>
         </div>
         <div>
-          <label class="block font-semibold mb-1">分类（自动生成，可修改）</label>
-          <input id="categories" type="text" class="w-full border rounded p-2">
-        </div>
-        <div>
-          <label class="block font-semibold mb-1">标签（自动生成，可修改）</label>
+          <label class="block font-semibold mb-1">标签（2~3 个，自动生成，可修改）</label>
           <input id="tags" type="text" class="w-full border rounded p-2">
+        </div>
+        <div>
+          <label class="block font-semibold mb-1">封面图片 URL（可选）</label>
+          <input id="image-url" type="text" class="w-full border rounded p-2" placeholder="输入图片 URL，将插在文章最前">
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="generate-btn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">🪄 生成 Markdown</button>
+          <button id="clear-btn" class="text-gray-500 border px-3 py-2 rounded hover:bg-gray-100">清空</button>
         </div>
       </div>
 
@@ -45,6 +58,7 @@
           <h2 class="text-xl font-semibold">📝 生成结果</h2>
           <div class="space-x-2">
             <button id="copy-btn" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">复制 Markdown</button>
+            <button id="copy-filename-btn" class="bg-yellow-600 text-white px-3 py-1 rounded hover:bg-yellow-700">复制 posts 文件名</button>
             <button id="download-btn" class="bg-purple-600 text-white px-3 py-1 rounded hover:bg-purple-700">下载 .md 文件</button>
           </div>
         </div>
@@ -60,98 +74,81 @@
     const contentEl = document.getElementById('content');
     const categoriesEl = document.getElementById('categories');
     const tagsEl = document.getElementById('tags');
+    const imageUrlEl = document.getElementById('image-url');
     const markdownEl = document.getElementById('markdown');
     const filenameEl = document.getElementById('filename');
 
-    // 辅助函数：时间与slug
     function formatDate(date = new Date()) {
-      return date.toISOString().slice(0, 19).replace('T', ' ') + ' +0800';
-    }
-    function getSlug(title) {
-      return title.trim()
-        .toLowerCase()
-        .replace(/[^\w\u4e00-\u9fa5]+/g, '-')
-        .replace(/^-+|-+$/g, '');
+      return date.toISOString().slice(0,19).replace('T',' ') + ' +0800';
     }
 
-    // 自动生成分类与标签
-    function autoGenerateMeta() {
+    function getSlug(title){
+      return title.trim().toLowerCase().replace(/[^\w\u4e00-\u9fa5]+/g,'-').replace(/^-+|-+$/g,'');
+    }
+
+    function autoGenerateTags() {
       const text = (titleEl.value + ' ' + contentEl.value).toLowerCase();
-      let cats = [];
-      if (/jekyll|html|css|javascript|python|代码/.test(text)) cats = ['技术', '博客'];
-      else if (/旅行|生活|日记/.test(text)) cats = ['生活', '随笔'];
-      else if (/诗|小说|随笔/.test(text)) cats = ['文学', '创作'];
-      else cats = ['杂谈', '思考'];
-
-      const words = text.split(/[^a-zA-Z0-9\u4e00-\u9fa5]+/).filter(w => w.length > 1);
+      const words = text.split(/[^a-zA-Z0-9\u4e00-\u9fa5]+/).filter(w => w.length>1);
       const freq = {};
-      words.forEach(w => freq[w] = (freq[w] || 0) + 1);
-      const sorted = Object.keys(freq).sort((a, b) => freq[b] - freq[a]);
-      const tags = sorted.slice(0, 3);
-
-      categoriesEl.value = cats.join(', ');
-      tagsEl.value = tags.join(', ');
+      words.forEach(w => freq[w]=(freq[w]||0)+1);
+      const sorted = Object.keys(freq).sort((a,b)=>freq[b]-freq[a]);
+      return sorted.slice(0,3);
     }
 
-    // 主生成函数
-    function generateMarkdown() {
-      const title = titleEl.value.trim();
-      const slug = slugEl.value.trim() || getSlug(title);
+    function generateMarkdown(){
+      const title = titleEl.value.trim() || '未命名文章';
+      const slug = slugEl.value.trim() || getSlug(title) || 'post';
       const content = contentEl.value.trim();
-      const categories = categoriesEl.value.split(',').map(c => c.trim()).filter(Boolean);
-      const tags = tagsEl.value.split(',').map(t => t.trim()).filter(Boolean);
+      const selectedCats = Array.from(categoriesEl.selectedOptions).map(o=>o.value);
+      const cats = selectedCats.length ? selectedCats : ['杂谈'];
+      const tags = tagsEl.value ? tagsEl.value.split(',').map(t=>t.trim()) : autoGenerateTags();
       const date = formatDate();
-      const summary = content.slice(0, 80).replace(/\n/g, ' ');
+      const summary = content.slice(0,80).replace(/\n/g,' ');
       const description = summary || '（请填写文章摘要）';
-      const filename = `${new Date().toISOString().slice(0,10)}-${slug || 'your-post'}.md`;
+      const filename = `_posts/${new Date().toISOString().slice(0,10)}-${slug}.md`;
+      filenameEl.textContent = filename;
 
-      const fm = `---\n` +
-`title: ${title || '未命名文章'}\n` +
-`date: ${date}\n` +
-`categories: [${categories.join(', ')}]\n` +
-`tags: [${tags.join(', ')}]\n` +
-`description: >-\n  ${description}\n` +
-`image:\n  path: /assets/img/\n  alt: 封面图\n` +
+      let imgMarkdown = '';
+      const imgUrl = imageUrlEl.value.trim();
+      if(imgUrl) imgMarkdown = `![封面图](${imgUrl})\n\n`;
+
+      const fm = `---\n`+
+`title: ${title}\n`+
+`date: ${date}\n`+
+`categories: [${cats.join(', ')}]\n`+
+`tags: [${tags.join(', ')}]\n`+
+`description: >-\n  ${description}\n`+
+`image:\n  path: ${imgUrl || '/assets/img/'}\n  alt: 封面图\n`+
 `pin: false\nmath: false\nmermaid: false\n---\n\n`;
 
-      const md = `${fm}## 简介\n\n${summary}\n\n---\n\n## 正文\n\n${content}\n`;
-      markdownEl.value = md;
-      filenameEl.textContent = filename;
+      markdownEl.value = `${fm}${imgMarkdown}## 简介\n\n${summary}\n\n---\n\n## 正文\n\n${content}\n`;
     }
 
-    // 文件下载函数
-    function downloadMarkdown() {
-      const blob = new Blob([markdownEl.value], { type: 'text/markdown;charset=utf-8' });
-      const a = document.createElement('a');
-      const filename = filenameEl.textContent || 'new-post.md';
+    function downloadMarkdown(){
+      const blob = new Blob([markdownEl.value], {type:'text/markdown;charset=utf-8'});
+      const a=document.createElement('a');
+      const fname = filenameEl.textContent || 'new-post.md';
       a.href = URL.createObjectURL(blob);
-      a.download = filename;
+      a.download = fname;
       a.click();
       URL.revokeObjectURL(a.href);
     }
 
-    // 事件绑定
-    document.getElementById('generate-btn').addEventListener('click', () => {
-      autoGenerateMeta();
-      generateMarkdown();
-    });
-    document.getElementById('copy-btn').addEventListener('click', () => {
-      markdownEl.select();
-      document.execCommand('copy');
-      alert('已复制到剪贴板 ✅');
-    });
+    function copyToClipboard(text){
+      navigator.clipboard.writeText(text).then(()=>alert('已复制 ✅'));
+    }
+
+    document.getElementById('generate-btn').addEventListener('click', generateMarkdown);
     document.getElementById('download-btn').addEventListener('click', downloadMarkdown);
-    document.getElementById('clear-btn').addEventListener('click', () => {
-      titleEl.value = '';
-      slugEl.value = '';
-      contentEl.value = '';
-      categoriesEl.value = '';
-      tagsEl.value = '';
-      markdownEl.value = '';
-      filenameEl.textContent = '';
+    document.getElementById('copy-btn').addEventListener('click', ()=>copyToClipboard(markdownEl.value));
+    document.getElementById('copy-filename-btn').addEventListener('click', ()=>copyToClipboard(filenameEl.textContent));
+    document.getElementById('clear-btn').addEventListener('click', ()=>{
+      titleEl.value=''; slugEl.value=''; contentEl.value=''; tagsEl.value=''; imageUrlEl.value='';
+      Array.from(categoriesEl.options).forEach(o=>o.selected=false);
+      markdownEl.value=''; filenameEl.textContent='';
     });
 
-    [titleEl, slugEl, contentEl].forEach(el => el.addEventListener('input', generateMarkdown));
+    [titleEl, slugEl, contentEl, imageUrlEl].forEach(el=>el.addEventListener('input', generateMarkdown));
   </script>
 </body>
 </html>
