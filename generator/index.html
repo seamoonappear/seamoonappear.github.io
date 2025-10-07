@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chirpy Front Matter 生成器 | 自动更新时间 + 图片路径优化</title>
+  <title>Chirpy Markdown 生成器</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen">
   <div class="max-w-6xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6 text-center">🪶 Chirpy Front Matter 生成器（支持本地图片路径）</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">🪶 Chirpy Markdown 生成器</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- 左侧输入 -->
@@ -26,7 +26,7 @@
           <textarea id="content" rows="8" class="w-full border rounded p-2" placeholder="输入正文"></textarea>
         </div>
         <div>
-          <label class="block font-semibold mb-1">分类</label>
+          <label class="block font-semibold mb-1">分类（可多选）</label>
           <select id="categories" multiple class="w-full border rounded p-2">
             <option value="工作">工作</option>
             <option value="生活">生活</option>
@@ -41,7 +41,7 @@
           <p class="text-sm text-gray-500 mt-1">按住 Ctrl / Command 可多选</p>
         </div>
         <div>
-          <label class="block font-semibold mb-1">标签（2~3 个，自动生成，可修改）</label>
+          <label class="block font-semibold mb-1">标签（自动生成，可修改）</label>
           <input id="tags" type="text" class="w-full border rounded p-2" placeholder="如：Jekyll, Chirpy, 博客">
         </div>
 
@@ -49,9 +49,9 @@
         <div>
           <label class="flex items-center space-x-2 mb-2">
             <input id="use-image" type="checkbox" class="w-4 h-4">
-            <span class="font-semibold">启用封面图片（来自 assets/img/）</span>
+            <span class="font-semibold">使用封面图片（路径：/assets/img/）</span>
           </label>
-          <input id="image-file" type="text" class="w-full border rounded p-2 hidden" placeholder="输入图片文件名，例如 cover1.jpg">
+          <input id="image-file" type="text" class="w-full border rounded p-2 hidden" placeholder="输入文件名，例如 cover.jpg">
         </div>
 
         <div class="flex items-center gap-2">
@@ -122,7 +122,7 @@
       const slug = slugEl.value.trim() || getSlug(title) || 'post';
       const content = contentEl.value.trim();
       const selectedCats = Array.from(categoriesEl.selectedOptions).map(o=>o.value);
-      const cats = selectedCats.length ? selectedCats : ['杂谈'];
+      const cats = selectedCats.length ? selectedCats : ['随笔'];
       const tags = tagsEl.value ? tagsEl.value.split(',').map(t=>t.trim()) : autoGenerateTags();
       const date = formatDate();
       const lastModified = formatDate();
@@ -153,7 +153,15 @@
 
       fm += `pin: false\nmath: false\nmermaid: false\n---\n\n`;
 
-      markdownEl.value = `${fm}${imgMarkdown}## 简介\n\n${summary}\n\n---\n\n## 正文\n\n${content}\n`;
+      // Chirpy 排版模板
+      markdownEl.value = `${fm}${imgMarkdown}` +
+`## 简介\n\n` +
+`> ${description}\n\n` +
+`---\n\n` +
+`## 正文\n\n${content}\n\n` +
+`---\n\n` +
+`## 相关阅读\n\n- （可添加相关链接）\n\n` +
+`## 参考资料\n\n- （可补充引用）\n`;
     }
 
     function downloadMarkdown(){
