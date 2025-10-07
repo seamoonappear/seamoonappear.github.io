@@ -19,7 +19,7 @@ title: 海上升明月 # 主标题
 tagline: 学习,感悟,探索 # 将显示为副标题
 
 description: >- # 用于 SEO 元数据和 atom feed
-  一个简约、响应式且功能丰富的 Jekyll 主题，适用于技术写作。
+  王维的个人博客 - 分享技术学习心得、生活感悟和探索发现。
 
 # 填写您网站的协议和主机名。
 # 例如 'https://username.github.io'，注意不要以 '/' 结尾。
@@ -34,7 +34,7 @@ twitter:
 social:
   # 更改为您的全名。
   # 它将显示为文章的默认作者和页脚的版权所有者
-  name: 您的全名
+  name: 王维
   email: example@domain.com # 更改为您的邮箱地址
   links:
     # 第一个元素作为版权所有者的链接
@@ -97,7 +97,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # 侧边栏头像，支持本地或 CORS 资源
-avatar:
+avatar: /assets/img/avatar.jpg
 
 # 在 SEO `og:image` 元标签中使用的全站社交预览图片的 URL。
 # 可以通过 front matter 中的自定义 `page.image` 覆盖。
