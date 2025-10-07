@@ -122,7 +122,6 @@
       fm += `last_modified_at: ${date}\n`;
       fm += `categories: [${category}]\n`;
       fm += `tags: []\n`;
-      fm += `description: >-\n  ${content.slice(0, 40) || '暂无摘要'}\n`;
 
       if (addImageEl.checked && imagePathEl.value.trim() !== '') {
         fm += `image:\n  path: /assets/img/${imagePathEl.value.trim()}\n`;
