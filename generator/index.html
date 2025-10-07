@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chirpy Front Matter 生成器 | 升级版</title>
+  <title>Chirpy Front Matter 生成器 | 升级版带图片预览</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen">
   <div class="max-w-6xl mx-auto p-6">
-    <h1 class="text-3xl font-bold mb-6 text-center">🪶 Chirpy 风格 Front Matter 生成器（升级版）</h1>
+    <h1 class="text-3xl font-bold mb-6 text-center">🪶 Chirpy 风格 Front Matter 生成器（带封面预览）</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- 左侧表单 -->
@@ -63,7 +63,11 @@
           </div>
         </div>
         <p class="text-sm text-gray-500 mb-2">文件路径：<span id="filename" class="font-mono"></span></p>
-        <textarea id="markdown" readonly rows="25" class="w-full border rounded p-2 font-mono text-sm bg-gray-50"></textarea>
+        <textarea id="markdown" readonly rows="20" class="w-full border rounded p-2 font-mono text-sm bg-gray-50"></textarea>
+        <div class="mt-4">
+          <label class="block font-semibold mb-1">图片预览：</label>
+          <img id="image-preview" class="w-full max-h-64 object-contain border rounded p-2 bg-white" src="" alt="封面预览" style="display:none;">
+        </div>
       </div>
     </div>
   </div>
@@ -77,6 +81,7 @@
     const imageUrlEl = document.getElementById('image-url');
     const markdownEl = document.getElementById('markdown');
     const filenameEl = document.getElementById('filename');
+    const imagePreview = document.getElementById('image-preview');
 
     function formatDate(date = new Date()) {
       return date.toISOString().slice(0,19).replace('T',' ') + ' +0800';
@@ -110,7 +115,13 @@
 
       let imgMarkdown = '';
       const imgUrl = imageUrlEl.value.trim();
-      if(imgUrl) imgMarkdown = `![封面图](${imgUrl})\n\n`;
+      if(imgUrl) {
+        imgMarkdown = `![封面图](${imgUrl})\n\n`;
+        imagePreview.src = imgUrl;
+        imagePreview.style.display = 'block';
+      } else {
+        imagePreview.style.display = 'none';
+      }
 
       const fm = `---\n`+
 `title: ${title}\n`+
@@ -145,7 +156,7 @@
     document.getElementById('clear-btn').addEventListener('click', ()=>{
       titleEl.value=''; slugEl.value=''; contentEl.value=''; tagsEl.value=''; imageUrlEl.value='';
       Array.from(categoriesEl.options).forEach(o=>o.selected=false);
-      markdownEl.value=''; filenameEl.textContent='';
+      markdownEl.value=''; filenameEl.textContent=''; imagePreview.style.display='none';
     });
 
     [titleEl, slugEl, contentEl, imageUrlEl].forEach(el=>el.addEventListener('input', generateMarkdown));
