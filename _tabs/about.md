@@ -1,10 +1,4 @@
 ---
-# the default layout is 'page'
-icon: fas fa-info-circle
-order: 4
----
-
-> ---
 layout: page
 title: "关于我"
 permalink: /about/
@@ -58,4 +52,3 @@ permalink: /about/
 ---
 
 我相信 **设计、营销与包装** 是企业价值的重要体现，致力于用专业技能为每一个项目创造更大价值.
-{: .prompt-tip }
