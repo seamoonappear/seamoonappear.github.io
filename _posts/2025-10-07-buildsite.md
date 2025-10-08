@@ -7,7 +7,7 @@ tags: [程序员]
 description: >-
   这个假期，我花了不少时间和 ChatGPT 一起研究代码语言，它的项目选项非常棒，记忆力和联想力秒杀一众小弟。
 image:
-  path: /assets/img/ganyu20251003.jpg
+  path: /assets/img/code20251008.webp
   alt: 封面图
 pin: false
 math: false
