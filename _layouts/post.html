@@ -223,19 +223,42 @@ layout: default
   color: #2c3e50;
 }
 
-/* Cusdis 评论系统样式调整 */
+/* Cusdis 评论系统样式调整 - 移除滚动条 */
 #cusdis_thread {
   overflow: visible !important;
+  /* 移除滚动条 */
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE and Edge */
+}
+
+/* 隐藏 Webkit 浏览器的滚动条 (Chrome, Safari, newer Edge) */
+#cusdis_thread::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 #cusdis_thread iframe {
   min-height: auto !important;
   height: auto !important;
+  /* 移除 iframe 内的滚动条 */
+  overflow: hidden !important;
+  /* 确保 iframe 内容完全显示 */
+  max-height: none !important;
 }
 
 .cusdis-comments-list {
   max-height: none !important;
   overflow: visible !important;
+}
+
+/* 确保评论框容器没有高度限制 */
+#cusdis_thread .cusdis,
+#cusdis_thread .cusdis-comment-list,
+#cusdis_thread .cusdis-comments-list {
+  max-height: none !important;
+  overflow: visible !important;
+  height: auto !important;
 }
 
 /* 响应式设计 */
