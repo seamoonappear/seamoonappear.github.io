@@ -114,8 +114,8 @@ comments:
     shortname: # 填写 Disqus shortname › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
   # utterances 设置 › https://utteranc.es/
   utterances:
-    repo: # <gh-用户名>/<仓库>
-    issue_term: # < url | pathname | title | ...>
+    repo: "seamoonappear/seamoonappear.github.io"
+    issue_term: "pathname" # < url | pathname | title | ...>
   # Giscus 选项 › https://giscus.app
   giscus:
     repo: # <gh-用户名>/<仓库>
