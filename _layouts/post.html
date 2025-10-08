@@ -216,6 +216,8 @@ layout: default
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid #eaeaea;
+  /* 确保评论区域本身不产生滚动条 */
+  overflow: hidden;
 }
 
 .comments-section h3 {
@@ -223,39 +225,51 @@ layout: default
   color: #2c3e50;
 }
 
-/* Cusdis 评论系统样式调整 - 移除滚动条 */
-#cusdis_thread {
-  overflow: visible !important;
-  /* 移除滚动条 */
+/* 彻底移除Cusdis评论系统滚动条 - 多浏览器兼容方案 */
+#cusdis_thread,
+#cusdis_thread * {
+  /* 移除所有滚动条 */
   scrollbar-width: none !important; /* Firefox */
   -ms-overflow-style: none !important; /* IE and Edge */
+  
+  /* 确保内容完全显示，不产生滚动 */
+  overflow: hidden !important;
+  max-height: none !important;
+  height: auto !important;
 }
 
-/* 隐藏 Webkit 浏览器的滚动条 (Chrome, Safari, newer Edge) */
-#cusdis_thread::-webkit-scrollbar {
+/* Chrome, Safari, Edge, 微信内置浏览器, 夸克等Webkit内核浏览器 */
+#cusdis_thread::-webkit-scrollbar,
+#cusdis_thread *::-webkit-scrollbar {
   display: none !important;
   width: 0 !important;
   height: 0 !important;
 }
 
+/* 针对iframe的特殊处理 */
 #cusdis_thread iframe {
+  border: none !important;
+  overflow: hidden !important;
   min-height: auto !important;
   height: auto !important;
-  /* 移除 iframe 内的滚动条 */
-  overflow: hidden !important;
-  /* 确保 iframe 内容完全显示 */
   max-height: none !important;
+  /* 确保iframe内容区域不产生滚动 */
+  scrolling: "no" !important;
 }
 
-.cusdis-comments-list {
-  max-height: none !important;
-  overflow: visible !important;
+/* 针对微信内置浏览器的特殊处理 */
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+  #cusdis_thread {
+    -webkit-overflow-scrolling: auto !important;
+    overflow: hidden !important;
+  }
 }
 
-/* 确保评论框容器没有高度限制 */
-#cusdis_thread .cusdis,
-#cusdis_thread .cusdis-comment-list,
-#cusdis_thread .cusdis-comments-list {
+/* 确保评论内容区域完全展开 */
+.cusdis,
+.cusdis-comment-list,
+.cusdis-comments-list,
+[class*="cusdis"] {
   max-height: none !important;
   overflow: visible !important;
   height: auto !important;
@@ -296,3 +310,56 @@ layout: default
   }
 }
 </style>
+
+<!-- 额外的JavaScript解决方案 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 动态移除Cusdis可能产生的滚动条
+  function removeCusdisScrollbars() {
+    const cusdisThread = document.getElementById('cusdis_thread');
+    if (cusdisThread) {
+      // 强制移除所有滚动相关样式
+      cusdisThread.style.overflow = 'hidden';
+      cusdisThread.style.overflowX = 'hidden';
+      cusdisThread.style.overflowY = 'hidden';
+      
+      // 查找并处理内部iframe
+      const iframes = cusdisThread.getElementsByTagName('iframe');
+      for (let iframe of iframes) {
+        iframe.style.overflow = 'hidden';
+        iframe.style.overflowX = 'hidden';
+        iframe.style.overflowY = 'hidden';
+        iframe.style.height = 'auto';
+        iframe.style.maxHeight = 'none';
+        
+        // 尝试设置scrolling属性
+        iframe.setAttribute('scrolling', 'no');
+      }
+    }
+  }
+  
+  // 初始执行
+  removeCusdisScrollbars();
+  
+  // 监听Cusdis加载完成
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList') {
+        removeCusdisScrollbars();
+      }
+    });
+  });
+  
+  // 开始观察
+  const cusdisContainer = document.getElementById('cusdis_thread');
+  if (cusdisContainer) {
+    observer.observe(cusdisContainer, {
+      childList: true,
+      subtree: true
+    });
+  }
+  
+  // 延迟再次检查，确保Cusdis完全加载
+  setTimeout(removeCusdisScrollbars, 2000);
+});
+</script>
