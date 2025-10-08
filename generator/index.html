@@ -1,155 +1,331 @@
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Front Matter Markdown 生成器</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chirpy Front Matter 生成器（v3）</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body {
-      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #f9fafb;
-      color: #111;
-      margin: 0;
-      padding: 2rem;
-    }
-    h1 { text-align: center; margin-bottom: 1rem; }
-    .container { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    textarea, input, select {
-      width: 100%;
-      padding: 0.6rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
-      font-size: 1rem;
-    }
-    label { font-weight: bold; display: block; margin-top: 0.5rem; }
-    button {
-      background: #2563eb;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 0.5rem;
-    }
-    button:hover { background: #1e40af; }
-    .output { background: #fff; border: 1px solid #ddd; padding: 1rem; border-radius: 8px; }
-    .filename { font-family: monospace; background: #eef2ff; padding: 0.4rem; border-radius: 4px; display: inline-block; }
-    .actions { margin-top: 1rem; display: flex; gap: 1rem; }
-    .checkbox-inline { display: flex; align-items: center; gap: 0.3rem; }
+    /* small extra styles */
+    body { background: #f8fafc; }
+    .textarea-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Sans Mono", monospace; }
+    pre { white-space: pre-wrap; word-wrap: break-word; }
   </style>
 </head>
-<body>
-  <h1>📝 Front Matter Markdown 生成器（Jekyll · Chirpy 风格）</h1>
+<body class="min-h-screen text-slate-800">
+  <div class="max-w-6xl mx-auto p-6">
+    <header class="mb-6 text-center">
+      <h1 class="text-2xl font-semibold">王维Chirpy Front Matter 生成器（v1）</h1>
+      <p class="text-sm text-slate-500 mt-1">生成符合 Chirpy 规范的 Markdown（含 comments: true、last_modified_at、/assets/img 图片支持、自定义分类）</p>
+    </header>
 
-  <div class="container">
-    <div>
-      <label>标题</label>
-      <input type="text" id="title" placeholder="请输入文章标题">
+    <main class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- left: form -->
+      <section class="bg-white p-5 rounded-xl shadow-sm">
+        <div class="space-y-4">
+          <label class="block">
+            <div class="text-sm font-medium">标题（title）</div>
+            <input id="title" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="输入文章标题">
+          </label>
 
-      <label>内容</label>
-      <textarea id="content" rows="12" placeholder="请输入正文内容"></textarea>
+          <label class="block">
+            <div class="text-sm font-medium">Slug（用于文件名，可选）</div>
+            <input id="slug" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="若留空将由标题自动生成">
+            <p class="text-xs text-slate-500 mt-1">只允许字母/数字/短横线，中文会被转为连字符化处理</p>
+          </label>
 
-      <label>分类</label>
-      <select id="category">
-        <option value="职场">职场</option>
-        <option value="生活">生活</option>
-        <option value="情感">情感</option>
-        <option value="爱好">爱好</option>
-        <option value="感悟">感悟</option>
-        <option value="探索">探索</option>
-        <option value="学习">学习</option>
-        <option value="读书">读书</option>
-        <option value="影视">影视</option>
-      </select>
+          <label class="block">
+            <div class="text-sm font-medium">正文内容（Markdown）</div>
+            <textarea id="content" rows="10" class="mt-1 block w-full rounded-md border px-3 py-2 textarea-mono" placeholder="把文章完整正文粘贴到这里"></textarea>
+          </label>
 
-      <label>图片选项</label>
-      <div class="checkbox-inline">
-        <input type="checkbox" id="addImage" />
-        <label for="addImage" style="margin: 0;">插入封面图片</label>
-      </div>
-      <input type="text" id="imagePath" placeholder="输入图片文件名（例如 cover.webp ）" disabled />
+          <label class="block">
+            <div class="text-sm font-medium">分类（categories）</div>
+            <select id="categories" class="mt-1 block w-full rounded-md border px-3 py-2" >
+              <option value="职场">职场</option>
+              <option value="生活">生活</option>
+              <option value="情感">情感</option>
+              <option value="爱好">爱好</option>
+              <option value="感悟">感悟</option>
+              <option value="探索">探索</option>
+              <option value="学习">学习</option>
+              <option value="读书">读书</option>
+              <option value="影视">影视</option>
+              <option value="__custom__">自定义分类（选择后填写下面）</option>
+            </select>
+            <input id="custom-category" class="mt-2 block w-full rounded-md border px-3 py-2 hidden" placeholder="输入自定义分类（示例：旅行记录）">
+          </label>
 
-      <div class="actions">
-        <button onclick="generateAll()">生成 Markdown</button>
-        <button onclick="copyMarkdown()">复制 Markdown</button>
-      </div>
-    </div>
+          <label class="block">
+            <div class="text-sm font-medium">标签（tags，可用逗号分隔；若为空可手动填写）</div>
+            <input id="tags" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="例如：Jekyll, Chirpy, 教程">
+          </label>
 
-    <div class="output">
-      <p><strong>📄 文件名：</strong> <span id="filename" class="filename"></span></p>
-      <button onclick="copyFilename()">复制文件名</button>
-      <pre id="markdownOutput"></pre>
-    </div>
+          <div class="border-t pt-3">
+            <div class="flex items-center gap-3">
+              <input id="use-image" type="checkbox" class="w-4 h-4" />
+              <label for="use-image" class="text-sm font-medium">启用封面图片（来自 <code>/assets/img/</code>）</label>
+            </div>
+            <input id="image-file" class="mt-2 block w-full rounded-md border px-3 py-2 hidden" placeholder="仅填写文件名，例如 cover.jpg">
+            <p id="image-help" class="text-xs text-slate-500 mt-1 hidden">将使用 /assets/img/&lt;文件名&gt; 作为图片路径。</p>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="generate" class="px-3 py-2 rounded bg-indigo-600 text-white">🪄 生成 Markdown</button>
+            <button id="download" class="px-3 py-2 rounded border">⬇ 下载 .md</button>
+            <button id="clear" class="px-3 py-2 rounded border ml-auto">清空</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- right: outputs -->
+      <section class="bg-white p-5 rounded-xl shadow-sm flex flex-col">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h2 class="text-lg font-medium">生成结果</h2>
+            <div class="text-xs text-slate-500">可复制到 <code>_posts/</code> 目录</div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="copy-md" class="px-2 py-1 rounded bg-emerald-600 text-white text-sm">复制 Markdown</button>
+            <button id="copy-fname" class="px-2 py-1 rounded bg-amber-600 text-white text-sm">复制 posts 文件名</button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="text-sm text-slate-600 mb-1">文件名</div>
+          <pre id="filename" class="p-3 rounded border bg-slate-100 textarea-mono">_posts/YYYY-MM-DD-your-post.md</pre>
+        </div>
+
+        <div class="flex-1">
+          <div class="text-sm text-slate-600 mb-1">完整 Markdown（含 Front Matter）</div>
+          <textarea id="markdown" class="w-full h-64 p-3 rounded border bg-slate-50 textarea-mono" readonly></textarea>
+        </div>
+
+        <div class="mt-4">
+          <div class="text-sm text-slate-600 mb-1">图片预览（若启用并存在）</div>
+          <img id="preview" class="w-full max-h-64 object-contain rounded border bg-white hidden" alt="">
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-6 text-sm text-slate-500">提示：生成器不会自动修改你的站点，只在本页生成可下载/复制的 Markdown 文件。</footer>
   </div>
 
-  <script>
-    const titleEl = document.getElementById('title');
-    const contentEl = document.getElementById('content');
-    const categoryEl = document.getElementById('category');
-    const addImageEl = document.getElementById('addImage');
-    const imagePathEl = document.getElementById('imagePath');
-    const filenameEl = document.getElementById('filename');
-    const markdownEl = document.getElementById('markdownOutput');
+<script>
+  // DOM
+  const titleEl = document.getElementById('title');
+  const slugEl = document.getElementById('slug');
+  const contentEl = document.getElementById('content');
+  const categoriesEl = document.getElementById('categories');
+  const customCategoryEl = document.getElementById('custom-category');
+  const tagsEl = document.getElementById('tags');
+  const useImageEl = document.getElementById('use-image');
+  const imageFileEl = document.getElementById('image-file');
+  const imageHelpEl = document.getElementById('image-help');
 
-    addImageEl.addEventListener('change', () => {
-      imagePathEl.disabled = !addImageEl.checked;
+  const generateBtn = document.getElementById('generate');
+  const downloadBtn = document.getElementById('download');
+  const clearBtn = document.getElementById('clear');
+
+  const filenamePre = document.getElementById('filename');
+  const markdownArea = document.getElementById('markdown');
+  const previewImg = document.getElementById('preview');
+
+  const copyMdBtn = document.getElementById('copy-md');
+  const copyFnameBtn = document.getElementById('copy-fname');
+
+  // helpers
+  function nowFormatted(){
+    const d = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    const YYYY = d.getFullYear();
+    const MM = pad(d.getMonth()+1);
+    const DD = pad(d.getDate());
+    const hh = pad(d.getHours());
+    const mm = pad(d.getMinutes());
+    const ss = pad(d.getSeconds());
+    // use +0800 for Chirpy default (you can adjust if needed)
+    return `${YYYY}-${MM}-${DD} ${hh}:${mm}:${ss} +0800`;
+  }
+
+  function slugify(text){
+    if(!text) return '';
+    let s = String(text).trim().toLowerCase();
+    // replace spaces with hyphen
+    s = s.replace(/\s+/g, '-');
+    // remove chars except a-z0-9 and hyphen
+    s = s.replace(/[^a-z0-9\-]/g, '-');
+    s = s.replace(/\-+/g, '-');
+    s = s.replace(/^-+|-+$/g, '');
+    return s || 'post';
+  }
+
+  function escapeQuoteForYaml(v){
+    // if value contains colon, quotes, or leading/trailing space, wrap in double quotes and escape inner quotes
+    if (v === undefined || v === null) return '';
+    const s = String(v);
+    if (/[:\n"'{}[\],&*#?|\-<>=!%@`]/.test(s) || /^\s|\s$/.test(s)) {
+      return `"${s.replace(/"/g, '\\"')}"`;
+    }
+    return s;
+  }
+
+  // category custom handling
+  categoriesEl.addEventListener('change', ()=>{
+    if (categoriesEl.value === '__custom__') {
+      customCategoryEl.classList.remove('hidden');
+    } else {
+      customCategoryEl.classList.add('hidden');
+      customCategoryEl.value = '';
+    }
+  });
+
+  // image toggle
+  useImageEl.addEventListener('change', ()=>{
+    if (useImageEl.checked) {
+      imageFileEl.classList.remove('hidden');
+      imageHelpEl.classList.remove('hidden');
+    } else {
+      imageFileEl.classList.add('hidden');
+      imageHelpEl.classList.add('hidden');
+      imageFileEl.value = '';
+      previewImg.src = '';
+      previewImg.classList.add('hidden');
+    }
+  });
+
+  // auto-generate tags if empty: simple top-frequency words (naive)
+  function autoTags(text, maxCount=3){
+    if(!text) return [];
+    const tokens = text.split(/[^a-zA-Z0-9\u4e00-\u9fa5]+/).filter(Boolean).map(t=>t.toLowerCase());
+    const freq = {};
+    tokens.forEach(t => {
+      if (t.length <= 1) return;
+      freq[t] = (freq[t]||0) + 1;
     });
+    return Object.keys(freq).sort((a,b)=>freq[b]-freq[a]).slice(0, maxCount);
+  }
 
-    function slugify(text) {
-      return text.toString().toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[^\w\-]+/g, '')
-        .replace(/\-\-+/g, '-')
-        .replace(/^-+/, '')
-        .replace(/-+$/, '');
-    }
+  // main generate
+  function generateMarkdown(){
+    const title = titleEl.value.trim();
+    const slugInput = slugEl.value.trim();
+    const content = contentEl.value.trim();
+    const selectedCat = categoriesEl.value === '__custom__' ? (customCategoryEl.value.trim() || '自定义') : categoriesEl.value;
+    const tagInput = tagsEl.value.trim();
+    const tags = tagInput ? tagInput.split(',').map(t=>t.trim()).filter(Boolean) : autoTags(title + ' ' + content, 3);
+    const date = nowFormatted();
+    const lastModified = nowFormatted();
 
-    function generateAll() {
-      const title = titleEl.value.trim();
-      const content = contentEl.value.trim();
-      const category = categoryEl.value;
-      const slug = slugify(title);
-      const now = new Date();
-      const date = now.toISOString().slice(0, 19).replace('T', ' ');
-      const dateOnly = now.toISOString().slice(0, 10);
-      const filename = `_posts/${dateOnly}-${slug || 'your-post'}.md`;
+    // filename
+    const dateOnly = (new Date()).toISOString().slice(0,10);
+    const slug = slugInput || slugify(title) || 'your-post';
+    const filename = `_posts/${dateOnly}-${slug}.md`;
+    filenamePre.textContent = filename;
 
-      let fm = `---\n`;
-      fm += `title: ${title || '未命名文章'}\n`;
-      fm += `date: ${date}\n`;
-      fm += `last_modified_at: ${date}\n`;
-      fm += `categories: [${category}]\n`;
-      fm += `tags: []\n`;
+    // build front matter
+    // title use quoting to be safe
+    const fmTitle = escapeQuoteForYaml(title || '未命名文章');
+    let fm = '---\n';
+    fm += `title: ${fmTitle}\n`;
+    fm += `date: ${date}\n`;
+    fm += `last_modified_at: ${lastModified}\n`;
+    fm += `categories: [${escapeQuoteForYaml(selectedCat)}]\n`;
+    fm += `tags: [${tags.map(t=>escapeQuoteForYaml(t)).join(', ')}]\n`;
 
-      if (addImageEl.checked && imagePathEl.value.trim() !== '') {
-        fm += `image:\n  path: /assets/img/${imagePathEl.value.trim()}\n`;
+    // image: only include image.path when enabled and filename provided
+    let bodyImageLine = '';
+    if (useImageEl.checked) {
+      const imgFile = imageFileEl.value.trim();
+      if (imgFile) {
+        const imgPath = `/assets/img/${imgFile}`;
+        fm += `image:\n  path: ${imgPath}\n`;
+        // body image markdown (only once). No alt text as requested.
+        bodyImageLine = `![](${imgPath})\n\n`;
+        // preview
+        previewImg.src = imgPath;
+        previewImg.classList.remove('hidden');
+      } else {
+        // if enabled but empty, do not include image field
+        previewImg.src = '';
+        previewImg.classList.add('hidden');
       }
-
-      fm += `pin: false\nmath: false\nmermaid: false\n---\n\n`;
-
-      let mdContent = "";
-
-      if (addImageEl.checked && imagePathEl.value.trim() !== '') {
-        mdContent += `![封面](/assets/img/${imagePathEl.value.trim()})\n\n`;
-      }
-
-      mdContent += `## 简介\n\n${content.slice(0, 60) || '（这里写文章简介）'}\n\n---\n\n## 正文\n\n${content}\n`;
-
-      markdownEl.textContent = fm + mdContent;
-      filenameEl.textContent = filename;
+    } else {
+      previewImg.src = '';
+      previewImg.classList.add('hidden');
     }
 
-    function copyMarkdown() {
-      navigator.clipboard.writeText(markdownEl.textContent);
-      alert("✅ Markdown 已复制！");
-    }
+    // fixed Chirpy-compatible fields
+    fm += `pin: false\nmath: false\nmermaid: false\ncomments: true\n`;
+    fm += '---\n\n';
 
-    function copyFilename() {
-      navigator.clipboard.writeText(filenameEl.textContent);
-      alert("✅ 文件名已复制！");
+    // body: only "正文" section (no 简介)
+    const mdBody = `${bodyImageLine}## 正文\n\n${content || ''}\n`;
+
+    const full = fm + mdBody;
+    markdownArea.value = full;
+  }
+
+  // copy / download utilities
+  async function copyToClipboard(text){
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('已复制 ✅');
+    } catch (e) {
+      alert('复制失败，请手动复制。');
     }
-  </script>
+  }
+
+  function downloadMarkdown(){
+    const content = markdownArea.value;
+    if(!content) { alert('请先生成 Markdown'); return; }
+    const fname = filenamePre.textContent || 'post.md';
+    const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = fname;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  // event bindings
+  generateBtn.addEventListener('click', generateMarkdown);
+  downloadBtn.addEventListener('click', downloadMarkdown);
+  clearBtn.addEventListener('click', ()=>{
+    titleEl.value = '';
+    slugEl.value = '';
+    contentEl.value = '';
+    categoriesEl.value = '工作';
+    customCategoryEl.value = '';
+    customCategoryEl.classList.add('hidden');
+    tagsEl.value = '';
+    useImageEl.checked = false;
+    imageFileEl.value = '';
+    imageFileEl.classList.add('hidden');
+    imageHelpEl.classList.add('hidden');
+    filenamePre.textContent = '_posts/YYYY-MM-DD-your-post.md';
+    markdownArea.value = '';
+    previewImg.src = '';
+    previewImg.classList.add('hidden');
+  });
+
+  copyMdBtn.addEventListener('click', ()=> copyToClipboard(markdownArea.value));
+  copyFnameBtn.addEventListener('click', ()=> copyToClipboard(filenamePre.textContent || ''));
+
+  // live-generate small preview on input changes (optional)
+  [titleEl, slugEl, contentEl, tagsEl, categoriesEl, customCategoryEl, imageFileEl, useImageEl].forEach(el=>{
+    el.addEventListener('input', () => {
+      // don't auto-generate heavy updates if markdown empty; but keep responsive:
+      generateMarkdown();
+    });
+  });
+
+  // initial state
+  filenamePre.textContent = '_posts/YYYY-MM-DD-your-post.md';
+</script>
 </body>
 </html>
+```
