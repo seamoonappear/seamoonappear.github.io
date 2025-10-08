@@ -85,7 +85,7 @@ about_page: true
 # 关于我
 
 <div class="about-header">
-  <img src="{{ '/assets/img/avatar3.jpg' | relative_url }}" alt="王维头像" class="avatar">
+  <img src="{{ '/assets/img/avatar.jpg' | relative_url }}" alt="王维头像" class="avatar">
   <div class="intro">
     <h1>王维</h1>
   </div>
