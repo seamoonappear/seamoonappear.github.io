@@ -167,8 +167,3 @@ generator/
 MIT License © 2025 seamoonappear
 
 ```
-
----
-
-是否希望我帮你同时生成一个可以直接放到仓库中的 `README.md` 文件下载链接（我可以自动生成该文件并提供下载）？
-```
