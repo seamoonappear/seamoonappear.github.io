@@ -2,53 +2,66 @@
 layout: default
 ---
 
-<!-- 文章布局文件 for Jekyll Chirpy Theme -->
-<!-- 保存为: _layouts/post.html -->
-
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">
       {{ page.title | escape }}
     </h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span class="p-author h-card" itemprop="name">{{ page.author }}</span>
-          </span>
-      {%- endif -%}
-    </p>
     
-    {%- if page.categories.size > 0 -%}
-    <div class="post-categories">
-      📁 
-      {% for category in page.categories %}
-        <a href="{{ '/categories/' | relative_url }}{{ category | slugify }}">{{ category }}</a>
-        {%- unless forloop.last -%}, {%- endunless -%}
-      {% endfor %}
-    </div>
-    {%- endif -%}
+    <!-- 时间和分类标签区域 -->
+    <div class="post-meta-container">
+      <!-- 第一行：时间信息 -->
+      <div class="post-time-info">
+        <div class="post-date created-time">
+          <span class="meta-label">创建时间:</span>
+          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+            {%- assign date_format = site.date_format | default: "%Y-%m-%d" -%}
+            {{ page.date | date: date_format }}
+          </time>
+        </div>
+        
+        <div class="post-date modified-time">
+          <span class="meta-label">修改时间:</span>
+          <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">
+            {%- if page.last_modified_at -%}
+              {{ page.last_modified_at | date: date_format }}
+            {%- else -%}
+              {{ page.date | date: date_format }}
+            {%- endif -%}
+          </time>
+        </div>
+      </div>
+      
+      <!-- 第二行：分类和标签 -->
+      <div class="post-taxonomy-info">
+        {%- if page.categories.size > 0 -%}
+        <div class="post-categories">
+          <span class="meta-label">分类:</span>
+          {% for category in page.categories %}
+            <a href="{{ '/categories/' | relative_url }}{{ category | slugify }}">{{ category }}</a>
+            {%- unless forloop.last -%}, {%- endunless -%}
+          {% endfor %}
+        </div>
+        {%- endif -%}
 
-    {%- if page.tags.size > 0 -%}
-    <div class="post-tags">
-      🏷️ 
-      {% for tag in page.tags %}
-        <a href="{{ '/tags/' | relative_url }}{{ tag | slugify }}">{{ tag }}</a>
-        {%- unless forloop.last -%}, {%- endunless -%}
-      {% endfor %}
+        {%- if page.tags.size > 0 -%}
+        <div class="post-tags">
+          <span class="meta-label">标签:</span>
+          {% for tag in page.tags %}
+            <a href="{{ '/tags/' | relative_url }}{{ tag | slugify }}">{{ tag }}</a>
+            {%- unless forloop.last -%}, {%- endunless -%}
+          {% endfor %}
+        </div>
+        {%- endif -%}
+      </div>
     </div>
-    {%- endif -%}
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
 
-  <!-- 目录区域 -->
   {%- if page.toc -%}
   <div class="toc-wrapper">
     <h2>目录</h2>
@@ -56,7 +69,6 @@ layout: default
   </div>
   {%- endif -%}
 
-  <!-- 上一篇/下一篇导航 -->
   <div class="post-navigation">
     {% if page.previous.url %}
       <a class="prev" href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title }}</a>
@@ -93,25 +105,67 @@ layout: default
 
 .post-title {
   font-size: 2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
   color: #2c3e50;
+  text-align: center;
 }
 
-.post-meta {
-  color: #666;
+/* 元信息容器样式 */
+.post-meta-container {
+  margin-bottom: 1rem;
+}
+
+/* 时间信息行 - 左右布局 */
+.post-time-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
   font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+}
+
+.post-date {
+  display: flex;
+  align-items: center;
+}
+
+.created-time {
+  justify-content: flex-start;
+}
+
+.modified-time {
+  justify-content: flex-end;
+}
+
+/* 分类标签行 - 左右布局 */
+.post-taxonomy-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
 }
 
 .post-categories, .post-tags {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.post-categories {
+  justify-content: flex-start;
+}
+
+.post-tags {
+  justify-content: flex-end;
+}
+
+.meta-label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  color: #555;
 }
 
 .post-categories a, .post-tags a {
   color: #3498db;
   text-decoration: none;
-  margin: 0 0.2rem;
+  margin: 0 0.1rem;
 }
 
 .post-categories a:hover, .post-tags a:hover {
@@ -169,6 +223,21 @@ layout: default
   color: #2c3e50;
 }
 
+/* Cusdis 评论系统样式调整 */
+#cusdis_thread {
+  overflow: visible !important;
+}
+
+#cusdis_thread iframe {
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.cusdis-comments-list {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
   .post {
@@ -177,6 +246,20 @@ layout: default
   
   .post-title {
     font-size: 1.5rem;
+  }
+  
+  /* 移动端改为垂直布局 */
+  .post-time-info,
+  .post-taxonomy-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .created-time,
+  .modified-time,
+  .post-categories,
+  .post-tags {
+    justify-content: flex-start;
   }
   
   .post-navigation {
