@@ -1,10 +1,4 @@
-当然可以 ✅
-下面是配套的 **README.md 文件**（适用于你的仓库 `generator/` 文件夹），用于说明这个 Front Matter 生成器的用途、部署方法、功能和使用方式。
-
----
-
-```markdown
-# 🧩 Chirpy Front Matter Markdown 生成器（v3）
+# 🧩 Chirpy Front Matter Markdown 生成器（v1）
 
 一个为 **Jekyll Chirpy** 博客主题设计的网页端 Markdown 文件生成器。  
 支持自动生成 Front Matter、分类、评论、封面图路径等内容，可一键复制或下载生成的 `.md` 文件。  
