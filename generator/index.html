@@ -1,330 +1,183 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chirpy Front Matter 生成器（v3）</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Front Matter Markdown 生成器</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* small extra styles */
-    body { background: #f8fafc; }
-    .textarea-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Sans Mono", monospace; }
-    pre { white-space: pre-wrap; word-wrap: break-word; }
-  </style>
 </head>
-<body class="min-h-screen text-slate-800">
-  <div class="max-w-6xl mx-auto p-6">
-    <header class="mb-6 text-center">
-      <h1 class="text-2xl font-semibold">王维Chirpy Front Matter 生成器（v1）</h1>
-      <p class="text-sm text-slate-500 mt-1">生成符合 Chirpy 规范的 Markdown（含 comments: true、last_modified_at、/assets/img 图片支持、自定义分类）</p>
-    </header>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+    <h1 class="text-2xl font-bold mb-6 text-center">🪄 Jekyll Chirpy Front Matter 生成器</h1>
 
-    <main class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <!-- left: form -->
-      <section class="bg-white p-5 rounded-xl shadow-sm">
-        <div class="space-y-4">
-          <label class="block">
-            <div class="text-sm font-medium">标题（title）</div>
-            <input id="title" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="输入文章标题">
-          </label>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- 左侧输入区 -->
+      <div>
+        <label class="block mb-2 font-semibold">标题：</label>
+        <input id="title" type="text" class="w-full p-2 border rounded mb-4" placeholder="输入文章标题" />
 
-          <label class="block">
-            <div class="text-sm font-medium">Slug（用于文件名，可选）</div>
-            <input id="slug" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="若留空将由标题自动生成">
-            <p class="text-xs text-slate-500 mt-1">只允许字母/数字/短横线，中文会被转为连字符化处理</p>
-          </label>
+        <label class="block mb-2 font-semibold">正文内容：</label>
+        <textarea id="content" class="w-full p-2 border rounded h-48 mb-4" placeholder="输入文章正文内容（支持 Markdown）"></textarea>
 
-          <label class="block">
-            <div class="text-sm font-medium">正文内容（Markdown）</div>
-            <textarea id="content" rows="10" class="mt-1 block w-full rounded-md border px-3 py-2 textarea-mono" placeholder="把文章完整正文粘贴到这里"></textarea>
-          </label>
+        <label class="block mb-2 font-semibold">分类：</label>
+        <select id="category" class="w-full p-2 border rounded mb-4">
+          <option value="">请选择分类</option>
+          <option>工作</option>
+          <option>生活</option>
+          <option>情感</option>
+          <option>爱好</option>
+          <option>感悟</option>
+          <option>探索</option>
+          <option>学习</option>
+          <option>读书</option>
+          <option>影视</option>
+          <option value="custom">自定义分类</option>
+        </select>
 
-          <label class="block">
-            <div class="text-sm font-medium">分类（categories）</div>
-            <select id="categories" class="mt-1 block w-full rounded-md border px-3 py-2" >
-              <option value="职场">职场</option>
-              <option value="生活">生活</option>
-              <option value="情感">情感</option>
-              <option value="爱好">爱好</option>
-              <option value="感悟">感悟</option>
-              <option value="探索">探索</option>
-              <option value="学习">学习</option>
-              <option value="读书">读书</option>
-              <option value="影视">影视</option>
-              <option value="__custom__">自定义分类（选择后填写下面）</option>
-            </select>
-            <input id="custom-category" class="mt-2 block w-full rounded-md border px-3 py-2 hidden" placeholder="输入自定义分类（示例：旅行记录）">
-          </label>
+        <input id="customCategory" type="text" class="w-full p-2 border rounded mb-4 hidden" placeholder="输入自定义分类" />
 
-          <label class="block">
-            <div class="text-sm font-medium">标签（tags，可用逗号分隔；若为空可手动填写）</div>
-            <input id="tags" class="mt-1 block w-full rounded-md border px-3 py-2" placeholder="例如：Jekyll, Chirpy, 教程">
-          </label>
+        <label class="block mb-2 font-semibold">标签（用逗号分隔，可留空自动生成）：</label>
+        <input id="tags" type="text" class="w-full p-2 border rounded mb-4" placeholder="如：生活, 感悟" />
 
-          <div class="border-t pt-3">
-            <div class="flex items-center gap-3">
-              <input id="use-image" type="checkbox" class="w-4 h-4" />
-              <label for="use-image" class="text-sm font-medium">启用封面图片（来自 <code>/assets/img/</code>）</label>
-            </div>
-            <input id="image-file" class="mt-2 block w-full rounded-md border px-3 py-2 hidden" placeholder="仅填写文件名，例如 cover.jpg">
-            <p id="image-help" class="text-xs text-slate-500 mt-1 hidden">将使用 /assets/img/&lt;文件名&gt; 作为图片路径。</p>
-          </div>
-
-          <div class="flex items-center gap-3">
-            <button id="generate" class="px-3 py-2 rounded bg-indigo-600 text-white">🪄 生成 Markdown</button>
-            <button id="download" class="px-3 py-2 rounded border">⬇ 下载 .md</button>
-            <button id="clear" class="px-3 py-2 rounded border ml-auto">清空</button>
-          </div>
-        </div>
-      </section>
-
-      <!-- right: outputs -->
-      <section class="bg-white p-5 rounded-xl shadow-sm flex flex-col">
-        <div class="flex items-center justify-between mb-3">
-          <div>
-            <h2 class="text-lg font-medium">生成结果</h2>
-            <div class="text-xs text-slate-500">可复制到 <code>_posts/</code> 目录</div>
-          </div>
-          <div class="flex items-center gap-2">
-            <button id="copy-md" class="px-2 py-1 rounded bg-emerald-600 text-white text-sm">复制 Markdown</button>
-            <button id="copy-fname" class="px-2 py-1 rounded bg-amber-600 text-white text-sm">复制 posts 文件名</button>
-          </div>
+        <div class="flex items-center mb-4 space-x-2">
+          <input id="hasImage" type="checkbox" class="w-4 h-4" />
+          <label for="hasImage" class="font-semibold">添加封面图片</label>
         </div>
 
-        <div class="mb-3">
-          <div class="text-sm text-slate-600 mb-1">文件名</div>
-          <pre id="filename" class="p-3 rounded border bg-slate-100 textarea-mono">_posts/YYYY-MM-DD-your-post.md</pre>
+        <input id="imageName" type="text" class="w-full p-2 border rounded mb-4 hidden" placeholder="输入图片文件名（如 cover.jpg）" />
+
+        <div class="flex items-center mb-6 space-x-2">
+          <input id="stickyPost" type="checkbox" class="w-4 h-4" />
+          <label for="stickyPost" class="font-semibold">置顶文章（sticky: true）</label>
         </div>
 
-        <div class="flex-1">
-          <div class="text-sm text-slate-600 mb-1">完整 Markdown（含 Front Matter）</div>
-          <textarea id="markdown" class="w-full h-64 p-3 rounded border bg-slate-50 textarea-mono" readonly></textarea>
+        <button id="generate" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">生成 Markdown</button>
+      </div>
+
+      <!-- 右侧输出区 -->
+      <div>
+        <label class="block mb-2 font-semibold">生成的 posts 文件名：</label>
+        <div class="flex mb-4">
+          <input id="filename" readonly class="w-full p-2 border rounded-l" />
+          <button id="copyFilename" class="bg-gray-600 text-white px-3 rounded-r">复制</button>
         </div>
 
-        <div class="mt-4">
-          <div class="text-sm text-slate-600 mb-1">图片预览（若启用并存在）</div>
-          <img id="preview" class="w-full max-h-64 object-contain rounded border bg-white hidden" alt="">
-        </div>
-      </section>
-    </main>
+        <label class="block mb-2 font-semibold">生成的 Markdown 内容：</label>
+        <textarea id="output" readonly class="w-full p-2 border rounded h-80"></textarea>
 
-    <footer class="mt-6 text-sm text-slate-500">提示：生成器不会自动修改你的站点，只在本页生成可下载/复制的 Markdown 文件。</footer>
+        <div class="flex gap-2 mt-4">
+          <button id="copyOutput" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg">复制 Markdown</button>
+          <button id="download" class="bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded-lg">下载 .md 文件</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-<script>
-  // DOM
-  const titleEl = document.getElementById('title');
-  const slugEl = document.getElementById('slug');
-  const contentEl = document.getElementById('content');
-  const categoriesEl = document.getElementById('categories');
-  const customCategoryEl = document.getElementById('custom-category');
-  const tagsEl = document.getElementById('tags');
-  const useImageEl = document.getElementById('use-image');
-  const imageFileEl = document.getElementById('image-file');
-  const imageHelpEl = document.getElementById('image-help');
+  <script>
+    const categorySelect = document.getElementById('category');
+    const customCategoryInput = document.getElementById('customCategory');
+    const hasImageCheckbox = document.getElementById('hasImage');
+    const imageNameInput = document.getElementById('imageName');
+    const stickyCheckbox = document.getElementById('stickyPost');
 
-  const generateBtn = document.getElementById('generate');
-  const downloadBtn = document.getElementById('download');
-  const clearBtn = document.getElementById('clear');
-
-  const filenamePre = document.getElementById('filename');
-  const markdownArea = document.getElementById('markdown');
-  const previewImg = document.getElementById('preview');
-
-  const copyMdBtn = document.getElementById('copy-md');
-  const copyFnameBtn = document.getElementById('copy-fname');
-
-  // helpers
-  function nowFormatted(){
-    const d = new Date();
-    const pad = n => String(n).padStart(2,'0');
-    const YYYY = d.getFullYear();
-    const MM = pad(d.getMonth()+1);
-    const DD = pad(d.getDate());
-    const hh = pad(d.getHours());
-    const mm = pad(d.getMinutes());
-    const ss = pad(d.getSeconds());
-    // use +0800 for Chirpy default (you can adjust if needed)
-    return `${YYYY}-${MM}-${DD} ${hh}:${mm}:${ss} +0800`;
-  }
-
-  function slugify(text){
-    if(!text) return '';
-    let s = String(text).trim().toLowerCase();
-    // replace spaces with hyphen
-    s = s.replace(/\s+/g, '-');
-    // remove chars except a-z0-9 and hyphen
-    s = s.replace(/[^a-z0-9\-]/g, '-');
-    s = s.replace(/\-+/g, '-');
-    s = s.replace(/^-+|-+$/g, '');
-    return s || 'post';
-  }
-
-  function escapeQuoteForYaml(v){
-    // if value contains colon, quotes, or leading/trailing space, wrap in double quotes and escape inner quotes
-    if (v === undefined || v === null) return '';
-    const s = String(v);
-    if (/[:\n"'{}[\],&*#?|\-<>=!%@`]/.test(s) || /^\s|\s$/.test(s)) {
-      return `"${s.replace(/"/g, '\\"')}"`;
-    }
-    return s;
-  }
-
-  // category custom handling
-  categoriesEl.addEventListener('change', ()=>{
-    if (categoriesEl.value === '__custom__') {
-      customCategoryEl.classList.remove('hidden');
-    } else {
-      customCategoryEl.classList.add('hidden');
-      customCategoryEl.value = '';
-    }
-  });
-
-  // image toggle
-  useImageEl.addEventListener('change', ()=>{
-    if (useImageEl.checked) {
-      imageFileEl.classList.remove('hidden');
-      imageHelpEl.classList.remove('hidden');
-    } else {
-      imageFileEl.classList.add('hidden');
-      imageHelpEl.classList.add('hidden');
-      imageFileEl.value = '';
-      previewImg.src = '';
-      previewImg.classList.add('hidden');
-    }
-  });
-
-  // auto-generate tags if empty: simple top-frequency words (naive)
-  function autoTags(text, maxCount=3){
-    if(!text) return [];
-    const tokens = text.split(/[^a-zA-Z0-9\u4e00-\u9fa5]+/).filter(Boolean).map(t=>t.toLowerCase());
-    const freq = {};
-    tokens.forEach(t => {
-      if (t.length <= 1) return;
-      freq[t] = (freq[t]||0) + 1;
-    });
-    return Object.keys(freq).sort((a,b)=>freq[b]-freq[a]).slice(0, maxCount);
-  }
-
-  // main generate
-  function generateMarkdown(){
-    const title = titleEl.value.trim();
-    const slugInput = slugEl.value.trim();
-    const content = contentEl.value.trim();
-    const selectedCat = categoriesEl.value === '__custom__' ? (customCategoryEl.value.trim() || '自定义') : categoriesEl.value;
-    const tagInput = tagsEl.value.trim();
-    const tags = tagInput ? tagInput.split(',').map(t=>t.trim()).filter(Boolean) : autoTags(title + ' ' + content, 3);
-    const date = nowFormatted();
-    const lastModified = nowFormatted();
-
-    // filename
-    const dateOnly = (new Date()).toISOString().slice(0,10);
-    const slug = slugInput || slugify(title) || 'your-post';
-    const filename = `_posts/${dateOnly}-${slug}.md`;
-    filenamePre.textContent = filename;
-
-    // build front matter
-    // title use quoting to be safe
-    const fmTitle = escapeQuoteForYaml(title || '未命名文章');
-    let fm = '---\n';
-    fm += `title: ${fmTitle}\n`;
-    fm += `date: ${date}\n`;
-    fm += `last_modified_at: ${lastModified}\n`;
-    fm += `categories: [${escapeQuoteForYaml(selectedCat)}]\n`;
-    fm += `tags: [${tags.map(t=>escapeQuoteForYaml(t)).join(', ')}]\n`;
-
-    // image: only include image.path when enabled and filename provided
-    let bodyImageLine = '';
-    if (useImageEl.checked) {
-      const imgFile = imageFileEl.value.trim();
-      if (imgFile) {
-        const imgPath = `/assets/img/${imgFile}`;
-        fm += `image:\n  path: ${imgPath}\n`;
-        // body image markdown (only once). No alt text as requested.
-        bodyImageLine = `![](${imgPath})\n\n`;
-        // preview
-        previewImg.src = imgPath;
-        previewImg.classList.remove('hidden');
+    categorySelect.addEventListener('change', () => {
+      if (categorySelect.value === 'custom') {
+        customCategoryInput.classList.remove('hidden');
       } else {
-        // if enabled but empty, do not include image field
-        previewImg.src = '';
-        previewImg.classList.add('hidden');
+        customCategoryInput.classList.add('hidden');
       }
-    } else {
-      previewImg.src = '';
-      previewImg.classList.add('hidden');
-    }
-
-    // fixed Chirpy-compatible fields
-    fm += `pin: false\nmath: false\nmermaid: false\ncomments: true\n`;
-    fm += '---\n\n';
-
-    // body: only "正文" section (no 简介)
-    const mdBody = `${bodyImageLine}## 正文\n\n${content || ''}\n`;
-
-    const full = fm + mdBody;
-    markdownArea.value = full;
-  }
-
-  // copy / download utilities
-  async function copyToClipboard(text){
-    try {
-      await navigator.clipboard.writeText(text);
-      alert('已复制 ✅');
-    } catch (e) {
-      alert('复制失败，请手动复制。');
-    }
-  }
-
-  function downloadMarkdown(){
-    const content = markdownArea.value;
-    if(!content) { alert('请先生成 Markdown'); return; }
-    const fname = filenamePre.textContent || 'post.md';
-    const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = fname;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  }
-
-  // event bindings
-  generateBtn.addEventListener('click', generateMarkdown);
-  downloadBtn.addEventListener('click', downloadMarkdown);
-  clearBtn.addEventListener('click', ()=>{
-    titleEl.value = '';
-    slugEl.value = '';
-    contentEl.value = '';
-    categoriesEl.value = '工作';
-    customCategoryEl.value = '';
-    customCategoryEl.classList.add('hidden');
-    tagsEl.value = '';
-    useImageEl.checked = false;
-    imageFileEl.value = '';
-    imageFileEl.classList.add('hidden');
-    imageHelpEl.classList.add('hidden');
-    filenamePre.textContent = '_posts/YYYY-MM-DD-your-post.md';
-    markdownArea.value = '';
-    previewImg.src = '';
-    previewImg.classList.add('hidden');
-  });
-
-  copyMdBtn.addEventListener('click', ()=> copyToClipboard(markdownArea.value));
-  copyFnameBtn.addEventListener('click', ()=> copyToClipboard(filenamePre.textContent || ''));
-
-  // live-generate small preview on input changes (optional)
-  [titleEl, slugEl, contentEl, tagsEl, categoriesEl, customCategoryEl, imageFileEl, useImageEl].forEach(el=>{
-    el.addEventListener('input', () => {
-      // don't auto-generate heavy updates if markdown empty; but keep responsive:
-      generateMarkdown();
     });
-  });
 
-  // initial state
-  filenamePre.textContent = '_posts/YYYY-MM-DD-your-post.md';
-</script>
+    hasImageCheckbox.addEventListener('change', () => {
+      if (hasImageCheckbox.checked) {
+        imageNameInput.classList.remove('hidden');
+      } else {
+        imageNameInput.classList.add('hidden');
+      }
+    });
+
+    document.getElementById('generate').addEventListener('click', () => {
+      const title = document.getElementById('title').value.trim();
+      const content = document.getElementById('content').value.trim();
+      const category = categorySelect.value === 'custom' ? customCategoryInput.value.trim() : categorySelect.value;
+      const tagsInput = document.getElementById('tags').value.trim();
+      const hasImage = hasImageCheckbox.checked;
+      const imageName = document.getElementById('imageName').value.trim();
+      const sticky = stickyCheckbox.checked;
+
+      if (!title) {
+        alert('请填写标题');
+        return;
+      }
+
+      const now = new Date();
+      const localOffset = now.getTimezoneOffset() * 60000;
+      const localISOTime = new Date(now - localOffset).toISOString().slice(0, 19).replace('T', ' ');
+      const dateStr = `${localISOTime} +0800`;
+
+      const fileDate = now.toISOString().slice(0, 10);
+      const slug = title.replace(/\s+/g, '-').replace(/[^\w\-]/g, '').toLowerCase();
+      const filename = `_posts/${fileDate}-${slug}.md`;
+
+      let tags = tagsInput ? tagsInput.split(',').map(t => t.trim()) : [];
+      if (tags.length === 0 && title) {
+        tags = title.split(/[\s,，]+/).slice(0, 3);
+      }
+
+      let fm = `---\n`;
+      fm += `title: ${title}\n`;
+      fm += `date: ${dateStr}\n`;
+      fm += `last_modified_at: ${dateStr}\n`;
+      if (category) fm += `categories: [${category}]\n`;
+      if (tags.length) fm += `tags: [${tags.join(', ')}]\n`;
+      if (hasImage && imageName) {
+        fm += `image:\n  path: /assets/img/${imageName}\n`;
+      }
+      fm += `pin: false\n`;
+      fm += `math: false\n`;
+      fm += `mermaid: false\n`;
+      fm += `comments: true\n`;
+      if (sticky) fm += `sticky: true\n`;
+      fm += `---\n\n`;
+
+      let body = "";
+      if (hasImage && imageName) {
+        body += `![](/assets/img/${imageName})\n\n`;
+      }
+      body += content ? content + "\n" : "_此处填写正文_\n";
+
+      document.getElementById('filename').value = filename;
+      document.getElementById('output').value = fm + body;
+    });
+
+    document.getElementById('copyOutput').addEventListener('click', () => {
+      const output = document.getElementById('output');
+      output.select();
+      document.execCommand('copy');
+      alert('Markdown 已复制！');
+    });
+
+    document.getElementById('copyFilename').addEventListener('click', () => {
+      const filename = document.getElementById('filename');
+      filename.select();
+      document.execCommand('copy');
+      alert('文件名已复制！');
+    });
+
+    document.getElementById('download').addEventListener('click', () => {
+      const text = document.getElementById('output').value;
+      if (!text) {
+        alert('请先生成 Markdown');
+        return;
+      }
+      const title = document.getElementById('title').value.trim() || 'untitled';
+      const blob = new Blob([text], { type: 'text/markdown' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      const now = new Date().toISOString().slice(0, 10);
+      link.download = `${now}-${title.replace(/\s+/g, '-')}.md`;
+      link.click();
+    });
+  </script>
 </body>
 </html>
-```
