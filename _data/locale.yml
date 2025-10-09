@@ -1,0 +1,13 @@
+# 中文配置
+zh-CN:
+  tabs:
+    archives: 时间轴
+    # 也可以修改其他标签
+    home: 首页
+    categories: 分类
+    tags: 标签
+
+# 英文配置（如果需要）
+en:
+  tabs:
+    archives: Timeline
