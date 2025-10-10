@@ -156,22 +156,24 @@ order: 4
 
 ## 💼 工作经历
 
-<table>
-  <thead>
-    <tr>
-      <th>公司</th>
-      <th>职位</th>
-      <th>主要职责</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>北京同仁堂健康药业（青海）有限公司</td>
-      <td>包装解决方案专员</td>
-      <td>为食品及健康产品企业提供全方位包装解决方案，熟悉包装材料、工艺与成本控制</td>
-    </tr>
-  </tbody>
-</table>
+<div class="three-columns">
+
+  <div class="card">
+    <h3>北京同仁堂健康药业（青海）有限公司</h3>
+    <p><strong>职位：</strong> 包装解决方案专员</p>
+    <p><strong>主要职责：</strong> 为食品及健康产品企业提供全方位包装解决方案，熟悉包装材料、工艺与成本控制。</p>
+  </div>
+
+  <!-- 可复制以下 card 添加更多经历 -->
+  <!--
+  <div class="card">
+    <h3>公司名称</h3>
+    <p><strong>职位：</strong> 职位名称</p>
+    <p><strong>主要职责：</strong> 工作内容描述</p>
+  </div>
+  -->
+
+</div>
 
 ---
 
