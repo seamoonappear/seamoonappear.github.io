@@ -1,12 +1,19 @@
-- name: 首页
-  link: /
-- name: 时间轴
-  link: /archives/
-- name: 分类
-  link: /categories/
-- name: 标签
-  link: /tags/
-- name: 印刷知识 # 这是你想要添加的新栏目
-  link: /printing-knowledge/ # 指向你的新页面
-- name: 关于
-  link: /about/
+# 文件路径: `_data/navigation.yml`
+
+- title: 首页        # 导航栏显示的名称
+  url: /            # 对应的链接，通常是网站根目录
+
+- title: 分类
+  url: /categories/  # 指向分类页面的链接
+
+- title: 标签
+  url: /tags/       # 指向标签页面的链接
+
+- title: 归档
+  url: /archives/   # 指向归档页面的链接
+
+- title: 关于
+  url: /about/      # 指向“关于”页面的链接
+
+- title: 媒体       # 这是您新增的“media”页面
+  url: /media/      # 指向媒体页面的链接
