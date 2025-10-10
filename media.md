@@ -1,9 +1,9 @@
 ---
-layout: archives
-title: 媒体资源
+layout: media
+title: 媒体
 icon: fas fa-photo-video
 order: 5
-description: 我的摄影作品、视频创作和多媒体资源集合
+description: 我的读过的书，看的影视类，玩过的游戏等
 ---
 
 ## 📸 摄影作品
