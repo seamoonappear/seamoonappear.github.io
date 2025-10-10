@@ -4,14 +4,6 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
-{: .prompt-tip }
-
----
-title: "关于我"
-permalink: /about/
-about_page: true
----
 
 <style>
 .about-header {
