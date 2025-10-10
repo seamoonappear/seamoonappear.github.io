@@ -145,7 +145,7 @@ pwa:
     deny_paths:
       # - "/example"  # 匹配 `<SITE_URL>/example/*` 的 URL 将不会被 PWA 缓存
 
-paginate: 10
+paginate: 5
 
 # 您网站的基本 URL
 baseurl: ""
