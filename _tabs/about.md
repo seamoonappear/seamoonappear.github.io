@@ -1,9 +1,9 @@
 ---
-# the default layout is 'page'
+layout: page
+title: 关于我
 icon: fas fa-info-circle
 order: 4
 ---
-
 
 <style>
 /* 头像与简介 */
@@ -58,38 +58,34 @@ order: 4
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   border: 1px solid rgba(15,23,42,0.05);
   transition: transform .3s ease, box-shadow .3s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.14);
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
 .card h3 {
-  margin: 0;
+  margin: 0 0 10px 0;
   font-size: 1.1rem;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-/* 技能进度条 */
-.skill-bar {
-  background: #e5e7eb;
-  border-radius: 10px;
-  overflow: hidden;
-  height: 10px;
-  margin-top: 6px;
+/* 列表样式 */
+.card ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: none;
 }
 
-.skill-bar-fill {
-  height: 100%;
-  background: #4f46e5;
-  width: 0%;
-  transition: width 1s ease;
+.card ul li::before {
+  content: "•";
+  color: #4f46e5;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
 }
 
 /* 响应式 */
@@ -136,39 +132,21 @@ order: 4
   <div class="card">
     <h3>🎯 专业技能</h3>
     <ul>
-      <li>平面设计
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:95%;"></div></div>
-      </li>
-      <li>电商与营销
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;"></div></div>
-      </li>
-      <li>电视购物策划
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:80%;"></div></div>
-      </li>
+      <li>平面设计：精通 Photoshop 与 Illustrator</li>
+      <li>电商与营销：多年运营经验，熟悉平台策略</li>
+      <li>电视购物策划：丰富节目策划与执行经验</li>
     </ul>
   </div>
 
   <div class="card">
     <h3>🎨 爱好</h3>
     <ul>
-      <li>阅读与写作
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:90%;"></div></div>
-      </li>
-      <li>旅行与摄影
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;"></div></div>
-      </li>
-      <li>书法与鉴赏
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;"></div></div>
-      </li>
-      <li>音乐欣赏
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:70%;"></div></div>
-      </li>
-      <li>烹饪与美食探索
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:80%;"></div></div>
-      </li>
-      <li>新技术学习
-        <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;"></div></div>
-      </li>
+      <li>阅读与写作</li>
+      <li>旅行与摄影</li>
+      <li>书法与艺术鉴赏</li>
+      <li>音乐欣赏</li>
+      <li>烹饪与美食探索</li>
+      <li>新技术学习</li>
     </ul>
   </div>
 
