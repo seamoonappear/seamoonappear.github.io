@@ -1,7 +1,7 @@
 ---
 title: Obsidian推送github操作
-date: 2021-02-07 22:27:31
-last_modified_at: 2021-03-28 22:27:31
+date: 2022-02-07 22:27:31
+last_modified_at: 2022-03-28 22:27:31
 categories: [职场]
 tags: [代码]
 image:
