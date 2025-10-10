@@ -1,15 +1,12 @@
-# _data/navigation.yml
-- title: "首页"
-  url: "/"
-  
-- title: "时间轴"  # 这里修改为时间轴
-  url: "/archives/"
-  
-- title: "分类"
-  url: "/categories/"
-  
-- title: "标签"
-  url: "/tags/"
-  
-- title: "关于"
-  url: "/about/"
+- name: 首页
+  link: /
+- name: 时间轴
+  link: /archives/
+- name: 分类
+  link: /categories/
+- name: 标签
+  link: /tags/
+- name: 印刷知识 # 这是你想要添加的新栏目
+  link: /printing-knowledge/ # 指向你的新页面
+- name: 关于
+  link: /about/
