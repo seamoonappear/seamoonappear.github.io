@@ -1,5 +1,5 @@
 ---
 layout: media  
-icon: fas fa-photo-video
+icon: fas fa-book
 order: 4
 ---
