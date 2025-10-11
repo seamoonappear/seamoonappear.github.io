@@ -90,7 +90,7 @@ theme_mode: # [light | dark] 留空则跟随系统
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: /assets/img/avatar.jpg
+avatar: /assets/img/avatar.png
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag
 social_preview_image: # 字符串，本地或CORS资源
