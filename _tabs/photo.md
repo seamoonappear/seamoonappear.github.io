@@ -18,17 +18,126 @@ order: 6
   </div>
 
   <div class="tab-content">
-    {% for year in years %}
-    <div id="year-{{ year }}" class="tab-pane {% if year == '2025' %}active{% endif %}">
+    <!-- 2025年照片 -->
+    <div id="year-2025" class="tab-pane active">
       <div class="photo-grid">
-        {% for i in (1..21) %}
+        {% for i in (1..12) %}
         <div class="photo-item">
-          <img src="/assets/img/luwei20251007.jpg" alt="{{ year }}照片{{ i }}">
+          <img src="/assets/img/photos/2025/photo{{ i }}.jpg" alt="2025年照片{{ i }}" loading="lazy">
         </div>
         {% endfor %}
       </div>
     </div>
-    {% endfor %}
+    
+    <!-- 2024年照片 -->
+    <div id="year-2024" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..15) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2024/photo{{ i }}.jpg" alt="2024年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2023年照片 -->
+    <div id="year-2023" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..18) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2023/photo{{ i }}.jpg" alt="2023年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2022年照片 -->
+    <div id="year-2022" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..14) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2022/photo{{ i }}.jpg" alt="2022年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2021年照片 -->
+    <div id="year-2021" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..16) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2021/photo{{ i }}.jpg" alt="2021年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2020年照片 -->
+    <div id="year-2020" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..12) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2020/photo{{ i }}.jpg" alt="2020年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2019年照片 -->
+    <div id="year-2019" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..20) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2019/photo{{ i }}.jpg" alt="2019年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2018年照片 -->
+    <div id="year-2018" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..15) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2018/photo{{ i }}.jpg" alt="2018年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2017年照片 -->
+    <div id="year-2017" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..18) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2017/photo{{ i }}.jpg" alt="2017年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2016年照片 -->
+    <div id="year-2016" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..10) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2016/photo{{ i }}.jpg" alt="2016年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <!-- 2015年照片 -->
+    <div id="year-2015" class="tab-pane">
+      <div class="photo-grid">
+        {% for i in (1..8) %}
+        <div class="photo-item">
+          <img src="/assets/img/photos/2015/photo{{ i }}.jpg" alt="2015年照片{{ i }}" loading="lazy">
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 </div>
 
@@ -109,28 +218,62 @@ order: 6
 
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.photo-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 1 / 1;
+}
+
+.photo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 
 .photo-item img {
   width: 100%;
-  height: auto;
-  border-radius: 6px;
+  height: 100%;
+  object-fit: cover;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
 }
 
-.photo-item img:hover {
+.photo-item:hover img {
   transform: scale(1.05);
 }
 
 /* 响应式 */
 @media (max-width: 768px) {
-  .photos-nav { justify-content: flex-start; padding: 6px; }
-  .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
-  .photos-container { padding: 0 10px; }
-  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .photos-nav { 
+    justify-content: flex-start; 
+    padding: 6px; 
+  }
+  
+  .nav-btn { 
+    font-size: 0.8rem; 
+    padding: 0.4rem 0.8rem; 
+  }
+  
+  .photos-container { 
+    padding: 0 10px; 
+  }
+  
+  .photo-grid { 
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-grid { 
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 </style>
 
