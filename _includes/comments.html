@@ -5,20 +5,20 @@
   {% case site.comments.provider %}
   
     {% when 'cusdis' %}
-      <!-- Cusdis 评论系统 -->
-      <div id="cusdis-comments">
+      <!-- Cusdis 评论系统 - 移动端优化 -->
+      <div id="cusdis-comments" class="comments-responsive">
         {% include comments/providers/cusdis.html %}
       </div>
 
     {% when 'giscus' %}
-      <!-- Giscus 评论系统 -->
-      <div id="giscus-comments">
+      <!-- Giscus 评论系统 - 移动端优化 -->
+      <div id="giscus-comments" class="comments-responsive">
         {% include comments/providers/giscus.html %}
       </div>
 
     {% when 'disqus' %}
-      <!-- Disqus 评论系统 -->
-      <div id="disqus-comments">
+      <!-- Disqus 评论系统 - 移动端优化 -->
+      <div id="disqus-comments" class="comments-responsive">
         {% include comments/providers/disqus.html %}
       </div>
 
@@ -30,3 +30,81 @@
       
   {% endcase %}
 </section>
+
+<style>
+/* 评论系统响应式样式 */
+.comments-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* 移动端优化 */
+@media screen and (max-width: 768px) {
+  .comments-container {
+    padding: 0 10px;
+  }
+  
+  .comments-responsive {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  /* 针对 Cusdis 的移动端优化 */
+  #cusdis_thread {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  
+  /* 针对评论输入框的优化 */
+  .comments-responsive input,
+  .comments-responsive textarea {
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+  
+  /* 隐藏不必要的元素以节省空间 */
+  .comments-responsive .comment-meta,
+  .comments-responsive .comment-actions {
+    font-size: 12px;
+  }
+}
+
+/* 小屏手机优化 */
+@media screen and (max-width: 480px) {
+  .comments-responsive {
+    font-size: 13px;
+  }
+  
+  /* 进一步压缩评论区域 */
+  .comments-responsive .comment {
+    padding: 8px 0;
+  }
+}
+</style>
+
+<script>
+// 动态调整评论框大小
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听窗口大小变化
+  window.addEventListener('resize', function() {
+    adjustCommentsLayout();
+  });
+  
+  // 初始调整
+  adjustCommentsLayout();
+  
+  function adjustCommentsLayout() {
+    const commentsContainer = document.querySelector('.comments-responsive');
+    if (!commentsContainer) return;
+    
+    // 如果是移动设备
+    if (window.innerWidth <= 768) {
+      commentsContainer.style.padding = '10px 5px';
+    } else {
+      commentsContainer.style.padding = '15px 10px';
+    }
+  }
+});
+</script>
