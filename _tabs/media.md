@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "媒体"
+title: "消费"
 permalink: /media/
 icon: fas fa-book
 order: 4
