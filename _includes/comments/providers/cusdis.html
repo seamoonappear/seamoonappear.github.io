@@ -1,5 +1,5 @@
 <!-- _includes/comments/providers/cusdis.html -->
-<!-- Cusdis 评论系统嵌入代码 -->
+<!-- Cusdis 评论系统嵌入代码 - 移动端优化 -->
 
 <div id="cusdis_thread"
   data-host="{{ site.comments.cusdis.host | default: 'https://cusdis.com' }}"
@@ -8,28 +8,60 @@
   data-page-url="{{ page.url | absolute_url }}"
   data-page-title="{{ page.title }}"
   data-theme="{{ site.comments.cusdis.theme | default: 'auto' }}"
-  style="margin-top: 2rem;">
+  data-responsive="true"
+  style="max-width: 100%; width: 100%; margin-top: 1rem;">
 </div>
 
 <!-- 异步加载 Cusdis JavaScript 库 -->
 <script async defer src="{{ site.comments.cusdis.host | default: 'https://cusdis.com' }}/js/cusdis.es.js"></script>
 
+<!-- 移动端优化脚本 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 等待 Cusdis 加载完成
+  setTimeout(function() {
+    const cusdisFrame = document.querySelector('#cusdis_thread iframe');
+    if (cusdisFrame) {
+      cusdisFrame.style.maxWidth = '100%';
+      cusdisFrame.style.width = '100%';
+    }
+    
+    // 调整内部元素
+    const cusdisContainer = document.getElementById('cusdis_thread');
+    if (cusdisContainer) {
+      // 确保容器不超出父元素
+      cusdisContainer.style.overflowX = 'hidden';
+      cusdisContainer.style.boxSizing = 'border-box';
+    }
+  }, 1000);
+});
+
+// 监听窗口大小变化
+window.addEventListener('resize', function() {
+  const cusdisElements = document.querySelectorAll('#cusdis_thread, #cusdis_thread iframe');
+  cusdisElements.forEach(function(el) {
+    el.style.maxWidth = '100%';
+    el.style.width = '100%';
+  });
+});
+</script>
+
 <!-- 中文本地化配置 -->
 <script>
-  window.CUSDIS_LOCALE = {
-    powered_by: '评论由 Cusdis 提供',
-    post_comment: '发送评论',
-    loading: '加载中',
-    email: '邮箱 (可选)',
-    nickname: '昵称',
-    reply_placeholder: '输入回复...',
-    comment_placeholder: '留下你的评论……',
-    anonymous: '匿名',
-    error: {
-      comment_is_required: '评论内容不能为空。',
-      nickname_is_required: '昵称不能为空。',
-      confirmation_is_required: '请确认您是否继续提交评论。'
-    },
-    comment_has_been_sent: '评论已发送，待审核后显示。'
-  };
+window.CUSDIS_LOCALE = {
+  powered_by: '评论由 Cusdis 提供',
+  post_comment: '发送评论',
+  loading: '加载中',
+  email: '邮箱 (可选)',
+  nickname: '昵称',
+  reply_placeholder: '输入回复...',
+  comment_placeholder: '留下你的评论……',
+  anonymous: '匿名',
+  error: {
+    comment_is_required: '评论内容不能为空。',
+    nickname_is_required: '昵称不能为空。',
+    confirmation_is_required: '请确认您是否继续提交评论。'
+  },
+  comment_has_been_sent: '评论已发送，待审核后显示。'
+};
 </script>
