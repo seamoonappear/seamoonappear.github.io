@@ -1,5 +1,5 @@
 <!-- _includes/comments/providers/cusdis.html -->
-<!-- Cusdis 评论系统嵌入代码 - 移动端优化 -->
+<!-- Cusdis 评论系统嵌入代码 - 高度优化且无邮箱选项 -->
 
 <div id="cusdis_thread"
   data-host="{{ site.comments.cusdis.host | default: 'https://cusdis.com' }}"
@@ -8,51 +8,55 @@
   data-page-url="{{ page.url | absolute_url }}"
   data-page-title="{{ page.title }}"
   data-theme="{{ site.comments.cusdis.theme | default: 'auto' }}"
-  data-responsive="true"
-  style="max-width: 100%; width: 100%; margin-top: 1rem;">
+  style="min-height: 300px; width: 100%; margin-top: 1rem;">
 </div>
 
 <!-- 异步加载 Cusdis JavaScript 库 -->
 <script async defer src="{{ site.comments.cusdis.host | default: 'https://cusdis.com' }}/js/cusdis.es.js"></script>
 
-<!-- 移动端优化脚本 -->
+<!-- 高度优化脚本 -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // 等待 Cusdis 加载完成
   setTimeout(function() {
     const cusdisFrame = document.querySelector('#cusdis_thread iframe');
     if (cusdisFrame) {
-      cusdisFrame.style.maxWidth = '100%';
-      cusdisFrame.style.width = '100%';
+      // 设置最小高度
+      cusdisFrame.style.minHeight = '300px';
+      cusdisFrame.style.height = 'auto';
     }
     
     // 调整内部元素
     const cusdisContainer = document.getElementById('cusdis_thread');
     if (cusdisContainer) {
-      // 确保容器不超出父元素
-      cusdisContainer.style.overflowX = 'hidden';
-      cusdisContainer.style.boxSizing = 'border-box';
+      // 确保容器有合适的最小高度
+      cusdisContainer.style.minHeight = '300px';
     }
-  }, 1000);
+  }, 1500); // 稍微延长等待时间确保Cusdis完全加载
 });
 
 // 监听窗口大小变化
 window.addEventListener('resize', function() {
-  const cusdisElements = document.querySelectorAll('#cusdis_thread, #cusdis_thread iframe');
-  cusdisElements.forEach(function(el) {
-    el.style.maxWidth = '100%';
-    el.style.width = '100%';
-  });
+  const cusdisContainer = document.getElementById('cusdis_thread');
+  if (cusdisContainer) {
+    // 根据屏幕尺寸调整最小高度
+    if (window.innerWidth <= 480) {
+      cusdisContainer.style.minHeight = '200px';
+    } else if (window.innerWidth <= 768) {
+      cusdisContainer.style.minHeight = '250px';
+    } else {
+      cusdisContainer.style.minHeight = '300px';
+    }
+  }
 });
 </script>
 
-<!-- 中文本地化配置 -->
+<!-- 中文本地化配置 - 已移除邮箱相关选项 -->
 <script>
 window.CUSDIS_LOCALE = {
   powered_by: '评论由 Cusdis 提供',
   post_comment: '发送评论',
   loading: '加载中',
-  email: '邮箱 (可选)',
   nickname: '昵称',
   reply_placeholder: '输入回复...',
   comment_placeholder: '留下你的评论……',
@@ -65,3 +69,11 @@ window.CUSDIS_LOCALE = {
   comment_has_been_sent: '评论已发送，待审核后显示。'
 };
 </script>
+
+<!-- 自定义CSS隐藏邮箱输入框 -->
+<style>
+/* 隐藏Cusdis中的邮箱输入框 */
+#cusdis_thread .cusdis-input-email-container {
+  display: none !important;
+}
+</style>
