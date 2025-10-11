@@ -15,6 +15,9 @@
 - title: 媒体       # 这是您新增的“media”页面
   url: /media/      # 指向媒体页面的链接
 
+- title: 印刷
+  url: /printing-knowledge/   # 指向印刷页面的链接
+
 - title: 关于
   url: /about/      # 指向“关于”页面的链接
 
