@@ -109,25 +109,33 @@ layout: default
   color: #007bff;
 }
 
-/* 评论区域样式 */
+/* 评论区域样式 - 完全展开，无滚动条 */
 .comments-wrapper {
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid #e9ecef;
 }
 
-/* 评论系统高度优化样式 */
+/* 评论系统完全展开样式 */
 .comments-height-optimized {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
   min-height: 300px;
+  height: auto; /* 改为自动高度 */
+  overflow-y: visible; /* 改为可见，不显示滚动条 */
 }
 
 /* 隐藏Cusdis中的邮箱输入框 */
 #cusdis_thread .cusdis-input-email-container {
   display: none !important;
+}
+
+/* 确保Cusdis iframe完全展开 */
+#cusdis_thread iframe {
+  height: auto !important;
+  min-height: 400px;
 }
 
 /* 移动端适配 */
@@ -138,15 +146,15 @@ layout: default
   }
   
   .comments-height-optimized {
-    min-height: 250px;
-    max-height: 70vh;
-    overflow-y: auto;
+    min-height: 300px;
+    height: auto;
+    overflow-y: visible;
   }
   
   #cusdis_thread {
     max-width: 100% !important;
     width: 100% !important;
-    min-height: 250px;
+    min-height: 300px;
   }
   
   .popular-tags,
@@ -167,12 +175,13 @@ layout: default
 /* 小屏手机优化 */
 @media screen and (max-width: 480px) {
   .comments-height-optimized {
-    min-height: 200px;
-    max-height: 60vh;
+    min-height: 300px;
+    height: auto;
+    overflow-y: visible;
   }
   
   #cusdis_thread {
-    min-height: 200px;
+    min-height: 300px;
   }
   
   .post-meta {
@@ -181,38 +190,44 @@ layout: default
   }
 }
 
-/* 桌面端高度优化 */
+/* 桌面端优化 */
 @media screen and (min-width: 769px) {
   .comments-height-optimized {
     min-height: 400px;
+    height: auto;
   }
 }
 </style>
 
 <script>
-// 动态调整评论框高度
+// 动态调整评论框高度 - 完全展开版本
 document.addEventListener('DOMContentLoaded', function() {
+  // 等待 Cusdis 加载完成
+  setTimeout(function() {
+    const cusdisContainer = document.getElementById('cusdis_thread');
+    if (cusdisContainer) {
+      // 完全展开评论区域
+      cusdisContainer.style.height = 'auto';
+      cusdisContainer.style.overflowY = 'visible';
+      
+      // 尝试找到Cusdis iframe并设置高度
+      const cusdisFrame = document.querySelector('#cusdis_thread iframe');
+      if (cusdisFrame) {
+        cusdisFrame.style.height = 'auto';
+        cusdisFrame.style.minHeight = '400px';
+      }
+    }
+  }, 2000); // 等待Cusdis完全加载
+  
   // 监听窗口大小变化
   window.addEventListener('resize', function() {
-    adjustCommentsHeight();
-  });
-  
-  // 初始调整
-  adjustCommentsHeight();
-  
-  function adjustCommentsHeight() {
-    const commentsContainer = document.querySelector('.comments-height-optimized');
-    if (!commentsContainer) return;
-    
-    // 根据屏幕尺寸调整高度
-    if (window.innerWidth <= 480) {
-      commentsContainer.style.minHeight = '200px';
-    } else if (window.innerWidth <= 768) {
-      commentsContainer.style.minHeight = '250px';
-    } else {
-      commentsContainer.style.minHeight = '400px';
+    const cusdisContainer = document.getElementById('cusdis_thread');
+    if (cusdisContainer) {
+      // 确保评论区域保持完全展开
+      cusdisContainer.style.height = 'auto';
+      cusdisContainer.style.overflowY = 'visible';
     }
-  }
+  });
 });
 </script>
 
