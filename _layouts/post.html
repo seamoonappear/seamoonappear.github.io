@@ -1,12 +1,30 @@
-<!-- _layouts/post.html 的片段 -->
-<article class="post">
-  <!-- 文章标题、元信息等内容... -->
-  <div class="post-content">
+---
+layout: default
+---
+
+<!-- 文件：_layouts/post.html -->
+<!-- 此文件为Jekyll Chirpy主题的文章布局文件，已集成Cusdis评论系统 -->
+
+<!-- 文章页面的主要结构 -->
+<div class="post">
+  <!-- 文章标题区域 -->
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="post-description">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  <!-- 文章内容区域 -->
+  <article class="post-content">
     {{ content }}
-  </div>
-  
-  <!-- 评论区域 -->
+  </article>
+
+  <!-- 评论区 -->
+  <!-- 关键部分：在此处引入评论组件 -->
+  <!-- 确保此段代码位于文章内容之后 -->
   <div class="comments-wrapper">
     {% include comments.html %}
   </div>
-</article>
+
+</div>
