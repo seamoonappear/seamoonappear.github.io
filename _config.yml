@@ -99,7 +99,7 @@ comments:
   provider: cusdis # 使用cusdis作为评论系统 [cusdis | disqus | utterances | giscus]
   # 提供商选项如下：
   cusdis:
-    data_app_id: "a507d22b-3586-405c-a6b5-50563ba8eb75" # 替换为您的Cusdis应用ID
+    data_app_id:"a507d22b-3586-405c-a6b5-50563ba8eb75" # 替换为您的Cusdis应用ID
     # 可选配置项
     host: "https://cusdis.com" # Cusdis服务地址
     # lang: "zh-CN" # 评论框语言，可设置为中文
