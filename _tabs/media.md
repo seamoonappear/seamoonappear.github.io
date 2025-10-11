@@ -297,26 +297,56 @@ h3 {
 }
 </style>
 
+<!-- 方案一：使用事件委托的纯JavaScript方案 -->
 <script>
+// 等待DOM完全加载
 document.addEventListener('DOMContentLoaded', function() {
-  const navBtns = document.querySelectorAll('.nav-btn');
-  const tabPanes = document.querySelectorAll('.tab-pane');
-  
-  navBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const targetTab = this.getAttribute('data-tab');
+  // 使用事件委托处理导航点击
+  document.querySelector('.media-nav').addEventListener('click', function(event) {
+    // 确保点击的是导航按钮
+    if (event.target.classList.contains('nav-btn')) {
+      const targetTab = event.target.getAttribute('data-tab');
       
-      // 移除所有active类
-      navBtns.forEach(b => b.classList.remove('active'));
-      tabPanes.forEach(pane => pane.classList.remove('active'));
+      // 移除所有按钮的active类
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      
+      // 移除所有内容面板的active类
+      document.querySelectorAll('.tab-pane').forEach(pane => {
+        pane.classList.remove('active');
+      });
       
       // 添加active类到当前按钮和对应内容
-      this.classList.add('active');
+      event.target.classList.add('active');
       document.getElementById(targetTab).classList.add('active');
-    });
+    }
   });
 });
 </script>
+
+<!-- 方案二：使用jQuery的备用方案（如果您的网站已加载jQuery） -->
+<!--
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // 使用事件委托处理导航点击
+  $('.media-nav').on('click', '.nav-btn', function() {
+    const targetTab = $(this).data('tab');
+    
+    // 移除所有按钮的active类
+    $('.nav-btn').removeClass('active');
+    
+    // 移除所有内容面板的active类
+    $('.tab-pane').removeClass('active');
+    
+    // 添加active类到当前按钮和对应内容
+    $(this).addClass('active');
+    $('#' + targetTab).addClass('active');
+  });
+});
+</script>
+-->
 
 ---
 
