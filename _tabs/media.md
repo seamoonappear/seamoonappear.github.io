@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "媒体与爱好"
+title: "媒体"
 permalink: /media/
 icon: fas fa-book
 order: 4
