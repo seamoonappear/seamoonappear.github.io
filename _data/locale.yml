@@ -1,13 +1,57 @@
-# 中文配置
-zh-CN:
-  tabs:
-    archives: 时间轴
-    # 也可以修改其他标签
-    home: 首页
-    categories: 分类
-    tags: 标签
+# _data/locale.yml
 
-# 英文配置（如果需要）
+# English (default)
 en:
+  post:
+    share: "Share"
+    updated: "Updated"
+    read_time:
+      unit: "min"
+      prompt: "read"
   tabs:
-    archives: Timeline
+    home: "Home"
+    categories: "Categories"
+    tags: "Tags"
+    archives: "Archives"
+    media: "Media"  # 英文媒体标签
+  search:
+    hint: "Search"
+    cancel: "Cancel"
+    no_results: "No results found."
+  panel:
+    toc: "Contents"
+    overview: "Overview"
+  footer:
+    copyright: "Copyright"
+    powered: "Powered by"
+  notification:
+    update_found: "A new version of content is available."
+    update: "Update"
+
+# 中文简体
+zh-CN:
+  post:
+    share: "分享"
+    updated: "更新于"
+    read_time:
+      unit: "分钟"
+      prompt: "阅读"
+  tabs:
+    home: "首页"
+    categories: "分类"
+    tags: "标签"
+    archives: "时间轴"
+    media: "媒体"  # 中文媒体标签
+  search:
+    hint: "搜索"
+    cancel: "取消"
+    no_results: "没有找到结果。"
+  panel:
+    toc: "目录"
+    overview: "概览"
+  footer:
+    copyright: "版权"
+    powered: "由"
+  notification:
+    update_found: "内容有新版本可用。"
+    update: "更新"
