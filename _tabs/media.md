@@ -6,8 +6,6 @@ icon: fas fa-book
 order: 4
 ---
 
-# 媒体消费
-
 <div class="media-container">
   <div class="media-nav">
     <div class="nav-highlight"></div>
