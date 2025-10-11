@@ -1,20 +1,17 @@
-# 文件路径: `_data/navigation.yml`
-
-- title: 首页        # 导航栏显示的名称
-  url: /            # 对应的链接，通常是网站根目录
+- title: 首页
+  url: /
 
 - title: 分类
-  url: /categories/  # 指向分类页面的链接
+  url: /categories/
 
 - title: 标签
-  url: /tags/       # 指向标签页面的链接
+  url: /tags/
 
 - title: 归档
-  url: /archives/   # 指向归档页面的链接
+  url: /archives/
 
-- title: 媒体       # 这是您新增的“media”页面
-  url: /media/      # 指向媒体页面的链接
+- title: 媒体
+  url: /media/
 
 - title: 关于
-  url: /about/      # 指向“关于”页面的链接
-
+  url: /about/
