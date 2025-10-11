@@ -2,7 +2,7 @@
 title: "海上升明月"                    # 站点标题
 tagline: "站点的副标题或简短描述"         # 站点副标题
 description: "您站点的详细描述，用于SEO和搜索结果展示" # 站点描述
-url: "https://yourusername.github.io"    # 替换为您的实际域名
+url: "https://seamoonappear.github.io"    # 替换为您的实际域名
 baseurl: ""                              # 如果站点不在根目录，请设置子路径
 github:
   username: "seamoonappear"               # 替换为您的 GitHub 用户名
