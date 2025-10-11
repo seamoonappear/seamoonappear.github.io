@@ -9,7 +9,7 @@ order: 6
 <!-- 顶部浮动卡片 -->
 <div class="photo-header-card">
   <div class="avatar-container">
-    <img src="/assets/img/avatar.jpg" alt="头像" class="avatar">
+    <img src="/assets/img/luwei20251007.jpg" alt="头像" class="avatar">
     <div class="camera-icon">
       <i class="fas fa-camera"></i>
     </div>
@@ -42,7 +42,7 @@ order: 6
       <img src="/assets/img/luwei20251007.jpg" alt="瞬间5" loading="lazy">
     </div>
     <div class="photo-item" data-year="2021">
-      <img src="assets/img/luwei20251007.jpg" alt="瞬间6" loading="lazy">
+      <img src="/assets/img/luwei20251007.jpg" alt="瞬间6" loading="lazy">
     </div>
   </div>
 </div>
@@ -70,11 +70,13 @@ order: 6
 
 .avatar-container {
   position: relative;
+  width: 100px;
+  height: 100px;
 }
 
 .avatar {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #eee;
@@ -83,11 +85,11 @@ order: 6
 
 .camera-icon {
   position: absolute;
-  bottom: -5px;
-  right: -5px;
-  background: #fffa;
+  bottom: 0;
+  left: 0;
+  background: #fffcc0;
   border-radius: 50%;
-  padding: 8px;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +103,7 @@ order: 6
 }
 
 .avatar-container:hover .camera-icon {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .photo-info {
