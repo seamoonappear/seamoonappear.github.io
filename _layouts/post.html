@@ -2,6 +2,220 @@
 layout: default
 ---
 
+<style>
+/* 文章元信息样式 */
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 15px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.post-meta span {
+  white-space: nowrap;
+}
+
+/* 封面图样式 */
+.post-cover {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.post-cover img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 热门标签样式 */
+.popular-tags {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.popular-tags h3 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-link {
+  display: inline-block;
+  padding: 5px 12px;
+  background-color: #e9ecef;
+  color: #495057;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.tag-link:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* 相关文章样式 */
+.related-posts {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.related-posts h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.related-posts ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.related-posts li {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.related-posts li:before {
+  content: "•";
+  color: #007bff;
+  position: absolute;
+  left: 0;
+}
+
+.related-posts a {
+  color: #495057;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.related-posts a:hover {
+  color: #007bff;
+}
+
+/* 评论区域样式 */
+.comments-wrapper {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/* 评论系统高度优化样式 */
+.comments-height-optimized {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  min-height: 300px;
+}
+
+/* 隐藏Cusdis中的邮箱输入框 */
+#cusdis_thread .cusdis-input-email-container {
+  display: none !important;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  .post-meta {
+    gap: 10px;
+    font-size: 0.85em;
+  }
+  
+  .comments-height-optimized {
+    min-height: 250px;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  #cusdis_thread {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-height: 250px;
+  }
+  
+  .popular-tags,
+  .related-posts {
+    padding: 1rem;
+  }
+  
+  .tag-cloud {
+    gap: 8px;
+  }
+  
+  .tag-link {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+}
+
+/* 小屏手机优化 */
+@media screen and (max-width: 480px) {
+  .comments-height-optimized {
+    min-height: 200px;
+    max-height: 60vh;
+  }
+  
+  #cusdis_thread {
+    min-height: 200px;
+  }
+  
+  .post-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* 桌面端高度优化 */
+@media screen and (min-width: 769px) {
+  .comments-height-optimized {
+    min-height: 400px;
+  }
+}
+</style>
+
+<script>
+// 动态调整评论框高度
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听窗口大小变化
+  window.addEventListener('resize', function() {
+    adjustCommentsHeight();
+  });
+  
+  // 初始调整
+  adjustCommentsHeight();
+  
+  function adjustCommentsHeight() {
+    const commentsContainer = document.querySelector('.comments-height-optimized');
+    if (!commentsContainer) return;
+    
+    // 根据屏幕尺寸调整高度
+    if (window.innerWidth <= 480) {
+      commentsContainer.style.minHeight = '200px';
+    } else if (window.innerWidth <= 768) {
+      commentsContainer.style.minHeight = '250px';
+    } else {
+      commentsContainer.style.minHeight = '400px';
+    }
+  }
+});
+</script>
+
 <div class="post">
   <!-- 封面插图 -->
   {% if page.cover %}
@@ -13,34 +227,31 @@ layout: default
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
     <div class="post-meta">
-      <!-- 第一行：日期信息 -->
-      <div class="post-meta-line">
-        <span class="post-date">发布于: {{ page.date | date: "%Y-%m-%d" }}</span>
-        
-        <!-- 更新日期 - 仅在设置了 last_modified_at 时显示 -->
-        {% if page.last_modified_at %}
-        <span class="post-modify">更新于: {{ page.last_modified_at | date: "%Y-%m-%d" }}</span>
-        {% endif %}
-      </div>
+      <!-- 作者信息 -->
+      {% if site.social.name %}
+      <span class="post-author">作者: {{ site.social.name }}</span>
+      {% endif %}
       
-      <!-- 第二行：作者、分类和标签 -->
-      <div class="post-meta-line">
-        {% if site.social.name %}
-        <span class="post-author">作者: {{ site.social.name }}</span>
-        {% endif %}
-        
-        {% if page.categories %}
-        <span class="post-categories">分类: {{ page.categories | join: ", " }}</span>
-        {% endif %}
-        
-        {% if page.tags %}
-        <span class="post-tags">标签: 
-          {% for tag in page.tags %}
-            <a href="{{ '/tags/' | relative_url }}{{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-          {% endfor %}
-        </span>
-        {% endif %}
-      </div>
+      <!-- 阅读时间 -->
+      {% assign words = content | number_of_words %}
+      {% if words < 360 %}
+        <span class="reading-time">阅读时间: 1分钟</span>
+      {% else %}
+        <span class="reading-time">阅读时间: {{ words | divided_by:180 }}分钟</span>
+      {% endif %}
+      
+      <!-- 创建日期 -->
+      <span class="post-date">发布于: {{ page.date | date: "%Y-%m-%d" }}</span>
+      
+      <!-- 更新日期 - 仅在设置了 last_modified_at 时显示 -->
+      {% if page.last_modified_at %}
+      <span class="post-modify">更新于: {{ page.last_modified_at | date: "%Y-%m-%d" }}</span>
+      {% endif %}
+      
+      <!-- 分类信息 -->
+      {% if page.categories %}
+      <span class="post-categories">分类: {{ page.categories | join: ", " }}</span>
+      {% endif %}
     </div>
   </header>
 
@@ -85,48 +296,3 @@ layout: default
   </div>
 
 </div>
-
-<style>
-/* 文章元信息样式 */
-.post-meta {
-  margin-bottom: 1.5rem;
-}
-
-.post-meta-line {
-  margin-bottom: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 15px;
-}
-
-.post-meta-line span {
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* 标签样式 */
-.post-tags a {
-  color: #2c6bc0;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.post-tags a:hover {
-  color: #1e4a8a;
-  text-decoration: underline;
-}
-
-/* 移动端优化 */
-@media screen and (max-width: 768px) {
-  .post-meta-line {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-  }
-  
-  .post-meta-line span {
-    font-size: 0.85rem;
-  }
-}
-</style>
