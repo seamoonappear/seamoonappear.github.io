@@ -9,7 +9,7 @@ order: 6
 <!-- 顶部浮动卡片 -->
 <div class="photo-header-card">
   <div class="avatar-container">
-    <img src="/assets/img/avatar.jpg" alt="头像" class="avatar">
+    <img src="/assets/img/luwei20251007.jpg" alt="头像" class="avatar">
     <div class="camera-icon">
       <i class="fas fa-camera"></i>
     </div>
@@ -56,8 +56,11 @@ order: 6
 <style>
 /* 整体背景黑色 */
 body {
-  background-color: #000;
-  color: #fff;
+  background-color: #000 !important;
+  color: #fff !important;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 /* 顶部浮动卡片 */
@@ -80,15 +83,17 @@ body {
   height: 100px;
 }
 
+/* 头像强制圆形 */
 .avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
   border: 3px solid #444;
   box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
 
+/* 相机图标左下悬浮 */
 .camera-icon {
   position: absolute;
   bottom: 0;
@@ -121,6 +126,7 @@ body {
 .photo-info .photo-count {
   font-weight: 600;
   font-size: 1rem;
+  color: #fff;
 }
 
 .sort-buttons button {
