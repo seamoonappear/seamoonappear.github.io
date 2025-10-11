@@ -27,22 +27,22 @@ order: 6
 <div class="photos-container">
   <div class="photos-grid" id="photos-grid">
     <div class="photo-item" data-year="2023">
-      <img src="/assets/img/photos/photo1.jpg" alt="瞬间1" loading="lazy">
+      <img src="/assets/img/luwei20251007.jpg" alt="瞬间1" loading="lazy">
     </div>
     <div class="photo-item" data-year="2023">
-      <img src="/assets/img/photos/photo2.jpg" alt="瞬间2" loading="lazy">
+      <img src="/assets/img/luwei20251007.jpg" alt="瞬间2" loading="lazy">
     </div>
     <div class="photo-item" data-year="2022">
-      <img src="/assets/img/photos/photo3.jpg" alt="瞬间3" loading="lazy">
+      <img src="/assets/img/luwei20251007.jpg" alt="瞬间3" loading="lazy">
     </div>
     <div class="photo-item" data-year="2022">
-      <img src="/assets/img/photos/photo4.jpg" alt="瞬间4" loading="lazy">
+      <img src="/assets/img/luwei20251007.jpg" alt="瞬间4" loading="lazy">
     </div>
     <div class="photo-item" data-year="2021">
-      <img src="/assets/img/photos/photo5.jpg" alt="瞬间5" loading="lazy">
+      <img src="/assets/img/luwei20251007.jpg" alt="瞬间5" loading="lazy">
     </div>
     <div class="photo-item" data-year="2021">
-      <img src="/assets/img/photos/photo6.jpg" alt="瞬间6" loading="lazy">
+      <img src="assets/img/luwei20251007.jpg" alt="瞬间6" loading="lazy">
     </div>
   </div>
 </div>
