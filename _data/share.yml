@@ -2,18 +2,6 @@
 # 图标来自 <https://fontawesome.com/>
 
 platforms:
-  # - type: Twitter
-  #   icon: "fa-brands fa-square-x-twitter"
-  #   link: "https://twitter.com/intent/tweet?text=TITLE&url=URL"
-
-  # - type: Facebook
-  #   icon: "fab fa-facebook-square"
-  #   link: "https://www.facebook.com/sharer/sharer.php?title=TITLE&u=URL"
-
-  # - type: Telegram
-  #   icon: "fab fa-telegram"
-  #   link: "https://t.me/share/url?url=URL&text=TITLE"
-
   # 微博
   - type: 微博
     icon: "fab fa-weibo"
@@ -38,11 +26,6 @@ platforms:
   - type: 知乎
     icon: "fab fa-zhihu"
     link: "https://www.zhihu.com/question/19554212/answer/"
-
-  # 领英 (国际化平台但国内常用)
-  - type: 领英
-    icon: "fab fa-linkedin"
-    link: "https://www.linkedin.com/feed/?shareActive=true&shareUrl=URL"
 
   # 钉钉
   - type: 钉钉
