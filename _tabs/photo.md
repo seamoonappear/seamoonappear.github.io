@@ -22,7 +22,7 @@ order: 6
         <div class="photo-grid">
           {% for i in (1..21) %}
             <div class="photo-item">
-              <img src="/assets/images/photos/{{ year }}/{{ i }}.jpg" alt="Photo {{ i }}" />
+              <img src="/assets/img/luwei20251007.jpg" alt="Photo {{ i }}" />
             </div>
           {% endfor %}
         </div>
