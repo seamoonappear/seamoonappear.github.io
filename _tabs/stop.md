@@ -6,266 +6,173 @@ icon: fas fa-map-marker-alt
 order: 5
 ---
 
-# 🕓 我的停留城市时间轴  
-> 从 2004 年至今，记录那些走过的地方与片刻的记忆。
+# 🕰️ 我的停留时间轴
+
+> 记录这些年的足迹与片段，从现在回望，从2004开始。
 
 <div class="timeline">
+  <div class="timeline-line"></div>
 
-  <!-- 2025 -->
+  <!-- 每一年 -->
   <div class="timeline-item">
     <div class="timeline-year">2025</div>
-    <div class="timeline-content">
-      <h3>杭州</h3>
-      <p>持续探索AI与创作的城市，西湖的晨雾与秋风仍令人沉醉。</p>
-    </div>
+    <div class="timeline-content">杭州 · 平静与思考的一年</div>
   </div>
 
-  <!-- 2024 -->
   <div class="timeline-item">
     <div class="timeline-year">2024</div>
-    <div class="timeline-content">
-      <h3>苏州</h3>
-      <p>拙政园的水波与古巷的茶香，让人不愿离开。</p>
-    </div>
+    <div class="timeline-content">上海 · 新的开始</div>
   </div>
 
-  <!-- 2023 -->
   <div class="timeline-item">
     <div class="timeline-year">2023</div>
-    <div class="timeline-content">
-      <h3>上海</h3>
-      <p>外滩的灯火、静安的咖啡香，还有那些不期而遇的朋友。</p>
-    </div>
+    <div class="timeline-content">苏州 · 工作与生活并进</div>
   </div>
 
-  <!-- 2022 -->
   <div class="timeline-item">
     <div class="timeline-year">2022</div>
-    <div class="timeline-content">
-      <h3>南京</h3>
-      <p>秦淮河畔，雨打青石，生活平静而温柔。</p>
-    </div>
+    <div class="timeline-content">南京 · 雨季与安静</div>
   </div>
 
-  <!-- 2021 -->
   <div class="timeline-item">
     <div class="timeline-year">2021</div>
-    <div class="timeline-content">
-      <h3>北京</h3>
-      <p>登长城、看故宫，历史与现代在这里交织。</p>
-    </div>
+    <div class="timeline-content">连云港 · 回归与整理</div>
   </div>
 
-  <!-- 2020 -->
   <div class="timeline-item">
     <div class="timeline-year">2020</div>
-    <div class="timeline-content">
-      <h3>北京</h3>
-      <p>疫情中的一年，城市变得安静，心也学会了慢下来。</p>
-    </div>
+    <div class="timeline-content">北京 · 忙碌与成长</div>
   </div>
 
-  <!-- 2019 -->
   <div class="timeline-item">
     <div class="timeline-year">2019</div>
-    <div class="timeline-content">
-      <h3>上海</h3>
-      <p>初到魔都，城市的节奏和梦想的速度令人难忘。</p>
-    </div>
+    <div class="timeline-content">上海 · 夜色与梦想</div>
   </div>
 
-  <!-- 2018 -->
   <div class="timeline-item">
     <div class="timeline-year">2018</div>
-    <div class="timeline-content">
-      <h3>东京 · 日本</h3>
-      <p>樱花纷落，浅草寺的人流与街角的温柔光影。</p>
-    </div>
+    <div class="timeline-content">东京 · 樱花与回忆</div>
   </div>
 
-  <!-- 2017 -->
   <div class="timeline-item">
     <div class="timeline-year">2017</div>
-    <div class="timeline-content">
-      <h3>成都</h3>
-      <p>在宽窄巷子喝茶，慢生活让人忘记时间。</p>
-    </div>
+    <div class="timeline-content">成都 · 美食与闲适</div>
   </div>
 
-  <!-- 2016 -->
   <div class="timeline-item">
     <div class="timeline-year">2016</div>
-    <div class="timeline-content">
-      <h3>厦门</h3>
-      <p>鼓浪屿的浪声，海风与吉他的旋律。</p>
-    </div>
+    <div class="timeline-content">广州 · 南方的热</div>
   </div>
 
-  <!-- 2015 -->
   <div class="timeline-item">
     <div class="timeline-year">2015</div>
-    <div class="timeline-content">
-      <h3>青岛</h3>
-      <p>啤酒节、栈桥与海鸥，蓝色记忆。</p>
-    </div>
+    <div class="timeline-content">西安 · 古城的魅力</div>
   </div>
 
-  <!-- 2014 -->
   <div class="timeline-item">
     <div class="timeline-year">2014</div>
-    <div class="timeline-content">
-      <h3>西安</h3>
-      <p>在古城墙上骑行，感受时间的厚重。</p>
-    </div>
+    <div class="timeline-content">厦门 · 海边的风</div>
   </div>
 
-  <!-- 2013 -->
   <div class="timeline-item">
     <div class="timeline-year">2013</div>
-    <div class="timeline-content">
-      <h3>武汉</h3>
-      <p>长江大桥下的风，东湖边的夏日蝉鸣。</p>
-    </div>
+    <div class="timeline-content">青岛 · 记忆的夏天</div>
   </div>
 
-  <!-- 2012 -->
   <div class="timeline-item">
     <div class="timeline-year">2012</div>
-    <div class="timeline-content">
-      <h3>南京</h3>
-      <p>中山陵的台阶与梧桐叶，秋天的记忆。</p>
-    </div>
+    <div class="timeline-content">重庆 · 山与夜景</div>
   </div>
 
-  <!-- 2011 -->
   <div class="timeline-item">
     <div class="timeline-year">2011</div>
-    <div class="timeline-content">
-      <h3>连云港</h3>
-      <p>离开前的夏天，海边的风和少年时代的笑声。</p>
-    </div>
+    <div class="timeline-content">武汉 · 河边的风</div>
   </div>
 
-  <!-- 2010 -->
   <div class="timeline-item">
     <div class="timeline-year">2010</div>
-    <div class="timeline-content">
-      <h3>连云港</h3>
-      <p>读书、骑车、看海，简单而自由。</p>
-    </div>
+    <div class="timeline-content">南京 · 青春的印记</div>
   </div>
 
-  <!-- 2009 -->
   <div class="timeline-item">
     <div class="timeline-year">2009</div>
-    <div class="timeline-content">
-      <h3>连云港</h3>
-      <p>那年夏天的风，吹过盐田和海滩。</p>
-    </div>
+    <div class="timeline-content">郑州 · 旅途的节点</div>
   </div>
 
-  <!-- 2008 -->
   <div class="timeline-item">
     <div class="timeline-year">2008</div>
-    <div class="timeline-content">
-      <h3>连云港</h3>
-      <p>奥运之夏，电视里的火炬与少年心中的热血。</p>
-    </div>
+    <div class="timeline-content">北京 · 奥运之年</div>
   </div>
 
-  <!-- 2007 -->
   <div class="timeline-item">
     <div class="timeline-year">2007</div>
-    <div class="timeline-content">
-      <h3>连云港</h3>
-      <p>第一次离开家乡去远行的小冒险。</p>
-    </div>
+    <div class="timeline-content">连云港 · 少年的夏天</div>
   </div>
 
-  <!-- 2006 -->
   <div class="timeline-item">
     <div class="timeline-year">2006</div>
-    <div class="timeline-content">
-      <h3>连云港</h3>
-      <p>少年时代的课本、操场与海边落日。</p>
-    </div>
+    <div class="timeline-content">宿迁 · 第一次远行</div>
   </div>
 
-  <!-- 2005 -->
   <div class="timeline-item">
     <div class="timeline-year">2005</div>
-    <div class="timeline-content">
-      <h3>连云港</h3>
-      <p>第一次看雪的冬天，第一次写下“长大要去远方”。</p>
-    </div>
+    <div class="timeline-content">徐州 · 新的视野</div>
   </div>
 
-  <!-- 2004 -->
   <div class="timeline-item">
     <div class="timeline-year">2004</div>
-    <div class="timeline-content">
-      <h3>连云港</h3>
-      <p>故事的开始，海边的童年与第一次心动的夏天。</p>
-    </div>
+    <div class="timeline-content">连云港 · 故乡的开始</div>
   </div>
-
 </div>
 
-> “旅行不是为了到达目的地，而是为了享受旅途中的每一刻。”
-
 ---
+
+*最后更新：{{ site.time | date: "%Y年%m月%d日" }}*
 
 <style>
 .timeline {
   position: relative;
   margin: 40px 0;
   padding-left: 40px;
-  border-left: 3px solid #007acc;
+  border-left: 2px solid #000;
 }
-
+.timeline-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #000;
+}
 .timeline-item {
   position: relative;
-  margin-bottom: 35px;
+  margin: 20px 0 20px 20px;
 }
-
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -9px;
+  left: -30px;
   top: 6px;
-  width: 14px;
-  height: 14px;
-  background-color: #007acc;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border: 2px solid #000;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px #fff;
 }
-
 .timeline-year {
   font-weight: bold;
-  font-size: 1.2em;
-  color: #007acc;
-  margin-bottom: 6px;
+  font-size: 1.1em;
+  color: #000;
+  margin-bottom: 4px;
 }
-
 .timeline-content {
-  background: #f9f9f9;
-  border-radius: 8px;
-  padding: 12px 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease, background 0.3s ease;
+  color: #444;
+  font-size: 0.95em;
+  border-left: 2px solid transparent;
+  padding-left: 10px;
 }
-
-.timeline-content:hover {
-  background: #eef6ff;
-  transform: translateY(-2px);
-}
-
-@media (max-width: 600px) {
-  .timeline {
-    padding-left: 25px;
-  }
-  .timeline-year {
-    font-size: 1em;
-  }
+.timeline-item:hover .timeline-content {
+  border-left: 2px solid #000;
+  transition: 0.3s;
 }
 </style>
