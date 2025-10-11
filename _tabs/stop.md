@@ -1,9 +1,9 @@
 ---
 layout: page
-title: "停留城市"
+title: "停留"
 permalink: /stop/
 icon: fas fa-map-marker-alt
-order: 6
+order: 5
 ---
 
 # 我的停留城市记录
