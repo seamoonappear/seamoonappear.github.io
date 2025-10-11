@@ -6,55 +6,23 @@ icon: fas fa-camera
 order: 6
 ---
 
-<!-- 顶部浮动卡片 -->
-<div class="photo-header-card">
-  <div class="avatar-container">
-    <img src="/assets/img/luwei20251007.jpg" alt="头像" class="avatar">
-    <div class="camera-icon">
-      <i class="fas fa-camera"></i>
-    </div>
-  </div>
-  <div class="photo-info">
-    <div class="photo-count">共 <span id="photo-number">6</span> 张照片</div>
-    <div class="sort-buttons">
-      <button onclick="sortPhotos('asc')">最早</button>
-      <button onclick="sortPhotos('desc')">最新</button>
-    </div>
-  </div>
+<!-- 年份导航 -->
+<div class="year-tabs" id="year-tabs">
+  <!-- 导航按钮由 JS 动态生成 -->
 </div>
 
-<!-- 图片展示区 -->
-<div class="photos-container">
-  <div class="photos-grid" id="photos-grid">
-    <div class="photo-item" data-year="2023">
-      <img src="/assets/img/luwei20251007.jpg" alt="瞬间1" loading="lazy">
-    </div>
-    <div class="photo-item" data-year="2023">
-      <img src="/assets/img/luwei20251007.jpg" alt="瞬间2" loading="lazy">
-    </div>
-    <div class="photo-item" data-year="2022">
-      <img src="/assets/img/luwei20251007.jpg" alt="瞬间3" loading="lazy">
-    </div>
-    <div class="photo-item" data-year="2022">
-      <img src="/assets/img/luwei20251007.jpg" alt="瞬间4" loading="lazy">
-    </div>
-    <div class="photo-item" data-year="2021">
-      <img src="/assets/img/luwei20251007.jpg" alt="瞬间5" loading="lazy">
-    </div>
-    <div class="photo-item" data-year="2021">
-      <img src="/assets/img/luwei20251007.jpg" alt="瞬间6" loading="lazy">
-    </div>
-  </div>
+<!-- 年份对应图片内容 -->
+<div class="year-content-container" id="year-content-container">
+  <!-- JS 动态生成每年的图片网格 -->
 </div>
 
-<!-- 图片放大弹窗 -->
+<!-- Lightbox 弹窗 -->
 <div id="lightbox" class="lightbox">
   <span class="close" onclick="closeLightbox()">&times;</span>
   <img class="lightbox-content" id="lightbox-img">
 </div>
 
 <style>
-/* 整体背景黑色 */
 body {
   background-color: #000 !important;
   color: #fff !important;
@@ -63,127 +31,69 @@ body {
   padding: 0;
 }
 
-/* 顶部浮动卡片 */
-.photo-header-card {
+/* 年份导航栏 */
+.year-tabs {
   display: flex;
-  align-items: center;
-  gap: 25px;
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 1rem 2rem;
-  background: #111;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(255,255,255,0.1);
-  flex-wrap: wrap;
-}
-
-.avatar-container {
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
-
-/* 头像强制圆形 */
-.avatar {
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-  border: 3px solid #444;
-  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
-}
-
-/* 相机图标左下悬浮 */
-.camera-icon {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background: #fffcc0;
-  border-radius: 50%;
-  padding: 6px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease;
-}
-
-.camera-icon i {
-  font-size: 16px;
-  color: #333;
-}
-
-.avatar-container:hover .camera-icon {
-  transform: scale(1.2);
-}
-
-.photo-info {
-  display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 12px;
+  padding: 1rem 0;
+  background: #111;
+  border-bottom: 1px solid #444;
 }
 
-.photo-info .photo-count {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #fff;
-}
-
-.sort-buttons button {
-  margin-right: 10px;
-  padding: 6px 14px;
-  border: 1px solid #666;
+.year-tab {
+  padding: 8px 14px;
   background: #222;
-  color: #fff;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.9rem;
   transition: all 0.2s ease;
+  color: #fff;
+  font-weight: 600;
 }
 
-.sort-buttons button:hover {
-  background: #333;
-  transform: translateY(-2px);
+.year-tab.active,
+.year-tab:hover {
+  background: #fffcc0;
+  color: #000;
 }
 
-/* 图片网格 */
-.photos-container {
+/* 年份内容网格 */
+.year-content {
+  display: none;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 1rem;
 }
 
-.photos-grid {
+.year-content.active {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 .photo-item {
-  position: relative;
-  border-radius: 12px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(255,255,255,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
   cursor: pointer;
   opacity: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
 }
 
 .photo-item.loaded {
   opacity: 1;
 }
 
-.photo-item:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(255,255,255,0.1);
-}
-
 .photo-item img {
   width: 100%;
-  height: 200px;
+  height: 150px;
   object-fit: cover;
-  display: block;
-  border-radius: 12px;
+  border-radius: 8px;
+}
+
+.photo-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255,255,255,0.2);
 }
 
 /* Lightbox 弹窗 */
@@ -198,7 +108,6 @@ body {
   height: 100%;
   overflow: auto;
   background-color: rgba(0,0,0,0.95);
-  animation: fadeIn 0.3s ease;
 }
 
 .lightbox-content {
@@ -221,69 +130,80 @@ body {
 
 /* 响应式 */
 @media(max-width:768px) {
-  .photos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  .year-content.active {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
 
 @media(max-width:576px) {
-  .photos-grid {
+  .year-content.active {
     grid-template-columns: 1fr;
   }
-
-  .photo-header-card {
-    justify-content: center;
-  }
-}
-
-/* 淡入动画 */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
 </style>
 
 <script>
-// 图片淡入加载
-document.querySelectorAll('.photo-item').forEach(item => {
-  const img = item.querySelector('img');
-  if (img.complete) {
-    item.classList.add('loaded');
-  } else {
-    img.onload = () => {
-      item.classList.add('loaded');
-    };
-  }
-});
-
-// 排序功能，带动画
-function sortPhotos(order) {
-  const grid = document.getElementById('photos-grid');
-  const items = Array.from(grid.children);
-  items.forEach(i => i.classList.remove('loaded')); // 重置淡入
-  items.sort((a, b) => {
-    const yearA = parseInt(a.getAttribute('data-year'));
-    const yearB = parseInt(b.getAttribute('data-year'));
-    return order === 'asc' ? yearA - yearB : yearB - yearA;
-  });
-  items.forEach(item => {
-    grid.appendChild(item);
-    setTimeout(() => item.classList.add('loaded'), 50); // 动画淡入
-  });
+// 年份列表
+const years = [];
+for(let y=2025; y>=2015; y--){
+  years.push(y);
 }
 
-// Lightbox 功能
+const yearTabs = document.getElementById('year-tabs');
+const yearContentContainer = document.getElementById('year-content-container');
+
+// 生成导航按钮和每年图片网格
+years.forEach((year, index) => {
+  // 导航按钮
+  const tab = document.createElement('div');
+  tab.className = 'year-tab';
+  tab.innerText = year;
+  if(index===0) tab.classList.add('active'); // 默认选中最新年份
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.year-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.year-content').forEach(c=>c.classList.remove('active'));
+    document.getElementById('year-' + year).classList.add('active');
+  });
+  yearTabs.appendChild(tab);
+
+  // 图片网格
+  const contentDiv = document.createElement('div');
+  contentDiv.className = 'year-content';
+  if(index===0) contentDiv.classList.add('active'); // 默认显示
+  contentDiv.id = 'year-' + year;
+
+  for(let i=0;i<21;i++){ // 每年21张图片
+    const photoDiv = document.createElement('div');
+    photoDiv.className = 'photo-item';
+    const img = document.createElement('img');
+    img.src = '/assets/img/luwei20251007.jpg';
+    img.alt = `照片 ${i+1}`;
+    photoDiv.appendChild(img);
+    contentDiv.appendChild(photoDiv);
+
+    // 点击放大
+    img.addEventListener('click', () => {
+      lightbox.style.display = 'block';
+      lightboxImg.src = img.src;
+    });
+
+    // 图片淡入
+    if(img.complete){
+      photoDiv.classList.add('loaded');
+    } else {
+      img.onload = () => photoDiv.classList.add('loaded');
+    }
+  }
+
+  yearContentContainer.appendChild(contentDiv);
+});
+
+// Lightbox
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 
-document.querySelectorAll('.photo-item img').forEach(img => {
-  img.addEventListener('click', () => {
-    lightbox.style.display = 'block';
-    lightboxImg.src = img.src;
-  });
-});
-
-function closeLightbox() {
+function closeLightbox(){
   lightbox.style.display = 'none';
 }
 </script>
