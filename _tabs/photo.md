@@ -11,22 +11,23 @@ order: 6
 <div class="photos-container">
   <div class="photos-nav">
     <div class="nav-highlight"></div>
-    {% for year in (2025..2015) %}
-      <button class="nav-btn {% if year == 2025 %}active{% endif %}" data-tab="year{{ year }}">{{ year }}</button>
+    {% assign years = "2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015" | split: "," %}
+    {% for year in years %}
+      <button class="nav-btn {% if year == '2025' %}active{% endif %}" data-tab="year-{{ year }}">{{ year }}</button>
     {% endfor %}
   </div>
 
   <div class="tab-content">
-    {% for year in (2025..2015) %}
-      <div id="year{{ year }}" class="tab-pane {% if year == 2025 %}active{% endif %}">
-        <div class="photo-grid">
-          {% for i in (1..21) %}
-            <div class="photo-item">
-              <img src="/assets/img/luwei20251007.jpg" alt="Photo {{ i }}" />
-            </div>
-          {% endfor %}
+    {% for year in years %}
+    <div id="year-{{ year }}" class="tab-pane {% if year == '2025' %}active{% endif %}">
+      <div class="photo-grid">
+        {% for i in (1..21) %}
+        <div class="photo-item">
+          <img src="/assets/img/luwei20251007.jpg" alt="{{ year }}照片{{ i }}">
         </div>
+        {% endfor %}
       </div>
+    </div>
     {% endfor %}
   </div>
 </div>
@@ -50,7 +51,7 @@ order: 6
 }
 
 .nav-btn {
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 1.2rem;
   margin: 0 0.25rem;
   background: white;
   border: 1px solid #e0e0e0;
@@ -59,6 +60,7 @@ order: 6
   color: #666;
   border-radius: 6px;
   transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   position: relative;
   z-index: 1;
 }
@@ -73,6 +75,7 @@ order: 6
 .nav-btn.active {
   color: #000;
   font-weight: 600;
+  background-color: #e0e0e0;
 }
 
 .nav-highlight {
@@ -87,6 +90,7 @@ order: 6
 
 .tab-content {
   margin: 2rem 0;
+  min-height: 400px;
 }
 
 .tab-pane {
@@ -112,10 +116,9 @@ order: 6
 .photo-item img {
   width: 100%;
   height: auto;
-  display: block;
   border-radius: 6px;
-  transition: transform 0.3s ease;
   cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .photo-item img:hover {
@@ -124,13 +127,10 @@ order: 6
 
 /* 响应式 */
 @media (max-width: 768px) {
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .nav-btn {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-  }
+  .photos-nav { justify-content: flex-start; padding: 6px; }
+  .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+  .photos-container { padding: 0 10px; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 
@@ -139,17 +139,10 @@ document.addEventListener("pjax:complete", initPhotoTabs);
 document.addEventListener("DOMContentLoaded", initPhotoTabs);
 
 function initPhotoTabs() {
-  const navButtons = document.querySelectorAll(".nav-btn");
+  const navButtons = document.querySelectorAll(".photos-nav .nav-btn");
   const tabPanes = document.querySelectorAll(".tab-pane");
   const highlight = document.querySelector(".nav-highlight");
   if (!navButtons.length || !tabPanes.length || !highlight) return;
-
-  navButtons.forEach(btn => {
-    const newBtn = btn.cloneNode(true);
-    btn.parentNode.replaceChild(newBtn, btn);
-  });
-
-  const newButtons = document.querySelectorAll(".nav-btn");
 
   const moveHighlight = (btn) => {
     const rect = btn.getBoundingClientRect();
@@ -158,11 +151,12 @@ function initPhotoTabs() {
     highlight.style.left = rect.left - containerRect.left + "px";
   };
 
-  newButtons.forEach(button => {
+  navButtons.forEach(button => {
     button.addEventListener("click", e => {
       e.preventDefault();
       const targetTab = button.getAttribute("data-tab");
-      newButtons.forEach(b => b.classList.remove("active"));
+
+      navButtons.forEach(b => b.classList.remove("active"));
       button.classList.add("active");
 
       tabPanes.forEach(p => p.classList.remove("active"));
@@ -173,13 +167,9 @@ function initPhotoTabs() {
     });
   });
 
-  const activeButton = document.querySelector(".nav-btn.active") || newButtons[0];
+  const activeButton = document.querySelector(".nav-btn.active") || navButtons[0];
   if (activeButton) moveHighlight(activeButton);
 }
 </script>
-
----
-
-> “记忆是留给未来的礼物，每一张照片都是时间的标记。”  
 
 最后更新：{{ site.time | date: "%Y年%m月%d日" }}
