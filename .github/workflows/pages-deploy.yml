@@ -20,12 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4 # 使用v4是正确且最新的[citation:2]
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3 # 建议升级Ruby版本至3.3以确保兼容性[citation:2]
+          ruby-version: "3.3" # 推荐使用 3.3，或根据您的项目需求指定 3.2
           bundler-cache: true
 
       - name: Build site
@@ -34,10 +36,10 @@ jobs:
           JEKYLL_ENV: "production"
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5 # 关键修正：升级至v5版本[citation:2]
+        uses: actions/configure-pages@v4 # 此步骤对 Chirpy 项目很重要
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3 # 关键修正：根据GitHub要求，应升级至v4版本[citation:2]
+        uses: actions/upload-pages-artifact@v3
         with:
           path: "_site"
 
@@ -51,4 +53,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # 使用v4是正确且最新的[citation:2]
+        uses: actions/deploy-pages@v4
