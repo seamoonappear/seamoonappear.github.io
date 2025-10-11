@@ -1,34 +1,35 @@
 <!-- _includes/comments/providers/cusdis.html -->
-<!-- Cusdis评论框容器 -->
+<!-- Cusdis 评论系统嵌入代码 -->
+
 <div id="cusdis_thread"
-     data-host="{{ site.comments.cusdis.host | default: 'https://cusdis.com' }}"
-     data-app-id="{{ site.comments.cusdis.data_app_id }}"
-     data-page-id="{{ page.url | absolute_url }}"
-     data-page-url="{{ page.url | absolute_url }}"
-     data-page-title="{{ page.title }}"
-     data-theme="{{ site.comments.cusdis.theme | default: 'auto' }}"
-     style="margin-top: 2rem;">
+  data-host="{{ site.comments.cusdis.host | default: 'https://cusdis.com' }}"
+  data-app-id="{{ site.comments.cusdis.data_app_id }}"
+  data-page-id="{{ page.id | default: page.url | absolute_url }}"
+  data-page-url="{{ page.url | absolute_url }}"
+  data-page-title="{{ page.title }}"
+  data-theme="{{ site.comments.cusdis.theme | default: 'auto' }}"
+  style="margin-top: 2rem;">
 </div>
 
-<!-- 异步加载Cusdis脚本 -->
+<!-- 异步加载 Cusdis JavaScript 库 -->
 <script async defer src="{{ site.comments.cusdis.host | default: 'https://cusdis.com' }}/js/cusdis.es.js"></script>
 
-<!-- 可选：中文本地化 -->
+<!-- 中文本地化配置 -->
 <script>
-window.CUSDIS_LOCALE = {
-  powered_by: '评论由 Cusdis 提供',
-  post_comment: '发送评论',
-  loading: '加载中',
-  email: '邮箱 (可选)',
-  nickname: '昵称',
-  reply_placeholder: '输入回复...',
-  comment_placeholder: '留下你的评论……',
-  anonymous: '匿名',
-  error: {
-    comment_is_required: '评论内容不能为空。',
-    nickname_is_required: '昵称不能为空。',
-    confirmation_is_required: '请确认您是否继续提交评论。'
-  },
-  comment_has_been_sent: '评论已发送，待审核后显示。'
-};
+  window.CUSDIS_LOCALE = {
+    powered_by: '评论由 Cusdis 提供',
+    post_comment: '发送评论',
+    loading: '加载中',
+    email: '邮箱 (可选)',
+    nickname: '昵称',
+    reply_placeholder: '输入回复...',
+    comment_placeholder: '留下你的评论……',
+    anonymous: '匿名',
+    error: {
+      comment_is_required: '评论内容不能为空。',
+      nickname_is_required: '昵称不能为空。',
+      confirmation_is_required: '请确认您是否继续提交评论。'
+    },
+    comment_has_been_sent: '评论已发送，待审核后显示。'
+  };
 </script>
