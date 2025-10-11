@@ -6,8 +6,6 @@ icon: fas fa-map-marker-alt
 order: 5
 ---
 
-# 🕰️ 我的驻足时间轴
-
 > 记录这些年的足迹，从现在回望，从2004开始。
 
 <div class="timeline">
