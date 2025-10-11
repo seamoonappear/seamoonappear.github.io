@@ -1,223 +1,180 @@
-# 网站配置文件
+# 站点基础配置
+title: "海上升明月"                    # 站点标题
+tagline: "站点的副标题或简短描述"         # 站点副标题
+description: "您站点的详细描述，用于SEO和搜索结果展示" # 站点描述
+url: "https://yourusername.github.io"    # 替换为您的实际域名
+baseurl: ""                              # 如果站点不在根目录，请设置子路径
+github:
+  username: "seamoonappear"               # 替换为您的 GitHub 用户名
 
-# 导入主题
+# 主题配置
 theme: jekyll-theme-chirpy
+remote_theme: "cotes2020/jekyll-theme-chirpy" # 如果使用远程主题
 
-# 网页语言 › http://www.lingoes.net/en/translator/langcode.htm
-# 如果与 `_data/locales` 文件夹中的某个文件名相同，布局语言也会更改，
-# 否则，布局语言将使用默认值 'zh-CN'。
+# 语言和地区设置
 lang: zh-CN
-
-# 更改为您的时区 › https://kevinnovak.github.io/Time-Zone-Picker
 timezone: Asia/Shanghai
 
-# jekyll-seo-tag 设置 › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
-# ↓ --------------------------
+# 个人资料
+avatar: /assets/img/avatar.png           # 头像路径，建议放在assets/img目录
+twitter: yourtwitterusername             # 可选
+email: your-email@example.com            # 可选
 
-title: 王维博客 # 主标题
-
-tagline: 学习,感悟,探索 # 将显示为副标题
-
-description: >- # 用于 SEO 元数据和 atom feed
-  王维的个人博客 - 分享技术学习心得、生活感悟和探索发现。
-
-# 填写您网站的协议和主机名。
-# 例如 'https://username.github.io'，注意不要以 '/' 结尾。
-url: "https://seamoonappear.github.io"
-
-github:
-  username: github_username # 更改为您的 GitHub 用户名
-
-twitter:
-  username: twitter_username # 更改为您的 Twitter 用户名
-
+# 社交链接 (显示在侧边栏)
 social:
-  # 更改为您的全名。
-  # 它将显示为文章的默认作者和页脚的版权所有者
-  name: 王维
-  email: example@domain.com # 更改为您的邮箱地址
+  name: "王维"
   links:
-    # 第一个元素作为版权所有者的链接
-    - https://twitter.com/username # 更改为您的 Twitter 主页
-    - https://github.com/username # 更改为您的 GitHub 主页
-    # 取消注释以添加更多社交链接
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://github.com/yourusername
+    - https://gitee.com/yourusername     # 码云，可选
+    - https://juejin.cn/user/yourid      # 掘金，可选
+    - https://www.zhihu.com/people/yourid # 知乎，可选
+    - rss: /feed.xml                     # RSS订阅
 
-# 网站验证设置
-webmaster_verifications:
-  google: # 填写您的 Google 验证码
-  bing: # 填写您的 Bing 验证码
-  alexa: # 填写您的 Alexa 验证码
-  yandex: # 填写您的 Yandex 验证码
-  baidu: # 填写您的百度验证码
-  facebook: # 填写您的 Facebook 验证码
-
-# ↑ --------------------------
-# `jekyll-seo-tag` 设置结束
-
-# 网站分析设置
-analytics:
-  google:
-    id: # 填写您的 Google Analytics ID
-  goatcounter:
-    id: # 填写您的 GoatCounter ID
-  umami:
-    id: # 填写您的 Umami ID
-    domain: # 填写您的 Umami 域名
-  matomo:
-    id: # 填写您的 Matomo ID
-    domain: # 填写您的 Matomo 域名
-  cloudflare:
-    id: # 填写您的 Cloudflare Web Analytics token
-  fathom:
-    id: # 填写您的 Fathom Site ID
-
-# 页面浏览量设置
-pageviews:
-  provider: # 目前仅支持 'goatcounter'
-
-# 首选颜色方案设置
-#
-# 注意：保持为空将默认跟随系统首选颜色，
-# 并且会在侧边栏左下角有一个切换按钮来在深色和浅色主题之间切换。
-#
-# 可用选项：
-#
-#     light — 使用浅色方案
-#     dark — 使用深色方案
-#
-theme_mode: # [light | dark]
-
-# 媒体资源的 CDN 端点。
-# 注意：一旦指定，CDN url 将添加到所有以 '/' 开头的媒体资源路径中
-#（网站头像、文章图片、音频和视频文件）
-#
-# 例如 'https://cdn.com'
-cdn:
-
-# 侧边栏头像，支持本地或 CORS 资源
-avatar: /assets/img/avatar.jpg
-
-# 在 SEO `og:image` 元标签中使用的全站社交预览图片的 URL。
-# 可以通过 front matter 中的自定义 `page.image` 覆盖。
-social_preview_image: # 字符串，本地或 CORS 资源
-
-# 布尔类型，文章中目录的全局开关。
-toc: true
-
+# 评论系统配置 (Giscus推荐)
 comments:
-  # 文章评论系统的全局开关。保持为空表示禁用。
-  provider: # [disqus | utterances | giscus]
-  # 提供者选项如下：
-  disqus:
-    shortname: # 填写 Disqus shortname › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
-  # utterances 设置 › https://utteranc.es/
-  utterances:
-    repo: # <gh-用户名>/<仓库>
-    issue_term: # < url | pathname | title | ...>
-  # Giscus 选项 › https://giscus.app
+  active: giscus                         # 评论系统: giscus, utterances, disqus
   giscus:
-    repo: # <gh-用户名>/<仓库>
-    repo_id:
-    category:
-    category_id:
-    mapping: # 可选，默认为 'pathname'
-    strict: # 可选，默认为 '0'
-    input_position: # 可选，默认为 'bottom'
-    lang: # 可选，默认为 `site.lang` 的值
-    reactions_enabled: # 可选，默认为 `1`
+    repo: seamoonappear/seamoonappear.github.io  # 替换为您的仓库
+    repo_id: YOUR_REPO_ID                # 需要在Giscus官网获取
+    category: "Announcements"
+    category_id: YOUR_CATEGORY_ID        # 需要在Giscus官网获取
+    mapping: pathname
+    reactions-enabled: 1
+    emit-metadata: 0
+    input-position: bottom
+    lang: zh-CN
+    theme: light                         # 主题: light, dark, dark_dimmed等
 
-# 自托管静态资源，可选 › https://github.com/cotes2020/chirpy-static-assets
-assets:
-  self_host:
-    enabled: # 布尔值，保持为空表示 false
-    # 指定 Jekyll 环境，空表示两者都适用
-    # 仅在 `assets.self_host.enabled` 为 'true' 时有效
-    env: # [development | production]
+# 统计和分析
+analytics:
+  google: 
+    id: "G-XXXXXXXXXX"                   # Google Analytics ID，可选
+  baidu:                                # 百度统计，可选
+    id: "your_baidu_tongji_id"
 
-pwa:
-  enabled: true # PWA 功能选项（可安装）
-  cache:
-    enabled: true # PWA 离线缓存选项
-    # 此处定义的路径将被排除在 PWA 缓存之外。
-    # 通常其值是另一个共享相同域名的网站的 `baseurl`。
-    deny_paths:
-      # - "/example"  # 匹配 `<SITE_URL>/example/*` 的 URL 将不会被 PWA 缓存
+# 搜索配置
+search:
+  provider: algolia                      # 搜索引擎: algolia, lunr
+  algolia:
+    app_id: YOUR_APP_ID                  # Algolia应用ID
+    api_key: YOUR_API_KEY                # Algolia API密钥
+    index_name: YOUR_INDEX_NAME          # 索引名称
 
-paginate: 5
+# 页面设置
+defaults:
+  - scope:
+      path: ""                           # 空字符串表示所有文件
+      type: posts                        # 应用于posts类型
+    values:
+      layout: post
+      comments: true                     # 默认开启评论
+      share: true                        # 默认开启分享
+  - scope:
+      path: ""
+      type: pages                        # 应用于pages类型
+    values:
+      layout: page
 
-# 您网站的基本 URL
-baseurl: ""
+# 归档设置
+archives:
+  - type: year
+    format: annual
+  - type: month
+    format: monthly
+  - type: day
+    format: daily
 
-# ------------ 以下选项不建议修改 ------------------
+# 分类和标签
+category_archive:
+  type: category
+  path: categories
 
+tag_archive:
+  type: tag
+  path: tags
+
+# 分页设置
+paginate: 10
+paginate_path: /page/:num/
+
+# 插件配置
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-paginate
+  - jekyll-include-cache
+
+# Jekyll Archives配置 (用于分类和标签页面)
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
+
+# SEO优化
+seo:
+  type: Website                         # 或 Blog
+  twitter:
+    card: summary
+    username: yourtwitterusername       # 可选
+
+# 分享平台配置 (引用_data/share.yml中的设置)
+share:
+  platforms:
+    - 微博
+    - QQ
+    - 微信
+    # - Twitter  # 如需要国际平台可取消注释
+    # - Facebook
+
+# 外观和样式
+theme_mode: light                       # 主题模式: light, dark, auto
+toc: true                               # 文章目录
+readtime: true                          # 阅读时间估计
+
+# 代码高亮
+highlighter: rouge
 kramdown:
-  footnote_backlink: "&#8617;&#xfe0e;"
+  input: GFM
   syntax_highlighter: rouge
-  syntax_highlighter_opts: # Rouge 选项 › https://github.com/jneen/rouge#full-options
+  syntax_highlighter_opts:
     css_class: highlight
-    # default_lang: console
     span:
       line_numbers: false
     block:
       line_numbers: true
       start_line: 1
 
-collections:
-  tabs:
-    output: true
-    sort_by: order
-
-defaults:
-  - scope:
-      path: "" # 此处空字符串表示项目中的所有文件
-      type: posts
-    values:
-      layout: post
-      comments: true # 在文章中启用评论
-      toc: true # 在文章中显示目录列
-      # 除非您有足够信心更新此项目中所有其他文章链接的代码，否则不要修改以下参数
-      permalink: /posts/:title/
-  - scope:
-      path: _drafts
-    values:
-      comments: false
-  - scope:
-      path: ""
-      type: tabs # 参见 `site.collections`
-    values:
-      layout: page
-      permalink: /:title/
-
-sass:
-  style: compressed
-
-compress_html:
-  clippings: all
-  comments: all
-  endings: all
-  profile: false
-  blanklines: false
-  ignore:
-    envs: [development]
-
+# 构建设置
+markdown: kramdown
+permalink: /posts/:title/
+permalink: pretty
 exclude:
   - "*.gem"
-  - "*.gemspec"
-  - docs
-  - tools
-  - README.md
-  - LICENSE
-  - purgecss.js
-  - "*.config.js"
-  - "package*.json"
+  - ".gitignore"
+  - ".ruby-version"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "node_modules"
+  - "vendor/bundle/"
+  - "vendor/cache/"
+  - "vendor/gems/"
+  - "vendor/ruby/"
 
-jekyll-archives:
-  enabled: [categories, tags]
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    tag: /tags/:name/
-    category: /categories/:name/
+# 时区配置
+future: true
+
+# 图片路径配置
+img_cdn: ""                             # 如果使用CDN，可在此设置基础URL
+
+# RSS订阅
+feed:
+  path: feed.xml
+  template: feed.xml
