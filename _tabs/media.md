@@ -6,151 +6,317 @@ icon: fas fa-book
 order: 4
 ---
 
-# 我的媒体世界
+# 媒体消费
 
-这里记录了我的各种爱好和媒体消费记录，包括阅读、音乐、影视和游戏等。
+<div class="media-nav">
+  <button class="nav-btn active" data-tab="hobby">爱好</button>
+  <button class="nav-btn" data-tab="books">书</button>
+  <button class="nav-btn" data-tab="movies">电影</button>
+  <button class="nav-btn" data-tab="series">系列</button>
+  <button class="nav-btn" data-tab="games">游戏</button>
+  <button class="nav-btn" data-tab="others">其他</button>
+</div>
 
-## 📚 我读过的书
+<div class="tab-content">
+  <!-- 爱好页 -->
+  <div id="hobby" class="tab-pane active">
+    <h2>我的爱好</h2>
+    <div class="media-item">
+      <span class="item-name">摄影</span>
+      <span class="item-duration">5年</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">游泳</span>
+      <span class="item-duration">8年</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">徒步</span>
+      <span class="item-duration">3年</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">瑜伽</span>
+      <span class="item-duration">2年</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">模型制作</span>
+      <span class="item-duration">4年</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">手账记录</span>
+      <span class="item-duration">6年</span>
+    </div>
+  </div>
 
-### 小说类
-- **《三体》** - 刘慈欣 ★★★★★
-  - 震撼的科幻想象力，黑暗森林理论令人深思
-- **《活着》** - 余华 ★★★★☆
-  - 深刻的人生哲理，让人珍惜当下
-- **《百年孤独》** - 加西亚·马尔克斯 ★★★★☆
-  - 魔幻现实主义的巅峰之作
-- *持续添加中...*
+  <!-- 书页 -->
+  <div id="books" class="tab-pane">
+    <h2>我读过的书</h2>
+    
+    <h3>小说类</h3>
+    <div class="media-item">
+      <span class="item-name">《三体》</span>
+      <span class="item-author">刘慈欣</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《活着》</span>
+      <span class="item-author">余华</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《百年孤独》</span>
+      <span class="item-author">加西亚·马尔克斯</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《围城》</span>
+      <span class="item-author">钱钟书</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《挪威的森林》</span>
+      <span class="item-author">村上春树</span>
+    </div>
 
-### 非小说类
-- **《人类简史》** - 尤瓦尔·赫拉利 ★★★★☆
-- **《原则》** - 瑞·达利欧 ★★★★
-- *持续添加中...*
+    <h3>非小说类</h3>
+    <div class="media-item">
+      <span class="item-name">《人类简史》</span>
+      <span class="item-author">尤瓦尔·赫拉利</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《原则》</span>
+      <span class="item-author">瑞·达利欧</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《思考，快与慢》</span>
+      <span class="item-author">丹尼尔·卡尼曼</span>
+    </div>
+  </div>
 
-### 阅读统计
-| 年份 | 阅读数量 | 最喜欢的书 |
-|------|----------|-------------|
-| 2023 | 12本 | 《三体》 |
-| 2024 | 5本 | *待更新* |
+  <!-- 电影页 -->
+  <div id="movies" class="tab-pane">
+    <h2>看过的电影</h2>
+    <div class="media-item">
+      <span class="item-name">《肖申克的救赎》</span>
+      <span class="item-director">弗兰克·德拉邦特</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《星际穿越》</span>
+      <span class="item-director">克里斯托弗·诺兰</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《千与千寻》</span>
+      <span class="item-director">宫崎骏</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《盗梦空间》</span>
+      <span class="item-director">克里斯托弗·诺兰</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《教父》</span>
+      <span class="item-director">弗朗西斯·福特·科波拉</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《阿甘正传》</span>
+      <span class="item-director">罗伯特·泽米吉斯</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《泰坦尼克号》</span>
+      <span class="item-director">詹姆斯·卡梅隆</span>
+    </div>
+  </div>
 
----
+  <!-- 系列页 -->
+  <div id="series" class="tab-pane">
+    <h2>追过的剧集</h2>
+    <div class="media-item">
+      <span class="item-name">《权力的游戏》</span>
+      <span class="item-info">美国, 2011</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《无耻之徒》</span>
+      <span class="item-info">美国, 2011</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《怪奇物语》</span>
+      <span class="item-info">美国, 2016</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《漫长的季节》</span>
+      <span class="item-info">中国, 2023</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《黑暗荣耀》</span>
+      <span class="item-info">韩国, 2022</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《黑镜》</span>
+      <span class="item-info">英国, 2011</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《纸牌屋》</span>
+      <span class="item-info">美国, 2013</span>
+    </div>
+  </div>
 
-## 🎵 喜欢的音乐
+  <!-- 游戏页 -->
+  <div id="games" class="tab-pane">
+    <h2>玩过的游戏</h2>
+    
+    <h3>单机游戏</h3>
+    <div class="media-item">
+      <span class="item-name">《巫师3：狂猎》</span>
+      <span class="item-year">2015</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《塞尔达传说：旷野之息》</span>
+      <span class="item-year">2017</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《荒野大镖客2》</span>
+      <span class="item-year">2018</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《艾尔登法环》</span>
+      <span class="item-year">2022</span>
+    </div>
 
-### 常听歌手
-- **周杰伦** - 青春的记忆，永恒的经典
-- **Taylor Swift** - 从乡村到流行的完美蜕变
-- **林俊杰** - 嗓音独特，情感丰富
-- **Coldplay** - 英伦摇滚的温暖力量
+    <h3>网络游戏</h3>
+    <div class="media-item">
+      <span class="item-name">《原神》</span>
+      <span class="item-year">2020</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《英雄联盟》</span>
+      <span class="item-year">2009</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">《守望先锋》</span>
+      <span class="item-year">2016</span>
+    </div>
+  </div>
 
-### 最近播放
-1. **《七里香》** - 周杰伦
-2. **《Anti-Hero》** - Taylor Swift
-3. **《不为谁而作的歌》** - 林俊杰
-4. **《Yellow》** - Coldplay
+  <!-- 其他页 -->
+  <div id="others" class="tab-pane">
+    <h2>其他</h2>
+    <div class="media-item">
+      <span class="item-name">占位内容1</span>
+      <span class="item-info">详细信息1</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">占位内容2</span>
+      <span class="item-info">详细信息2</span>
+    </div>
+    <div class="media-item">
+      <span class="item-name">占位内容3</span>
+      <span class="item-info">详细信息3</span>
+    </div>
+  </div>
+</div>
 
-### 音乐口味分析
-- **流行**: 40%
-- **摇滚**: 25%
-- **民谣**: 20%
-- **古典**: 10%
-- **其他**: 5%
+<style>
+.media-nav {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  border-bottom: 2px solid #eee;
+}
 
----
+.nav-btn {
+  padding: 0.8rem 1.5rem;
+  margin: 0 0.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #666;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
 
-## 🎬 看过的影视剧
+.nav-btn:hover {
+  color: #333;
+  border-bottom-color: #ddd;
+}
 
-### 电影推荐
-| 电影名称 | 类型 | 评分 | 短评 |
-|----------|------|------|------|
-| **《肖申克的救赎》** | 剧情 | ★★★★★ | 希望是美好的事物 |
-| **《星际穿越》** | 科幻 | ★★★★☆ | 科学与情感的完美结合 |
-| **《千与千寻》** | 动画 | ★★★★★ | 宫崎骏的奇幻世界 |
-| **《盗梦空间》**** | 科幻 | ★★★★☆ | 梦境层次的精妙设计 |
+.nav-btn.active {
+  color: #000;
+  border-bottom-color: #000;
+  background-color: #000;
+  color: white;
+}
 
-### 电视剧追更
-- **《权力的游戏》** (前六季) ★★★★☆
-- **《怪奇物语》** ★★★★
-- **《漫长的季节》** ★★★★★
-- **《黑暗荣耀》** ★★★★
+.tab-content {
+  margin: 2rem 0;
+}
 
-### 观影记录
-```plaintext
-本月观影：8部
-今年累计：45部
-最常观看类型：科幻、悬疑
+.tab-pane {
+  display: none;
+}
 
+.tab-pane.active {
+  display: block;
+}
 
-## 🎮 玩过的游戏
+.media-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.3s ease;
+}
 
-### 单机游戏
+.media-item:hover {
+  background-color: #f9f9f9;
+}
 
-· 《巫师3：狂猎》 ⭐⭐⭐⭐⭐
-  · 沉浸式的开放世界，精彩的剧情选择
-· 《塞尔达传说：旷野之息》 ⭐⭐⭐⭐⭐
-  · 重新定义开放世界的杰作
-· 《荒野大镖客2》 ⭐⭐⭐⭐
-  · 细节丰富的西部世界
+.item-name {
+  font-weight: 500;
+  color: #333;
+}
 
-### 网络游戏
+.item-duration,
+.item-author,
+.item-director,
+.item-info,
+.item-year {
+  color: #666;
+  font-size: 0.9rem;
+}
 
-· 《原神》 ⭐⭐⭐⭐
-  · 画面精美，持续更新
-· 《英雄联盟》 ⭐⭐⭐⭐
-  · 竞技性强的MOBA经典
+h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #eee;
+}
 
-### 游戏成就
+h3 {
+  color: #555;
+  margin: 1.5rem 0 1rem 0;
+  font-size: 1.2rem;
+}
+</style>
 
-· 白金奖杯: 3个
-· 100%完成度: 5款游戏
-· 游戏时长最长: 《巫师3》 (180小时)
-
----
-
-## 🎨 其他爱好
-
-摄影
-
-· 设备: Sony A7III
-· 擅长: 风景摄影、街头摄影
-· 最近主题: 城市夜景、自然风光
-
-## 手工艺
-
-· 模型制作
-· 羊毛毡
-· 手账记录
-
-## 运动
-
-· 游泳 🏊
-· 徒步 🥾
-· 瑜伽 🧘
-
----
-
-## 📊 媒体消费统计
-
-### 年度总结
-
-```plaintext
-阅读: 平均每月1-2本书
-音乐: 每日听歌2-3小时
-影视: 每周观看2-3部
-游戏: 每周游玩10-15小时
-```
-
-### 推荐指数
-
-· 必读/必看/必玩: ⭐⭐⭐⭐⭐
-· 强烈推荐: ⭐⭐⭐⭐
-· 值得一试: ⭐⭐⭐
-· 选择性观看: ⭐⭐
-· 不推荐: ⭐
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+  
+  navBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+      
+      // 移除所有active类
+      navBtns.forEach(b => b.classList.remove('active'));
+      tabPanes.forEach(pane => pane.classList.remove('active'));
+      
+      // 添加active类到当前按钮和对应内容
+      this.classList.add('active');
+      document.getElementById(targetTab).classList.add('active');
+    });
+  });
+});
+</script>
 
 ---
 
 "艺术的目的不是要表现生活的外貌，而是表现生活的内在意义。" — 亚里士多德
 
 最后更新: {{ site.time | date: "%Y年%m月%d日" }}
-
-```
