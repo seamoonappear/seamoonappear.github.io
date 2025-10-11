@@ -34,7 +34,7 @@ order: 5
   <div class="timeline-item left"><div class="timeline-year">2007</div><div class="timeline-content">连云港</div></div>
   <div class="timeline-item right"><div class="timeline-year">2006</div><div class="timeline-content">宿迁</div></div>
   <div class="timeline-item left"><div class="timeline-year">2005</div><div class="timeline-content">徐州</div></div>
-  <div class="timeline-item right"><div class="timeline-year">2004</div><div class="timeline-content">连云港</div></div>
+  <div class="timeline-item right"><div class="timeline-year">2004</div><div class="timeline-content">连云港·北上哈尔滨求学</div></div>
 </div>
 
 ---
