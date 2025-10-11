@@ -21,7 +21,6 @@ order: 4
   <div class="tabs-content">
     <!-- 爱好页 -->
     <div class="tab-panel active" id="hobby-panel">
-      <h2>我的爱好</h2>
       <div class="media-item">
         <span class="item-name">摄影</span>
         <span class="item-duration">5年</span>
@@ -50,8 +49,6 @@ order: 4
 
     <!-- 书页 -->
     <div class="tab-panel" id="books-panel">
-      <h2>我读过的书</h2>
-      
       <h3>小说类</h3>
       <div class="media-item">
         <span class="item-name">《三体》</span>
@@ -91,7 +88,6 @@ order: 4
 
     <!-- 电影页 -->
     <div class="tab-panel" id="movies-panel">
-      <h2>看过的电影</h2>
       <div class="media-item">
         <span class="item-name">《肖申克的救赎》</span>
         <span class="item-director">弗兰克·德拉邦特</span>
@@ -124,7 +120,6 @@ order: 4
 
     <!-- 系列页 -->
     <div class="tab-panel" id="series-panel">
-      <h2>追过的剧集</h2>
       <div class="media-item">
         <span class="item-name">《权力的游戏》</span>
         <span class="item-info">美国, 2011</span>
@@ -157,8 +152,6 @@ order: 4
 
     <!-- 游戏页 -->
     <div class="tab-panel" id="games-panel">
-      <h2>玩过的游戏</h2>
-      
       <h3>单机游戏</h3>
       <div class="media-item">
         <span class="item-name">《巫师3：狂猎》</span>
@@ -194,7 +187,6 @@ order: 4
 
     <!-- 其他页 -->
     <div class="tab-panel" id="others-panel">
-      <h2>其他</h2>
       <div class="media-item">
         <span class="item-name">占位内容1</span>
         <span class="item-info">详细信息1</span>
@@ -290,17 +282,12 @@ order: 4
   font-size: 0.9rem;
 }
 
-h2 {
-  color: #333;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #eee;
-}
-
 h3 {
   color: #555;
   margin: 1.5rem 0 1rem 0;
   font-size: 1.2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
 }
 
 /* 响应式调整 */
@@ -321,8 +308,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const tabButtons = document.querySelectorAll('.tab-button');
   const tabPanels = document.querySelectorAll('.tab-panel');
   
-  // 显示默认激活的面板
-  document.querySelector('.tab-panel.active').style.display = 'block';
+  // 初始化显示第一个面板
+  tabPanels.forEach((panel, index) => {
+    if (index === 0) {
+      panel.style.display = 'block';
+    } else {
+      panel.style.display = 'none';
+    }
+  });
   
   tabButtons.forEach(button => {
     button.addEventListener('click', function() {
@@ -338,8 +331,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // 添加active类到当前按钮和对应内容
       this.classList.add('active');
       const targetPanel = document.getElementById(targetTab + '-panel');
-      targetPanel.classList.add('active');
-      targetPanel.style.display = 'block';
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+        targetPanel.style.display = 'block';
+      }
     });
   });
 });
