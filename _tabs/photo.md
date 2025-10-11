@@ -9,7 +9,7 @@ order: 6
 <!-- 顶部浮动卡片 -->
 <div class="photo-header-card">
   <div class="avatar-container">
-    <img src="/assets/img/luwei20251007.jpg" alt="头像" class="avatar">
+    <img src="/assets/img/avatar.jpg" alt="头像" class="avatar">
     <div class="camera-icon">
       <i class="fas fa-camera"></i>
     </div>
