@@ -1,5 +1,5 @@
 ---
 layout: pringing-knowledge
-icon: fas fa-archive
+icon: fas fa-print
 order: 6
 ---
