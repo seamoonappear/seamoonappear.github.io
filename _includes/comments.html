@@ -1,0 +1,32 @@
+<!-- _includes/comments.html -->
+<!-- 评论系统主入口，根据 `_config.yml` 配置加载指定提供商 -->
+
+<section class="comments-container">
+  {% case site.comments.provider %}
+  
+    {% when 'cusdis' %}
+      <!-- Cusdis 评论系统 -->
+      <div id="cusdis-comments">
+        {% include comments/providers/cusdis.html %}
+      </div>
+
+    {% when 'giscus' %}
+      <!-- Giscus 评论系统 -->
+      <div id="giscus-comments">
+        {% include comments/providers/giscus.html %}
+      </div>
+
+    {% when 'disqus' %}
+      <!-- Disqus 评论系统 -->
+      <div id="disqus-comments">
+        {% include comments/providers/disqus.html %}
+      </div>
+
+    {% else %}
+      <!-- 未配置评论系统时的提示 -->
+      <div class="comments-disabled">
+        <p>评论功能暂未开启。</p>
+      </div>
+      
+  {% endcase %}
+</section>
