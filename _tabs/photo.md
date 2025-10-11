@@ -6,8 +6,6 @@ icon: fas fa-camera
 order: 6
 ---
 
-# 留影
-
 <div class="photos-container">
   <div class="photos-nav">
     <div class="nav-highlight"></div>
