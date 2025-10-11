@@ -1,27 +1,35 @@
-<!-- 保留第一个：配色切换按钮 -->
-<li>
-  <a href="javascript:void(0)" class="mode-toggle" aria-label="Toggle Theme">
-    <i class="fas fa-adjust"></i>
-  </a>
-</li>
+<ul class="sidebar-social">
 
-<!-- 哔哩哔哩 -->
-<li>
-  <a href="https://space.bilibili.com/你的B站ID" target="_blank" aria-label="Bilibili">
-    <i class="fa-brands fa-bilibili"></i>
-  </a>
-</li>
+  <!-- 1️⃣ 主题模式切换按钮 -->
+  <li>
+    <a href="javascript:void(0)" class="mode-toggle" aria-label="Toggle Theme">
+      <i class="fas fa-adjust"></i>
+    </a>
+  </li>
 
-<!-- 小红书 -->
-<li>
-  <a href="https://www.xiaohongshu.com/user/profile/你的小红书ID" target="_blank" aria-label="小红书">
-    <i class="fa-solid fa-book-open"></i>
-  </a>
-</li>
-
-<!-- 抖音 -->
-<li>
-  <a href="https://www.douyin.com/user/你的抖音号" target="_blank" aria-label="抖音">
-    <i class="fa-brands fa-tiktok"></i>
-  </a>
-</li>
+  <!-- 2️⃣ 动态加载社交链接 -->
+  {% assign links = site.social.links %}
+  {% if links %}
+    {% for link in links %}
+      {% if link contains 'gitee.com' %}
+        <li><a href="{{ link }}" target="_blank" aria-label="Gitee"><i class="fa-brands fa-git-alt"></i></a></li>
+      {% elsif link contains 'juejin.cn' %}
+        <li><a href="{{ link }}" target="_blank" aria-label="掘金"><i class="fa-solid fa-code"></i></a></li>
+      {% elsif link contains 'zhihu.com' %}
+        <li><a href="{{ link }}" target="_blank" aria-label="知乎"><i class="fa-solid fa-question-circle"></i></a></li>
+      {% elsif link contains 'csdn.net' %}
+        <li><a href="{{ link }}" target="_blank" aria-label="CSDN"><i class="fa-solid fa-blog"></i></a></li>
+      {% elsif link contains 'bilibili.com' %}
+        <li><a href="{{ link }}" target="_blank" aria-label="Bilibili"><i class="fa-brands fa-bilibili"></i></a></li>
+      {% elsif link contains 'xiaohongshu.com' %}
+        <li><a href="{{ link }}" target="_blank" aria-label="小红书"><i class="fa-solid fa-book-open"></i></a></li>
+      {% elsif link contains 'douyin.com' %}
+        <li><a href="{{ link }}" target="_blank" aria-label="抖音"><i class="fa-brands fa-tiktok"></i></a></li>
+      {% elsif link contains 'github.com' %}
+        <li><a href="{{ link }}" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a></li>
+      {% else %}
+        <li><a href="{{ link }}" target="_blank"><i class="fa-solid fa-link"></i></a></li>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</ul>
