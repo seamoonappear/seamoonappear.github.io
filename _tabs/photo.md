@@ -54,17 +54,23 @@ order: 6
 </div>
 
 <style>
+/* 整体背景黑色 */
+body {
+  background-color: #000;
+  color: #fff;
+}
+
 /* 顶部浮动卡片 */
 .photo-header-card {
   display: flex;
   align-items: center;
   gap: 25px;
   max-width: 900px;
-  margin: 0 auto 2rem auto;
+  margin: 2rem auto;
   padding: 1rem 2rem;
-  background: #fff;
+  background: #111;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(255,255,255,0.1);
   flex-wrap: wrap;
 }
 
@@ -79,8 +85,8 @@ order: 6
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #eee;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 3px solid #444;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
 
 .camera-icon {
@@ -93,7 +99,7 @@ order: 6
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
   transition: transform 0.3s ease;
 }
 
@@ -120,8 +126,9 @@ order: 6
 .sort-buttons button {
   margin-right: 10px;
   padding: 6px 14px;
-  border: 1px solid #ccc;
-  background: #f9f9f9;
+  border: 1px solid #666;
+  background: #222;
+  color: #fff;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.9rem;
@@ -129,7 +136,7 @@ order: 6
 }
 
 .sort-buttons button:hover {
-  background: #eee;
+  background: #333;
   transform: translateY(-2px);
 }
 
@@ -150,7 +157,7 @@ order: 6
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(255,255,255,0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
   cursor: pointer;
   opacity: 0;
@@ -162,7 +169,7 @@ order: 6
 
 .photo-item:hover {
   transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px rgba(255,255,255,0.1);
 }
 
 .photo-item img {
