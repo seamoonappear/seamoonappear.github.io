@@ -13,19 +13,34 @@ layout: default
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
     <div class="post-meta">
-      <span class="post-date">发布于: {{ page.date | date: "%Y-%m-%d" }}</span>
+      <!-- 第一行：日期信息 -->
+      <div class="post-meta-line">
+        <span class="post-date">发布于: {{ page.date | date: "%Y-%m-%d" }}</span>
+        
+        <!-- 更新日期 - 仅在设置了 last_modified_at 时显示 -->
+        {% if page.last_modified_at %}
+        <span class="post-modify">更新于: {{ page.last_modified_at | date: "%Y-%m-%d" }}</span>
+        {% endif %}
+      </div>
       
-      <!-- 更新日期 - 仅在设置了 last_modified_at 时显示 -->
-      {% if page.last_modified_at %}
-      <span class="post-modify">更新于: {{ page.last_modified_at | date: "%Y-%m-%d" }}</span>
-      {% endif %}
-      
-      {% if site.social.name %}
-      <span class="post-author">作者: {{ site.social.name }}</span>
-      {% endif %}
-      {% if page.categories %}
-      <span class="post-categories">分类: {{ page.categories | join: ", " }}</span>
-      {% endif %}
+      <!-- 第二行：作者、分类和标签 -->
+      <div class="post-meta-line">
+        {% if site.social.name %}
+        <span class="post-author">作者: {{ site.social.name }}</span>
+        {% endif %}
+        
+        {% if page.categories %}
+        <span class="post-categories">分类: {{ page.categories | join: ", " }}</span>
+        {% endif %}
+        
+        {% if page.tags %}
+        <span class="post-tags">标签: 
+          {% for tag in page.tags %}
+            <a href="{{ '/tags/' | relative_url }}{{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+          {% endfor %}
+        </span>
+        {% endif %}
+      </div>
     </div>
   </header>
 
@@ -70,3 +85,48 @@ layout: default
   </div>
 
 </div>
+
+<style>
+/* 文章元信息样式 */
+.post-meta {
+  margin-bottom: 1.5rem;
+}
+
+.post-meta-line {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+}
+
+.post-meta-line span {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* 标签样式 */
+.post-tags a {
+  color: #2c6bc0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.post-tags a:hover {
+  color: #1e4a8a;
+  text-decoration: underline;
+}
+
+/* 移动端优化 */
+@media screen and (max-width: 768px) {
+  .post-meta-line {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .post-meta-line span {
+    font-size: 0.85rem;
+  }
+}
+</style>
