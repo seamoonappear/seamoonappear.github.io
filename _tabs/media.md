@@ -8,24 +8,26 @@ order: 4
 
 # 媒体消费
 
-<div class="media-nav">
-  <input type="radio" id="tab-hobby" name="media-tabs" checked>
-  <label for="tab-hobby" class="nav-btn">爱好</label>
-  
-  <input type="radio" id="tab-books" name="media-tabs">
-  <label for="tab-books" class="nav-btn">书</label>
-  
-  <input type="radio" id="tab-movies" name="media-tabs">
-  <label for="tab-movies" class="nav-btn">电影</label>
-  
-  <input type="radio" id="tab-series" name="media-tabs">
-  <label for="tab-series" class="nav-btn">系列</label>
-  
-  <input type="radio" id="tab-games" name="media-tabs">
-  <label for="tab-games" class="nav-btn">游戏</label>
-  
-  <input type="radio" id="tab-others" name="media-tabs">
-  <label for="tab-others" class="nav-btn">其他</label>
+<div class="media-container">
+  <div class="nav-container">
+    <input type="radio" id="tab-hobby" name="media-tabs" checked>
+    <label for="tab-hobby" class="nav-btn">爱好</label>
+    
+    <input type="radio" id="tab-books" name="media-tabs">
+    <label for="tab-books" class="nav-btn">书</label>
+    
+    <input type="radio" id="tab-movies" name="media-tabs">
+    <label for="tab-movies" class="nav-btn">电影</label>
+    
+    <input type="radio" id="tab-series" name="media-tabs">
+    <label for="tab-series" class="nav-btn">系列</label>
+    
+    <input type="radio" id="tab-games" name="media-tabs">
+    <label for="tab-games" class="nav-btn">游戏</label>
+    
+    <input type="radio" id="tab-others" name="media-tabs">
+    <label for="tab-others" class="nav-btn">其他</label>
+  </div>
 
   <div class="tab-content">
     <!-- 爱好页 -->
@@ -221,12 +223,21 @@ order: 4
 </div>
 
 <style>
-.media-nav {
-  position: relative;
+.media-container {
   margin: 2rem 0;
 }
 
-.media-nav input[type="radio"] {
+.nav-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #eee;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.nav-container input[type="radio"] {
   display: none;
 }
 
@@ -249,6 +260,15 @@ order: 4
   border-bottom-color: #ddd;
 }
 
+.tab-content {
+  margin: 2rem 0;
+}
+
+.tab-pane {
+  display: none;
+}
+
+/* 使用:checked状态控制内容显示 */
 #tab-hobby:checked ~ .tab-content #hobby-content,
 #tab-books:checked ~ .tab-content #books-content,
 #tab-movies:checked ~ .tab-content #movies-content,
@@ -258,36 +278,17 @@ order: 4
   display: block;
 }
 
-#tab-hobby:checked ~ .nav-container label[for="tab-hobby"],
-#tab-books:checked ~ .nav-container label[for="tab-books"],
-#tab-movies:checked ~ .nav-container label[for="tab-movies"],
-#tab-series:checked ~ .nav-container label[for="tab-series"],
-#tab-games:checked ~ .nav-container label[for="tab-games"],
-#tab-others:checked ~ .nav-container label[for="tab-others"] {
+/* 使用:checked状态控制按钮样式 */
+#tab-hobby:checked ~ .nav-container .nav-btn[for="tab-hobby"],
+#tab-books:checked ~ .nav-container .nav-btn[for="tab-books"],
+#tab-movies:checked ~ .nav-container .nav-btn[for="tab-movies"],
+#tab-series:checked ~ .nav-container .nav-btn[for="tab-series"],
+#tab-games:checked ~ .nav-container .nav-btn[for="tab-games"],
+#tab-others:checked ~ .nav-container .nav-btn[for="tab-others"] {
   color: #000;
   border-bottom-color: #000;
   background-color: #000;
   color: white;
-}
-
-/* 导航按钮容器 */
-.media-nav::before {
-  content: '';
-  display: block;
-  border-bottom: 2px solid #eee;
-  margin-bottom: 1rem;
-}
-
-.tab-content {
-  margin: 2rem 0;
-}
-
-.tab-pane {
-  display: none;
-}
-
-#hobby-content {
-  display: block;
 }
 
 .media-item {
@@ -330,29 +331,15 @@ h3 {
   font-size: 1.2rem;
 }
 
-/* 选中状态的标签按钮 */
-#tab-hobby:checked ~ .nav-btn[for="tab-hobby"],
-#tab-books:checked ~ .nav-btn[for="tab-books"],
-#tab-movies:checked ~ .nav-btn[for="tab-movies"],
-#tab-series:checked ~ .nav-btn[for="tab-series"],
-#tab-games:checked ~ .nav-btn[for="tab-games"],
-#tab-others:checked ~ .nav-btn[for="tab-others"] {
-  color: #000;
-  border-bottom-color: #000;
-  background-color: #000;
-  color: white;
-}
-
 /* 响应式调整 */
 @media (max-width: 768px) {
-  .media-nav {
-    text-align: center;
+  .nav-container {
+    justify-content: flex-start;
   }
   
   .nav-btn {
     font-size: 0.8rem;
     padding: 0.4rem 0.8rem;
-    margin: 0.2rem;
   }
 }
 </style>
