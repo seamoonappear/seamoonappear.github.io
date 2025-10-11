@@ -14,6 +14,12 @@ layout: default
     <h1 class="post-title">{{ page.title }}</h1>
     <div class="post-meta">
       <span class="post-date">发布于: {{ page.date | date: "%Y-%m-%d" }}</span>
+      
+      <!-- 更新日期 - 仅在设置了 last_modified_at 时显示 -->
+      {% if page.last_modified_at %}
+      <span class="post-modify">更新于: {{ page.last_modified_at | date: "%Y-%m-%d" }}</span>
+      {% endif %}
+      
       {% if site.social.name %}
       <span class="post-author">作者: {{ site.social.name }}</span>
       {% endif %}
