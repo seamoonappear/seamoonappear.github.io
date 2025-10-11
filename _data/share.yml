@@ -7,45 +7,10 @@ platforms:
     icon: "fab fa-weibo"
     link: "https://service.weibo.com/share/share.php?title=TITLE&url=URL"
 
-  # QQ空间
-  - type: QQ空间
-    icon: "fab fa-qq"
-    link: "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=URL&title=TITLE"
-
   # 微信 (通过二维码分享)
   - type: 微信
     icon: "fab fa-weixin"
     link: "javascript:void(0)"  # 通常需要配合JavaScript生成二维码
-
-  # 豆瓣
-  - type: 豆瓣
-    icon: "fab fa-douban"
-    link: "https://www.douban.com/share/service?href=URL&name=TITLE"
-
-  # 知乎
-  - type: 知乎
-    icon: "fab fa-zhihu"
-    link: "https://www.zhihu.com/question/19554212/answer/"
-
-  # 钉钉
-  - type: 钉钉
-    icon: "fab fa-dingding"
-    link: "https://im.dingtalk.com/action/createtodo?title=TITLE&url=URL"
-
-  # 百度贴吧
-  - type: 贴吧
-    icon: "fab fa-baidu"
-    link: "http://tieba.baidu.com/f/commit/share/openShareApi?url=URL&title=TITLE"
-
-  # 快手
-  - type: 快手
-    icon: "fas fa-video"  # 暂未找到官方图标，使用通用视频图标
-    link: "https://www.kuaishou.com/"
-
-  # B站
-  - type: B站
-    icon: "fab fa-bilibili"
-    link: "https://t.bilibili.com/"
 
   # 小红书
   - type: 小红书
