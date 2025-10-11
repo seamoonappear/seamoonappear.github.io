@@ -1,0 +1,18 @@
+.sidebar-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-social a {
+  color: var(--sidebar-icon-color);
+  font-size: 1.25rem;
+  transition: color 0.3s ease;
+}
+
+.sidebar-social a:hover {
+  color: var(--sidebar-active-color);
+}
