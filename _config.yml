@@ -1,148 +1,150 @@
-# 站点基础配置
-title: "海上升明月"                    # 站点标题
-tagline: "站点的副标题或简短描述"         # 站点副标题
-description: "您站点的详细描述，用于SEO和搜索结果展示" # 站点描述
-url: "https://seamoonappear.github.io"    # 替换为您的实际域名
-baseurl: ""                              # 如果站点不在根目录，请设置子路径
-github:
-  username: "seamoonappear"               # 替换为您的 GitHub 用户名
+# The Site Configuration
 
-# 主题配置
+# Import the theme
 theme: jekyll-theme-chirpy
-remote_theme: "cotes2020/jekyll-theme-chirpy" # 如果使用远程主题
 
-# 语言和地区设置
+# The language of the webpage
 lang: zh-CN
+
+# Change to your timezone
 timezone: Asia/Shanghai
 
-# 个人资料
-avatar: /assets/img/avatar.png           # 头像路径，建议放在assets/img目录
-twitter: yourtwitterusername             # 可选
-email: your-email@example.com            # 可选
+# jekyll-seo-tag settings
+# ↓ --------------------------
 
-# 社交链接 (显示在侧边栏)
+title: 海上升明月
+tagline: 学习，感悟，探索
+description: >-
+  Seamoon的技术博客，分享编程开发、技术实践和个人思考。
+
+# Fill in the protocol & hostname for your site
+url: "https://seamoonappear.github.io"
+
+github:
+  username: seamoonappear
+
+# 社交链接配置 - 国内平台优化
 social:
-  name: "王维"
+  name: 王维
+  email: # 留空或填写您的邮箱
   links:
-    - https://github.com/yourusername
-    - https://gitee.com/yourusername     # 码云，可选
-    - https://juejin.cn/user/yourid      # 掘金，可选
-    - https://www.zhihu.com/people/yourid # 知乎，可选
-    - rss: /feed.xml                     # RSS订阅
+    # 开发者平台
+    - https://github.com/seamoonappear
+    - https://gitee.com/你的码云用户名 # 请替换为您的码云地址
+    
+    # 技术社区
+    - https://juejin.cn/user/你的掘金ID # 请替换为您的掘金地址
+    - https://blog.csdn.net/你的CSDN用户名 # 请替换为您的CSDN地址
+    - https://www.zhihu.com/people/你的知乎ID # 请替换为您的知乎地址
+    
+    # 内容平台
+    - https://www.xiaohongshu.com/user/profile/你的小红书ID # 请替换为您的小红书地址
+    - https://www.douyin.com/user/你的抖音号 # 请替换为您的抖音地址
+    
+    # 其他平台
+    - https://space.bilibili.com/你的B站ID # 请替换为您的B站地址
+    - https://www.yuque.com/你的语雀用户名 # 请替换为您的语雀地址
+    
+    # RSS订阅
+    - rss: /feed.xml
 
-# 评论系统配置 (Giscus推荐)
-comments:
-  active: giscus                         # 评论系统: giscus, utterances, disqus
-  giscus:
-    repo: seamoonappear/seamoonappear.github.io  # 替换为您的仓库
-    repo_id: YOUR_REPO_ID                # 需要在Giscus官网获取
-    category: "Announcements"
-    category_id: YOUR_CATEGORY_ID        # 需要在Giscus官网获取
-    mapping: pathname
-    reactions-enabled: 1
-    emit-metadata: 0
-    input-position: bottom
-    lang: zh-CN
-    theme: light                         # 主题: light, dark, dark_dimmed等
+# Site Verification Settings
+webmaster_verifications:
+  google: # 如需使用请填写
+  bing: # 如需使用请填写
+  alexa: # 如需使用请填写
+  yandex: # 如需使用请填写
+  baidu: # 如需百度验证请填写
+  facebook: # 如需使用请填写
 
-# 统计和分析
+# ↑ --------------------------
+# The end of `jekyll-seo-tag` settings
+
+# Web Analytics Settings
 analytics:
-  google: 
-    id: "G-XXXXXXXXXX"                   # Google Analytics ID，可选
-  baidu:                                # 百度统计，可选
-    id: "your_baidu_tongji_id"
+  google:
+    id: # 如需使用Google Analytics请填写
+  baidu: # 百度统计
+    id: # 如需使用百度统计请填写
+  goatcounter:
+    id: # 如需使用请填写
+  umami:
+    id: # 如需使用请填写
+    domain: # 如需使用请填写
+  matomo:
+    id: # 如需使用请填写
+    domain: # 如需使用请填写
+  cloudflare:
+    id: # 如需使用请填写
+  fathom:
+    id: # 如需使用请填写
 
-# 搜索配置
-search:
-  provider: algolia                      # 搜索引擎: algolia, lunr
-  algolia:
-    app_id: YOUR_APP_ID                  # Algolia应用ID
-    api_key: YOUR_API_KEY                # Algolia API密钥
-    index_name: YOUR_INDEX_NAME          # 索引名称
+# Page views settings
+pageviews:
+  provider: # 目前仅支持 'goatcounter'
 
-# 页面设置
-defaults:
-  - scope:
-      path: ""                           # 空字符串表示所有文件
-      type: posts                        # 应用于posts类型
-    values:
-      layout: post
-      comments: true                     # 默认开启评论
-      share: true                        # 默认开启分享
-  - scope:
-      path: ""
-      type: pages                        # 应用于pages类型
-    values:
-      layout: page
+# Prefer color scheme setting
+theme_mode: # [light | dark] 留空则跟随系统
 
-# 归档设置
-archives:
-  - type: year
-    format: annual
-  - type: month
-    format: monthly
-  - type: day
-    format: daily
+# The CDN endpoint for media resources
+cdn:
 
-# 分类和标签
-category_archive:
-  type: category
-  path: categories
+# the avatar on sidebar, support local or CORS resources
+avatar: /assets/img/avatar.png
 
-tag_archive:
-  type: tag
-  path: tags
+# The URL of the site-wide social preview image used in SEO `og:image` meta tag
+social_preview_image: # 字符串，本地或CORS资源
+
+# boolean type, the global switch for TOC in posts
+toc: true
+
+# 评论系统配置
+comments:
+  # Global switch for the post-comment system
+  provider: giscus # [disqus | utterances | giscus] 推荐使用giscus
+  # The provider options are as follows:
+  disqus:
+    shortname: # 如需使用Disqus请填写
+  # utterances settings
+  utterances:
+    repo: seamoonappear/seamoonappear.github.io
+    issue_term: pathname
+  # Giscus options - 推荐配置
+  giscus:
+    repo: seamoonappear/seamoonappear.github.io
+    repo_id: # 需要在Giscus官网获取
+    category: Announcements
+    category_id: # 需要在Giscus官网获取
+    mapping: pathname
+    strict: 0
+    input_position: bottom
+    lang: zh-CN
+    reactions_enabled: 1
+
+# Self-hosted static assets
+assets:
+  self_host:
+    enabled: # 布尔值，留空表示false
+    env: # [development | production]
+
+# PWA设置
+pwa:
+  enabled: true
+  cache:
+    enabled: true
+    deny_paths:
+      # - "/example"
 
 # 分页设置
 paginate: 10
-paginate_path: /page/:num/
 
-# 插件配置
-plugins:
-  - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-archives
-  - jekyll-paginate
-  - jekyll-include-cache
+# The base URL of your site
+baseurl: ""
 
-# Jekyll Archives配置 (用于分类和标签页面)
-jekyll-archives:
-  enabled:
-    - categories
-    - tags
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
+# ------------ 以下选项不建议修改 ------------------
 
-# SEO优化
-seo:
-  type: Website                         # 或 Blog
-  twitter:
-    card: summary
-    username: yourtwitterusername       # 可选
-
-# 分享平台配置 (引用_data/share.yml中的设置)
-share:
-  platforms:
-    - 微博
-    - QQ
-    - 微信
-    # - Twitter  # 如需要国际平台可取消注释
-    # - Facebook
-
-# 外观和样式
-theme_mode: light                       # 主题模式: light, dark, auto
-toc: true                               # 文章目录
-readtime: true                          # 阅读时间估计
-
-# 代码高亮
-highlighter: rouge
 kramdown:
-  input: GFM
+  footnote_backlink: "&#8617;&#xfe0e;"
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: highlight
@@ -152,29 +154,59 @@ kramdown:
       line_numbers: true
       start_line: 1
 
-# 构建设置
-markdown: kramdown
-permalink: /posts/:title/
-permalink: pretty
+collections:
+  tabs:
+    output: true
+    sort_by: order
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      comments: true
+      toc: true
+      permalink: /posts/:title/
+  - scope:
+      path: _drafts
+    values:
+      comments: false
+  - scope:
+      path: ""
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
+
+sass:
+  style: compressed
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: [development]
+
 exclude:
   - "*.gem"
-  - ".gitignore"
-  - ".ruby-version"
-  - "Gemfile"
-  - "Gemfile.lock"
-  - "node_modules"
-  - "vendor/bundle/"
-  - "vendor/cache/"
-  - "vendor/gems/"
-  - "vendor/ruby/"
+  - "*.gemspec"
+  - docs
+  - tools
+  - README.md
+  - LICENSE
+  - purgecss.js
+  - "*.config.js"
+  - "package*.json"
 
-# 时区配置
-future: true
-
-# 图片路径配置
-img_cdn: ""                             # 如果使用CDN，可在此设置基础URL
-
-# RSS订阅
-feed:
-  path: feed.xml
-  template: feed.xml
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
