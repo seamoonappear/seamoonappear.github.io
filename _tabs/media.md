@@ -215,18 +215,22 @@ order: 4
   justify-content: center;
   margin: 2rem 0;
   border-bottom: 2px solid #eee;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .nav-btn {
-  padding: 0.8rem 1.5rem;
-  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  margin: 0 0.3rem;
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: #666;
   border-bottom: 3px solid transparent;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav-btn:hover {
@@ -291,6 +295,18 @@ h3 {
   color: #555;
   margin: 1.5rem 0 1rem 0;
   font-size: 1.2rem;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .media-nav {
+    justify-content: flex-start;
+  }
+  
+  .nav-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
 }
 </style>
 
