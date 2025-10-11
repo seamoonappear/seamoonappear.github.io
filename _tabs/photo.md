@@ -6,35 +6,103 @@ icon: fas fa-camera
 order: 6
 ---
 
-# 我的停留城市记录
 
-这里记录了我曾经停留过的城市和相关的回忆。
 
-## 🌍 城市足迹
+<div class="photos-container">
+  <div class="photos-grid">
+    <!-- 第一行照片 -->
+    <div class="photo-item">
+      <img src="/assets/img/photos/photo1.jpg" alt="瞬间1" loading="lazy">
+      <div class="photo-caption">晨光微熹 · 2023</div>
+    </div>
+    
+    <div class="photo-item">
+      <img src="/assets/img/photos/photo2.jpg" alt="瞬间2" loading="lazy">
+      <div class="photo-caption">山色空蒙 · 2023</div>
+    </div>
+    
+    <div class="photo-item">
+      <img src="/assets/img/photos/photo3.jpg" alt="瞬间3" loading="lazy">
+      <div class="photo-caption">海天一色 · 2022</div>
+    </div>
 
-### 🏙️ 国内城市
+    <!-- 第二行照片 -->
+    <div class="photo-item">
+      <img src="/assets/img/photos/photo4.jpg" alt="瞬间4" loading="lazy">
+      <div class="photo-caption">秋意浓 · 2022</div>
+    </div>
+    
+    <div class="photo-item">
+      <img src="/assets/img/photos/photo5.jpg" alt="瞬间5" loading="lazy">
+      <div class="photo-caption">城市夜景 · 2021</div>
+    </div>
+    
+    <div class="photo-item">
+      <img src="/assets/img/photos/photo6.jpg" alt="瞬间6" loading="lazy">
+      <div class="photo-caption">旅途记忆 · 2021</div>
+    </div>
+  </div>
+</div>
 
-| 城市 | 停留时间 | 印象深刻的经历 |
-|------|----------|----------------|
-| 北京 | 2020-2021 | 参观了故宫和长城 |
-| 上海 | 2019-2020 | 在外滩欣赏夜景 |
-| *添加您的城市...* | | |
+<style>
+.photos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
 
-### 🌏 国际城市
+.photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
 
-| 城市 | 国家 | 停留时间 | 特别记忆 |
-|------|------|----------|----------|
-| 东京 | 日本 | 2018 | 樱花季节的浅草寺 |
-| *添加您的城市...* | | | |
+.photo-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--card-bg);
+}
 
-## 📍 未来想去的地方
+.photo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
 
-- [ ] 拉萨 - 感受高原的神秘
-- [ ] 三亚 - 享受海滩阳光
-- [ ] *添加您想去的地方...*
+.photo-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
 
-> "旅行不是为了到达目的地，而是为了享受旅途中的每一刻。"
+.photo-caption {
+  padding: 0.8rem;
+  text-align: center;
+  background: var(--card-bg);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-color);
+}
 
----
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .photos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+  
+  .photos-container {
+    padding: 1rem 0.5rem;
+  }
+}
 
-*最后更新: {{ site.time | date: "%Y年%m月%d日" }}*
+@media (max-width: 576px) {
+  .photos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
