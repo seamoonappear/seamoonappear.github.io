@@ -70,7 +70,7 @@ order: 5
 }
 .photo-item { display: flex; flex-direction: column; }
 .photo-item img {
-  width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-lg);
+  width: 100%; height: 180px; object-fit: cover; border-radius: 12px;
   cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
 }
 .photo-item img:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
@@ -82,7 +82,7 @@ order: 5
   z-index: 9999; cursor: zoom-out;
 }
 .photo-overlay img.photo-large {
-  max-width: 90%; max-height: 80%; border-radius: var(--radius-lg); object-fit: contain;
+  max-width: 90%; max-height: 80%; border-radius: 12px; object-fit: contain;
   box-shadow: 0 4px 20px rgba(255,255,255,0.2);
 }
 .photo-desc {
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
     nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
     button.classList.add("active");
     // 切换 tab-pane
-    tabPanes.forEach(p => p.classList.toggle("active", p.id === targetTab));
+    tabPanes.forEach(p => p.id === targetTab ? p.classList.add("active") : p.classList.remove("active"));
     // 更新高亮条
     const rect = button.getBoundingClientRect();
     const navRect = nav.getBoundingClientRect();
