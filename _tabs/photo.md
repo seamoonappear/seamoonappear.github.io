@@ -33,6 +33,7 @@ order: 4
 
 .media-nav .nav-btn.active {
   color: #000;
+  font-weight: 500;
 }
 
 .media-nav .nav-highlight {
@@ -63,14 +64,14 @@ order: 4
   width: 100%;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
 }
 
 .photo-grid img:hover {
   transform: scale(1.03);
 }
 
-/* 放大查看样式 */
+/* 点击放大样式 */
 .photo-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -87,6 +88,11 @@ order: 4
   max-height: 80%;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(255,255,255,0.3);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 </style>
 
@@ -154,28 +160,32 @@ function initPhotoTabs() {
   if (!container) return;
 
   const nav = container.querySelector(".media-nav");
+  const buttons = nav.querySelectorAll(".nav-btn");
   const tabPanes = container.querySelectorAll(".tab-pane");
   const highlight = nav.querySelector(".nav-highlight");
 
-  // 标签切换
-  nav.addEventListener("click", function(e) {
-    const btn = e.target.closest(".nav-btn");
-    if (!btn) return;
-    const tab = btn.dataset.tab;
+  // 点击切换标签
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // 激活按钮
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
 
-    nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+      // 切换内容
+      tabPanes.forEach(pane => {
+        pane.classList.remove("active");
+        if (pane.id === btn.dataset.tab) pane.classList.add("active");
+      });
 
-    tabPanes.forEach(p => p.classList.remove("active"));
-    container.querySelector("#" + tab).classList.add("active");
-
-    const rect = btn.getBoundingClientRect();
-    const navRect = nav.getBoundingClientRect();
-    highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - navRect.left) + "px";
+      // 移动高亮条
+      const rect = btn.getBoundingClientRect();
+      const navRect = nav.getBoundingClientRect();
+      highlight.style.width = rect.width + "px";
+      highlight.style.left = (rect.left - navRect.left) + "px";
+    });
   });
 
-  // 初始化高亮
+  // 初始化高亮条
   const activeBtn = nav.querySelector(".nav-btn.active");
   if (activeBtn) {
     const rect = activeBtn.getBoundingClientRect();
