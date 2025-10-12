@@ -1,4 +1,4 @@
-# 站点配置
+# ----------------- 站点配置 -----------------
 
 # 导入主题
 theme: jekyll-theme-chirpy
@@ -21,95 +21,99 @@ url: "https://seamoonappear.github.io"
 github:
   username: seamoonappear
 
-# 社交链接配置
+# ----------------- 社交链接配置 -----------------
 social:
   name: 王维
   email: 
   links:
+    # 开发者平台
     - https://github.com/seamoonappear
     - https://gitee.com/你的码云用户名
+    
+    # 技术社区
     - https://juejin.cn/user/你的掘金ID
     - https://blog.csdn.net/你的CSDN用户名
     - https://www.zhihu.com/people/你的知乎ID
+    
+    # 内容平台
     - https://www.xiaohongshu.com/user/profile/你的小红书ID
     - https://www.douyin.com/user/你的抖音号
+    
+    # 其他平台
     - https://space.bilibili.com/你的B站ID
     - https://www.yuque.com/你的语雀用户名
+    
+    # RSS订阅
     - rss: /feed.xml
 
-# 网站验证设置
+# ----------------- 站点验证设置 -----------------
 webmaster_verifications:
-  google:
-  bing:
-  alexa:
-  yandex:
-  baidu:
-  facebook:
+  google: 
+  bing: 
+  alexa: 
+  yandex: 
+  baidu: 
+  facebook: 
 
-# 网站分析设置
+# ----------------- 网站分析设置 -----------------
 analytics:
   google:
-    id:
+    id: 
   baidu:
-    id:
+    id: 
   goatcounter:
-    id:
+    id: 
   umami:
-    id:
-    domain:
+    id: 
+    domain: 
   matomo:
-    id:
-    domain:
+    id: 
+    domain: 
   cloudflare:
-    id:
+    id: 
   fathom:
-    id:
+    id: 
 
-# 页面浏览统计设置
 pageviews:
   provider: 
 
-# 主题色彩模式偏好
-theme_mode:
+theme_mode: 
 
-# 侧边栏头像，支持本地或 CORS 资源
+cdn: 
+
+# ----------------- 头像 & 社交预览图 -----------------
 avatar: "{{ '/assets/img/avatar.jpg' | relative_url }}"
-
-# 用于 SEO `og:image` 的全站社交预览图片
 social_preview_image: "{{ '/assets/img/preview.jpg' | relative_url }}"
 
-# 文章目录开关
 toc: true
 
-# 评论系统配置 - Cusdis
+# ----------------- 评论系统配置 -----------------
 comments:
   provider: cusdis
   cusdis:
     data_app_id: "a507d22b-3586-405c-a6b5-50563ba8eb75"
     host: "https://cusdis.com"
+    # lang: "zh-CN"
+    # theme: "auto"
 
-# 自托管静态资源
+# ----------------- 自托管静态资源 -----------------
 assets:
   self_host:
-    enabled:
-    env:
+    enabled: 
+    env: 
 
-# PWA 设置（微信端禁用）
+# ----------------- PWA 设置（微信端禁用） -----------------
 pwa:
   enabled: false
   cache:
     enabled: false
 
-# 分页设置
 paginate: 10
-
-# 站点的基本 URL
 baseurl: ""
 
-# ------------ 以下选项不建议修改 ------------------
-
+# ----------------- Kramdown & 语法高亮 -----------------
 kramdown:
-  footnote_backlink: "&#8617;&#xfe0e;"
+  footnote_backlink: "↩︎"
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     css_class: highlight
@@ -119,11 +123,13 @@ kramdown:
       line_numbers: true
       start_line: 1
 
+# ----------------- Collections -----------------
 collections:
   tabs:
     output: true
     sort_by: order
 
+# ----------------- 默认值 -----------------
 defaults:
   - scope:
       path: ""
@@ -167,6 +173,7 @@ exclude:
   - "*.config.js"
   - "package*.json"
 
+# ----------------- Archives -----------------
 jekyll-archives:
   enabled: [categories, tags]
   layouts:
