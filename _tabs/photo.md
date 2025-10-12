@@ -58,7 +58,7 @@ order: 5
     <div id="cat" class="tab-pane">
       <div class="photo-grid">
         <img src="{{ '/assets/photos/cat1.jpg' | relative_url }}" alt="猫1">
-        <img src="{{ '/assets/photo/cat2.jpg' | relative_url }}" alt="猫2">
+        <img src="{{ '/assets/photos/cat2.jpg' | relative_url }}" alt="猫2">
         <img src="{{ '/assets/photos/cat3.jpg' | relative_url }}" alt="猫3">
         <img src="{{ '/assets/photos/cat4.jpg' | relative_url }}" alt="猫4">
         <img src="{{ '/assets/photos/cat5.jpg' | relative_url }}" alt="猫5">
@@ -74,7 +74,7 @@ order: 5
         <img src="{{ '/assets/photos/suishou3.jpg' | relative_url }}" alt="随手拍3">
         <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="随手拍4">
         <img src="{{ '/assets/photos/suishou5.jpg' | relative_url }}" alt="随手拍5">
-        <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6">        
+        <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6">
         <img src="{{ '/assets/photos/suishou7.jpg' | relative_url }}" alt="随手拍7">
         <img src="{{ '/assets/photos/suishou8.jpg' | relative_url }}" alt="随手拍8">
       </div>
@@ -184,73 +184,59 @@ order: 5
 </style>
 
 <script>
-document.addEventListener("pjax:complete", initPhotoTabs);
-document.addEventListener("DOMContentLoaded", initPhotoTabs);
-
 function initPhotoTabs() {
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const tabPanes = document.querySelectorAll(".tab-pane");
-  const highlight = document.querySelector(".nav-highlight");
+  const container = document.querySelector('.photo-container');
+  if (!container) return;
+
+  const navButtons = container.querySelectorAll('.nav-btn');
+  const tabPanes = container.querySelectorAll('.tab-pane');
+  const highlight = container.querySelector('.nav-highlight');
   if (!navButtons.length || !tabPanes.length || !highlight) return;
-
-  navButtons.forEach(btn => {
-    const newBtn = btn.cloneNode(true);
-    btn.parentNode.replaceChild(newBtn, btn);
-  });
-
-  const newButtons = document.querySelectorAll(".nav-btn");
 
   const moveHighlight = (btn) => {
     const rect = btn.getBoundingClientRect();
     const containerRect = btn.parentElement.getBoundingClientRect();
-    highlight.style.width = rect.width + "px";
-    highlight.style.left = rect.left - containerRect.left + "px";
+    highlight.style.width = rect.width + 'px';
+    highlight.style.left = rect.left - containerRect.left + 'px';
   };
 
-  newButtons.forEach(button => {
-    button.addEventListener("click", e => {
+  navButtons.forEach(button => {
+    button.addEventListener('click', e => {
       e.preventDefault();
-      const targetTab = button.getAttribute("data-tab");
-      newButtons.forEach(b => b.classList.remove("active"));
-      button.classList.add("active");
-
-      tabPanes.forEach(p => p.classList.remove("active"));
-      const targetPane = document.getElementById(targetTab);
-      if (targetPane) targetPane.classList.add("active");
-
+      const targetTab = button.getAttribute('data-tab');
+      navButtons.forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+      tabPanes.forEach(p => p.classList.remove('active'));
+      const targetPane = container.querySelector(`#${targetTab}`);
+      if (targetPane) targetPane.classList.add('active');
       moveHighlight(button);
     });
   });
 
-  const activeButton = document.querySelector(".nav-btn.active") || newButtons[0];
+  // 初始化高亮
+  const activeButton = container.querySelector('.nav-btn.active') || navButtons[0];
   if (activeButton) moveHighlight(activeButton);
 
   // 点击图片放大
-  document.querySelectorAll('.photo-grid img').forEach(img => {
+  container.querySelectorAll('.photo-grid img').forEach(img => {
     img.addEventListener('click', () => {
       const overlay = document.createElement('div');
-      overlay.style.position = 'fixed';
-      overlay.style.top = 0;
-      overlay.style.left = 0;
-      overlay.style.width = '100%';
-      overlay.style.height = '100%';
-      overlay.style.background = 'rgba(0,0,0,0.8)';
-      overlay.style.display = 'flex';
-      overlay.style.alignItems = 'center';
-      overlay.style.justifyContent = 'center';
-      overlay.style.cursor = 'zoom-out';
-      overlay.style.zIndex = 9999;
-
+      overlay.style.cssText = `
+        position: fixed; top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.8); display:flex;
+        align-items:center; justify-content:center; cursor:zoom-out;
+        z-index: 9999;
+      `;
       const imgLarge = document.createElement('img');
       imgLarge.src = img.src;
-      imgLarge.style.maxWidth = '90%';
-      imgLarge.style.maxHeight = '90%';
-      imgLarge.style.borderRadius = '12px';
+      imgLarge.style.cssText = 'max-width:90%; max-height:90%; border-radius:12px;';
       overlay.appendChild(imgLarge);
-
       overlay.addEventListener('click', () => overlay.remove());
       document.body.appendChild(overlay);
     });
   });
 }
+
+document.addEventListener("DOMContentLoaded", initPhotoTabs);
+document.addEventListener("pjax:complete", initPhotoTabs);
 </script>
