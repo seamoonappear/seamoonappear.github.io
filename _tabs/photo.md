@@ -1,135 +1,253 @@
 ---
 layout: page
-title: "留影"
+title: "照片"
 permalink: /photo/
 icon: fas fa-camera
 order: 5
 ---
 
-<div class="media-container">
-
-  <!-- 顶部类型导航 -->
-  <div class="media-nav">
+<div class="photo-container">
+  <div class="photo-nav">
     <div class="nav-highlight"></div>
-    <button class="nav-btn active" data-tab="travel">旅游</button>
+    <button class="nav-btn active" data-tab="scenery">风景</button>
+    <button class="nav-btn" data-tab="people">人物</button>
     <button class="nav-btn" data-tab="life">生活</button>
     <button class="nav-btn" data-tab="cat">猫</button>
-    <button class="nav-btn" data-tab="random">随拍</button>
+    <button class="nav-btn" data-tab="random">随手拍</button>
   </div>
 
-  <!-- 图片列表区域 -->
-  <div class="media-content">
+  <div class="tab-content">
+    <!-- 风景 -->
+    <div id="scenery" class="tab-pane active">
+      <div class="photo-grid">
+        <img src="{{ '/assets/photo/scenery1.jpg' | relative_url }}" alt="风景1">
+        <img src="{{ '/assets/photo/scenery2.jpg' | relative_url }}" alt="风景2">
+        <img src="{{ '/assets/photo/scenery3.jpg' | relative_url }}" alt="风景3">
+        <img src="{{ '/assets/photo/scenery4.jpg' | relative_url }}" alt="风景4">
+        <img src="{{ '/assets/photo/scenery5.jpg' | relative_url }}" alt="风景5">
+        <img src="{{ '/assets/photo/scenery6.jpg' | relative_url }}" alt="风景6">
+      </div>
+    </div>
 
-    <!-- 旅游 -->
-    <div id="travel" class="media-tab">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 1">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 2">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 3">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 4">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 5">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 6">
+    <!-- 人物 -->
+    <div id="people" class="tab-pane">
+      <div class="photo-grid">
+        <img src="{{ '/assets/photo/people1.jpg' | relative_url }}" alt="人物1">
+        <img src="{{ '/assets/photo/people2.jpg' | relative_url }}" alt="人物2">
+        <img src="{{ '/assets/photo/people3.jpg' | relative_url }}" alt="人物3">
+        <img src="{{ '/assets/photo/people4.jpg' | relative_url }}" alt="人物4">
+        <img src="{{ '/assets/photo/people5.jpg' | relative_url }}" alt="人物5">
+        <img src="{{ '/assets/photo/people6.jpg' | relative_url }}" alt="人物6">
+      </div>
     </div>
 
     <!-- 生活 -->
-    <div id="life" class="media-tab" style="display:none;">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 1">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 2">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 3">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 4">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 5">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 6">
+    <div id="life" class="tab-pane">
+      <div class="photo-grid">
+        <img src="{{ '/assets/photo/life1.jpg' | relative_url }}" alt="生活1">
+        <img src="{{ '/assets/photo/life2.jpg' | relative_url }}" alt="生活2">
+        <img src="{{ '/assets/photo/life3.jpg' | relative_url }}" alt="生活3">
+        <img src="{{ '/assets/photo/life4.jpg' | relative_url }}" alt="生活4">
+        <img src="{{ '/assets/photo/life5.jpg' | relative_url }}" alt="生活5">
+        <img src="{{ '/assets/photo/life6.jpg' | relative_url }}" alt="生活6">
+      </div>
     </div>
 
     <!-- 猫 -->
-    <div id="cat" class="media-tab" style="display:none;">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 1">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 2">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 3">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 4">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 5">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 6">
+    <div id="cat" class="tab-pane">
+      <div class="photo-grid">
+        <img src="{{ '/assets/photo/cat1.jpg' | relative_url }}" alt="猫1">
+        <img src="{{ '/assets/photo/cat2.jpg' | relative_url }}" alt="猫2">
+        <img src="{{ '/assets/photo/cat3.jpg' | relative_url }}" alt="猫3">
+        <img src="{{ '/assets/photo/cat4.jpg' | relative_url }}" alt="猫4">
+        <img src="{{ '/assets/photo/cat5.jpg' | relative_url }}" alt="猫5">
+        <img src="{{ '/assets/photo/cat6.jpg' | relative_url }}" alt="猫6">
+      </div>
     </div>
 
-    <!-- 随拍 -->
-    <div id="random" class="media-tab" style="display:none;">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 1">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 2">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 3">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 4">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 5">
-      <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 6">
+    <!-- 随手拍 -->
+    <div id="random" class="tab-pane">
+      <div class="photo-grid">
+        <img src="{{ '/assets/photo/random1.jpg' | relative_url }}" alt="随手拍1">
+        <img src="{{ '/assets/photo/random2.jpg' | relative_url }}" alt="随手拍2">
+        <img src="{{ '/assets/photo/random3.jpg' | relative_url }}" alt="随手拍3">
+        <img src="{{ '/assets/photo/random4.jpg' | relative_url }}" alt="随手拍4">
+        <img src="{{ '/assets/photo/random5.jpg' | relative_url }}" alt="随手拍5">
+        <img src="{{ '/assets/photo/random6.jpg' | relative_url }}" alt="随手拍6">
+      </div>
     </div>
-
   </div>
-
-</div>
-
-<!-- 点击放大 -->
-<div id="lightbox" class="lightbox">
-  <span class="close-lightbox">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
 </div>
 
 <style>
-/* 黑色背景、白色文字 */
-body, .page-content { background-color:#000; color:#fff; }
-.media-container { max-width:1200px; margin:0 auto; padding:20px; }
+.photo-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-/* 顶部导航 */
-.media-nav { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:20px; position:relative; }
-.media-nav button { background:none; border:2px solid #fff; color:#fff; padding:8px 20px; border-radius:25px; cursor:pointer; transition:0.3s; font-size:1rem; position:relative; z-index:1; }
-.media-nav button.active, .media-nav button:hover { background:#fff; color:#000; }
+.photo-nav {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 8px;
+}
 
-/* 滑动高亮条 */
-.nav-highlight { position:absolute; bottom:0; height:3px; background:#fff; transition:0.3s; border-radius:2px; }
+.nav-btn {
+  padding: 0.6rem 1.2rem;
+  margin: 0 0.25rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: #666;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 1;
+}
 
-/* 图片区域 */
-.media-content { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
-.media-tab img { width:100%; height:auto; border-radius:12px; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; border:1px solid rgba(255,255,255,0.15); }
-.media-tab img:hover { transform:scale(1.05); box-shadow:0 6px 18px rgba(255,255,255,0.15); }
+.nav-btn:hover {
+  color: #111;
+  background-color: #f3f3f3;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
 
-/* 点击放大 */
-.lightbox{ display:none; position:fixed; z-index:1000; padding-top:60px; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.95);}
-.lightbox-content{ margin:auto; display:block; max-width:90%; max-height:90%; }
-.close-lightbox{ position:absolute; top:20px; right:35px; color:#fff; font-size:35px; font-weight:bold; cursor:pointer; }
+.nav-btn.active {
+  color: #000;
+  font-weight: 600;
+}
 
-/* 响应式布局 */
-@media(max-width:1024px){ .media-content { grid-template-columns:repeat(3,1fr); } }
-@media(max-width:768px){ .media-content { grid-template-columns:repeat(2,1fr); } }
-@media(max-width:480px){ .media-content { grid-template-columns:1fr; } }
+.nav-highlight {
+  position: absolute;
+  bottom: 5px;
+  height: 3px;
+  background: linear-gradient(90deg, #000, #444);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  z-index: 0;
+}
+
+.tab-content {
+  margin: 2rem 0;
+}
+
+.tab-pane {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .photo-nav { justify-content: flex-start; padding: 6px; }
+  .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+  .photo-grid img { height: 140px; }
+}
 </style>
 
 <script>
-// 切换分类导航 + 高亮条动画
-const navBtns = document.querySelectorAll('.nav-btn');
-const mediaTabs = document.querySelectorAll('.media-tab');
-const highlight = document.querySelector('.nav-highlight');
+document.addEventListener("pjax:complete", initPhotoTabs);
+document.addEventListener("DOMContentLoaded", initPhotoTabs);
 
-function moveHighlight(btn){
-  highlight.style.width = btn.offsetWidth + 'px';
-  highlight.style.left = btn.offsetLeft + 'px';
-}
+function initPhotoTabs() {
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const tabPanes = document.querySelectorAll(".tab-pane");
+  const highlight = document.querySelector(".nav-highlight");
+  if (!navButtons.length || !tabPanes.length || !highlight) return;
 
-navBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    navBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const tab = btn.dataset.tab;
-    mediaTabs.forEach(t => t.style.display = t.id===tab?'block':'none');
-    moveHighlight(btn);
+  navButtons.forEach(btn => {
+    const newBtn = btn.cloneNode(true);
+    btn.parentNode.replaceChild(newBtn, btn);
   });
-});
 
-// 初始化高亮条
-moveHighlight(document.querySelector('.nav-btn.active'));
+  const newButtons = document.querySelectorAll(".nav-btn");
 
-// 图片点击放大
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightbox-img");
-const close = document.querySelector(".close-lightbox");
-document.querySelectorAll(".media-tab img").forEach(img=>{
-  img.onclick=function(){ lightbox.style.display="block"; lightboxImg.src=this.src; }
-});
-close.onclick=()=>lightbox.style.display="none";
-lightbox.onclick=e=>{ if(e.target===lightbox) lightbox.style.display="none"; };
+  const moveHighlight = (btn) => {
+    const rect = btn.getBoundingClientRect();
+    const containerRect = btn.parentElement.getBoundingClientRect();
+    highlight.style.width = rect.width + "px";
+    highlight.style.left = rect.left - containerRect.left + "px";
+  };
+
+  newButtons.forEach(button => {
+    button.addEventListener("click", e => {
+      e.preventDefault();
+      const targetTab = button.getAttribute("data-tab");
+      newButtons.forEach(b => b.classList.remove("active"));
+      button.classList.add("active");
+
+      tabPanes.forEach(p => p.classList.remove("active"));
+      const targetPane = document.getElementById(targetTab);
+      if (targetPane) targetPane.classList.add("active");
+
+      moveHighlight(button);
+    });
+  });
+
+  const activeButton = document.querySelector(".nav-btn.active") || newButtons[0];
+  if (activeButton) moveHighlight(activeButton);
+
+  // 点击图片放大
+  document.querySelectorAll('.photo-grid img').forEach(img => {
+    img.addEventListener('click', () => {
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = 0;
+      overlay.style.left = 0;
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.background = 'rgba(0,0,0,0.8)';
+      overlay.style.display = 'flex';
+      overlay.style.alignItems = 'center';
+      overlay.style.justifyContent = 'center';
+      overlay.style.cursor = 'zoom-out';
+      overlay.style.zIndex = 9999;
+
+      const imgLarge = document.createElement('img');
+      imgLarge.src = img.src;
+      imgLarge.style.maxWidth = '90%';
+      imgLarge.style.maxHeight = '90%';
+      imgLarge.style.borderRadius = '12px';
+      overlay.appendChild(imgLarge);
+
+      overlay.addEventListener('click', () => overlay.remove());
+      document.body.appendChild(overlay);
+    });
+  });
+}
 </script>
