@@ -61,6 +61,7 @@ order: 5
     <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 5">
     <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 6">
   </div>
+
 </div>
 
 <!-- 点击放大 -->
@@ -70,53 +71,31 @@ order: 5
 </div>
 
 <style>
-/* 🌑 黑色背景与白色文字 */
-body, .page-content {
-  background-color: #000;
-  color: #fff;
-}
-.photo-container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-.photo-header {
-  position: sticky;
-  top: 0;
-  background-color: #000;
-  padding: 15px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  z-index: 999;
-  animation: fadeIn 1s ease;
-}
-.photo-header h1 { font-size: 1.8rem; font-weight: 600; margin-bottom:5px; }
-.photo-header p { font-size:1rem; color:#aaa; margin:0; }
-.photo-nav {
-  display:flex; justify-content:center; gap:16px; margin-bottom:30px; flex-wrap:wrap;
-}
-.photo-nav button {
-  background:none; border:2px solid #fff; color:#fff;
-  padding:8px 18px; border-radius:25px; font-size:1rem; cursor:pointer; transition:all 0.3s;
-}
-.photo-nav button.active,
-.photo-nav button:hover { background-color:#fff; color:#000; }
-.photo-grid {
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(30%,1fr)); gap:15px;
-}
-.photo-grid img {
-  width:100%; height:auto; border-radius:12px; cursor:pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border:1px solid rgba(255,255,255,0.15);
-  box-shadow:0 4px 12px rgba(255,255,255,0.05);
-}
-.photo-grid img:hover { transform:scale(1.05); box-shadow:0 6px 18px rgba(255,255,255,0.15);}
-.lightbox { display:none; position:fixed; z-index:1000; padding-top:60px; left:0; top:0;
-  width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.95);}
-.lightbox-content { margin:auto; display:block; max-width:90%; max-height:90%; }
-.close-lightbox { position:absolute; top:20px; right:35px; color:#fff; font-size:35px; font-weight:bold; cursor:pointer; }
-@media(max-width:768px){ .photo-grid{ grid-template-columns:repeat(2,1fr); } }
-@media(max-width:480px){ .photo-grid{ grid-template-columns:1fr; } }
+/* 黑色背景与白色文字 */
+body, .page-content { background-color:#000; color:#fff; }
+.photo-container { padding:20px; max-width:1200px; margin:0 auto; text-align:center; }
+.photo-header { position:sticky; top:0; background-color:#000; padding:15px 0; border-bottom:1px solid rgba(255,255,255,0.1); z-index:999; animation:fadeIn 1s ease; }
+.photo-header h1{ font-size:1.8rem; font-weight:600; margin-bottom:5px; }
+.photo-header p{ font-size:1rem; color:#aaa; margin:0; }
+.photo-nav{ display:flex; justify-content:center; gap:16px; margin-bottom:30px; flex-wrap:wrap; }
+.photo-nav button{ background:none; border:2px solid #fff; color:#fff; padding:8px 18px; border-radius:25px; font-size:1rem; cursor:pointer; transition:all 0.3s; }
+.photo-nav button.active, .photo-nav button:hover{ background-color:#fff; color:#000; }
+
+/* 📸 响应式图片网格（桌面端每行三列，手机端也三列） */
+.photo-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+.photo-grid img{ width:100%; height:auto; border-radius:12px; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; border:1px solid rgba(255,255,255,0.15); box-shadow:0 4px 12px rgba(255,255,255,0.05); }
+.photo-grid img:hover{ transform:scale(1.05); box-shadow:0 6px 18px rgba(255,255,255,0.15); }
+
+/* 点击放大 */
+.lightbox{ display:none; position:fixed; z-index:1000; padding-top:60px; left:0; top:0; width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.95);}
+.lightbox-content{ margin:auto; display:block; max-width:90%; max-height:90%; }
+.close-lightbox{ position:absolute; top:20px; right:35px; color:#fff; font-size:35px; font-weight:bold; cursor:pointer; }
+
+/* 移动端优化 */
+@media(max-width:1024px){ .photo-grid{ grid-template-columns:repeat(3,1fr); } }
+@media(max-width:768px){ .photo-grid{ grid-template-columns:repeat(3,1fr); } }
+@media(max-width:480px){ .photo-grid{ grid-template-columns:repeat(3,1fr); } }
+
 @keyframes fadeIn{ from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
 </style>
 
@@ -129,11 +108,11 @@ navBtns.forEach(btn => {
     navBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const tab = btn.dataset.tab;
-    grids.forEach(g => g.style.display = g.id === tab ? 'grid' : 'none');
+    grids.forEach(g => g.style.display = g.id===tab?'grid':'none');
   });
 });
 
-// 图片放大
+// 图片点击放大
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 const close = document.querySelector(".close-lightbox");
