@@ -87,7 +87,7 @@ order: 5
 .photo-nav { display:flex; justify-content:center; margin:2rem 0; overflow-x:auto; white-space:nowrap; background:#f8f9fa; border-radius:8px; padding:8px; position:relative; }
 .nav-btn { padding:0.6rem 1.2rem; margin:0 0.25rem; background:white; border:1px solid #e0e0e0; cursor:pointer; border-radius:6px; color:#666; font-size:0.85rem; transition:all 0.3s; }
 .nav-btn.active { font-weight:600; color:#000; }
-.nav-highlight { position:absolute; bottom:5px; height:3px; background:#000; transition:0.3s; border-radius:2px; }
+.nav-highlight { position:absolute; bottom:5px; height:3px; background:linear-gradient(90deg,#000,#444); transition:0.3s; border-radius:2px; z-index:0; }
 .tab-pane { display:none; }
 .tab-pane.active { display:block; }
 .photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
@@ -99,49 +99,48 @@ order: 5
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", ()=>{
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const panes = document.querySelectorAll(".tab-pane");
-  const highlight = document.querySelector(".nav-highlight");
+document.addEventListener("DOMContentLoaded",()=>{
+  const navButtons=document.querySelectorAll(".nav-btn");
+  const panes=document.querySelectorAll(".tab-pane");
+  const highlight=document.querySelector(".nav-highlight");
+  if(!navButtons.length||!panes.length||!highlight) return;
 
-  function moveHighlight(btn){
-    const rect = btn.getBoundingClientRect();
-    const containerRect = btn.parentElement.getBoundingClientRect();
-    highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - containerRect.left) + "px";
-  }
+  const moveHighlight=(btn)=>{
+    const rect=btn.getBoundingClientRect();
+    const containerRect=btn.parentElement.getBoundingClientRect();
+    highlight.style.width=rect.width+"px";
+    highlight.style.left=rect.left-containerRect.left+"px";
+  };
 
   navButtons.forEach(btn=>{
-    btn.addEventListener("click", ()=>{
+    btn.addEventListener("click",()=>{
       navButtons.forEach(b=>b.classList.remove("active"));
       btn.classList.add("active");
       panes.forEach(p=>p.classList.remove("active"));
-      const target = document.getElementById(btn.dataset.tab);
+      const target=document.getElementById(btn.dataset.tab);
       if(target) target.classList.add("active");
       moveHighlight(btn);
     });
   });
 
-  const activeBtn = document.querySelector(".nav-btn.active");
+  const activeBtn=document.querySelector(".nav-btn.active")||navButtons[0];
   if(activeBtn) moveHighlight(activeBtn);
 
-  // 图片点击放大（不显示文字）
+  // 图片放大查看
   document.querySelectorAll(".photo-item img").forEach(img=>{
-    img.addEventListener("click", ()=>{
-      const overlay = document.createElement("div");
+    img.addEventListener("click",()=>{
+      const overlay=document.createElement("div");
       overlay.style.position="fixed";
-      overlay.style.top="0"; overlay.style.left="0"; overlay.style.width="100%"; overlay.style.height="100%";
+      overlay.style.top=0; overlay.style.left=0; overlay.style.width="100%"; overlay.style.height="100%";
       overlay.style.background="rgba(0,0,0,0.85)"; overlay.style.display="flex"; overlay.style.justifyContent="center"; overlay.style.alignItems="center";
       overlay.style.zIndex="9999"; overlay.style.cursor="zoom-out";
 
-      const large = document.createElement("img");
-      large.src = img.src;
-      large.style.maxWidth="90%";
-      large.style.maxHeight="90%";
-      large.style.borderRadius="12px";
+      const large=document.createElement("img");
+      large.src=img.src;
+      large.style.maxWidth="90%"; large.style.maxHeight="90%"; large.style.borderRadius="12px";
       overlay.appendChild(large);
 
-      overlay.addEventListener("click", ()=>overlay.remove());
+      overlay.addEventListener("click",()=>overlay.remove());
       document.body.appendChild(overlay);
     });
   });
