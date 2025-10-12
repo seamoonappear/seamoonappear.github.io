@@ -1,214 +1,248 @@
 ---
 layout: page
-title: "消费"
-permalink: /media/
-icon: fas fa-book
-order: 4
+title: "照片"
+permalink: /photo/
+icon: fas fa-camera
+order: 5
 ---
 
+<div class="photo-container">
+  <div class="photo-nav">
+    <div class="nav-highlight"></div>
+    <button class="nav-btn active" data-tab="scenery">风景</button>
+    <button class="nav-btn" data-tab="people">人物</button>
+    <button class="nav-btn" data-tab="life">生活</button>
+    <button class="nav-btn" data-tab="cat">猫</button>
+    <button class="nav-btn" data-tab="random">随手拍</button>
+  </div>
+
+  <div class="tab-content">
+    <!-- 风景 -->
+    <div id="scenery" class="tab-pane active">
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景1">
+          <div class="photo-desc">晨雾中的群山</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/travel2.jpg' | relative_url }}" alt="风景2">
+          <div class="photo-desc">湖边的宁静</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/travel3.jpg' | relative_url }}" alt="风景3">
+          <div class="photo-desc">海边的落日</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/travel4.jpg' | relative_url }}" alt="风景4">
+          <div class="photo-desc">林间的光影</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/travel5.jpg' | relative_url }}" alt="风景5">
+          <div class="photo-desc">雪后的小镇</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景6">
+          <div class="photo-desc">山谷的晨光</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 人物 -->
+    <div id="people" class="tab-pane">
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person1.jpg' | relative_url }}" alt="人物1">
+          <div class="photo-desc">街角的笑容</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person2.jpg' | relative_url }}" alt="人物2">
+          <div class="photo-desc">咖啡馆一隅</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person3.jpg' | relative_url }}" alt="人物3">
+          <div class="photo-desc">窗边的光影</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person4.jpg' | relative_url }}" alt="人物4">
+          <div class="photo-desc">旅行中的朋友</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person5.jpg' | relative_url }}" alt="人物5">
+          <div class="photo-desc">街头表演者</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person6.jpg' | relative_url }}" alt="人物6">
+          <div class="photo-desc">回眸一笑</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person7.jpg' | relative_url }}" alt="人物7">
+          <div class="photo-desc">午后的小憩</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person8.jpg' | relative_url }}" alt="人物8">
+          <div class="photo-desc">远方的目光</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/person9.jpg' | relative_url }}" alt="人物9">
+          <div class="photo-desc">雨中的伞影</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 生活 -->
+    <div id="life" class="tab-pane">
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="生活1">
+          <div class="photo-desc">清晨的早餐</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活2">
+          <div class="photo-desc">街头的日常</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/live3.jpg' | relative_url }}" alt="生活3">
+          <div class="photo-desc">阳台上的花</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/live4.jpg' | relative_url }}" alt="生活4">
+          <div class="photo-desc">傍晚的影子</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 猫 -->
+    <div id="cat" class="tab-pane">
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/cat1.jpg' | relative_url }}" alt="猫1">
+          <div class="photo-desc">慵懒的午后</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/cat2.jpg' | relative_url }}" alt="猫2">
+          <div class="photo-desc">专注的眼神</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/cat3.jpg' | relative_url }}" alt="猫3">
+          <div class="photo-desc">趴在窗台上</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/cat4.jpg' | relative_url }}" alt="猫4">
+          <div class="photo-desc">打哈欠的瞬间</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/cat5.jpg' | relative_url }}" alt="猫5">
+          <div class="photo-desc">藏在被窝里</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/cat6.jpg' | relative_url }}" alt="猫6">
+          <div class="photo-desc">等待晚餐的样子</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 随手拍 -->
+    <div id="random" class="tab-pane">
+      <div class="photo-grid">
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/suishou1.jpg' | relative_url }}" alt="随手拍1">
+          <div class="photo-desc">路边的光影</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/suishou2.jpg' | relative_url }}" alt="随手拍2">
+          <div class="photo-desc">旧墙上的涂鸦</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/suishou3.jpg' | relative_url }}" alt="随手拍3">
+          <div class="photo-desc">雨后的街道</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="随手拍4">
+          <div class="photo-desc">书页之间的光</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/suishou5.jpg' | relative_url }}" alt="随手拍5">
+          <div class="photo-desc">橱窗里的世界</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6">
+          <div class="photo-desc">角落里的植物</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/suishou7.jpg' | relative_url }}" alt="随手拍7">
+          <div class="photo-desc">晨光透过窗帘</div>
+        </div>
+        <div class="photo-item">
+          <img src="{{ '/assets/photos/suishou8.jpg' | relative_url }}" alt="随手拍8">
+          <div class="photo-desc">夜色下的灯</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <style>
-.media-container {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.media-nav {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 30px;
-  position: relative;
-}
-
-.media-nav .nav-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: 0.3s;
-  color: #555;
-}
-
-.media-nav .nav-btn.active {
-  border-bottom: 2px solid #000;
-  font-weight: bold;
-  color: #000;
-}
-
-.media-section {
-  display: none;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.media-section.active {
-  display: flex;
-}
-
-.media-item {
-  width: 30%;
-  text-align: center;
-  cursor: pointer;
-  position: relative;
-}
-
-.media-item img {
-  width: 100%;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.media-item:hover img {
-  transform: scale(1.05);
-}
-
-.media-desc {
-  margin-top: 8px;
-  font-size: 14px;
-  color: #666;
-}
-
-/* 放大图片遮罩层 */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
+.photo-container { max-width: 900px; margin: 0 auto; }
+.photo-nav { display:flex; justify-content:center; margin:2rem 0; overflow-x:auto; white-space:nowrap; background:#f8f9fa; border-radius:8px; padding:8px; position:relative; }
+.nav-btn { padding:0.6rem 1.2rem; margin:0 0.25rem; background:white; border:1px solid #e0e0e0; cursor:pointer; border-radius:6px; color:#666; font-size:0.85rem; transition:all 0.3s; }
+.nav-btn.active { font-weight:600; color:#000; }
+.nav-highlight { position:absolute; bottom:5px; height:3px; background:#000; transition:0.3s; border-radius:2px; }
+.tab-pane { display:none; }
+.tab-pane.active { display:block; }
+.photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
+.photo-item img { width:100%; height:180px; object-fit:cover; border-radius:12px; cursor:pointer; transition:transform 0.3s; }
+.photo-item img:hover { transform:scale(1.05); }
+.photo-desc { margin-top:6px; font-size:14px; color:#666; text-align:center; }
+@media (max-width:768px){ .photo-grid img{height:140px;} .nav-btn{padding:0.4rem 0.8rem; font-size:0.8rem;} }
 </style>
 
-<div class="media-container">
-  <div class="media-nav">
-    <button class="nav-btn active" data-tab="hobby">爱好</button>
-    <button class="nav-btn" data-tab="books">书</button>
-    <button class="nav-btn" data-tab="movies">电影</button>
-    <button class="nav-btn" data-tab="music">音乐</button>
-    <button class="nav-btn" data-tab="travel">旅行</button>
-  </div>
-
-  <!-- 爱好 -->
-  <div id="hobby" class="media-section active">
-    <div class="media-item">
-      <img src="{{ '/assets/media/hobby1.jpg' | relative_url }}" alt="绘画">
-      <div class="media-desc">周末随笔绘画练习</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/hobby2.jpg' | relative_url }}" alt="手工">
-      <div class="media-desc">闲暇手工与陶艺</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/hobby3.jpg' | relative_url }}" alt="烹饪">
-      <div class="media-desc">新尝试的甜点配方</div>
-    </div>
-  </div>
-
-  <!-- 书 -->
-  <div id="books" class="media-section">
-    <div class="media-item">
-      <img src="{{ '/assets/media/book1.jpg' | relative_url }}" alt="阅读">
-      <div class="media-desc">最近读完的小说</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/book2.jpg' | relative_url }}" alt="书架">
-      <div class="media-desc">书架一角</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/book3.jpg' | relative_url }}" alt="笔记">
-      <div class="media-desc">读书笔记片段</div>
-    </div>
-  </div>
-
-  <!-- 电影 -->
-  <div id="movies" class="media-section">
-    <div class="media-item">
-      <img src="{{ '/assets/media/movie1.jpg' | relative_url }}" alt="观影">
-      <div class="media-desc">影院周末场</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/movie2.jpg' | relative_url }}" alt="收藏">
-      <div class="media-desc">最爱的影碟收藏</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/movie3.jpg' | relative_url }}" alt="经典">
-      <div class="media-desc">重温黑白经典</div>
-    </div>
-  </div>
-
-  <!-- 音乐 -->
-  <div id="music" class="media-section">
-    <div class="media-item">
-      <img src="{{ '/assets/media/music1.jpg' | relative_url }}" alt="黑胶">
-      <div class="media-desc">黑胶唱片收藏</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/music2.jpg' | relative_url }}" alt="演出">
-      <div class="media-desc">现场音乐节瞬间</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/music3.jpg' | relative_url }}" alt="乐器">
-      <div class="media-desc">练琴的日常</div>
-    </div>
-  </div>
-
-  <!-- 旅行 -->
-  <div id="travel" class="media-section">
-    <div class="media-item">
-      <img src="{{ '/assets/media/travel1.jpg' | relative_url }}" alt="城市">
-      <div class="media-desc">东京街角的咖啡馆</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/travel2.jpg' | relative_url }}" alt="海边">
-      <div class="media-desc">海边清晨散步</div>
-    </div>
-    <div class="media-item">
-      <img src="{{ '/assets/media/travel3.jpg' | relative_url }}" alt="山景">
-      <div class="media-desc">山中秋色之旅</div>
-    </div>
-  </div>
-</div>
-
-<!-- 图片放大模态框 -->
-<div id="imgModal" class="modal">
-  <img id="modalImg" src="" alt="">
-</div>
-
 <script>
-const navButtons = document.querySelectorAll('.nav-btn');
-const sections = document.querySelectorAll('.media-section');
+document.addEventListener("DOMContentLoaded", function() {
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const panes = document.querySelectorAll(".tab-pane");
+  const highlight = document.querySelector(".nav-highlight");
 
-navButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    navButtons.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    sections.forEach(sec => sec.classList.remove('active'));
-    document.getElementById(btn.dataset.tab).classList.add('active');
+  function moveHighlight(btn){
+    const rect = btn.getBoundingClientRect();
+    const containerRect = btn.parentElement.getBoundingClientRect();
+    highlight.style.width = rect.width + "px";
+    highlight.style.left = (rect.left - containerRect.left) + "px";
+  }
+
+  navButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      navButtons.forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      panes.forEach(p=>p.classList.remove("active"));
+      const target = document.getElementById(btn.dataset.tab);
+      if(target) target.classList.add("active");
+      moveHighlight(btn);
+    });
+  });
+
+  const activeBtn = document.querySelector(".nav-btn.active");
+  if(activeBtn) moveHighlight(activeBtn);
+
+  // 图片点击放大（不显示文字）
+  document.querySelectorAll(".photo-item img").forEach(img=>{
+    img.addEventListener("click", ()=>{
+      const overlay = document.createElement("div");
+      overlay.style.position="fixed";
+      overlay.style.top="0"; overlay.style.left="0"; overlay.style.width="100%"; overlay.style.height="100%";
+      overlay.style.background="rgba(0,0,0,0.85)"; overlay.style.display="flex"; overlay.style.justifyContent="center"; overlay.style.alignItems="center";
+      overlay.style.zIndex="9999"; overlay.style.cursor="zoom-out";
+
+      const large = document.createElement("img");
+      large.src = img.src;
+      large.style.maxWidth="90%";
+      large.style.maxHeight="90%";
+      large.style.borderRadius="12px";
+      overlay.appendChild(large);
+
+      overlay.addEventListener("click", ()=>overlay.remove());
+      document.body.appendChild(overlay);
+    });
   });
 });
-
-const modal = document.getElementById("imgModal");
-const modalImg = document.getElementById("modalImg");
-
-document.querySelectorAll('.media-item img').forEach(img => {
-  img.onclick = () => {
-    modal.style.display = "flex";
-    modalImg.src = img.src;
-  };
-});
-
-modal.onclick = () => modal.style.display = "none";
 </script>
