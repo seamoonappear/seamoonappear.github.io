@@ -6,13 +6,14 @@ order: 7
 ---
 
 <style>
-/* 头像与简介 */
+/* 顶部头像与简介 */
 .about-header {
   display: flex;
   align-items: center;
   gap: 20px;
   margin-bottom: 32px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .about-header .avatar {
   width: 120px;
@@ -26,6 +27,9 @@ order: 7
   transform: translateY(-6px) scale(1.04);
   box-shadow: 0 8px 26px rgba(0,0,0,0.18);
 }
+.about-header .intro {
+  text-align: center;
+}
 .about-header .intro h1 {
   margin: 0 0 6px 0;
   font-size: 2rem;
@@ -37,52 +41,45 @@ order: 7
   line-height: 1.6;
 }
 
-/* 标签导航 */
+/* 标签导航样式 */
 .about-nav {
   position: relative;
   display: flex;
   justify-content: center;
-  margin-bottom: 2rem;
-  overflow-x: auto;
-  white-space: nowrap;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
   background: #f8f9fa;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 8px;
 }
-.nav-btn {
+.about-nav .nav-btn {
   padding: 0.6rem 1.2rem;
-  margin: 0 0.25rem;
-  background: white;
-  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #ddd;
   cursor: pointer;
+  color: #555;
+  transition: all 0.25s ease;
   font-size: 0.9rem;
-  color: #666;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
 }
-.nav-btn:hover { background: #f3f3f3; color: #111; }
-.nav-btn.active { color: #000; font-weight: 600; border-color: #444; }
-.nav-highlight {
-  position: absolute;
-  bottom: 4px;
-  height: 3px;
-  background: linear-gradient(90deg, #000, #555);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  z-index: 0;
+.about-nav .nav-btn:hover { background: #eee; }
+.about-nav .nav-btn.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  font-weight: 600;
 }
 
 /* 内容区 */
 .tab-content { margin-bottom: 2rem; }
-.tab-pane { display: none; animation: fadeIn 0.3s ease; }
-.tab-pane.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.tab-pane { display: none; }
+.tab-pane.active { display: block; animation: fadeIn 0.25s ease-in; }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
 /* 卡片样式 */
 .card {
-  background: #ffffff;
+  background: #fff;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
@@ -96,7 +93,6 @@ order: 7
 /* 响应式 */
 @media (max-width: 760px) {
   .about-header { flex-direction: column; align-items: center; text-align: center; }
-  .card { width: 100%; }
 }
 </style>
 
@@ -111,17 +107,15 @@ order: 7
 
 <!-- 标签导航 -->
 <div class="about-nav">
-  <div class="nav-highlight"></div>
-  <button class="nav-btn active" data-tab="experience">经历</button>
+  <button class="nav-btn active" data-tab="job">在职</button>
   <button class="nav-btn" data-tab="skills">技能</button>
   <button class="nav-btn" data-tab="hobby">爱好</button>
 </div>
 
-<!-- 标签内容 -->
+<!-- 内容区 -->
 <div class="tab-content">
-
   <!-- 在职 -->
-  <div id="experience" class="tab-pane active">
+  <div id="job" class="tab-pane active">
     <div class="card">
       <h3>北京同仁堂健康药业（青海）有限公司</h3>
       <p><strong>职位：</strong> 包装解决方案专员</p>
@@ -153,35 +147,23 @@ order: 7
       </ul>
     </div>
   </div>
-
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const nav = document.querySelector(".about-nav");
-  const highlight = nav.querySelector(".nav-highlight");
-  const buttons = nav.querySelectorAll(".nav-btn");
+document.addEventListener("DOMContentLoaded", function() {
+  const buttons = document.querySelectorAll(".about-nav .nav-btn");
   const panes = document.querySelectorAll(".tab-pane");
 
-  function activateTab(btn) {
-    buttons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    panes.forEach(p => p.classList.remove("active"));
-    document.getElementById(btn.dataset.tab).classList.add("active");
-
-    // 移动高亮条
-    const rect = btn.getBoundingClientRect();
-    const navRect = nav.getBoundingClientRect();
-    highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - navRect.left + nav.scrollLeft) + "px";
-  }
-
-  buttons.forEach(btn => btn.addEventListener("click", () => activateTab(btn)));
-
-  // 初始化高亮位置
-  window.addEventListener("load", () => {
-    const activeBtn = nav.querySelector(".nav-btn.active");
-    if (activeBtn) activateTab(activeBtn);
+  buttons.forEach(btn => {
+    btn.addEventListener("click", function() {
+      // 切换按钮状态
+      buttons.forEach(b => b.classList.remove("active"));
+      this.classList.add("active");
+      // 切换内容
+      panes.forEach(pane => {
+        pane.classList.toggle("active", pane.id === this.dataset.tab);
+      });
+    });
   });
 });
 </script>
