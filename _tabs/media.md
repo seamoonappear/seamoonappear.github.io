@@ -9,9 +9,6 @@ order: 4
 <!-- ✅ 页面顶部 Banner -->
 <div class="media-banner">
   <img src="{{ '/assets/banner/mediabanner.jpg' | relative_url }}" alt="Media Banner">
-  <div class="banner-overlay">
-    <h1>媒体及爱好消费</h1>
-  </div>
 </div>
 
 <div class="media-container">
