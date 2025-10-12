@@ -20,60 +20,63 @@ order: 5
     <!-- 风景 -->
     <div id="scenery" class="tab-pane active">
       <div class="photo-grid">
-        <img src="{{ '/assets/photo/scenery1.jpg' | relative_url }}" alt="风景1">
-        <img src="{{ '/assets/photo/scenery2.jpg' | relative_url }}" alt="风景2">
-        <img src="{{ '/assets/photo/scenery3.jpg' | relative_url }}" alt="风景3">
-        <img src="{{ '/assets/photo/scenery4.jpg' | relative_url }}" alt="风景4">
-        <img src="{{ '/assets/photo/scenery5.jpg' | relative_url }}" alt="风景5">
-        <img src="{{ '/assets/photo/scenery6.jpg' | relative_url }}" alt="风景6">
+        <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景1">
+        <img src="{{ '/assets/photos/travel2.jpg' | relative_url }}" alt="风景2">
+        <img src="{{ '/assets/photos/travel3.jpg' | relative_url }}" alt="风景3">
+        <img src="{{ '/assets/photos/travel4.jpg' | relative_url }}" alt="风景4">
+        <img src="{{ '/assets/photos/travel5.jpg' | relative_url }}" alt="风景5">
+        <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景6">
       </div>
     </div>
 
     <!-- 人物 -->
     <div id="people" class="tab-pane">
       <div class="photo-grid">
-        <img src="{{ '/assets/photo/people1.jpg' | relative_url }}" alt="人物1">
-        <img src="{{ '/assets/photo/people2.jpg' | relative_url }}" alt="人物2">
-        <img src="{{ '/assets/photo/people3.jpg' | relative_url }}" alt="人物3">
-        <img src="{{ '/assets/photo/people4.jpg' | relative_url }}" alt="人物4">
-        <img src="{{ '/assets/photo/people5.jpg' | relative_url }}" alt="人物5">
-        <img src="{{ '/assets/photo/people6.jpg' | relative_url }}" alt="人物6">
+        <img src="{{ '/assets/photos/person1.jpg' | relative_url }}" alt="人物1">
+        <img src="{{ '/assets/photos/person2.jpg' | relative_url }}" alt="人物2">
+        <img src="{{ '/assets/photos/person3.jpg' | relative_url }}" alt="人物3">
+        <img src="{{ '/assets/photos/person4.jpg' | relative_url }}" alt="人物4">
+        <img src="{{ '/assets/photos/person5.jpg' | relative_url }}" alt="人物5">
+        <img src="{{ '/assets/photos/person6.jpg' | relative_url }}" alt="人物6">
+        <img src="{{ '/assets/photos/person7.jpg' | relative_url }}" alt="人物7">
+        <img src="{{ '/assets/photos/person8.jpg' | relative_url }}" alt="人物8">
+        <img src="{{ '/assets/photos/person9.jpg' | relative_url }}" alt="人物9">
       </div>
     </div>
 
     <!-- 生活 -->
     <div id="life" class="tab-pane">
       <div class="photo-grid">
-        <img src="{{ '/assets/photo/life1.jpg' | relative_url }}" alt="生活1">
-        <img src="{{ '/assets/photo/life2.jpg' | relative_url }}" alt="生活2">
-        <img src="{{ '/assets/photo/life3.jpg' | relative_url }}" alt="生活3">
-        <img src="{{ '/assets/photo/life4.jpg' | relative_url }}" alt="生活4">
-        <img src="{{ '/assets/photo/life5.jpg' | relative_url }}" alt="生活5">
-        <img src="{{ '/assets/photo/life6.jpg' | relative_url }}" alt="生活6">
+        <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="生活1">
+        <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活2">
+        <img src="{{ '/assets/photos/live3.jpg' | relative_url }}" alt="生活3">
+        <img src="{{ '/assets/photos/live4.jpg' | relative_url }}" alt="生活4">
       </div>
     </div>
 
     <!-- 猫 -->
     <div id="cat" class="tab-pane">
       <div class="photo-grid">
-        <img src="{{ '/assets/photo/cat1.jpg' | relative_url }}" alt="猫1">
+        <img src="{{ '/assets/photos/cat1.jpg' | relative_url }}" alt="猫1">
         <img src="{{ '/assets/photo/cat2.jpg' | relative_url }}" alt="猫2">
-        <img src="{{ '/assets/photo/cat3.jpg' | relative_url }}" alt="猫3">
-        <img src="{{ '/assets/photo/cat4.jpg' | relative_url }}" alt="猫4">
-        <img src="{{ '/assets/photo/cat5.jpg' | relative_url }}" alt="猫5">
-        <img src="{{ '/assets/photo/cat6.jpg' | relative_url }}" alt="猫6">
+        <img src="{{ '/assets/photos/cat3.jpg' | relative_url }}" alt="猫3">
+        <img src="{{ '/assets/photos/cat4.jpg' | relative_url }}" alt="猫4">
+        <img src="{{ '/assets/photos/cat5.jpg' | relative_url }}" alt="猫5">
+        <img src="{{ '/assets/photos/cat6.jpg' | relative_url }}" alt="猫6">
       </div>
     </div>
 
     <!-- 随手拍 -->
     <div id="random" class="tab-pane">
       <div class="photo-grid">
-        <img src="{{ '/assets/photo/random1.jpg' | relative_url }}" alt="随手拍1">
-        <img src="{{ '/assets/photo/random2.jpg' | relative_url }}" alt="随手拍2">
-        <img src="{{ '/assets/photo/random3.jpg' | relative_url }}" alt="随手拍3">
-        <img src="{{ '/assets/photo/random4.jpg' | relative_url }}" alt="随手拍4">
-        <img src="{{ '/assets/photo/random5.jpg' | relative_url }}" alt="随手拍5">
-        <img src="{{ '/assets/photo/random6.jpg' | relative_url }}" alt="随手拍6">
+        <img src="{{ '/assets/photos/suishou1.jpg' | relative_url }}" alt="随手拍1">
+        <img src="{{ '/assets/photos/suishou2.jpg' | relative_url }}" alt="随手拍2">
+        <img src="{{ '/assets/photos/suishou3.jpg' | relative_url }}" alt="随手拍3">
+        <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="随手拍4">
+        <img src="{{ '/assets/photos/suishou5.jpg' | relative_url }}" alt="随手拍5">
+        <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6">        
+        <img src="{{ '/assets/photos/suishou7.jpg' | relative_url }}" alt="随手拍7">
+        <img src="{{ '/assets/photos/suishou8.jpg' | relative_url }}" alt="随手拍8">
       </div>
     </div>
   </div>
