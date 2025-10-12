@@ -41,7 +41,7 @@ order: 5
           <div class="photo-caption">风景描述5</div>
         </div>
         <div class="photo-item">
-          <img src="{{ '/assets/photos/travel6.jpg' | relative_url }}" alt="风景6">
+          <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景6">
           <div class="photo-caption">风景描述6</div>
         </div>
       </div>
@@ -97,11 +97,11 @@ order: 5
           <div class="photo-caption">生活描述4</div>
         </div>
         <div class="photo-item">
-          <img src="{{ '/assets/photos/live5.jpg' | relative_url }}" alt="生活5">
+          <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="生活5">
           <div class="photo-caption">生活描述5</div>
         </div>
         <div class="photo-item">
-          <img src="{{ '/assets/photos/live6.jpg' | relative_url }}" alt="生活6">
+          <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活6">
           <div class="photo-caption">生活描述6</div>
         </div>
       </div>
@@ -166,29 +166,30 @@ order: 5
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
 <style>
-.photo-container { max-width: 900px; margin: 0 auto; }
-.photo-nav { position: relative; display: flex; justify-content: center; margin: 2rem 0; overflow-x: auto; white-space: nowrap; background: #f8f9fa; border-radius: 8px; padding: 8px; }
-.nav-btn { padding: 0.6rem 1.2rem; margin: 0 0.25rem; background: white; border: 1px solid #e0e0e0; cursor: pointer; font-size: 0.85rem; color: #666; border-radius: 6px; transition: all 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: relative; z-index: 1; }
-.nav-btn:hover { color: #111; background-color: #f3f3f3; transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
-.nav-btn.active { color: #000; font-weight: 600; }
-.nav-highlight { position: absolute; bottom: 5px; height: 3px; background: linear-gradient(90deg,#000,#444); border-radius: 2px; transition: all 0.3s ease; z-index:0; }
-.tab-content { margin: 2rem 0; }
-.tab-pane { display: none; animation: fadeIn 0.3s ease; }
-.tab-pane.active { display: block; }
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+.photo-container { max-width:900px; margin:0 auto; }
+.photo-nav { position:relative; display:flex; justify-content:center; margin:2rem 0; overflow-x:auto; white-space:nowrap; background:#f8f9fa; border-radius:8px; padding:8px; }
+.nav-btn { padding:0.6rem 1.2rem; margin:0 0.25rem; background:white; border:1px solid #e0e0e0; cursor:pointer; font-size:0.85rem; color:#666; border-radius:6px; transition:all 0.3s ease; box-shadow:0 1px 3px rgba(0,0,0,0.05); position:relative; z-index:1; }
+.nav-btn:hover { color:#111; background:#f3f3f3; transform:translateY(-1px); box-shadow:0 2px 5px rgba(0,0,0,0.08); }
+.nav-btn.active { color:#000; font-weight:600; }
+.nav-highlight { position:absolute; bottom:5px; height:3px; background:linear-gradient(90deg,#000,#444); border-radius:2px; transition:all 0.3s ease; z-index:0; }
+.tab-content { margin:2rem 0; }
+.tab-pane { display:none; animation:fadeIn 0.3s ease; }
+.tab-pane.active { display:block; }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
 
-.photo-grid { display:grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
-.photo-item { position: relative; border-radius:12px; overflow:hidden; }
+.photo-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.photo-item { position:relative; border-radius:12px; overflow:hidden; }
 .photo-item img { width:100%; height:180px; object-fit:cover; border-radius:12px; cursor:pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.photo-item img:hover { transform: scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
+.photo-item img:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
 .photo-caption { position:absolute; bottom:0; left:0; width:100%; padding:6px 0; text-align:center; background:rgba(0,0,0,0.5); color:#fff; font-size:0.85rem; opacity:0; transition:opacity 0.3s ease; border-bottom-left-radius:12px; border-bottom-right-radius:12px; }
 .photo-item:hover .photo-caption { opacity:1; }
 
-@media(max-width:768px) { .photo-nav { justify-content:flex-start; padding:6px; } .nav-btn { font-size:0.8rem; padding:0.4rem 0.8rem; } .photo-item img { height:140px; } }
+@media(max-width:768px) { .photo-nav { justify-content:flex-start; padding:6px; } .nav-btn { font-size:0.8rem; padding:0.4rem 0.8rem; } .photo-grid { grid-template-columns:repeat(2,1fr); } .photo-item img { height:140px; } }
 </style>
 
 <script>
@@ -196,33 +197,33 @@ document.addEventListener("DOMContentLoaded", initPhotoTabs);
 document.addEventListener("pjax:complete", initPhotoTabs);
 
 function initPhotoTabs() {
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const tabPanes = document.querySelectorAll(".tab-pane");
-  const highlight = document.querySelector(".nav-highlight");
-  if(!navButtons.length||!tabPanes.length||!highlight) return;
+  const navButtons=document.querySelectorAll(".nav-btn");
+  const tabPanes=document.querySelectorAll(".tab-pane");
+  const highlight=document.querySelector(".nav-highlight");
+  if(!navButtons.length||!tabPanes.length||!highlight)return;
 
-  const moveHighlight = btn=>{
-    const rect = btn.getBoundingClientRect();
-    const containerRect = btn.parentElement.getBoundingClientRect();
-    highlight.style.width = rect.width+"px";
-    highlight.style.left = rect.left - containerRect.left + "px";
+  const moveHighlight=btn=>{
+    const rect=btn.getBoundingClientRect();
+    const containerRect=btn.parentElement.getBoundingClientRect();
+    highlight.style.width=rect.width+"px";
+    highlight.style.left=rect.left-containerRect.left+"px";
   }
 
   navButtons.forEach(button=>{
     button.addEventListener("click",e=>{
       e.preventDefault();
-      const targetTab = button.getAttribute("data-tab");
+      const targetTab=button.getAttribute("data-tab");
       navButtons.forEach(b=>b.classList.remove("active"));
       button.classList.add("active");
       tabPanes.forEach(p=>p.classList.remove("active"));
-      const targetPane = document.getElementById(targetTab);
-      if(targetPane) targetPane.classList.add("active");
+      const targetPane=document.getElementById(targetTab);
+      if(targetPane)targetPane.classList.add("active");
       moveHighlight(button);
     });
   });
 
-  const activeButton = document.querySelector(".nav-btn.active") || navButtons[0];
-  if(activeButton) moveHighlight(activeButton);
+  const activeButton=document.querySelector(".nav-btn.active")||navButtons[0];
+  if(activeButton)moveHighlight(activeButton);
 
   document.querySelectorAll('.photo-item img').forEach(img=>{
     img.addEventListener('click',()=>{
