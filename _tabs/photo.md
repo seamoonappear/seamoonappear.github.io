@@ -7,546 +7,275 @@ order: 5
 ---
 
 <div class="photo-container">
-  <!-- 导航标签 -->
-  <nav class="photo-nav">
-    <div class="nav-container">
-      <button class="nav-btn active" data-tab="scenery">风景</button>
-      <button class="nav-btn" data-tab="people">人物</button>
-      <button class="nav-btn" data-tab="life">生活</button>
-      <button class="nav-btn" data-tab="cat">猫</button>
-      <button class="nav-btn" data-tab="random">随手拍</button>
-      <div class="nav-highlight"></div>
-    </div>
-  </nav>
+  <div class="photo-nav">
+    <div class="nav-highlight"></div>
+    <button class="nav-btn active" data-tab="scenery">风景</button>
+    <button class="nav-btn" data-tab="people">人物</button>
+    <button class="nav-btn" data-tab="life">生活</button>
+    <button class="nav-btn" data-tab="cat">猫</button>
+    <button class="nav-btn" data-tab="random">随手拍</button>
+  </div>
 
-  <!-- 内容区域 -->
   <div class="tab-content">
     <!-- 风景 -->
     <div id="scenery" class="tab-pane active">
       <div class="photo-grid">
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="晨雾中的群山" loading="lazy">
-          <div class="photo-info">晨雾中的群山</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/travel2.jpg' | relative_url }}" alt="湖边的宁静" loading="lazy">
-          <div class="photo-info">湖边的宁静</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/travel3.jpg' | relative_url }}" alt="海边的落日" loading="lazy">
-          <div class="photo-info">海边的落日</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/travel4.jpg' | relative_url }}" alt="林间的光影" loading="lazy">
-          <div class="photo-info">林间的光影</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/travel5.jpg' | relative_url }}" alt="雪后的小镇" loading="lazy">
-          <div class="photo-info">雪后的小镇</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="山谷的晨光" loading="lazy">
-          <div class="photo-info">山谷的晨光</div>
-        </div>
+        <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景1" data-desc="晨雾中的群山">
+        <img src="{{ '/assets/photos/travel2.jpg' | relative_url }}" alt="风景2" data-desc="湖边的宁静">
+        <img src="{{ '/assets/photos/travel3.jpg' | relative_url }}" alt="风景3" data-desc="海边的落日">
+        <img src="{{ '/assets/photos/travel4.jpg' | relative_url }}" alt="风景4" data-desc="林间的光影">
+        <img src="{{ '/assets/photos/travel5.jpg' | relative_url }}" alt="风景5" data-desc="雪后的小镇">
+        <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景6" data-desc="山谷的晨光">
       </div>
     </div>
 
     <!-- 人物 -->
     <div id="people" class="tab-pane">
       <div class="photo-grid">
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/person1.jpg' | relative_url }}" alt="街角的笑容" loading="lazy">
-          <div class="photo-info">街角的笑容</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/person2.jpg' | relative_url }}" alt="咖啡馆一隅" loading="lazy">
-          <div class="photo-info">咖啡馆一隅</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/person3.jpg' | relative_url }}" alt="窗边的光影" loading="lazy">
-          <div class="photo-info">窗边的光影</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/person4.jpg' | relative_url }}" alt="旅行中的朋友" loading="lazy">
-          <div class="photo-info">旅行中的朋友</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/person5.jpg' | relative_url }}" alt="街头表演者" loading="lazy">
-          <div class="photo-info">街头表演者</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/person6.jpg' | relative_url }}" alt="回眸一笑" loading="lazy">
-          <div class="photo-info">回眸一笑</div>
-        </div>
+        <img src="{{ '/assets/photos/person1.jpg' | relative_url }}" alt="人物1" data-desc="街角的笑容">
+        <img src="{{ '/assets/photos/person2.jpg' | relative_url }}" alt="人物2" data-desc="咖啡馆一隅">
+        <img src="{{ '/assets/photos/person3.jpg' | relative_url }}" alt="人物3" data-desc="窗边的光影">
+        <img src="{{ '/assets/photos/person4.jpg' | relative_url }}" alt="人物4" data-desc="旅行中的朋友">
+        <img src="{{ '/assets/photos/person5.jpg' | relative_url }}" alt="人物5" data-desc="街头表演者">
+        <img src="{{ '/assets/photos/person6.jpg' | relative_url }}" alt="人物6" data-desc="回眸一笑">
+        <img src="{{ '/assets/photos/person7.jpg' | relative_url }}" alt="人物7" data-desc="午后的小憩">
+        <img src="{{ '/assets/photos/person8.jpg' | relative_url }}" alt="人物8" data-desc="远方的目光">
+        <img src="{{ '/assets/photos/person9.jpg' | relative_url }}" alt="人物9" data-desc="雨中的伞影">
       </div>
     </div>
 
     <!-- 生活 -->
     <div id="life" class="tab-pane">
       <div class="photo-grid">
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="清晨的早餐" loading="lazy">
-          <div class="photo-info">清晨的早餐</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="街头的日常" loading="lazy">
-          <div class="photo-info">街头的日常</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/live3.jpg' | relative_url }}" alt="阳台上的花" loading="lazy">
-          <div class="photo-info">阳台上的花</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/live4.jpg' | relative_url }}" alt="傍晚的影子" loading="lazy">
-          <div class="photo-info">傍晚的影子</div>
-        </div>
+        <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="生活1" data-desc="清晨的早餐">
+        <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活2" data-desc="街头的日常">
+        <img src="{{ '/assets/photos/live3.jpg' | relative_url }}" alt="生活3" data-desc="阳台上的花">
+        <img src="{{ '/assets/photos/live4.jpg' | relative_url }}" alt="生活4" data-desc="傍晚的影子">
       </div>
     </div>
 
     <!-- 猫 -->
     <div id="cat" class="tab-pane">
       <div class="photo-grid">
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/cat1.jpg' | relative_url }}" alt="慵懒的午后" loading="lazy">
-          <div class="photo-info">慵懒的午后</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/cat2.jpg' | relative_url }}" alt="专注的眼神" loading="lazy">
-          <div class="photo-info">专注的眼神</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/cat3.jpg' | relative_url }}" alt="趴在窗台上" loading="lazy">
-          <div class="photo-info">趴在窗台上</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/cat4.jpg' | relative_url }}" alt="打哈欠的瞬间" loading="lazy">
-          <div class="photo-info">打哈欠的瞬间</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/cat5.jpg' | relative_url }}" alt="藏在被窝里" loading="lazy">
-          <div class="photo-info">藏在被窝里</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/cat6.jpg' | relative_url }}" alt="等待晚餐的样子" loading="lazy">
-          <div class="photo-info">等待晚餐的样子</div>
-        </div>
+        <img src="{{ '/assets/photos/cat1.jpg' | relative_url }}" alt="猫1" data-desc="慵懒的午后">
+        <img src="{{ '/assets/photos/cat2.jpg' | relative_url }}" alt="猫2" data-desc="专注的眼神">
+        <img src="{{ '/assets/photos/cat3.jpg' | relative_url }}" alt="猫3" data-desc="趴在窗台上">
+        <img src="{{ '/assets/photos/cat4.jpg' | relative_url }}" alt="猫4" data-desc="打哈欠的瞬间">
+        <img src="{{ '/assets/photos/cat5.jpg' | relative_url }}" alt="猫5" data-desc="藏在被窝里">
+        <img src="{{ '/assets/photos/cat6.jpg' | relative_url }}" alt="猫6" data-desc="等待晚餐的样子">
       </div>
     </div>
 
     <!-- 随手拍 -->
     <div id="random" class="tab-pane">
       <div class="photo-grid">
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/suishou1.jpg' | relative_url }}" alt="路边的光影" loading="lazy">
-          <div class="photo-info">路边的光影</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/suishou2.jpg' | relative_url }}" alt="旧墙上的涂鸦" loading="lazy">
-          <div class="photo-info">旧墙上的涂鸦</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/suishou3.jpg' | relative_url }}" alt="雨后的街道" loading="lazy">
-          <div class="photo-info">雨后的街道</div>
-        </div>
-        <div class="photo-card">
-          <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="书页之间的光" loading="lazy">
-          <div class="photo-info">书页之间的光</div>
-        </div>
+        <img src="{{ '/assets/photos/suishou1.jpg' | relative_url }}" alt="随手拍1" data-desc="路边的光影">
+        <img src="{{ '/assets/photos/suishou2.jpg' | relative_url }}" alt="随手拍2" data-desc="旧墙上的涂鸦">
+        <img src="{{ '/assets/photos/suishou3.jpg' | relative_url }}" alt="随手拍3" data-desc="雨后的街道">
+        <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="随手拍4" data-desc="书页之间的光">
+        <img src="{{ '/assets/photos/suishou5.jpg' | relative_url }}" alt="随手拍5" data-desc="橱窗里的世界">
+        <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6" data-desc="角落里的植物">
+        <img src="{{ '/assets/photos/suishou7.jpg' | relative_url }}" alt="随手拍7" data-desc="晨光透过窗帘">
+        <img src="{{ '/assets/photos/suishou8.jpg' | relative_url }}" alt="随手拍8" data-desc="夜色下的灯">
       </div>
     </div>
   </div>
 </div>
 
-<!-- 图片放大层 -->
-<div class="photo-modal" id="photoModal">
-  <div class="modal-content">
-    <img class="modal-image" src="" alt="">
-    <div class="modal-info"></div>
-    <button class="modal-close" aria-label="关闭">&times;</button>
-  </div>
-</div>
-
 <style>
 .photo-container {
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 1rem;
 }
 
-/* 导航样式优化 */
 .photo-nav {
-  margin: 2rem 0 3rem;
-  position: relative;
-}
-
-.nav-container {
   position: relative;
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  margin: 2rem 0;
   overflow-x: auto;
-  padding: 0.5rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.nav-container::-webkit-scrollbar {
-  display: none;
+  white-space: nowrap;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 8px;
 }
 
 .nav-btn {
-  padding: 0.75rem 1.5rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  margin: 0 0.25rem;
+  background: white;
+  border: 1px solid #e0e0e0;
   cursor: pointer;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap;
+  font-size: 0.85rem;
+  color: #666;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   position: relative;
   z-index: 1;
 }
 
 .nav-btn:hover {
-  color: var(--text-color);
-  border-color: var(--primary-color);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #111;
+  background-color: #f3f3f3;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
 .nav-btn.active {
-  color: var(--text-color);
+  color: #000;
   font-weight: 600;
 }
 
 .nav-highlight {
   position: absolute;
-  bottom: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-  border-radius: 1px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 2;
+  bottom: 5px;
+  height: 3px;
+  background: linear-gradient(90deg, #000, #444);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  z-index: 0;
 }
 
-/* 标签内容切换动画 */
 .tab-content {
-  position: relative;
-  min-height: 400px;
+  margin: 2rem 0;
 }
 
 .tab-pane {
   display: none;
-  animation: fadeInUp 0.4s ease-out;
+  animation: fadeIn 0.3s ease;
 }
 
 .tab-pane.active {
   display: block;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 图片网格优化 */
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: 1rem 0;
-}
-
-.photo-card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  border: 1px solid var(--border-color);
-}
-
-.photo-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.photo-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.photo-card:hover img {
-  transform: scale(1.05);
-}
-
-.photo-info {
-  padding: 1rem;
-  font-size: 0.9rem;
-  color: var(--text-color);
-  text-align: center;
-  background: var(--card-bg);
-  border-top: 1px solid var(--border-color);
-}
-
-/* 图片放大模态框 */
-.photo-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.92);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.photo-modal.active {
-  display: flex;
-  opacity: 1;
-  animation: modalFadeIn 0.3s ease;
-}
-
-@keyframes modalFadeIn {
+@keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-.modal-content {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* 放大查看样式 */
+.photo-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.85);
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.modal-image {
-  max-width: 100%;
-  max-height: 80vh;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-}
-
-.modal-info {
-  color: white;
-  margin-top: 1rem;
-  font-size: 1rem;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-}
-
-.modal-close {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  align-items: center;
+  z-index: 9999;
+  cursor: zoom-out;
 }
 
-.modal-close:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+.photo-overlay img.photo-large {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.2);
+  object-fit: contain;
 }
 
-/* 响应式优化 */
+.photo-desc {
+  color: #fff;
+  font-size: 1rem;
+  margin-top: 12px;
+  text-align: center;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 16px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+/* 响应式 */
 @media (max-width: 768px) {
-  .photo-container {
-    padding: 0 0.5rem;
-  }
-  
-  .nav-container {
-    justify-content: flex-start;
-    gap: 0.25rem;
-  }
-  
-  .nav-btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
-  }
-  
-  .photo-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
-  }
-  
-  .photo-card img {
-    height: 150px;
-  }
-  
-  .photo-info {
-    padding: 0.75rem;
-    font-size: 0.85rem;
-  }
-  
-  .modal-content {
-    max-width: 95vw;
-  }
-  
-  .modal-close {
-    top: -50px;
-    right: 50%;
-    transform: translateX(50%);
-  }
-}
-
-@media (max-width: 480px) {
-  .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
-  }
-  
-  .photo-card img {
-    height: 120px;
-  }
-  
-  .nav-btn {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8rem;
-  }
+  .photo-nav { justify-content: flex-start; padding: 6px; }
+  .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+  .photo-grid img { height: 140px; }
 }
 </style>
 
 <script>
-class PhotoGallery {
-  constructor() {
-    this.init();
-  }
+function initPhotoTabs() {
+  const container = document.querySelector(".photo-container");
+  if (!container) return;
 
-  init() {
-    this.setupTabs();
-    this.setupModal();
-    this.setupKeyboardNavigation();
-  }
+  const nav = container.querySelector(".photo-nav");
+  const tabPanes = container.querySelectorAll(".tab-pane");
+  const highlight = nav.querySelector(".nav-highlight");
 
-  setupTabs() {
-    const nav = document.querySelector('.photo-nav');
-    const buttons = document.querySelectorAll('.nav-btn');
-    const panes = document.querySelectorAll('.tab-pane');
-    const highlight = document.querySelector('.nav-highlight');
+  if (!nav || !tabPanes.length || !highlight) return;
 
-    if (!buttons.length || !panes.length || !highlight) return;
+  nav.addEventListener("click", function(e) {
+    const button = e.target.closest(".nav-btn");
+    if (!button) return;
+    const targetTab = button.dataset.tab;
 
-    // 初始化高亮位置
-    this.updateHighlight(buttons[0], highlight);
+    nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        const targetTab = button.dataset.tab;
-        
-        // 更新按钮状态
-        buttons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        // 更新内容区域
-        panes.forEach(pane => pane.classList.remove('active'));
-        const targetPane = document.getElementById(targetTab);
-        if (targetPane) targetPane.classList.add('active');
-        
-        // 更新高亮位置
-        this.updateHighlight(button, highlight);
-      });
-    });
-  }
+    tabPanes.forEach(p => p.classList.remove("active"));
+    const targetPane = container.querySelector("#" + targetTab);
+    if (targetPane) targetPane.classList.add("active");
 
-  updateHighlight(button, highlight) {
     const rect = button.getBoundingClientRect();
-    const containerRect = button.parentElement.getBoundingClientRect();
-    
-    highlight.style.width = `${rect.width}px`;
-    highlight.style.left = `${rect.left - containerRect.left}px`;
+    const containerRect = nav.getBoundingClientRect();
+    highlight.style.width = rect.width + "px";
+    highlight.style.left = (rect.left - containerRect.left) + "px";
+  });
+
+  const activeButton = nav.querySelector(".nav-btn.active") || nav.querySelector(".nav-btn");
+  if (activeButton) {
+    const rect = activeButton.getBoundingClientRect();
+    const containerRect = nav.getBoundingClientRect();
+    highlight.style.width = rect.width + "px";
+    highlight.style.left = (rect.left - containerRect.left) + "px";
   }
 
-  setupModal() {
-    const modal = document.getElementById('photoModal');
-    const modalImage = modal.querySelector('.modal-image');
-    const modalInfo = modal.querySelector('.modal-info');
-    const closeBtn = modal.querySelector('.modal-close');
+  // ✅ 图片放大查看 + 显示描述
+  document.querySelectorAll(".photo-grid img").forEach(img => {
+    img.addEventListener("click", () => {
+      const overlay = document.createElement("div");
+      overlay.className = "photo-overlay";
 
-    // 图片点击事件
-    document.querySelectorAll('.photo-card').forEach(card => {
-      card.addEventListener('click', () => {
-        const img = card.querySelector('img');
-        const info = card.querySelector('.photo-info');
-        
-        modalImage.src = img.src;
-        modalImage.alt = img.alt;
-        modalInfo.textContent = info.textContent;
-        
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
+      const largeImg = document.createElement("img");
+      largeImg.src = img.src;
+      largeImg.alt = img.alt;
+      largeImg.className = "photo-large";
+
+      const desc = document.createElement("div");
+      desc.className = "photo-desc";
+      desc.textContent = img.dataset.desc || "";
+
+      overlay.appendChild(largeImg);
+      if (desc.textContent) overlay.appendChild(desc);
+      document.body.appendChild(overlay);
+
+      overlay.addEventListener("click", () => overlay.remove());
     });
-
-    // 关闭模态框
-    const closeModal = () => {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    };
-
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
-  }
-
-  setupKeyboardNavigation() {
-    document.addEventListener('keydown', (e) => {
-      const modal = document.getElementById('photoModal');
-      if (!modal.classList.contains('active')) return;
-
-      if (e.key === 'Escape') {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  }
+  });
 }
 
-// 初始化相册
-document.addEventListener('DOMContentLoaded', () => {
-  new PhotoGallery();
-});
-
-// 窗口大小改变时重新计算高亮位置
-window.addEventListener('resize', () => {
-  const activeBtn = document.querySelector('.nav-btn.active');
-  const highlight = document.querySelector('.nav-highlight');
-  if (activeBtn && highlight) {
-    const rect = activeBtn.getBoundingClientRect();
-    const containerRect = activeBtn.parentElement.getBoundingClientRect();
-    
-    highlight.style.width = `${rect.width}px`;
-    highlight.style.left = `${rect.left - containerRect.left}px`;
-  }
-});
+document.addEventListener("DOMContentLoaded", initPhotoTabs);
 </script>
