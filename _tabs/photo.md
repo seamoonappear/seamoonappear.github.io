@@ -83,11 +83,11 @@ order: 5
 </div>
 
 <style>
-.photo-container { max-width: 960px; margin:0 auto; }
+.photo-container { max-width:960px;margin:0 auto; }
 .photo-nav { display:flex; justify-content:center; margin:2rem 0; overflow-x:auto; white-space:nowrap; background:#f8f9fa; border-radius:8px; padding:8px; position:relative; }
 .nav-btn { padding:0.6rem 1.2rem; margin:0 0.25rem; background:white; border:1px solid #e0e0e0; cursor:pointer; border-radius:6px; color:#666; font-size:0.85rem; transition:all 0.3s; }
 .nav-btn.active { font-weight:600; color:#000; }
-.nav-highlight { position:absolute; bottom:5px; height:3px; background:linear-gradient(90deg,#000,#444); transition:0.3s; border-radius:2px; z-index:0; }
+.nav-highlight { position:absolute; bottom:5px; height:3px; background:linear-gradient(90deg,#000,#444); transition:all 0.3s; border-radius:2px; z-index:0; }
 .tab-pane { display:none; }
 .tab-pane.active { display:block; }
 .photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
@@ -95,7 +95,7 @@ order: 5
 .photo-item img { width:100%; height:200px; object-fit:cover; border-radius:12px; cursor:pointer; transition:transform 0.3s; }
 .photo-item img:hover { transform:scale(1.05); }
 .photo-caption { text-align:center; font-size:14px; color:#666; height:1.2em; overflow:hidden; margin-top:4px; }
-@media (max-width:768px){ .photo-grid img{height:140px;} .nav-btn{padding:0.4rem 0.8rem; font-size:0.8rem;} }
+@media(max-width:768px){.photo-grid img{height:140px;}.nav-btn{padding:0.4rem 0.8rem;font-size:0.8rem;}}
 </style>
 
 <script>
@@ -115,10 +115,12 @@ document.addEventListener("DOMContentLoaded",()=>{
   navButtons.forEach(btn=>{
     btn.addEventListener("click",()=>{
       navButtons.forEach(b=>b.classList.remove("active"));
-      btn.classList.add("active");
+      btn.classList.add("active");        // ✅ 高亮按钮
+
       panes.forEach(p=>p.classList.remove("active"));
       const target=document.getElementById(btn.dataset.tab);
       if(target) target.classList.add("active");
+
       moveHighlight(btn);
     });
   });
@@ -126,13 +128,13 @@ document.addEventListener("DOMContentLoaded",()=>{
   const activeBtn=document.querySelector(".nav-btn.active")||navButtons[0];
   if(activeBtn) moveHighlight(activeBtn);
 
-  // 图片放大查看
+  // 图片放大
   document.querySelectorAll(".photo-item img").forEach(img=>{
     img.addEventListener("click",()=>{
       const overlay=document.createElement("div");
-      overlay.style.position="fixed";
-      overlay.style.top=0; overlay.style.left=0; overlay.style.width="100%"; overlay.style.height="100%";
-      overlay.style.background="rgba(0,0,0,0.85)"; overlay.style.display="flex"; overlay.style.justifyContent="center"; overlay.style.alignItems="center";
+      overlay.style.position="fixed"; overlay.style.top=0; overlay.style.left=0;
+      overlay.style.width="100%"; overlay.style.height="100%"; overlay.style.background="rgba(0,0,0,0.85)";
+      overlay.style.display="flex"; overlay.style.justifyContent="center"; overlay.style.alignItems="center";
       overlay.style.zIndex="9999"; overlay.style.cursor="zoom-out";
 
       const large=document.createElement("img");
