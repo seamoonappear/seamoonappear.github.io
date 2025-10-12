@@ -25,8 +25,8 @@ order: 4
   <div class="tab-content">
     <!-- 爱好页 -->
     <div id="hobby" class="tab-pane active">
-      <div class="media-item"><span class="item-name">摄影/调色/修图</span><span class="item-duration">5年</span></div>
-      <div class="media-item"><span class="item-name">书法及篆刻/收藏钢笔</span><span class="item-duration">10年</span></div>
+      <div class="media-item"><span class="item-name">摄影/调色/修图</span><span class="item-duration">13年</span></div>
+      <div class="media-item"><span class="item-name">书法/篆刻/收藏钢笔</span><span class="item-duration">10年</span></div>
       <div class="media-item"><span class="item-name">登山/羽毛球/五子棋</span><span class="item-duration">9年</span></div>
       <div class="media-item"><span class="item-name">烹饪/烘焙</span><span class="item-duration">3年</span></div>
       <div class="media-item"><span class="item-name">网页前端</span><span class="item-duration">1年</span></div>
