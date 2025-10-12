@@ -63,12 +63,12 @@ order: 7
   z-index: 1;
 }
 .nav-btn:hover { background: #f3f3f3; color: #111; }
-.nav-btn.active { color: #000; font-weight: 600; }
+.nav-btn.active { color: #000; font-weight: 600; border-color: #444; }
 .nav-highlight {
   position: absolute;
-  bottom: 5px;
+  bottom: 4px;
   height: 3px;
-  background: linear-gradient(90deg, #000, #444);
+  background: linear-gradient(90deg, #000, #555);
   border-radius: 2px;
   transition: all 0.3s ease;
   z-index: 0;
@@ -105,15 +105,14 @@ order: 7
   <img src="{{ '/assets/img/avatar.jpg' | relative_url }}" alt="王维头像" class="avatar">
   <div class="intro">
     <h1>王维</h1>
-    <p>故乡连云港 | 现居杭州 | 终身学习者</p>
+    <p>现居杭州 ｜ 终身学习</p>
   </div>
 </div>
 
 <!-- 标签导航 -->
 <div class="about-nav">
   <div class="nav-highlight"></div>
-  <button class="nav-btn active" data-tab="info">个人信息</button>
-  <button class="nav-btn" data-tab="experience">经历</button>
+  <button class="nav-btn active" data-tab="experience">经历</button>
   <button class="nav-btn" data-tab="skills">技能</button>
   <button class="nav-btn" data-tab="hobby">爱好</button>
 </div>
@@ -121,26 +120,13 @@ order: 7
 <!-- 标签内容 -->
 <div class="tab-content">
 
-  <!-- 个人信息 -->
-  <div id="info" class="tab-pane active">
-    <div class="card">
-      <ul>
-        <li><strong>姓名：</strong> 王维</li>
-        <li><strong>故乡：</strong> 连云港</li>
-        <li><strong>现居：</strong> 杭州</li>
-        <li><strong>目标：</strong> 终身学习</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 经历 -->
-  <div id="experience" class="tab-pane">
+  <!-- 在职 -->
+  <div id="experience" class="tab-pane active">
     <div class="card">
       <h3>北京同仁堂健康药业（青海）有限公司</h3>
       <p><strong>职位：</strong> 包装解决方案专员</p>
       <p><strong>主要职责：</strong> 为食品及健康产品企业提供全方位包装解决方案，熟悉包装材料、工艺与成本控制。</p>
     </div>
-    <!-- 可复制添加更多经历 -->
   </div>
 
   <!-- 技能 -->
@@ -171,31 +157,36 @@ order: 7
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".about-nav");
   const highlight = nav.querySelector(".nav-highlight");
-  const tabPanes = document.querySelectorAll(".tab-pane");
   const buttons = nav.querySelectorAll(".nav-btn");
+  const panes = document.querySelectorAll(".tab-pane");
 
-  function updateHighlight(button) {
-    const rect = button.getBoundingClientRect();
+  function activateTab(btn) {
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    panes.forEach(p => p.classList.remove("active"));
+    document.getElementById(btn.dataset.tab).classList.add("active");
+
+    // 移动高亮条
+    const rect = btn.getBoundingClientRect();
     const navRect = nav.getBoundingClientRect();
     highlight.style.width = rect.width + "px";
     highlight.style.left = (rect.left - navRect.left + nav.scrollLeft) + "px";
   }
 
-  function activateTab(button) {
-    const target = button.dataset.tab;
-    buttons.forEach(b => b.classList.remove("active"));
-    button.classList.add("active");
-    tabPanes.forEach(p => p.classList.toggle("active", p.id === target));
-    updateHighlight(button);
-  }
-
   buttons.forEach(btn => btn.addEventListener("click", () => activateTab(btn)));
 
-  // 初始化高亮条位置
-  const activeBtn = nav.querySelector(".nav-btn.active") || buttons[0];
-  if (activeBtn) activateTab(activeBtn);
+  // 初始化高亮位置
+  window.addEventListener("load", () => {
+    const activeBtn = nav.querySelector(".nav-btn.active");
+    if (activeBtn) activateTab(activeBtn);
+  });
 });
 </script>
+
+<p style="text-align:center;margin-top:2rem;color:#555;">
+  我相信 <strong>设计、营销与包装</strong> 是企业价值的重要体现，  
+  致力于用专业技能为每一个项目创造更大价值。
+</p>
