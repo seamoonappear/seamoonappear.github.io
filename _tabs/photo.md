@@ -7,7 +7,7 @@ order: 5
 ---
 
 <div class="photo-container">
-  <!-- 导航标签 -->
+  <!-- 标签导航 -->
   <div class="photo-nav">
     <div class="nav-highlight"></div>
     {% assign first = true %}
@@ -44,60 +44,88 @@ order: 5
 
 <style>
 .photo-container { max-width: 960px; margin: 0 auto; }
-.photo-nav { display: flex; justify-content: center; overflow-x: auto; white-space: nowrap; position: relative; padding: 8px; background: #f8f9fa; border-radius: 8px; margin: 2rem 0; }
-.nav-btn { margin: 0 4px; padding: 6px 12px; cursor: pointer; border-radius: 6px; border: 1px solid #ccc; background: #fff; transition: all 0.3s; }
-.nav-btn.active { font-weight: bold; color: #000; }
-.nav-highlight { position: absolute; bottom: 4px; height: 3px; background: #000; border-radius: 2px; transition: all 0.3s; }
+.photo-nav {
+  display: flex; justify-content: center; overflow-x: auto; white-space: nowrap;
+  position: relative; padding: 8px; background: var(--color-gray-100); border-radius: var(--radius-lg);
+}
+.nav-btn {
+  margin: 0 4px; padding: 6px 12px; cursor: pointer;
+  border-radius: var(--radius-md); border: 1px solid var(--color-gray-300);
+  background: var(--color-white); color: var(--color-gray-700);
+  font-size: 0.875rem; transition: all 0.3s;
+}
+.nav-btn.active { font-weight: 600; color: var(--color-gray-900); }
+.nav-highlight {
+  position: absolute; bottom: 4px; height: 3px;
+  background: var(--color-gray-900); border-radius: 2px; transition: all 0.3s;
+}
 
 .tab-pane { display: none; }
 .tab-pane.active { display: block; }
 
-.photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+}
 .photo-item { display: flex; flex-direction: column; }
-.photo-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s; }
+.photo-item img {
+  width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius-lg);
+  cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+}
 .photo-item img:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-.photo-caption { font-size: 0.8rem; color: #555; text-align: center; margin-top: 6px; }
+.photo-caption { text-align: center; font-size: 0.8rem; color: var(--color-gray-600); margin-top: 6px; }
 
-.photo-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 9999; cursor: zoom-out; }
-.photo-overlay img.photo-large { max-width: 90%; max-height: 80%; border-radius: 12px; object-fit: contain; box-shadow: 0 4px 20px rgba(255,255,255,0.2); }
-.photo-desc { color: #fff; font-size: 1rem; margin-top: 12px; text-align: center; background: rgba(0,0,0,0.4); padding: 6px 16px; border-radius: 8px; backdrop-filter: blur(4px); }
+.photo-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center;
+  z-index: 9999; cursor: zoom-out;
+}
+.photo-overlay img.photo-large {
+  max-width: 90%; max-height: 80%; border-radius: var(--radius-lg); object-fit: contain;
+  box-shadow: 0 4px 20px rgba(255,255,255,0.2);
+}
+.photo-desc {
+  color: #fff; font-size: 1rem; margin-top: 12px; text-align: center;
+  background: rgba(0,0,0,0.4); padding: 6px 16px; border-radius: var(--radius-md);
+  backdrop-filter: blur(4px);
+}
 
 @media (max-width: 768px) {
+  .photo-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   .photo-item img { height: 140px; }
   .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
-  .photo-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const panes = document.querySelectorAll(".tab-pane");
-  const highlight = document.querySelector(".nav-highlight");
+  const nav = document.querySelector(".photo-nav");
+  const highlight = nav.querySelector(".nav-highlight");
+  const navButtons = nav.querySelectorAll(".nav-btn");
+  const tabPanes = document.querySelectorAll(".tab-pane");
 
-  function updateHighlight(button) {
+  function setHighlight(button) {
     const rect = button.getBoundingClientRect();
-    const navRect = button.parentElement.getBoundingClientRect();
+    const navRect = nav.getBoundingClientRect();
     highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - navRect.left + button.parentElement.scrollLeft) + "px";
+    highlight.style.left = (rect.left - navRect.left + nav.scrollLeft) + "px";
   }
 
-  navButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
+  navButtons.forEach(button => {
+    button.addEventListener("click", function() {
+      const targetTab = this.dataset.tab;
       navButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const target = btn.dataset.tab;
-      panes.forEach(p => p.classList.toggle("active", p.id === target));
-
-      updateHighlight(btn);
+      this.classList.add("active");
+      tabPanes.forEach(p => p.classList.toggle("active", p.id === targetTab));
+      setHighlight(this);
     });
   });
 
-  const activeBtn = document.querySelector(".nav-btn.active");
-  if (activeBtn) updateHighlight(activeBtn);
+  const activeBtn = nav.querySelector(".nav-btn.active") || navButtons[0];
+  if (activeBtn) setHighlight(activeBtn);
 
-  // 图片放大
+  // 图片放大查看
   document.querySelectorAll(".photo-item img").forEach(img => {
     img.addEventListener("click", () => {
       const overlay = document.createElement("div");
