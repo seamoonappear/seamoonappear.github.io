@@ -16,7 +16,7 @@ order: 4
     <div class="nav-highlight"></div>
     <button class="nav-btn active" data-tab="hobby">爱好</button>
     <button class="nav-btn" data-tab="books">书</button>
-    <button class="nav-btn" data-tab="movies">电影</button>
+    <button class="nav-btn" data-tab="music">音乐</button>
     <button class="nav-btn" data-tab="series">系列</button>
     <button class="nav-btn" data-tab="games">游戏</button>
     <button class="nav-btn" data-tab="others">其他</button>
@@ -35,43 +35,42 @@ order: 4
 
     <!-- 书页 -->
     <div id="books" class="tab-pane">
-      <div class="media-item"><span class="item-name">《三体》</span><span class="item-author">刘慈欣</span></div>
-      <div class="media-item"><span class="item-name">《活着》</span><span class="item-author">余华</span></div>
-      <div class="media-item"><span class="item-name">《百年孤独》</span><span class="item-author">加西亚·马尔克斯</span></div>
-      <div class="media-item"><span class="item-name">《围城》</span><span class="item-author">钱钟书</span></div>
-      <div class="media-item"><span class="item-name">《挪威的森林》</span><span class="item-author">村上春树</span></div>
-      <div class="media-item"><span class="item-name">《人类简史》</span><span class="item-author">尤瓦尔·赫拉利</span></div>
-      <div class="media-item"><span class="item-name">《原则》</span><span class="item-author">瑞·达利欧</span></div>
-      <div class="media-item"><span class="item-name">《思考，快与慢》</span><span class="item-author">丹尼尔·卡尼曼</span></div>
+      <div class="media-item"><span class="item-name">三体</span><span class="item-author">刘慈欣</span></div>
+      <div class="media-item"><span class="item-name">活着</span><span class="item-author">余华</span></div>
+      <div class="media-item"><span class="item-name">百年孤独</span><span class="item-author">加西亚·马尔克斯</span></div>
+      <div class="media-item"><span class="item-name">围城</span><span class="item-author">钱钟书</span></div>
+      <div class="media-item"><span class="item-name">挪威的森林</span><span class="item-author">村上春树</span></div>
+      <div class="media-item"><span class="item-name">人类简史</span><span class="item-author">尤瓦尔·赫拉利</span></div>
+      <div class="media-item"><span class="item-name">原则</span><span class="item-author">瑞·达利欧</span></div>
+      <div class="media-item"><span class="item-name">思考，快与慢</span><span class="item-author">丹尼尔·卡尼曼</span></div>
     </div>
 
-    <!-- 电影页 -->
-    <div id="movies" class="tab-pane">
-      <div class="media-item"><span class="item-name">《肖申克的救赎》</span><span class="item-director">弗兰克·德拉邦特</span></div>
-      <div class="media-item"><span class="item-name">《星际穿越》</span><span class="item-director">克里斯托弗·诺兰</span></div>
-      <div class="media-item"><span class="item-name">《千与千寻》</span><span class="item-director">宫崎骏</span></div>
-      <div class="media-item"><span class="item-name">《盗梦空间》</span><span class="item-director">克里斯托弗·诺兰</span></div>
-      <div class="media-item"><span class="item-name">《教父》</span><span class="item-director">弗朗西斯·科波拉</span></div>
-      <div class="media-item"><span class="item-name">《阿甘正传》</span><span class="item-director">罗伯特·泽米吉斯</span></div>
-      <div class="media-item"><span class="item-name">《泰坦尼克号》</span><span class="item-director">詹姆斯·卡梅隆</span></div>
+    <!-- 音乐页 -->
+    <div id="music" class="tab-pane">
+      <div class="media-item"><span class="item-name">宋家王朝</span><span class="item-director">日系音乐</span></div>
+      <div class="media-item"><span class="item-name">故宫的记忆</span><span class="item-director">日系音乐</span></div>
+      <div class="media-item"><span class="item-name">英雄的黎明</span><span class="item-director">日系音乐</span></div>
+      <div class="media-item"><span class="item-name">故乡的原风景</span><span class="item-director">日系音乐</span></div>
+      <div class="media-item"><span class="item-name">风居住的街道</span><span class="item-director">日系音乐</span></div>
+      <div class="media-item"><span class="item-name">天空之城</span><span class="item-director">日系音乐</span></div>
     </div>
 
     <!-- 系列页 -->
     <div id="series" class="tab-pane">
-      <div class="media-item"><span class="item-name">《权力的游戏》</span><span class="item-info">美国, 2011</span></div>
-      <div class="media-item"><span class="item-name">《无耻之徒》</span><span class="item-info">美国, 2011</span></div>
-      <div class="media-item"><span class="item-name">《怪奇物语》</span><span class="item-info">美国, 2016</span></div>
-      <div class="media-item"><span class="item-name">《漫长的季节》</span><span class="item-info">中国, 2023</span></div>
-      <div class="media-item"><span class="item-name">《黑暗荣耀》</span><span class="item-info">韩国, 2022</span></div>
-      <div class="media-item"><span class="item-name">《黑镜》</span><span class="item-info">英国, 2011</span></div>
-      <div class="media-item"><span class="item-name">《纸牌屋》</span><span class="item-info">美国, 2013</span></div>
+      <div class="media-item"><span class="item-name">权力的游戏</span><span class="item-info">美国, 2011</span></div>
+      <div class="media-item"><span class="item-name">无耻之徒</span><span class="item-info">美国, 2011</span></div>
+      <div class="media-item"><span class="item-name">怪奇物语</span><span class="item-info">美国, 2016</span></div>
+      <div class="media-item"><span class="item-name">漫长的季节</span><span class="item-info">中国, 2023</span></div>
+      <div class="media-item"><span class="item-name">黑暗荣耀</span><span class="item-info">韩国, 2022</span></div>
+      <div class="media-item"><span class="item-name">黑镜</span><span class="item-info">英国, 2011</span></div>
+      <div class="media-item"><span class="item-name">纸牌屋</span><span class="item-info">美国, 2013</span></div>
     </div>
 
     <!-- 游戏页 -->
     <div id="games" class="tab-pane">
-      <div class="media-item"><span class="item-name">《原神》</span><span class="item-year">2020</span></div>
-      <div class="media-item"><span class="item-name">《英雄联盟》</span><span class="item-year">2009</span></div>
-      <div class="media-item"><span class="item-name">《守望先锋》</span><span class="item-year">2016</span></div>
+      <div class="media-item"><span class="item-name">原神</span><span class="item-year">2020</span></div>
+      <div class="media-item"><span class="item-name">英雄联盟</span><span class="item-year">2009</span></div>
+      <div class="media-item"><span class="item-name">守望先锋</span><span class="item-year">2016</span></div>
     </div>
 
     <!-- 其他页 -->
