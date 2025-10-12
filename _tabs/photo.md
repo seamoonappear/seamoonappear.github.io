@@ -1,281 +1,214 @@
 ---
 layout: page
-title: "照片"
-permalink: /photo/
-icon: fas fa-camera
-order: 5
+title: "消费"
+permalink: /media/
+icon: fas fa-book
+order: 4
 ---
 
-<div class="photo-container">
-  <div class="photo-nav">
-    <div class="nav-highlight"></div>
-    <button class="nav-btn active" data-tab="scenery">风景</button>
-    <button class="nav-btn" data-tab="people">人物</button>
-    <button class="nav-btn" data-tab="life">生活</button>
-    <button class="nav-btn" data-tab="cat">猫</button>
-    <button class="nav-btn" data-tab="random">随手拍</button>
+<style>
+.media-container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.media-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.media-nav .nav-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: #555;
+}
+
+.media-nav .nav-btn.active {
+  border-bottom: 2px solid #000;
+  font-weight: bold;
+  color: #000;
+}
+
+.media-section {
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.media-section.active {
+  display: flex;
+}
+
+.media-item {
+  width: 30%;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.media-item img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.media-item:hover img {
+  transform: scale(1.05);
+}
+
+.media-desc {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* 放大图片遮罩层 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+</style>
+
+<div class="media-container">
+  <div class="media-nav">
+    <button class="nav-btn active" data-tab="hobby">爱好</button>
+    <button class="nav-btn" data-tab="books">书</button>
+    <button class="nav-btn" data-tab="movies">电影</button>
+    <button class="nav-btn" data-tab="music">音乐</button>
+    <button class="nav-btn" data-tab="travel">旅行</button>
   </div>
 
-  <div class="tab-content">
-    <!-- 风景 -->
-    <div id="scenery" class="tab-pane active">
-      <div class="photo-grid">
-        <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景1" data-desc="晨雾中的群山">
-        <img src="{{ '/assets/photos/travel2.jpg' | relative_url }}" alt="风景2" data-desc="湖边的宁静">
-        <img src="{{ '/assets/photos/travel3.jpg' | relative_url }}" alt="风景3" data-desc="海边的落日">
-        <img src="{{ '/assets/photos/travel4.jpg' | relative_url }}" alt="风景4" data-desc="林间的光影">
-        <img src="{{ '/assets/photos/travel5.jpg' | relative_url }}" alt="风景5" data-desc="雪后的小镇">
-        <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景6" data-desc="山谷的晨光">
-      </div>
+  <!-- 爱好 -->
+  <div id="hobby" class="media-section active">
+    <div class="media-item">
+      <img src="{{ '/assets/media/hobby1.jpg' | relative_url }}" alt="绘画">
+      <div class="media-desc">周末随笔绘画练习</div>
     </div>
-
-    <!-- 人物 -->
-    <div id="people" class="tab-pane">
-      <div class="photo-grid">
-        <img src="{{ '/assets/photos/person1.jpg' | relative_url }}" alt="人物1" data-desc="街角的笑容">
-        <img src="{{ '/assets/photos/person2.jpg' | relative_url }}" alt="人物2" data-desc="咖啡馆一隅">
-        <img src="{{ '/assets/photos/person3.jpg' | relative_url }}" alt="人物3" data-desc="窗边的光影">
-        <img src="{{ '/assets/photos/person4.jpg' | relative_url }}" alt="人物4" data-desc="旅行中的朋友">
-        <img src="{{ '/assets/photos/person5.jpg' | relative_url }}" alt="人物5" data-desc="街头表演者">
-        <img src="{{ '/assets/photos/person6.jpg' | relative_url }}" alt="人物6" data-desc="回眸一笑">
-        <img src="{{ '/assets/photos/person7.jpg' | relative_url }}" alt="人物7" data-desc="午后的小憩">
-        <img src="{{ '/assets/photos/person8.jpg' | relative_url }}" alt="人物8" data-desc="远方的目光">
-        <img src="{{ '/assets/photos/person9.jpg' | relative_url }}" alt="人物9" data-desc="雨中的伞影">
-      </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/hobby2.jpg' | relative_url }}" alt="手工">
+      <div class="media-desc">闲暇手工与陶艺</div>
     </div>
-
-    <!-- 生活 -->
-    <div id="life" class="tab-pane">
-      <div class="photo-grid">
-        <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="生活1" data-desc="清晨的早餐">
-        <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活2" data-desc="街头的日常">
-        <img src="{{ '/assets/photos/live3.jpg' | relative_url }}" alt="生活3" data-desc="阳台上的花">
-        <img src="{{ '/assets/photos/live4.jpg' | relative_url }}" alt="生活4" data-desc="傍晚的影子">
-      </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/hobby3.jpg' | relative_url }}" alt="烹饪">
+      <div class="media-desc">新尝试的甜点配方</div>
     </div>
+  </div>
 
-    <!-- 猫 -->
-    <div id="cat" class="tab-pane">
-      <div class="photo-grid">
-        <img src="{{ '/assets/photos/cat1.jpg' | relative_url }}" alt="猫1" data-desc="慵懒的午后">
-        <img src="{{ '/assets/photos/cat2.jpg' | relative_url }}" alt="猫2" data-desc="专注的眼神">
-        <img src="{{ '/assets/photos/cat3.jpg' | relative_url }}" alt="猫3" data-desc="趴在窗台上">
-        <img src="{{ '/assets/photos/cat4.jpg' | relative_url }}" alt="猫4" data-desc="打哈欠的瞬间">
-        <img src="{{ '/assets/photos/cat5.jpg' | relative_url }}" alt="猫5" data-desc="藏在被窝里">
-        <img src="{{ '/assets/photos/cat6.jpg' | relative_url }}" alt="猫6" data-desc="等待晚餐的样子">
-      </div>
+  <!-- 书 -->
+  <div id="books" class="media-section">
+    <div class="media-item">
+      <img src="{{ '/assets/media/book1.jpg' | relative_url }}" alt="阅读">
+      <div class="media-desc">最近读完的小说</div>
     </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/book2.jpg' | relative_url }}" alt="书架">
+      <div class="media-desc">书架一角</div>
+    </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/book3.jpg' | relative_url }}" alt="笔记">
+      <div class="media-desc">读书笔记片段</div>
+    </div>
+  </div>
 
-    <!-- 随手拍 -->
-    <div id="random" class="tab-pane">
-      <div class="photo-grid">
-        <img src="{{ '/assets/photos/suishou1.jpg' | relative_url }}" alt="随手拍1" data-desc="路边的光影">
-        <img src="{{ '/assets/photos/suishou2.jpg' | relative_url }}" alt="随手拍2" data-desc="旧墙上的涂鸦">
-        <img src="{{ '/assets/photos/suishou3.jpg' | relative_url }}" alt="随手拍3" data-desc="雨后的街道">
-        <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="随手拍4" data-desc="书页之间的光">
-        <img src="{{ '/assets/photos/suishou5.jpg' | relative_url }}" alt="随手拍5" data-desc="橱窗里的世界">
-        <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6" data-desc="角落里的植物">
-        <img src="{{ '/assets/photos/suishou7.jpg' | relative_url }}" alt="随手拍7" data-desc="晨光透过窗帘">
-        <img src="{{ '/assets/photos/suishou8.jpg' | relative_url }}" alt="随手拍8" data-desc="夜色下的灯">
-      </div>
+  <!-- 电影 -->
+  <div id="movies" class="media-section">
+    <div class="media-item">
+      <img src="{{ '/assets/media/movie1.jpg' | relative_url }}" alt="观影">
+      <div class="media-desc">影院周末场</div>
+    </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/movie2.jpg' | relative_url }}" alt="收藏">
+      <div class="media-desc">最爱的影碟收藏</div>
+    </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/movie3.jpg' | relative_url }}" alt="经典">
+      <div class="media-desc">重温黑白经典</div>
+    </div>
+  </div>
+
+  <!-- 音乐 -->
+  <div id="music" class="media-section">
+    <div class="media-item">
+      <img src="{{ '/assets/media/music1.jpg' | relative_url }}" alt="黑胶">
+      <div class="media-desc">黑胶唱片收藏</div>
+    </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/music2.jpg' | relative_url }}" alt="演出">
+      <div class="media-desc">现场音乐节瞬间</div>
+    </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/music3.jpg' | relative_url }}" alt="乐器">
+      <div class="media-desc">练琴的日常</div>
+    </div>
+  </div>
+
+  <!-- 旅行 -->
+  <div id="travel" class="media-section">
+    <div class="media-item">
+      <img src="{{ '/assets/media/travel1.jpg' | relative_url }}" alt="城市">
+      <div class="media-desc">东京街角的咖啡馆</div>
+    </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/travel2.jpg' | relative_url }}" alt="海边">
+      <div class="media-desc">海边清晨散步</div>
+    </div>
+    <div class="media-item">
+      <img src="{{ '/assets/media/travel3.jpg' | relative_url }}" alt="山景">
+      <div class="media-desc">山中秋色之旅</div>
     </div>
   </div>
 </div>
 
-<style>
-.photo-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.photo-nav {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-  overflow-x: auto;
-  white-space: nowrap;
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 8px;
-}
-
-.nav-btn {
-  padding: 0.6rem 1.2rem;
-  margin: 0 0.25rem;
-  background: white;
-  border: 1px solid #e0e0e0;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: #666;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  position: relative;
-  z-index: 1;
-}
-
-.nav-btn:hover {
-  color: #111;
-  background-color: #f3f3f3;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-}
-
-.nav-btn.active {
-  color: #000;
-  font-weight: 600;
-}
-
-.nav-highlight {
-  position: absolute;
-  bottom: 5px;
-  height: 3px;
-  background: linear-gradient(90deg, #000, #444);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  z-index: 0;
-}
-
-.tab-content {
-  margin: 2rem 0;
-}
-
-.tab-pane {
-  display: none;
-  animation: fadeIn 0.3s ease;
-}
-
-.tab-pane.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 12px;
-}
-
-.photo-grid img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.photo-grid img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* 放大查看样式 */
-.photo-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.85);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  cursor: zoom-out;
-}
-
-.photo-overlay img.photo-large {
-  max-width: 90%;
-  max-height: 80%;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(255,255,255,0.2);
-  object-fit: contain;
-}
-
-.photo-desc {
-  color: #fff;
-  font-size: 1rem;
-  margin-top: 12px;
-  text-align: center;
-  background: rgba(0,0,0,0.4);
-  padding: 6px 16px;
-  border-radius: 8px;
-  backdrop-filter: blur(4px);
-}
-
-/* 响应式 */
-@media (max-width: 768px) {
-  .photo-nav { justify-content: flex-start; padding: 6px; }
-  .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
-  .photo-grid img { height: 140px; }
-}
-</style>
+<!-- 图片放大模态框 -->
+<div id="imgModal" class="modal">
+  <img id="modalImg" src="" alt="">
+</div>
 
 <script>
-function initPhotoTabs() {
-  const container = document.querySelector(".photo-container");
-  if (!container) return;
+const navButtons = document.querySelectorAll('.nav-btn');
+const sections = document.querySelectorAll('.media-section');
 
-  const nav = container.querySelector(".photo-nav");
-  const tabPanes = container.querySelectorAll(".tab-pane");
-  const highlight = nav.querySelector(".nav-highlight");
-
-  if (!nav || !tabPanes.length || !highlight) return;
-
-  nav.addEventListener("click", function(e) {
-    const button = e.target.closest(".nav-btn");
-    if (!button) return;
-    const targetTab = button.dataset.tab;
-
-    nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-    button.classList.add("active");
-
-    tabPanes.forEach(p => p.classList.remove("active"));
-    const targetPane = container.querySelector("#" + targetTab);
-    if (targetPane) targetPane.classList.add("active");
-
-    const rect = button.getBoundingClientRect();
-    const containerRect = nav.getBoundingClientRect();
-    highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - containerRect.left) + "px";
+navButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    navButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(btn.dataset.tab).classList.add('active');
   });
+});
 
-  const activeButton = nav.querySelector(".nav-btn.active") || nav.querySelector(".nav-btn");
-  if (activeButton) {
-    const rect = activeButton.getBoundingClientRect();
-    const containerRect = nav.getBoundingClientRect();
-    highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - containerRect.left) + "px";
-  }
+const modal = document.getElementById("imgModal");
+const modalImg = document.getElementById("modalImg");
 
-  // ✅ 图片放大查看 + 显示描述
-  document.querySelectorAll(".photo-grid img").forEach(img => {
-    img.addEventListener("click", () => {
-      const overlay = document.createElement("div");
-      overlay.className = "photo-overlay";
+document.querySelectorAll('.media-item img').forEach(img => {
+  img.onclick = () => {
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+  };
+});
 
-      const largeImg = document.createElement("img");
-      largeImg.src = img.src;
-      largeImg.alt = img.alt;
-      largeImg.className = "photo-large";
-
-      const desc = document.createElement("div");
-      desc.className = "photo-desc";
-      desc.textContent = img.dataset.desc || "";
-
-      overlay.appendChild(largeImg);
-      if (desc.textContent) overlay.appendChild(desc);
-      document.body.appendChild(overlay);
-
-      overlay.addEventListener("click", () => overlay.remove());
-    });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", initPhotoTabs);
+modal.onclick = () => modal.style.display = "none";
 </script>
