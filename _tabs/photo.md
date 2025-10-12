@@ -51,6 +51,8 @@ order: 5
         <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活2" data-desc="咖啡与书">
         <img src="{{ '/assets/photos/live3.jpg' | relative_url }}" alt="生活3" data-desc="厨房美食">
         <img src="{{ '/assets/photos/live4.jpg' | relative_url }}" alt="生活4" data-desc="阳台花草">
+        <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="生活5" data-desc="窗边风景">
+        <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活6" data-desc="夜晚灯光">
       </div>
     </div>
 
@@ -75,8 +77,6 @@ order: 5
         <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="随手拍4" data-desc="日落余晖">
         <img src="{{ '/assets/photos/suishou5.jpg' | relative_url }}" alt="随手拍5" data-desc="街边小店">
         <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6" data-desc="夜晚灯光">
-        <img src="{{ '/assets/photos/suishou7.jpg' | relative_url }}" alt="随手拍7" data-desc="公园长椅">
-        <img src="{{ '/assets/photos/suishou8.jpg' | relative_url }}" alt="随手拍8" data-desc="窗外雨景">
       </div>
     </div>
   </div>
@@ -100,77 +100,50 @@ order: 5
 </style>
 
 <script>
-document.addEventListener("turbo:load", initPhotoTabs);
-
 function initPhotoTabs() {
-  const navButtons = document.querySelectorAll(".nav-btn");
-  const tabPanes = document.querySelectorAll(".tab-pane");
-  const highlight = document.querySelector(".nav-highlight");
-  if (!navButtons.length || !tabPanes.length || !highlight) return;
+  const container = document.querySelector(".photo-container");
+  if (!container) return;
 
-  const moveHighlight = (btn) => {
-    const rect = btn.getBoundingClientRect();
-    const containerRect = btn.parentElement.getBoundingClientRect();
+  const nav = container.querySelector(".photo-nav");
+  const tabPanes = container.querySelectorAll(".tab-pane");
+  const highlight = nav.querySelector(".nav-highlight");
+
+  if (!nav || !tabPanes.length || !highlight) return;
+
+  nav.addEventListener("click", function(e) {
+    const button = e.target.closest(".nav-btn");
+    if (!button) return;
+    const targetTab = button.dataset.tab;
+
+    nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+
+    tabPanes.forEach(p => p.classList.remove("active"));
+    const targetPane = container.querySelector("#" + targetTab);
+    if (targetPane) targetPane.classList.add("active");
+
+    const rect = button.getBoundingClientRect();
+    const containerRect = nav.getBoundingClientRect();
     highlight.style.width = rect.width + "px";
-    highlight.style.left = rect.left - containerRect.left + "px";
-  };
+    highlight.style.left = (rect.left - containerRect.left) + "px";
 
-  navButtons.forEach(button => {
-    button.onclick = (e) => {
-      e.preventDefault();
-      const targetTab = button.dataset.tab;
-      navButtons.forEach(b => b.classList.remove("active"));
-      button.classList.add("active");
-      tabPanes.forEach(p => p.classList.remove("active"));
-      const targetPane = document.getElementById(targetTab);
-      if (targetPane) targetPane.classList.add("active");
-      moveHighlight(button);
-      bindPhotoZoom(targetPane);
-    };
+    bindPhotoZoom(targetPane);
   });
 
-  const activeButton = document.querySelector(".nav-btn.active") || navButtons[0];
-  if (activeButton) moveHighlight(activeButton);
+  const activeButton = nav.querySelector(".nav-btn.active") || nav.querySelector(".nav-btn");
+  if (activeButton) {
+    const rect = activeButton.getBoundingClientRect();
+    const containerRect = nav.getBoundingClientRect();
+    highlight.style.width = rect.width + "px";
+    highlight.style.left = (rect.left - containerRect.left) + "px";
+  }
+
   tabPanes.forEach(p => bindPhotoZoom(p));
 
-  function bindPhotoZoom(container){
-    if(!container) return;
-    container.querySelectorAll('img').forEach(img => {
+  function bindPhotoZoom(container) {
+    if (!container) return;
+    container.querySelectorAll("img").forEach(img => {
       img.onclick = () => {
-        const overlay=document.createElement('div');
-        overlay.style.position='fixed';
-        overlay.style.top=0;
-        overlay.style.left=0;
-        overlay.style.width='100%';
-        overlay.style.height='100%';
-        overlay.style.background='rgba(0,0,0,0.8)';
-        overlay.style.display='flex';
-        overlay.style.flexDirection='column';
-        overlay.style.alignItems='center';
-        overlay.style.justifyContent='center';
-        overlay.style.cursor='zoom-out';
-        overlay.style.zIndex=9999;
-
-        const imgLarge=document.createElement('img');
-        imgLarge.src=img.src;
-        imgLarge.style.maxWidth='90%';
-        imgLarge.style.maxHeight='80%';
-        imgLarge.style.borderRadius='12px';
-
-        const desc=document.createElement('div');
-        desc.textContent=img.dataset.desc || '';
-        desc.style.color='#fff';
-        desc.style.marginTop='12px';
-        desc.style.fontSize='1rem';
-        desc.style.textAlign='center';
-
-        overlay.appendChild(imgLarge);
-        overlay.appendChild(desc);
-
-        overlay.onclick=()=>overlay.remove();
-        document.body.appendChild(overlay);
-      };
-    });
-  }
-}
-</script>
+        const overlay = document.createElement("div");
+        overlay.style.position = "fixed";
+        overlay.style.top =
