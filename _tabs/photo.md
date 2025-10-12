@@ -1,316 +1,145 @@
 ---
 layout: page
 title: "留影"
-permalink: /photos/
+permalink: /photo/
 icon: fas fa-camera
-order: 6
+order: 5
 ---
 
-<div class="photos-container">
-  <div class="photos-nav">
-    <div class="nav-highlight"></div>
-    {% assign years = "2025,2024,2023,2022,2021,2020,2019,2018,2017,2016,2015" | split: "," %}
-    {% for year in years %}
-      <button class="nav-btn {% if year == '2025' %}active{% endif %}" data-tab="year-{{ year }}">{{ year }}</button>
-    {% endfor %}
+<div class="photo-container">
+
+  <!-- 📌 悬浮标题 -->
+  <div class="photo-header">
+    <h1>📷 留影集</h1>
+    <p>Captured Moments</p>
   </div>
 
-  <div class="tab-content">
-    <!-- 2025年照片 -->
-    <div id="year-2025" class="tab-pane active">
-      <div class="photo-grid">
-        {% for i in (1..12) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2025/photo{{ i }}.jpg" alt="2025年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2024年照片 -->
-    <div id="year-2024" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..15) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2024/photo{{ i }}.jpg" alt="2024年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2023年照片 -->
-    <div id="year-2023" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..18) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2023/photo{{ i }}.jpg" alt="2023年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2022年照片 -->
-    <div id="year-2022" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..14) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2022/photo{{ i }}.jpg" alt="2022年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2021年照片 -->
-    <div id="year-2021" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..16) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2021/photo{{ i }}.jpg" alt="2021年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2020年照片 -->
-    <div id="year-2020" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..12) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2020/photo{{ i }}.jpg" alt="2020年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2019年照片 -->
-    <div id="year-2019" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..20) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2019/photo{{ i }}.jpg" alt="2019年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2018年照片 -->
-    <div id="year-2018" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..15) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2018/photo{{ i }}.jpg" alt="2018年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2017年照片 -->
-    <div id="year-2017" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..18) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2017/photo{{ i }}.jpg" alt="2017年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2016年照片 -->
-    <div id="year-2016" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..10) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2016/photo{{ i }}.jpg" alt="2016年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-    
-    <!-- 2015年照片 -->
-    <div id="year-2015" class="tab-pane">
-      <div class="photo-grid">
-        {% for i in (1..8) %}
-        <div class="photo-item">
-          <img src="/assets/img/photos/2015/photo{{ i }}.jpg" alt="2015年照片{{ i }}" loading="lazy">
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+  <!-- 顶部类型导航 -->
+  <div class="photo-nav">
+    <button class="nav-btn active" data-tab="travel">旅游</button>
+    <button class="nav-btn" data-tab="life">生活</button>
+    <button class="nav-btn" data-tab="cat">猫</button>
+    <button class="nav-btn" data-tab="random">随拍</button>
+  </div>
+
+  <!-- 🗺️ 旅游 -->
+  <div id="travel" class="photo-grid">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 1">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 2">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 3">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 4">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 5">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Travel 6">
+  </div>
+
+  <!-- 🏙️ 生活 -->
+  <div id="life" class="photo-grid" style="display:none;">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 1">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 2">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 3">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 4">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 5">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Life 6">
+  </div>
+
+  <!-- 🐱 猫 -->
+  <div id="cat" class="photo-grid" style="display:none;">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 1">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 2">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 3">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 4">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 5">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Cat 6">
+  </div>
+
+  <!-- 📸 随拍 -->
+  <div id="random" class="photo-grid" style="display:none;">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 1">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 2">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 3">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 4">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 5">
+    <img src="{{ '/assets/img/luwei20251007.jpg' | relative_url }}" alt="Random 6">
   </div>
 </div>
 
+<!-- 点击放大 -->
+<div id="lightbox" class="lightbox">
+  <span class="close-lightbox">&times;</span>
+  <img class="lightbox-content" id="lightbox-img">
+</div>
+
 <style>
-.photos-container {
-  max-width: 1000px;
+/* 🌑 黑色背景与白色文字 */
+body, .page-content {
+  background-color: #000;
+  color: #fff;
+}
+.photo-container {
+  padding: 20px;
+  max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
-
-.photos-nav {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-  overflow-x: auto;
-  white-space: nowrap;
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 8px;
+.photo-header {
+  position: sticky;
+  top: 0;
+  background-color: #000;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 999;
+  animation: fadeIn 1s ease;
 }
-
-.nav-btn {
-  padding: 0.6rem 1.2rem;
-  margin: 0 0.25rem;
-  background: white;
-  border: 1px solid #e0e0e0;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: #666;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  position: relative;
-  z-index: 1;
+.photo-header h1 { font-size: 1.8rem; font-weight: 600; margin-bottom:5px; }
+.photo-header p { font-size:1rem; color:#aaa; margin:0; }
+.photo-nav {
+  display:flex; justify-content:center; gap:16px; margin-bottom:30px; flex-wrap:wrap;
 }
-
-.nav-btn:hover {
-  color: #111;
-  background-color: #f3f3f3;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+.photo-nav button {
+  background:none; border:2px solid #fff; color:#fff;
+  padding:8px 18px; border-radius:25px; font-size:1rem; cursor:pointer; transition:all 0.3s;
 }
-
-.nav-btn.active {
-  color: #000;
-  font-weight: 600;
-  background-color: #e0e0e0;
-}
-
-.nav-highlight {
-  position: absolute;
-  bottom: 5px;
-  height: 3px;
-  background: linear-gradient(90deg, #000, #444);
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  z-index: 0;
-}
-
-.tab-content {
-  margin: 2rem 0;
-  min-height: 400px;
-}
-
-.tab-pane {
-  display: none;
-  animation: fadeIn 0.3s ease;
-}
-
-.tab-pane.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
+.photo-nav button.active,
+.photo-nav button:hover { background-color:#fff; color:#000; }
 .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 15px;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(30%,1fr)); gap:15px;
 }
-
-.photo-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.photo-grid img {
+  width:100%; height:auto; border-radius:12px; cursor:pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  aspect-ratio: 1 / 1;
+  border:1px solid rgba(255,255,255,0.15);
+  box-shadow:0 4px 12px rgba(255,255,255,0.05);
 }
-
-.photo-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-
-.photo-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.5s ease;
-}
-
-.photo-item:hover img {
-  transform: scale(1.05);
-}
-
-/* 响应式 */
-@media (max-width: 768px) {
-  .photos-nav { 
-    justify-content: flex-start; 
-    padding: 6px; 
-  }
-  
-  .nav-btn { 
-    font-size: 0.8rem; 
-    padding: 0.4rem 0.8rem; 
-  }
-  
-  .photos-container { 
-    padding: 0 10px; 
-  }
-  
-  .photo-grid { 
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .photo-grid { 
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+.photo-grid img:hover { transform:scale(1.05); box-shadow:0 6px 18px rgba(255,255,255,0.15);}
+.lightbox { display:none; position:fixed; z-index:1000; padding-top:60px; left:0; top:0;
+  width:100%; height:100%; overflow:auto; background-color:rgba(0,0,0,0.95);}
+.lightbox-content { margin:auto; display:block; max-width:90%; max-height:90%; }
+.close-lightbox { position:absolute; top:20px; right:35px; color:#fff; font-size:35px; font-weight:bold; cursor:pointer; }
+@media(max-width:768px){ .photo-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:480px){ .photo-grid{ grid-template-columns:1fr; } }
+@keyframes fadeIn{ from{opacity:0; transform:translateY(-10px);} to{opacity:1; transform:translateY(0);} }
 </style>
 
 <script>
-document.addEventListener("pjax:complete", initPhotoTabs);
-document.addEventListener("DOMContentLoaded", initPhotoTabs);
-
-function initPhotoTabs() {
-  const navButtons = document.querySelectorAll(".photos-nav .nav-btn");
-  const tabPanes = document.querySelectorAll(".tab-pane");
-  const highlight = document.querySelector(".nav-highlight");
-  if (!navButtons.length || !tabPanes.length || !highlight) return;
-
-  const moveHighlight = (btn) => {
-    const rect = btn.getBoundingClientRect();
-    const containerRect = btn.parentElement.getBoundingClientRect();
-    highlight.style.width = rect.width + "px";
-    highlight.style.left = rect.left - containerRect.left + "px";
-  };
-
-  navButtons.forEach(button => {
-    button.addEventListener("click", e => {
-      e.preventDefault();
-      const targetTab = button.getAttribute("data-tab");
-
-      navButtons.forEach(b => b.classList.remove("active"));
-      button.classList.add("active");
-
-      tabPanes.forEach(p => p.classList.remove("active"));
-      const targetPane = document.getElementById(targetTab);
-      if (targetPane) targetPane.classList.add("active");
-
-      moveHighlight(button);
-    });
+// 切换导航
+const navBtns = document.querySelectorAll('.nav-btn');
+const grids = document.querySelectorAll('.photo-grid');
+navBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    navBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    grids.forEach(g => g.style.display = g.id === tab ? 'grid' : 'none');
   });
+});
 
-  const activeButton = document.querySelector(".nav-btn.active") || navButtons[0];
-  if (activeButton) moveHighlight(activeButton);
-}
+// 图片放大
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const close = document.querySelector(".close-lightbox");
+document.querySelectorAll(".photo-grid img").forEach(img=>{
+  img.onclick=function(){ lightbox.style.display="block"; lightboxImg.src=this.src; }
+});
+close.onclick=()=>lightbox.style.display="none";
+lightbox.onclick=e=>{ if(e.target===lightbox) lightbox.style.display="none"; };
 </script>
-
-最后更新：{{ site.time | date: "%Y年%m月%d日" }}
