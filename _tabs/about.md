@@ -6,7 +6,7 @@ icon: fas fa-info-circle
 order: 7
 ---
 
-<div class="about-container">
+<div id="about-page" class="about-container">
   <!-- 头像与简介 -->
   <div class="about-header">
     <img src="{{ '/assets/img/avatar.jpg' | relative_url }}" alt="王维头像" class="avatar">
@@ -26,34 +26,32 @@ order: 7
 
   <!-- 内容区 -->
   <div class="tab-content">
-    <div class="tab-pane active" data-tab="job">
-      <div class="card">
-        <h3>北京同仁堂健康药业（青海）有限公司</h3>
-        <p><strong>职位：</strong> 包装解决方案专员</p>
-        <p><strong>主要职责：</strong> 为食品及健康产品企业提供全方位包装解决方案，熟悉包装材料、工艺与成本控制。</p>
+    <div id="job" class="tab-pane active" data-tab="job">
+      <div class="card-grid">
+        <div class="card">
+          <h3>北京同仁堂健康药业（青海）有限公司</h3>
+          <p><strong>职位：</strong> 包装解决方案专员</p>
+          <p><strong>主要职责：</strong> 为食品及健康产品企业提供全方位包装解决方案，熟悉包装材料、工艺与成本控制。</p>
+        </div>
       </div>
     </div>
 
-    <div class="tab-pane" data-tab="skills">
-      <div class="card">
-        <ul>
-          <li>平面设计：精通 Photoshop 与 Illustrator</li>
-          <li>电商与营销：多年运营经验，熟悉平台策略</li>
-          <li>电视购物策划：丰富节目策划与执行经验</li>
-        </ul>
+    <div id="skills" class="tab-pane" data-tab="skills">
+      <div class="card-grid">
+        <div class="card"><h3>平面设计</h3><p>精通 Photoshop 与 Illustrator</p></div>
+        <div class="card"><h3>电商与营销</h3><p>多年运营经验，熟悉平台策略</p></div>
+        <div class="card"><h3>电视购物策划</h3><p>丰富节目策划与执行经验</p></div>
       </div>
     </div>
 
-    <div class="tab-pane" data-tab="hobby">
-      <div class="card">
-        <ul>
-          <li>阅读与写作</li>
-          <li>旅行与摄影</li>
-          <li>书法与艺术鉴赏</li>
-          <li>音乐欣赏</li>
-          <li>烹饪与美食探索</li>
-          <li>新技术学习</li>
-        </ul>
+    <div id="hobby" class="tab-pane" data-tab="hobby">
+      <div class="card-grid">
+        <div class="card">阅读与写作</div>
+        <div class="card">旅行与摄影</div>
+        <div class="card">书法与艺术鉴赏</div>
+        <div class="card">音乐欣赏</div>
+        <div class="card">烹饪与美食探索</div>
+        <div class="card">新技术学习</div>
       </div>
     </div>
   </div>
@@ -64,19 +62,17 @@ order: 7
 </div>
 
 <style>
-.about-container { max-width: 960px; margin: 0 auto; }
+.about-container { max-width: 960px; margin:0 auto; }
+
 .about-header {
-  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap:20px; margin-bottom:32px;
+  display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:20px; margin-bottom:32px;
 }
 .about-header .avatar {
-  width: 120px; height: 120px; border-radius:50%; object-fit:cover;
+  width:120px; height:120px; border-radius:50%; object-fit:cover;
   box-shadow:0 2px 10px rgba(0,0,0,0.12);
   transition: transform .28s ease, box-shadow .28s ease;
 }
-.about-header .avatar:hover {
-  transform: translateY(-6px) scale(1.04);
-  box-shadow:0 8px 26px rgba(0,0,0,0.18);
-}
+.about-header .avatar:hover { transform: translateY(-6px) scale(1.04); box-shadow:0 8px 26px rgba(0,0,0,0.18); }
 .about-header .intro { text-align:center; }
 .about-header .intro h1 { margin:0 0 6px; font-size:2rem; font-weight:700; }
 .about-header .intro p { margin:0; color:#4b5563; line-height:1.6; }
@@ -99,29 +95,38 @@ order: 7
 .tab-content .tab-pane.active { display:block; }
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 
-.card { background:#fff; padding:20px; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.08); border:1px solid rgba(15,23,42,0.05); margin-bottom:18px; }
-.card h3 { margin:0 0 10px; font-size:1.1rem; display:flex; align-items:center; gap:8px; }
-.card ul { margin:0; padding-left:20px; list-style:none; }
-.card ul li::before { content:"•"; color:#4f46e5; display:inline-block; width:1em; margin-left:-1em; }
+.card-grid {
+  display:grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap:16px; margin-bottom:16px;
+}
+.card {
+  background:#fff; padding:16px; border-radius:12px; box-shadow:0 2px 12px rgba(0,0,0,0.08);
+  border:1px solid rgba(15,23,42,0.05); transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,0.12); }
+.card h3 { margin:0 0 8px; font-size:1rem; }
 
-@media (max-width:760px) {
+@media(max-width:760px){
   .about-header { flex-direction:column; text-align:center; }
 }
 </style>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  const container = document.querySelector(".about-container");
+function initAboutTabs(){
+  const container = document.getElementById("about-page");
+  if(!container) return;
+
   const nav = container.querySelector(".about-nav");
   const highlight = nav.querySelector(".nav-highlight");
   const buttons = nav.querySelectorAll(".nav-btn");
   const panes = container.querySelectorAll(".tab-pane");
 
-  function activate(btn) {
+  function activate(btn){
     const target = btn.dataset.tab;
     buttons.forEach(b=>b.classList.remove("active"));
     btn.classList.add("active");
-    panes.forEach(p=>p.classList.toggle("active", p.dataset.tab === target));
+    panes.forEach(p=>{
+      p.classList.toggle("active", p.id===target);
+    });
 
     const rect = btn.getBoundingClientRect();
     const navRect = nav.getBoundingClientRect();
@@ -134,5 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // 初始化高亮条
   const activeBtn = nav.querySelector(".nav-btn.active") || buttons[0];
   if(activeBtn) activate(activeBtn);
-});
+}
+
+document.addEventListener("DOMContentLoaded", initAboutTabs);
 </script>
