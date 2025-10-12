@@ -102,48 +102,46 @@ order: 5
 document.addEventListener("DOMContentLoaded", function() {
   const nav = document.querySelector(".photo-nav");
   const highlight = nav.querySelector(".nav-highlight");
-  const navButtons = nav.querySelectorAll(".nav-btn");
   const tabPanes = document.querySelectorAll(".tab-pane");
 
-  function setHighlight(button) {
+  function updateTabs(button) {
+    const targetTab = button.dataset.tab;
+    // 切换按钮 active
+    nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+    // 切换 tab-pane
+    tabPanes.forEach(p => p.classList.toggle("active", p.id === targetTab));
+    // 更新高亮条
     const rect = button.getBoundingClientRect();
     const navRect = nav.getBoundingClientRect();
     highlight.style.width = rect.width + "px";
     highlight.style.left = (rect.left - navRect.left + nav.scrollLeft) + "px";
   }
 
-  navButtons.forEach(button => {
-    button.addEventListener("click", function() {
-      const targetTab = this.dataset.tab;
-      navButtons.forEach(b => b.classList.remove("active"));
-      this.classList.add("active");
-      tabPanes.forEach(p => p.classList.toggle("active", p.id === targetTab));
-      setHighlight(this);
-    });
+  // 给按钮绑定事件
+  nav.querySelectorAll(".nav-btn").forEach(btn => {
+    btn.addEventListener("click", () => updateTabs(btn));
   });
 
-  const activeBtn = nav.querySelector(".nav-btn.active") || navButtons[0];
-  if (activeBtn) setHighlight(activeBtn);
+  // 初始化高亮条
+  const activeBtn = nav.querySelector(".nav-btn.active") || nav.querySelector(".nav-btn");
+  if (activeBtn) updateTabs(activeBtn);
 
-  // 图片放大查看
+  // 图片放大
   document.querySelectorAll(".photo-item img").forEach(img => {
     img.addEventListener("click", () => {
       const overlay = document.createElement("div");
       overlay.className = "photo-overlay";
-
       const largeImg = document.createElement("img");
       largeImg.src = img.src;
       largeImg.alt = img.alt;
       largeImg.className = "photo-large";
-
       const desc = document.createElement("div");
       desc.className = "photo-desc";
       desc.textContent = img.dataset.desc || "";
-
       overlay.appendChild(largeImg);
       if (desc.textContent) overlay.appendChild(desc);
       document.body.appendChild(overlay);
-
       overlay.addEventListener("click", () => overlay.remove());
     });
   });
