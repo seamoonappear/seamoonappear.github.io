@@ -7,7 +7,6 @@ order: 5
 ---
 
 <div class="photo-container">
-  <!-- 导航标签 -->
   <div class="photo-nav">
     <div class="nav-highlight"></div>
     {% assign first = true %}
@@ -21,7 +20,6 @@ order: 5
     {% endfor %}
   </div>
 
-  <!-- 图片内容 -->
   <div class="tab-content">
     {% assign first = true %}
     {% for tab in site.data.photo %}
@@ -43,94 +41,48 @@ order: 5
 </div>
 
 <style>
-.photo-container { max-width: 900px; margin: 0 auto; }
-.photo-nav { position: relative; display: flex; justify-content: center; margin: 2rem 0; overflow-x: auto; white-space: nowrap; background: #f8f9fa; border-radius: 8px; padding: 8px; }
-.nav-btn { padding: 0.6rem 1.2rem; margin: 0 0.25rem; background: white; border: 1px solid #e0e0e0; cursor: pointer; font-size: 0.85rem; color: #666; border-radius: 6px; transition: all 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: relative; z-index: 1; }
-.nav-btn:hover { color: #111; background-color: #f3f3f3; transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
-.nav-btn.active { color: #000; font-weight: 600; }
-.nav-highlight { position: absolute; bottom: 5px; height: 3px; background: linear-gradient(90deg, #000, #444); border-radius: 2px; transition: all 0.3s ease; z-index: 0; }
-
-.tab-content { margin: 2rem 0; }
-.tab-pane { display: none; animation: fadeIn 0.3s ease; }
+.tab-pane { display: none; }
 .tab-pane.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
+.photo-nav { display: flex; justify-content: center; overflow-x: auto; white-space: nowrap; position: relative; padding: 8px; background: #f8f9fa; border-radius: 8px; }
+.nav-btn { margin: 0 4px; padding: 6px 12px; cursor: pointer; border-radius: 6px; border: 1px solid #ccc; background: #fff; transition: all 0.3s ease; }
+.nav-btn.active { font-weight: bold; }
+.nav-highlight { position: absolute; bottom: 4px; height: 3px; background: #000; border-radius: 2px; transition: all 0.3s ease; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }
-.photo-item { display: flex; flex-direction: column; }
-.photo-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.photo-item img:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
-.photo-caption { font-size: 0.8rem; color: #555; text-align: center; margin-top: 6px; }
-
-.photo-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; cursor: zoom-out; }
-.photo-overlay img.photo-large { max-width: 90%; max-height: 80%; border-radius: 12px; box-shadow: 0 4px 20px rgba(255,255,255,0.2); object-fit: contain; }
-.photo-desc { color: #fff; font-size: 1rem; margin-top: 12px; text-align: center; background: rgba(0,0,0,0.4); padding: 6px 16px; border-radius: 8px; backdrop-filter: blur(4px); }
-
-@media (max-width: 768px) { 
-  .photo-nav { justify-content: flex-start; padding: 6px; } 
-  .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; } 
-  .photo-item img { height: 140px; } 
-}
+.photo-item img { width: 100%; border-radius: 12px; cursor: pointer; transition: transform 0.3s; }
+.photo-item img:hover { transform: scale(1.05); }
+.photo-caption { text-align: center; font-size: 0.8rem; margin-top: 6px; }
 </style>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const container = document.querySelector(".photo-container");
-  if (!container) return;
+  const navButtons = document.querySelectorAll(".nav-btn");
+  const panes = document.querySelectorAll(".tab-pane");
+  const highlight = document.querySelector(".nav-highlight");
 
-  const nav = container.querySelector(".photo-nav");
-  const tabPanes = container.querySelectorAll(".tab-pane");
-  const highlight = nav.querySelector(".nav-highlight");
-
-  function setHighlight(button) {
+  function updateHighlight(button) {
     const rect = button.getBoundingClientRect();
-    const containerRect = nav.getBoundingClientRect();
+    const navRect = button.parentElement.getBoundingClientRect();
     highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - containerRect.left + nav.scrollLeft) + "px";
+    highlight.style.left = (rect.left - navRect.left + button.parentElement.scrollLeft) + "px";
   }
 
-  // 标签切换
-  nav.querySelectorAll(".nav-btn").forEach(button => {
-    button.addEventListener("click", () => {
-      // 高亮按钮
-      nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-      button.classList.add("active");
+  navButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // 切换激活按钮
+      navButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
 
-      // 显示对应 tab-pane
-      const targetTab = button.dataset.tab;
-      tabPanes.forEach(pane => {
-        pane.classList.toggle("active", pane.id === targetTab);
-      });
+      // 切换显示面板
+      const target = btn.dataset.tab;
+      panes.forEach(p => p.classList.toggle("active", p.id === target));
 
-      // 调整底部高亮条
-      setHighlight(button);
+      // 更新高亮条
+      updateHighlight(btn);
     });
   });
 
   // 初始化高亮条
-  const activeButton = nav.querySelector(".nav-btn.active") || nav.querySelector(".nav-btn");
-  if (activeButton) setHighlight(activeButton);
-
-  // 图片放大查看
-  container.querySelectorAll(".photo-item img").forEach(img => {
-    img.addEventListener("click", () => {
-      const overlay = document.createElement("div");
-      overlay.className = "photo-overlay";
-
-      const largeImg = document.createElement("img");
-      largeImg.src = img.src;
-      largeImg.alt = img.alt;
-      largeImg.className = "photo-large";
-
-      const desc = document.createElement("div");
-      desc.className = "photo-desc";
-      desc.textContent = img.dataset.desc || "";
-
-      overlay.appendChild(largeImg);
-      if (desc.textContent) overlay.appendChild(desc);
-      document.body.appendChild(overlay);
-
-      overlay.addEventListener("click", () => overlay.remove());
-    });
-  });
+  const activeBtn = document.querySelector(".nav-btn.active");
+  if (activeBtn) updateHighlight(activeBtn);
 });
 </script>
