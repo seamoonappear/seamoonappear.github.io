@@ -13,7 +13,7 @@ order: 4
 
 <div class="media-container">
   <div class="media-nav">
-    <div class="nav-highlight"></div>  
+    <div class="nav-highlight"></div>
     <button class="nav-btn active" data-tab="hobby">爱好</button>
     <button class="nav-btn" data-tab="books">书</button>
     <button class="nav-btn" data-tab="movies">电影</button>
@@ -35,14 +35,11 @@ order: 4
 
     <!-- 书页 -->
     <div id="books" class="tab-pane">
-      <h3>小说类</h3>
       <div class="media-item"><span class="item-name">《三体》</span><span class="item-author">刘慈欣</span></div>
       <div class="media-item"><span class="item-name">《活着》</span><span class="item-author">余华</span></div>
       <div class="media-item"><span class="item-name">《百年孤独》</span><span class="item-author">加西亚·马尔克斯</span></div>
       <div class="media-item"><span class="item-name">《围城》</span><span class="item-author">钱钟书</span></div>
       <div class="media-item"><span class="item-name">《挪威的森林》</span><span class="item-author">村上春树</span></div>
-
-      <h3>非小说类</h3>
       <div class="media-item"><span class="item-name">《人类简史》</span><span class="item-author">尤瓦尔·赫拉利</span></div>
       <div class="media-item"><span class="item-name">《原则》</span><span class="item-author">瑞·达利欧</span></div>
       <div class="media-item"><span class="item-name">《思考，快与慢》</span><span class="item-author">丹尼尔·卡尼曼</span></div>
@@ -71,12 +68,12 @@ order: 4
     </div>
 
     <!-- 游戏页 -->
+    <div id="games" class="tab-pane">
       <div class="media-item"><span class="item-name">《原神》</span><span class="item-year">2020</span></div>
       <div class="media-item"><span class="item-name">《英雄联盟》</span><span class="item-year">2009</span></div>
       <div class="media-item"><span class="item-name">《守望先锋》</span><span class="item-year">2016</span></div>
     </div>
 
-      
     <!-- 其他页 -->
     <div id="others" class="tab-pane">
       <div class="media-item"><span class="item-name">占位内容1</span><span class="item-info">详细信息1</span></div>
@@ -102,20 +99,8 @@ order: 4
   object-fit: cover;
   filter: brightness(0.85);
 }
-.media-banner .banner-overlay {
-  position: absolute;
-  bottom: 20px;
-  left: 40px;
-  color: white;
-  text-shadow: 1px 2px 8px rgba(0,0,0,0.7);
-}
-.media-banner .banner-overlay h1 {
-  font-size: 1.8rem;
-  margin: 0;
-  letter-spacing: 1px;
-}
 
-/* 原有样式 */
+/* 主体布局 */
 .media-container {
   max-width: 800px;
   margin: 0 auto;
@@ -212,21 +197,12 @@ order: 4
   font-size: 0.9rem;
 }
 
-h3 {
-  color: #555;
-  margin: 1.5rem 0 1rem 0;
-  font-size: 1.1rem;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 0.5rem;
-}
-
-/* 响应式调整 */
+/* 响应式 */
 @media (max-width: 768px) {
   .media-nav { justify-content: flex-start; padding: 6px; }
   .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
   .media-container { padding: 0 10px; }
   .media-banner { height: 180px; }
-  .media-banner .banner-overlay h1 { font-size: 1.4rem; left: 20px; }
 }
 </style>
 
