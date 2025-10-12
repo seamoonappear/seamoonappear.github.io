@@ -32,18 +32,6 @@ order: 5
           <img src="{{ '/assets/photos/travel3.jpg' | relative_url }}" alt="风景3">
           <div class="photo-desc">海边的落日</div>
         </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/travel4.jpg' | relative_url }}" alt="风景4">
-          <div class="photo-desc">林间的光影</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/travel5.jpg' | relative_url }}" alt="风景5">
-          <div class="photo-desc">雪后的小镇</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景6">
-          <div class="photo-desc">山谷的晨光</div>
-        </div>
       </div>
     </div>
 
@@ -62,30 +50,6 @@ order: 5
           <img src="{{ '/assets/photos/person3.jpg' | relative_url }}" alt="人物3">
           <div class="photo-desc">窗边的光影</div>
         </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/person4.jpg' | relative_url }}" alt="人物4">
-          <div class="photo-desc">旅行中的朋友</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/person5.jpg' | relative_url }}" alt="人物5">
-          <div class="photo-desc">街头表演者</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/person6.jpg' | relative_url }}" alt="人物6">
-          <div class="photo-desc">回眸一笑</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/person7.jpg' | relative_url }}" alt="人物7">
-          <div class="photo-desc">午后的小憩</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/person8.jpg' | relative_url }}" alt="人物8">
-          <div class="photo-desc">远方的目光</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/person9.jpg' | relative_url }}" alt="人物9">
-          <div class="photo-desc">雨中的伞影</div>
-        </div>
       </div>
     </div>
 
@@ -99,14 +63,6 @@ order: 5
         <div class="photo-item">
           <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活2">
           <div class="photo-desc">街头的日常</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/live3.jpg' | relative_url }}" alt="生活3">
-          <div class="photo-desc">阳台上的花</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/live4.jpg' | relative_url }}" alt="生活4">
-          <div class="photo-desc">傍晚的影子</div>
         </div>
       </div>
     </div>
@@ -122,22 +78,6 @@ order: 5
           <img src="{{ '/assets/photos/cat2.jpg' | relative_url }}" alt="猫2">
           <div class="photo-desc">专注的眼神</div>
         </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/cat3.jpg' | relative_url }}" alt="猫3">
-          <div class="photo-desc">趴在窗台上</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/cat4.jpg' | relative_url }}" alt="猫4">
-          <div class="photo-desc">打哈欠的瞬间</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/cat5.jpg' | relative_url }}" alt="猫5">
-          <div class="photo-desc">藏在被窝里</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/cat6.jpg' | relative_url }}" alt="猫6">
-          <div class="photo-desc">等待晚餐的样子</div>
-        </div>
       </div>
     </div>
 
@@ -152,33 +92,8 @@ order: 5
           <img src="{{ '/assets/photos/suishou2.jpg' | relative_url }}" alt="随手拍2">
           <div class="photo-desc">旧墙上的涂鸦</div>
         </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/suishou3.jpg' | relative_url }}" alt="随手拍3">
-          <div class="photo-desc">雨后的街道</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="随手拍4">
-          <div class="photo-desc">书页之间的光</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/suishou5.jpg' | relative_url }}" alt="随手拍5">
-          <div class="photo-desc">橱窗里的世界</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6">
-          <div class="photo-desc">角落里的植物</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/suishou7.jpg' | relative_url }}" alt="随手拍7">
-          <div class="photo-desc">晨光透过窗帘</div>
-        </div>
-        <div class="photo-item">
-          <img src="{{ '/assets/photos/suishou8.jpg' | relative_url }}" alt="随手拍8">
-          <div class="photo-desc">夜色下的灯</div>
-        </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -191,9 +106,10 @@ order: 5
 .tab-pane { display:none; }
 .tab-pane.active { display:block; }
 .photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
-.photo-item img { width:100%; height:180px; object-fit:cover; border-radius:12px; cursor:pointer; transition:transform 0.3s; }
+.photo-item { display:flex; flex-direction:column; }
+.photo-item img { width:100%; height:200px; object-fit:cover; border-radius:12px; cursor:pointer; transition:transform 0.3s; }
 .photo-item img:hover { transform:scale(1.05); }
-.photo-desc { margin-top:6px; font-size:14px; color:#666; text-align:center; }
+.photo-desc { margin-top:6px; font-size:14px; color:#666; text-align:center; line-height:1.2em; height:1.2em; overflow:hidden; }
 @media (max-width:768px){ .photo-grid img{height:140px;} .nav-btn{padding:0.4rem 0.8rem; font-size:0.8rem;} }
 </style>
 
