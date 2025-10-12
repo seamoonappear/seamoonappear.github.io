@@ -2,17 +2,17 @@ scenery:
   name: "风景"
   images:
     - path: "/assets/photos/travel1.jpg"
-      desc: "晨雾中的群山"
+      desc: "清晨静谧的浙大校园"
     - path: "/assets/photos/travel2.jpg"
-      desc: "湖边的宁静"
+      desc: "阴雨迷蒙秦淮河畔"
     - path: "/assets/photos/travel3.jpg"
-      desc: "海边的落日"
+      desc: "竹径里的小姑娘"
     - path: "/assets/photos/travel4.jpg"
-      desc: "林间的光影"
+      desc: "鲁迅故居"
     - path: "/assets/photos/travel5.jpg"
-      desc: "雪后的小镇"
+      desc: "雁荡山"
     - path: "/assets/photos/travel1.jpg"
-      desc: "山谷的晨光"
+      desc: "占位"
 
 people:
   name: "人物"
