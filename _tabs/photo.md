@@ -74,10 +74,16 @@ order: 5
 /* 黑色背景、白色文字 */
 body, .page-content { background-color:#000; color:#fff; }
 .media-container { max-width:1200px; margin:0 auto; padding:20px; }
+
+/* 顶部导航 */
 .media-nav { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:20px; position:relative; }
-.media-nav button { background:none; border:2px solid #fff; color:#fff; padding:8px 20px; border-radius:25px; cursor:pointer; transition:0.3s; font-size:1rem; }
+.media-nav button { background:none; border:2px solid #fff; color:#fff; padding:8px 20px; border-radius:25px; cursor:pointer; transition:0.3s; font-size:1rem; position:relative; z-index:1; }
 .media-nav button.active, .media-nav button:hover { background:#fff; color:#000; }
 
+/* 滑动高亮条 */
+.nav-highlight { position:absolute; bottom:0; height:3px; background:#fff; transition:0.3s; border-radius:2px; }
+
+/* 图片区域 */
 .media-content { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
 .media-tab img { width:100%; height:auto; border-radius:12px; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; border:1px solid rgba(255,255,255,0.15); }
 .media-tab img:hover { transform:scale(1.05); box-shadow:0 6px 18px rgba(255,255,255,0.15); }
@@ -94,17 +100,28 @@ body, .page-content { background-color:#000; color:#fff; }
 </style>
 
 <script>
-// 切换分类导航
+// 切换分类导航 + 高亮条动画
 const navBtns = document.querySelectorAll('.nav-btn');
 const mediaTabs = document.querySelectorAll('.media-tab');
+const highlight = document.querySelector('.nav-highlight');
+
+function moveHighlight(btn){
+  highlight.style.width = btn.offsetWidth + 'px';
+  highlight.style.left = btn.offsetLeft + 'px';
+}
+
 navBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     navBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const tab = btn.dataset.tab;
     mediaTabs.forEach(t => t.style.display = t.id===tab?'block':'none');
+    moveHighlight(btn);
   });
 });
+
+// 初始化高亮条
+moveHighlight(document.querySelector('.nav-btn.active'));
 
 // 图片点击放大
 const lightbox = document.getElementById("lightbox");
