@@ -23,9 +23,6 @@ order: 5
         <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景1" data-desc="日出海景">
         <img src="{{ '/assets/photos/travel2.jpg' | relative_url }}" alt="风景2" data-desc="山间小路">
         <img src="{{ '/assets/photos/travel3.jpg' | relative_url }}" alt="风景3" data-desc="湖边倒影">
-        <img src="{{ '/assets/photos/travel4.jpg' | relative_url }}" alt="风景4" data-desc="秋日森林">
-        <img src="{{ '/assets/photos/travel5.jpg' | relative_url }}" alt="风景5" data-desc="雪山风光">
-        <img src="{{ '/assets/photos/travel1.jpg' | relative_url }}" alt="风景6" data-desc="海边礁石">
       </div>
     </div>
 
@@ -34,13 +31,6 @@ order: 5
       <div class="photo-grid">
         <img src="{{ '/assets/photos/person1.jpg' | relative_url }}" alt="人物1" data-desc="街头行人">
         <img src="{{ '/assets/photos/person2.jpg' | relative_url }}" alt="人物2" data-desc="微笑少女">
-        <img src="{{ '/assets/photos/person3.jpg' | relative_url }}" alt="人物3" data-desc="咖啡时光">
-        <img src="{{ '/assets/photos/person4.jpg' | relative_url }}" alt="人物4" data-desc="街头艺术家">
-        <img src="{{ '/assets/photos/person5.jpg' | relative_url }}" alt="人物5" data-desc="老者肖像">
-        <img src="{{ '/assets/photos/person6.jpg' | relative_url }}" alt="人物6" data-desc="骑行少年">
-        <img src="{{ '/assets/photos/person7.jpg' | relative_url }}" alt="人物7" data-desc="舞者瞬间">
-        <img src="{{ '/assets/photos/person8.jpg' | relative_url }}" alt="人物8" data-desc="儿童玩耍">
-        <img src="{{ '/assets/photos/person9.jpg' | relative_url }}" alt="人物9" data-desc="朋友聚会">
       </div>
     </div>
 
@@ -49,10 +39,6 @@ order: 5
       <div class="photo-grid">
         <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="生活1" data-desc="书桌一角">
         <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活2" data-desc="咖啡与书">
-        <img src="{{ '/assets/photos/live3.jpg' | relative_url }}" alt="生活3" data-desc="厨房美食">
-        <img src="{{ '/assets/photos/live4.jpg' | relative_url }}" alt="生活4" data-desc="阳台花草">
-        <img src="{{ '/assets/photos/live1.jpg' | relative_url }}" alt="生活5" data-desc="窗边风景">
-        <img src="{{ '/assets/photos/live2.jpg' | relative_url }}" alt="生活6" data-desc="夜晚灯光">
       </div>
     </div>
 
@@ -61,10 +47,6 @@ order: 5
       <div class="photo-grid">
         <img src="{{ '/assets/photos/cat1.jpg' | relative_url }}" alt="猫1" data-desc="睡觉的小猫">
         <img src="{{ '/assets/photos/cat2.jpg' | relative_url }}" alt="猫2" data-desc="好奇的猫">
-        <img src="{{ '/assets/photos/cat3.jpg' | relative_url }}" alt="猫3" data-desc="晒太阳的猫">
-        <img src="{{ '/assets/photos/cat4.jpg' | relative_url }}" alt="猫4" data-desc="抓玩具猫">
-        <img src="{{ '/assets/photos/cat5.jpg' | relative_url }}" alt="猫5" data-desc="猫咪懒觉">
-        <img src="{{ '/assets/photos/cat6.jpg' | relative_url }}" alt="猫6" data-desc="窗台猫">
       </div>
     </div>
 
@@ -73,10 +55,6 @@ order: 5
       <div class="photo-grid">
         <img src="{{ '/assets/photos/suishou1.jpg' | relative_url }}" alt="随手拍1" data-desc="街头风景">
         <img src="{{ '/assets/photos/suishou2.jpg' | relative_url }}" alt="随手拍2" data-desc="咖啡杯">
-        <img src="{{ '/assets/photos/suishou3.jpg' | relative_url }}" alt="随手拍3" data-desc="书本特写">
-        <img src="{{ '/assets/photos/suishou4.jpg' | relative_url }}" alt="随手拍4" data-desc="日落余晖">
-        <img src="{{ '/assets/photos/suishou5.jpg' | relative_url }}" alt="随手拍5" data-desc="街边小店">
-        <img src="{{ '/assets/photos/suishou6.jpg' | relative_url }}" alt="随手拍6" data-desc="夜晚灯光">
       </div>
     </div>
   </div>
@@ -85,7 +63,7 @@ order: 5
 <style>
 .photo-container { max-width: 900px; margin: 0 auto; }
 .photo-nav { position: relative; display: flex; justify-content: center; margin: 2rem 0; overflow-x: auto; white-space: nowrap; background: #f8f9fa; border-radius: 8px; padding: 8px; }
-.nav-btn { padding: 0.6rem 1.2rem; margin: 0 0.25rem; background: white; border: 1px solid #e0e0e0; cursor: pointer; font-size: 0.85rem; color: #666; border-radius: 6px; transition: all 0.3s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.05); position: relative; z-index: 1; }
+.nav-btn { padding: 0.6rem 1.2rem; margin: 0 0.25rem; background: white; border: 1px solid #e0e0e0; cursor: pointer; font-size: 0.85rem; color: #666; border-radius: 6px; transition: all 0.3s ease; position: relative; z-index: 1; }
 .nav-btn:hover { color: #111; background-color: #f3f3f3; transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
 .nav-btn.active { color: #000; font-weight: 600; }
 .nav-highlight { position: absolute; bottom: 5px; height: 3px; background: linear-gradient(90deg,#000,#444); border-radius: 2px; transition: all 0.3s ease; z-index: 0; }
@@ -100,7 +78,7 @@ order: 5
 </style>
 
 <script>
-function initPhotoTabs() {
+document.addEventListener("DOMContentLoaded", function() {
   const container = document.querySelector(".photo-container");
   if (!container) return;
 
@@ -108,13 +86,8 @@ function initPhotoTabs() {
   const tabPanes = container.querySelectorAll(".tab-pane");
   const highlight = nav.querySelector(".nav-highlight");
 
-  if (!nav || !tabPanes.length || !highlight) return;
-
-  nav.addEventListener("click", function(e) {
-    const button = e.target.closest(".nav-btn");
-    if (!button) return;
+  function activateTab(button) {
     const targetTab = button.dataset.tab;
-
     nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
     button.classList.add("active");
 
@@ -126,24 +99,45 @@ function initPhotoTabs() {
     const containerRect = nav.getBoundingClientRect();
     highlight.style.width = rect.width + "px";
     highlight.style.left = (rect.left - containerRect.left) + "px";
-
-    bindPhotoZoom(targetPane);
-  });
-
-  const activeButton = nav.querySelector(".nav-btn.active") || nav.querySelector(".nav-btn");
-  if (activeButton) {
-    const rect = activeButton.getBoundingClientRect();
-    const containerRect = nav.getBoundingClientRect();
-    highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - containerRect.left) + "px";
   }
 
-  tabPanes.forEach(p => bindPhotoZoom(p));
+  nav.addEventListener("click", function(e) {
+    const button = e.target.closest(".nav-btn");
+    if (button) activateTab(button);
+  });
 
-  function bindPhotoZoom(container) {
-    if (!container) return;
-    container.querySelectorAll("img").forEach(img => {
-      img.onclick = () => {
-        const overlay = document.createElement("div");
-        overlay.style.position = "fixed";
-        overlay.style.top =
+  // 初始化
+  const activeButton = nav.querySelector(".nav-btn.active") || nav.querySelector(".nav-btn");
+  if (activeButton) activateTab(activeButton);
+
+  // 图片放大
+  container.querySelectorAll(".photo-grid img").forEach(img => {
+    img.addEventListener("click", function() {
+      const overlay = document.createElement("div");
+      overlay.style.position = "fixed";
+      overlay.style.top = 0;
+      overlay.style.left = 0;
+      overlay.style.width = "100%";
+      overlay.style.height = "100%";
+      overlay.style.background = "rgba(0,0,0,0.8)";
+      overlay.style.display = "flex";
+      overlay.style.justifyContent = "center";
+      overlay.style.alignItems = "center";
+      overlay.style.zIndex = 9999;
+      overlay.style.cursor = "zoom-out";
+
+      const largeImg = document.createElement("img");
+      largeImg.src = img.src;
+      largeImg.style.maxWidth = "90%";
+      largeImg.style.maxHeight = "90%";
+      largeImg.style.borderRadius = "12px";
+      largeImg.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)";
+
+      overlay.appendChild(largeImg);
+      document.body.appendChild(overlay);
+
+      overlay.addEventListener("click", () => document.body.removeChild(overlay));
+    });
+  });
+});
+</script>
