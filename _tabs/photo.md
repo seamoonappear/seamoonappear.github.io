@@ -11,9 +11,11 @@ order: 5
   <div class="photo-nav">
     <div class="nav-highlight"></div>
     {% assign first = true %}
-    {% for tab_id, tab in site.data.photo %}
+    {% for tab in site.data.photo %}
+      {% assign tab_id = tab[0] %}
+      {% assign tab_data = tab[1] %}
       <button class="nav-btn {% if first %}active{% endif %}" data-tab="{{ tab_id }}">
-        {{ tab.name }}
+        {{ tab_data.name }}
       </button>
       {% assign first = false %}
     {% endfor %}
@@ -22,10 +24,12 @@ order: 5
   <!-- 图片内容 -->
   <div class="tab-content">
     {% assign first = true %}
-    {% for tab_id, tab in site.data.photo %}
+    {% for tab in site.data.photo %}
+      {% assign tab_id = tab[0] %}
+      {% assign tab_data = tab[1] %}
       <div id="{{ tab_id }}" class="tab-pane {% if first %}active{% endif %}">
         <div class="photo-grid">
-          {% for img in tab.images %}
+          {% for img in tab_data.images %}
             <div class="photo-item">
               <img src="{{ img.path | relative_url }}" alt="{{ img.desc }}" data-desc="{{ img.desc }}">
               <div class="photo-caption">{{ img.desc }}</div>
@@ -45,6 +49,7 @@ order: 5
 .nav-btn:hover { color: #111; background-color: #f3f3f3; transform: translateY(-1px); box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
 .nav-btn.active { color: #000; font-weight: 600; }
 .nav-highlight { position: absolute; bottom: 5px; height: 3px; background: linear-gradient(90deg, #000, #444); border-radius: 2px; transition: all 0.3s ease; z-index: 0; }
+
 .tab-content { margin: 2rem 0; }
 .tab-pane { display: none; animation: fadeIn 0.3s ease; }
 .tab-pane.active { display: block; }
@@ -80,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const rect = button.getBoundingClientRect();
     const containerRect = nav.getBoundingClientRect();
     highlight.style.width = rect.width + "px";
-    highlight.style.left = (rect.left - containerRect.left) + "px";
+    highlight.style.left = (rect.left - containerRect.left + nav.scrollLeft) + "px";
   }
 
   nav.addEventListener("click", function(e) {
