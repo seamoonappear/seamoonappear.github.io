@@ -50,7 +50,7 @@ order: 5
 }
 .nav-btn {
   margin: 0 4px; padding: 6px 12px; cursor: pointer;
-  border-radius: var(--radius-md); border: 1px solid var(--color-gray-300);
+  border-radius: 12px; border: 1px solid var(--color-gray-300);
   background: var(--color-white); color: var(--color-gray-700);
   font-size: 0.875rem; transition: all 0.3s;
 }
@@ -87,7 +87,7 @@ order: 5
 }
 .photo-desc {
   color: #fff; font-size: 1rem; margin-top: 12px; text-align: center;
-  background: rgba(0,0,0,0.4); padding: 6px 16px; border-radius: var(--radius-md);
+  background: rgba(0,0,0,0.4); padding: 6px 16px; border-radius: 12px;
   backdrop-filter: blur(4px);
 }
 
@@ -100,35 +100,40 @@ order: 5
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const nav = document.querySelector(".photo-nav");
+  const container = document.querySelector(".photo-container");
+  const nav = container.querySelector(".photo-nav");
   const highlight = nav.querySelector(".nav-highlight");
-  const tabPanes = document.querySelectorAll(".tab-pane");
+  const tabPanes = container.querySelectorAll(".tab-pane");
+  const navButtons = nav.querySelectorAll(".nav-btn");
 
-  function updateTabs(button) {
-    const targetTab = button.dataset.tab;
-    // 切换按钮 active
-    nav.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+  function setActiveTab(button) {
+    const targetId = button.dataset.tab;
+    // 切换 active 按钮
+    navButtons.forEach(b => b.classList.remove("active"));
     button.classList.add("active");
     // 切换 tab-pane
-    tabPanes.forEach(p => p.id === targetTab ? p.classList.add("active") : p.classList.remove("active"));
-    // 更新高亮条
+    tabPanes.forEach(p => {
+      if (p.id === targetId) {
+        p.classList.add("active");
+      } else {
+        p.classList.remove("active");
+      }
+    });
+    // 高亮条位置
     const rect = button.getBoundingClientRect();
     const navRect = nav.getBoundingClientRect();
     highlight.style.width = rect.width + "px";
     highlight.style.left = (rect.left - navRect.left + nav.scrollLeft) + "px";
   }
 
-  // 给按钮绑定事件
-  nav.querySelectorAll(".nav-btn").forEach(btn => {
-    btn.addEventListener("click", () => updateTabs(btn));
-  });
+  navButtons.forEach(btn => btn.addEventListener("click", () => setActiveTab(btn)));
 
-  // 初始化高亮条
-  const activeBtn = nav.querySelector(".nav-btn.active") || nav.querySelector(".nav-btn");
-  if (activeBtn) updateTabs(activeBtn);
+  // 初始化高亮条和默认标签
+  const activeBtn = nav.querySelector(".nav-btn.active") || navButtons[0];
+  if (activeBtn) setActiveTab(activeBtn);
 
   // 图片放大
-  document.querySelectorAll(".photo-item img").forEach(img => {
+  container.querySelectorAll(".photo-item img").forEach(img => {
     img.addEventListener("click", () => {
       const overlay = document.createElement("div");
       overlay.className = "photo-overlay";
