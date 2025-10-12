@@ -6,9 +6,17 @@ icon: fas fa-book
 order: 4
 ---
 
+<!-- ✅ 页面顶部 Banner -->
+<div class="media-banner">
+  <img src="{{ '/assets/banner/mediabanner.jpg' | relative_url }}" alt="Media Banner">
+  <div class="banner-overlay">
+    <h1>媒体及爱好消费</h1>
+  </div>
+</div>
+
 <div class="media-container">
   <div class="media-nav">
-    <div class="nav-highlight"></div>
+    <div class="nav-highlight"></div>  
     <button class="nav-btn active" data-tab="hobby">爱好</button>
     <button class="nav-btn" data-tab="books">书</button>
     <button class="nav-btn" data-tab="movies">电影</button>
@@ -20,12 +28,12 @@ order: 4
   <div class="tab-content">
     <!-- 爱好页 -->
     <div id="hobby" class="tab-pane active">
-      <div class="media-item"><span class="item-name">摄影</span><span class="item-duration">5年</span></div>
-      <div class="media-item"><span class="item-name">游泳</span><span class="item-duration">8年</span></div>
-      <div class="media-item"><span class="item-name">徒步</span><span class="item-duration">3年</span></div>
-      <div class="media-item"><span class="item-name">瑜伽</span><span class="item-duration">2年</span></div>
-      <div class="media-item"><span class="item-name">模型制作</span><span class="item-duration">4年</span></div>
-      <div class="media-item"><span class="item-name">手账记录</span><span class="item-duration">6年</span></div>
+      <div class="media-item"><span class="item-name">摄影/调色/修图</span><span class="item-duration">5年</span></div>
+      <div class="media-item"><span class="item-name">书法及篆刻/收藏钢笔</span><span class="item-duration">10年</span></div>
+      <div class="media-item"><span class="item-name">登山/羽毛球/五子棋</span><span class="item-duration">9年</span></div>
+      <div class="media-item"><span class="item-name">烹饪/烘焙</span><span class="item-duration">3年</span></div>
+      <div class="media-item"><span class="item-name">网页前端</span><span class="item-duration">1年</span></div>
+      <div class="media-item"><span class="item-name">养猫</span><span class="item-duration">1年</span></div>
     </div>
 
     <!-- 书页 -->
@@ -66,19 +74,12 @@ order: 4
     </div>
 
     <!-- 游戏页 -->
-    <div id="games" class="tab-pane">
-      <h3>单机游戏</h3>
-      <div class="media-item"><span class="item-name">《巫师3：狂猎》</span><span class="item-year">2015</span></div>
-      <div class="media-item"><span class="item-name">《塞尔达传说：旷野之息》</span><span class="item-year">2017</span></div>
-      <div class="media-item"><span class="item-name">《荒野大镖客2》</span><span class="item-year">2018</span></div>
-      <div class="media-item"><span class="item-name">《艾尔登法环》</span><span class="item-year">2022</span></div>
-
-      <h3>网络游戏</h3>
       <div class="media-item"><span class="item-name">《原神》</span><span class="item-year">2020</span></div>
       <div class="media-item"><span class="item-name">《英雄联盟》</span><span class="item-year">2009</span></div>
       <div class="media-item"><span class="item-name">《守望先锋》</span><span class="item-year">2016</span></div>
     </div>
 
+      
     <!-- 其他页 -->
     <div id="others" class="tab-pane">
       <div class="media-item"><span class="item-name">占位内容1</span><span class="item-info">详细信息1</span></div>
@@ -89,6 +90,35 @@ order: 4
 </div>
 
 <style>
+/* ✅ Banner 样式 */
+.media-banner {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+.media-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+.media-banner .banner-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 40px;
+  color: white;
+  text-shadow: 1px 2px 8px rgba(0,0,0,0.7);
+}
+.media-banner .banner-overlay h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* 原有样式 */
 .media-container {
   max-width: 800px;
   margin: 0 auto;
@@ -198,6 +228,8 @@ h3 {
   .media-nav { justify-content: flex-start; padding: 6px; }
   .nav-btn { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
   .media-container { padding: 0 10px; }
+  .media-banner { height: 180px; }
+  .media-banner .banner-overlay h1 { font-size: 1.4rem; left: 20px; }
 }
 </style>
 
