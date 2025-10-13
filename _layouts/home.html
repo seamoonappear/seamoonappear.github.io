@@ -1,0 +1,20 @@
+<!-- 首页文章列表循环 -->
+{% for post in paginator.posts %}
+  <article class="post-entry mobile-post-layout"> <!-- 添加一个特定的类名，例如 mobile-post-layout -->
+    <!-- 文章封面图 -->
+    <div class="post-cover">
+      <a href="{{ post.url | relative_url }}">
+        <!-- 假设您的封面图在Front Matter的 'image' 变量中，请根据实际情况调整 -->
+        <img src="{{ post.image }}" alt="{{ post.title }}" />
+      </a>
+    </div>
+    <!-- 文章内容区 -->
+    <div class="post-content">
+      <h3 class="post-title">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </h3>
+      <!-- 移除了显示摘要的部分 -->
+      <!-- 默认情况下，这里可能有类似 {{ post.excerpt }} 或 {{ post.content | truncatewords: 50 }} 的代码，请删除或注释掉 -->
+    </div>
+  </article>
+{% endfor %}
