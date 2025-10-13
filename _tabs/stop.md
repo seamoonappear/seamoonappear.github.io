@@ -9,7 +9,6 @@ order: 5
 <!-- 顶部横幅 -->
 <div class="banner">
   <img src="{{ '/assets/banner/stopbanner.jpg' | relative_url }}" alt="Stop Banner">
-  <div class="banner-text">驻足</div>
 </div>
 
 > 记录这些年的足迹，从现在回望，从2004开始。
@@ -37,8 +36,8 @@ order: 5
   <div class="timeline-item"><div class="timeline-year">2008</div><div class="timeline-content">哈尔滨 成都 拉萨 北京</div></div>
   <div class="timeline-item"><div class="timeline-year">2007</div><div class="timeline-content">哈尔滨 长春 沈阳 连云港</div></div>
   <div class="timeline-item"><div class="timeline-year">2006</div><div class="timeline-content">哈尔滨 连云港</div></div>
-  <div class="timeline-item"><div class="timeline-year">2005</div><div class="timeline-content">哈尔滨 连云港 徐州·朦胧初恋的地方</div></div>
-  <div class="timeline-item"><div class="timeline-year">2004</div><div class="timeline-content">连云港·北上哈尔滨求学</div></div>
+  <div class="timeline-item"><div class="timeline-year">2005</div><div class="timeline-content">哈尔滨 连云港 徐州</div></div>
+  <div class="timeline-item"><div class="timeline-year">2004</div><div class="timeline-content">哈尔滨·北上求学</div></div>
 </div>
 
 ---
