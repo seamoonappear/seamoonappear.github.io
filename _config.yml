@@ -50,7 +50,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-archives
 
-paginate: 5
+paginate: 15
 paginate_path: "/page:num/"
 
 # ==========================================================
