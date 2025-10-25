@@ -1,37 +1,35 @@
-# ===============================================
-# Jekyll Chirpy 主题配置文件 - 修复版
-# ===============================================
-
-# 基础信息
+# 站点设置
+lang: zh-CN
 title: "地平线"
-tagline: "学习，感悟，探索"
-description: "Seamoon的技术博客，分享编程开发、技术实践和个人思考。"
+tagline: "学习、感悟、探索"
+description: "seamoonappear 的个人博客"
+keywords: "博客, 技术, 思考, 分享"
 url: "https://seamoonappear.github.io"
-baseurl: ""
-lang: "zh-CN"
-timezone: "Asia/Shanghai"
 
-# 主题设置
-remote_theme: "cotes2020/jekyll-theme-chirpy"
+# 作者信息
+author: "seamoonappear"
+twitter:
+  username: ""  # 如果需要可以填写Twitter用户名
 
-# GitHub 信息
-github:
-  username: "seamoonappear"
+# 构建设置
+theme: jekyll-theme-chirpy
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
 
-# 个人信息
+# 国际化
+timezone: Asia/Shanghai
+
+# 社交信息（根据实际情况填写）
 social:
-  name: "王维"
-  email: ""
+  name: seamoonappear
   links:
-    - "https://github.com/seamoonappear"
+    # - https://twitter.com/your_twitter_username
+    - https://github.com/seamoonappear
+    # - https://www.linkedin.com/in/your_linkedin_username
 
-avatar: "/assets/img/avatar.jpg"
-
-# 布局和显示设置
-paginate: 10
-toc: true
-
-# 评论系统
+# 评论系统 - Cusdis
 comments:
   active: "cusdis"
   cusdis:
@@ -39,83 +37,36 @@ comments:
     host: "https://cusdis.com"
     lang: "zh-cn"
 
-# 搜索功能
-search:
-  enabled: true
+# 外观设置
+theme_mode: 
+  light: true
+  dark: true
 
-# 归档设置
-jekyll-archives:
-  enabled: [categories, tags]
-  layouts:
-    category: "category"
-    tag: "tag"
-  permalinks:
-    tag: "/tags/:name/"
-    category: "/categories/:name/"
+# 首页设置
+home_posts:
+  sort_by: date  # 按日期排序
+  sort_order: descending  # 降序排列（最新的在前）
 
-# Markdown 处理器
-markdown: kramdown
-kramdown:
-  input: GFM
-  hard_wrap: false
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    css_class: "highlight"
-    block:
-      line_numbers: true
+# 分析工具（可选）
+# google_analytics:
+#   id: ""
 
-# 集合配置
-collections:
-  tabs:
-    output: true
-    sort_by: "order"
-
-# 默认值设置
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      comments: true
-      toc: true
-      permalink: "/posts/:year/:month/:day/:title/"
-
-  - scope:
-      path: "_drafts"
-    values:
-      comments: false
-
-  - scope:
-      path: ""
-      type: "tabs"
-    values:
-      layout: "page"
-      permalink: "/:title/"
-
-# 插件设置
-plugins:
-  - "jekyll-paginate"
-  - "jekyll-sitemap"
-  - "jekyll-feed"
-  - "jekyll-seo-tag"
-  - "jekyll-archives"
+# 其他设置
+paginate: 10
+paginate_path: /page/:num/
+permalink: /posts/:title/
+feed:
+  path: atom.xml
+  posts_limit: 20
 
 # 排除文件
 exclude:
   - "*.gem"
   - "*.gemspec"
-  - "README.md"
-  - "LICENSE"
-  - "*.config.js"
-  - "package*.json"
-  - "vendor"
-  - "node_modules"
+  - "Gemfile"
   - "Gemfile.lock"
-  - ".sass-cache"
-  - ".jekyll-cache"
-  - ".bundle"
-
-# SASS 设置
-sass:
-  style: "compressed"
+  - "node_modules"
+  - "vendor/bundle/"
+  - "vendor/cache/"
+  - "vendor/gems/"
+  - "vendor/ruby/"
