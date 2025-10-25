@@ -1,23 +1,22 @@
-sidebar_data:
-  home:
-    - title: "关于我"
-      type: page
-      url: "/_tabs/about.html"
-    - title: "归档"
-      type: page
-      url: "/_tabs/archives.html"
-    - title: "分类"
-      type: page
-      url: "/_tabs/categories.html"
-    - title: "多媒体"
-      type: page
-      url: "/_tabs/media.html"
-    - title: "相册"
-      type: page
-      url: "/_tabs/photo.html"
-    - title: "停留笔记"
-      type: page
-      url: "/_tabs/stop.html"
-    - title: "标签"
-      type: page
-      url: "/_tabs/tags.html"
+home:
+  - title: "关于我"
+    type: page
+    url: "/about/"
+  - title: "时间轴"
+    type: page
+    url: "/archives/"
+  - title: "分类"
+    type: page
+    url: "/categories/"
+  - title: "消费"
+    type: page
+    url: "/media/"
+  - title: "相册"
+    type: page
+    url: "/photo/"
+  - title: "驻足点"
+    type: page
+    url: "/stop/"
+  - title: "标签"
+    type: page
+    url: "/tags/"
