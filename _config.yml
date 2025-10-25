@@ -3,12 +3,11 @@
 # ==========================================================
 
 title: "地平线"
-tagline: "学习、感悟和探索"
+tagline: "学习、感悟和暗锁"
 description: "记录生活、思考与灵感。"
 lang: zh-CN
 timezone: Asia/Shanghai
 
-# GitHub Pages 地址
 url: "https://seamoonappear.github.io"
 baseurl: ""
 
@@ -46,14 +45,13 @@ plugins:
   - jekyll-sitemap
   - jekyll-archives
 
-paginate: 8
+paginate: 10
 paginate_path: /page:num/
 
 # ==========================================================
 # 🧭 侧边栏导航（显示页面顺序）
 # ==========================================================
 
-# 如果 tabs 下页面 Front Matter 正确，这个 navbar 可选
 navbar:
   - title: 首页
     url: /
@@ -93,7 +91,7 @@ analytics:
   provider: false
 
 # ==========================================================
-# 🧱 构建选项
+# ⚙️ 构建选项
 # ==========================================================
 
 markdown: kramdown
@@ -101,19 +99,27 @@ highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter_opts:
-    line_numbers: false
+    line_numbers: true
 
 # ==========================================================
 # 🧩 博客文章显示优化
 # ==========================================================
 
-# 使用 <!--more--> 分隔摘要
 excerpt_separator: "<!--more-->"
 excerpt_length: 80
 post_img_size: "large"   # small / medium / large
 
 # ==========================================================
-# ⚙️ SEO / Feed / Social
+# 🌈 自定义 CSS
+# ==========================================================
+
+sass:
+  style: compressed
+  load_paths:
+    - assets/css
+
+# ==========================================================
+# 📜 SEO / Feed / Social
 # ==========================================================
 
 seo:
@@ -139,7 +145,7 @@ feed:
   author_name: "王维"
 
 # ==========================================================
-# 📜 页脚信息
+# 📌 页脚信息
 # ==========================================================
 
 footer:
