@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 关于我
+title: 关于
 icon: fas fa-user
 order: 8
 sidebar: ture
