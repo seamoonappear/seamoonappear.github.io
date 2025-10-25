@@ -2,7 +2,7 @@
 layout: page
 title: 多媒体
 icon: fas fa-photo-video
-order: 4
+order: 3
 sidebar: true
 permalink: /media/
 ---
