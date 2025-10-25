@@ -3,7 +3,7 @@ layout: page
 title: 分类
 icon: fas fa-folder
 order: 6
-sidebar: true
+sidebar: flase
 permalink: /categories/
 ---
 
