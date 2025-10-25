@@ -1,9 +1,9 @@
+# _tabs/categories.md
 ---
-layout: page
+layout: category
 title: 分类
 icon: fas fa-folder
 order: 6
-sidebar: flase
+sidebar: true
 permalink: /categories/
 ---
-
