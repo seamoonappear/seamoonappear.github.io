@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 多媒体
+title: 消费
 icon: fas fa-photo-video
 order: 3
 sidebar: true
