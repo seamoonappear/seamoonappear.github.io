@@ -11,18 +11,16 @@ permalink: /about/
   <div class="about-header">
     <img src="{{ '/assets/img/avatar.jpg' | relative_url }}" alt="王维的头像" class="avatar">
     <h1>王维</h1>
-    <p class="tagline">包装解决方案专家｜15年行业经验</p>
     <p class="location">现居杭州 · 40岁</p>
     <div class="social">
       <a href="#" title="邮箱"><i class="fas fa-envelope"></i></a>
-      <a href="#" title="领英"><i class="fab fa-linkedin"></i></a>
       <a href="#" title="微信"><i class="fab fa-weixin"></i></a>
     </div>
   </div>
 
   <div class="about-content">
     <p>
-      我是一名拥有 <strong>15年以上包装设计与营销策划经验</strong> 的专业人士，专注于为食品与健康产业提供
+      我拥有 <strong>多年以上包装设计与营销策划经验</strong> ，专注于为食品与健康产业提供
       <strong>创新包装解决方案</strong>。擅长结合品牌价值与市场趋势，创造兼具美感与商业逻辑的作品。
     </p>
 
