@@ -6,4 +6,3 @@ order: 2
 sidebar: true
 permalink: /tags/
 ---
-{% include tags.html %}
