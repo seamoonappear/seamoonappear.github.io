@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 消费
-icon: fas fa-photo-video
+icon: fas fa-wallet
 order: 3
 sidebar: true
 permalink: /media/
