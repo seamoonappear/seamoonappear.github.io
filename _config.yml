@@ -30,18 +30,11 @@ author:
       url: "/feed.xml"
 
 # ==========================================================
-# 🎨 主题设置 & 侧边栏优化
+# 🎨 主题设置
 # ==========================================================
 
 theme: jekyll-theme-chirpy
 show_sidebar: true   # 显示侧边栏
-
-# 侧边栏特定配置
-sidebar:
-  sticky: true           # 侧边栏粘性定位
-  social_links: true     # 显示社交链接
-  avatar_size: 120       # 头像尺寸
-  author_bio: true       # 显示作者简介
 
 tabs:
   path: "_tabs"
@@ -97,20 +90,13 @@ excerpt_length: 80
 post_img_size: "large"
 
 # ==========================================================
-# 🌈 自定义 CSS & JS 配置
+# 🌈 自定义 CSS
 # ==========================================================
 
 sass:
   style: compressed
   load_paths:
     - assets/css
-
-# 加载自定义资源用于修复侧边栏
-custom_css:
-  - /assets/css/custom.scss
-
-custom_js:
-  - /assets/js/custom.js
 
 # ==========================================================
 # 📜 SEO / Feed / Social
@@ -158,33 +144,6 @@ footer:
       url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 
 # ==========================================================
-# 🧭 布局默认设置
-# ==========================================================
-
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      sidebar: true           # 为所有文章启用侧边栏
-      show_sidebar: true      # 确保显示侧边栏
-
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-      sidebar: true           # 为所有页面启用侧边栏
-      show_sidebar: true      # 确保显示侧边栏
-
-  - scope:
-      path: "_posts"
-    values:
-      comments: true
-      sidebar: true
-
-# ==========================================================
 # ⚡ PWA 配置（方案3：不依赖额外插件）
 # ==========================================================
 
@@ -197,23 +156,3 @@ pwa:
   background_color: "#FFFFFF"
   display: "standalone"
   icon: "/assets/img/avatar.jpg"
-
-# ==========================================================
-# 🔍 侧边栏优化配置
-# ==========================================================
-
-# 侧边栏导航项目
-sidebar_nav:
-  - title: "最新文章"
-    url: "/"
-  - title: "分类"
-    url: "/categories/"
-  - title: "标签"
-    url: "/tags/"
-  - title: "关于"
-    url: "/about/"
-
-# 社交链接显示
-social_links:
-  github: "https://github.com/seamoonappear"
-  rss: "/feed.xml"
