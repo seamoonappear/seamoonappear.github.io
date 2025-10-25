@@ -3,11 +3,9 @@ layout: page
 title: 关于我
 icon: fas fa-user
 order: 8
-sidebar: true
+sidebar: ture
 permalink: /about/
 ---
-这里写关于你的介绍内容。
-
 
 <div class="about-container">
   <!-- 头像与简介 -->
@@ -18,7 +16,6 @@ permalink: /about/
     </div>
     <div class="intro">
       <h1>王维</h1>
-      <p class="tagline">包装解决方案专家</p>
       <p class="location">现居杭州｜40岁</p>
       <div class="social-links">
         <a href="#" class="social-link" aria-label="邮箱">
@@ -50,7 +47,6 @@ permalink: /about/
       <div class="company-info">
         <h4>北京同仁堂健康药业（青海）有限公司</h4>
         <p class="position">包装解决方案专员</p>
-        <p class="duration">2018年至今</p>
       </div>
       <ul class="responsibilities">
         <li>为食品及健康产品企业提供全方位包装解决方案</li>
