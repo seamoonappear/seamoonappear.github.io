@@ -2,7 +2,7 @@
 layout: page
 title: 关于我
 icon: fas fa-user
-order: 7
+order: 8
 sidebar: true
 permalink: /about/
 ---
