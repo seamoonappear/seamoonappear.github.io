@@ -1,9 +1,10 @@
----
+--
 layout: page
 title: 关于我
 permalink: /about/
 icon: fas fa-info-circle
 order: 7
+sidebar: true
 ---
 
 <div class="about-container">
