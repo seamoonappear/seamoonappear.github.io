@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 停留笔记
+title: 驻足点
 icon: fas fa-sticky-note
 order: 5
 sidebar: true
