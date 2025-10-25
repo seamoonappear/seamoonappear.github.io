@@ -42,7 +42,7 @@ plugins:
   - jekyll-archives
   - jekyll-pwa-plugin  # ✅ PWA
 
-paginate: 5
+paginate: 15
 paginate_path: /page:num/
 
 # ==========================================================
