@@ -2,7 +2,7 @@
 layout: page
 title: 相册
 icon: fas fa-images
-order: 5
+order: 4
 sidebar: true
 permalink: /photo/
 ---
