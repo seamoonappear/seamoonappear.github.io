@@ -1,122 +1,142 @@
-title: "地平线"
-tagline: "学习感悟及探索"
-avatar: /assets/img/avatar.jpg
-description: "记录生活、思考与灵感。"
+# ==========================================================
+# 🌏 基本信息
+# ==========================================================
+
+theme: jekyll-theme-chirpy
 lang: zh-CN
 timezone: Asia/Shanghai
-
+title: 地平线
+tagline: 学习感悟及探索
+description: >-
+  记录生活、思考与灵感的技术博客。
 url: "https://seamoonappear.github.io"
 baseurl: ""
 
-author:
-  name: "王维"
-  avatar: /assets/img/avatar.jpg
-  bio: "终身学习者 · 在职 · 记录旅途与思考"
-  location: "上海"
+# ==========================================================
+# 👤 社交与作者信息
+# ==========================================================
+
+github:
+  username: seamoonappear
+
+social:
+  name: 王维
+  email: example@domain.com
   links:
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/seamoonappear"
-    - label: "RSS"
-      icon: "fas fa-rss"
-      url: "/feed.xml"
+    - https://github.com/seamoonappear
+    - /feed.xml
 
-theme: jekyll-theme-chirpy
+# ==========================================================
+# 🔧 博客功能设置
+# ==========================================================
+
 show_sidebar: true
-
-sidebar:
-  home: true
-  post: true
-  page: true
-  categories: true
-  tags: true
-  archives: true
-
-tabs:
-  path: "_tabs"
-  sort_by: "order"
-
-plugins:
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-archives
-
+toc: true
 paginate: 15
-paginate_path: "/page:num/"
 
-markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM
-  syntax_highlighter_opts:
-    line_numbers: true
+# ==========================================================
+# 🗂️ 集合与默认值
+# ==========================================================
 
 collections:
-  posts:
+  tabs:
     output: true
-    permalink: /:categories/:title/
+    sort_by: order
 
-tag_archive:
-  type: liquid
-  path: /tags/
-category_archive:
-  type: liquid
-  path: /categories/
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      comments: true
+      toc: true
+      permalink: /posts/:title/
+  - scope:
+      path: ""
+      type: tabs
+    values:
+      layout: page
+      permalink: /:title/
 
-excerpt_separator: "<!--more-->"
-excerpt_length: 80
-post_img_size: "large"
+# ==========================================================
+# 📜 Markdown 与代码高亮
+# ==========================================================
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
 
 sass:
   style: compressed
-  load_paths:
-    - assets/css
 
-seo:
-  type: "Blog"
-  locale: "zh_CN"
-  twitter:
-    username: "seamoonappear"
-    card: "summary_large_image"
-  image: "/assets/banner/home-cover.jpg"
-
-social:
-  - label: "GitHub"
-    url: "https://github.com/seamoonappear"
-  - label: "RSS"
-    url: "/feed.xml"
-
-feed:
-  path: feed.xml
-  posts_limit: 20
-  title: "地平线 | 王维的博客"
-  description: "王维的个人博客，记录生活、思考与灵感。"
-  language: zh-CN
-  author_name: "王维"
-
-footer:
-  links:
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/seamoonappear"
-    - label: "RSS"
-      icon: "fas fa-rss"
-      url: "/feed.xml"
-  copyright:
-    author: "王维"
-    year: 2020~2025
-    license:
-      name: "CC BY-NC-SA 4.0"
-      url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+# ==========================================================
+# ⚡ PWA 配置
+# ==========================================================
 
 pwa:
-  enable: true
-  name: "地平线"
-  short_name: "地平线"
-  description: "王维的个人博客"
-  theme_color: "#4A90E2"
-  background_color: "#FFFFFF"
-  display: "standalone"
-  icon: "/assets/img/icon.png"
+  enabled: true
+  cache:
+    enabled: true
+    deny_paths: []
+
+# ==========================================================
+# 📊 分析与评论（可选）
+# ==========================================================
+
+analytics:
+  google:
+    id: "" # 填写 GA ID
+
+comments:
+  provider: "" # [disqus | utterances | giscus]
+
+# ==========================================================
+# 📁 归档与标签
+# ==========================================================
+
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: category
+    tag: tag
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
+
+# ==========================================================
+# 🖼️ 侧边栏头像与社交预览
+# ==========================================================
+
+avatar: /assets/img/avatar.jpg
+social_preview_image: /assets/banner/home-cover.jpg
+
+# ==========================================================
+# 💡 压缩与优化
+# ==========================================================
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  profile: false
+  blanklines: false
+  ignore:
+    envs: [development]
+
+exclude:
+  - "*.gem"
+  - "*.gemspec"
+  - docs
+  - tools
+  - README.md
+  - LICENSE
+  - purgecss.js
+  - "*.config.js"
+  - "package*.json"
