@@ -3,7 +3,7 @@
 # ==========================================================
 
 title: "地平线"
-tagline: "王维的个人博客"
+tagline: "学习、感悟和探索"
 description: "记录生活、思考与灵感。"
 lang: zh-CN
 timezone: Asia/Shanghai
@@ -23,9 +23,9 @@ baseurl: ""  # 不要修改
 
 author:
   name: "王维"
-  avatar: /assets/img/avatar.png
+  avatar: /assets/img/avatar.jpg
   bio: "终身学习者 · 在职 · 记录旅途与思考"
-  location: "上海, 中国"
+  location: "杭州, 中国"
   links:
     - label: "GitHub"
       icon: "fab fa-github"
