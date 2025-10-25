@@ -29,10 +29,14 @@ author:
       url: "/feed.xml"
 
 # ==========================================================
-# 🎨 主题与插件（GitHub Pages 兼容）
+# 🎨 主题设置
 # ==========================================================
 
 theme: jekyll-theme-chirpy
+
+# ==========================================================
+# 🔧 插件（官方支持，兼容 GitHub Pages）
+# ==========================================================
 
 plugins:
   - jekyll-paginate
@@ -40,41 +44,31 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-archives
-  - jekyll-pwa-plugin  # ✅ PWA
 
-paginate: 15
+paginate: 5
 paginate_path: /page:num/
 
 # ==========================================================
-# 🧭 侧边栏导航（完整显示）
+# 🧭 侧边栏导航（完全显示）
 # ==========================================================
-
-sidebar:
-  show: true
-  display_categories: true
-  display_tags: true
-  display_archives: true
-  display_pages: true
-  links_order:
-    - about
-    - categories
-    - media
-    - photo
-    - stop
-    - tags
-    - archives
 
 navbar:
   - title: 首页
     url: /
-  - title: 消费
+  - title: 媒体
     url: /media/
-  - title: 驻足
+  - title: 停留
     url: /stop/
   - title: 照片
     url: /photo/
+  - title: 分类
+    url: /categories/
+  - title: 标签
+    url: /tags/
   - title: 关于
     url: /about/
+  - title: 归档
+    url: /archives/
 
 # ==========================================================
 # 🏷️ 分类与标签
@@ -91,6 +85,16 @@ tag_archive:
 category_archive:
   type: liquid
   path: /categories/
+
+# ==========================================================
+# 🧩 评论与分析（可选）
+# ==========================================================
+
+comments:
+  provider: false
+
+analytics:
+  provider: false
 
 # ==========================================================
 # ⚙️ 构建选项
@@ -112,13 +116,24 @@ excerpt_length: 80
 post_img_size: "large"
 
 # ==========================================================
-# 🌈 自定义 CSS
+# 🌈 自定义 CSS / 前端 PWA
 # ==========================================================
 
 sass:
   style: compressed
   load_paths:
     - assets/css
+
+# PWA 前端可以使用 service-worker.js + manifest.json
+pwa:
+  enabled: true
+  name: "地平线"
+  short_name: "地平线"
+  start_url: "/"
+  theme_color: "#ffffff"
+  background_color: "#ffffff"
+  display: "standalone"
+  icon: "/assets/img/favicon.png"
 
 # ==========================================================
 # 📜 SEO / Feed / Social
@@ -164,43 +179,3 @@ footer:
     license:
       name: "CC BY-NC-SA 4.0"
       url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
-
-# ==========================================================
-# ✅ PWA 配置
-# ==========================================================
-
-pwa:
-  enabled: true
-  sw_dest: service-worker.js
-  manifest:
-    name: "地平线"
-    short_name: "地平线"
-    start_url: /
-    background_color: "#ffffff"
-    theme_color: "#4f46e5"
-    display: standalone
-    icons:
-      - src: /assets/img/avatar.jpg
-        sizes: 192x192
-        type: image/png
-      - src: /assets/img/avatar.jpg
-        sizes: 512x512
-        type: image/png
-
-# ==========================================================
-# 🧩 _tabs 页面默认配置
-# ==========================================================
-
-defaults:
-  - scope:
-      path: "_tabs"
-    values:
-      layout: page
-      sidebar: true
-  - scope:
-      path: "_posts"
-    values:
-      layout: post
-      comments: true
-      math: false
-      mermaid: false
