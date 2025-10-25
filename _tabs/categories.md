@@ -1,9 +1,9 @@
 ---
 layout: page
-title: 分类
-icon: fas fa-folder
+title: 标签
+icon: fas fa-tags
 order: 3
 sidebar: true
-permalink: /categories/
+permalink: /tags/
 ---
-{% include categories.html %}
+{% include tags.html %}
