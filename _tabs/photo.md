@@ -1,11 +1,13 @@
 ---
 layout: page
-title: "照片"
-permalink: /photo/
-icon: fas fa-camera
+title: 相册
+icon: fas fa-images
 order: 5
 sidebar: true
+permalink: /photo/
 ---
+
+
 
 <div class="photo-container">
   <!-- 导航标签 -->
