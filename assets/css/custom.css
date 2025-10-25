@@ -1,0 +1,28 @@
+/* 首页文章卡片美化 */
+.post-preview {
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+.post-preview:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* 摘要文字颜色柔和 */
+.post-excerpt, .post-meta {
+  color: #555;
+}
+
+/* 段落行距优化 */
+.post-content p {
+  line-height: 1.8;
+  margin-bottom: 1em;
+}
+
+/* 图片圆角 */
+.post-content img {
+  border-radius: 0.5rem;
+  max-width: 100%;
+}
