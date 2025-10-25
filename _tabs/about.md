@@ -7,102 +7,164 @@ sidebar: ture
 permalink: /about/
 ---
 
-<div class="about">
+
+<div class="about-container">
+  <!-- 头像与简介 -->
   <div class="about-header">
     <img src="{{ '/assets/img/avatar.jpg' | relative_url }}" alt="王维的头像" class="avatar">
-    <h1>王维</h1>
-    <p class="location">现居杭州 · 40岁</p>
-    <div class="social">
-      <a href="#" title="邮箱"><i class="fas fa-envelope"></i></a>
-      <a href="#" title="微信"><i class="fab fa-weixin"></i></a>
+    <div class="intro">
+      <h1>王维</h1>
+      <p>现居杭州｜40岁</p>
     </div>
   </div>
 
-  <div class="about-content">
-    <p>
-      我拥有 <strong>多年以上包装设计与营销策划经验</strong> ，专注于为食品与健康产业提供
-      <strong>创新包装解决方案</strong>。擅长结合品牌价值与市场趋势，创造兼具美感与商业逻辑的作品。
-    </p>
+  <!-- 卡片内容 -->
+  <div class="card-grid">
 
-    <p>
-      现任 <strong>北京同仁堂健康药业（青海）有限公司</strong> 包装解决方案专员，
-      负责从材料选择、结构设计到生产落地的全流程统筹。
-    </p>
+    <!-- 在职 -->
+    <div class="card">
+      <h3>💼 在职</h3>
+      <h4>北京同仁堂健康药业（青海）有限公司</h4>
+      <p><strong>职位：</strong>包装解决方案专员</p>
+      <p><strong>主要职责：</strong>为食品及健康产品企业提供全方位包装解决方案，熟悉包装材料、工艺与成本控制。</p>
+    </div>
 
-    <blockquote>
-      <strong>设计、营销与包装</strong>是企业价值的桥梁。
-      我始终相信——好的设计能让产品自己开口说话。
-    </blockquote>
+    <!-- 技能 -->
+    <div class="card">
+      <h3>🚀 技能</h3>
+      <ul>
+        <li>平面设计：精通 Photoshop 与 Illustrator</li>
+        <li>电商与营销：多年运营经验，熟悉平台策略</li>
+        <li>电视购物策划：丰富节目策划与执行经验</li>
+      </ul>
+    </div>
 
-    <p class="contact">
-      📬 <a href="mailto:example@email.com">与我联系</a>
-    </p>
+    <!-- 爱好 -->
+    <div class="card">
+      <h3>❤️ 爱好</h3>
+      <ul>
+        <li>阅读与写作</li>
+        <li>旅行与摄影</li>
+        <li>书法与艺术鉴赏</li>
+        <li>音乐欣赏</li>
+        <li>烹饪与美食探索</li>
+        <li>新技术学习</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="about-footer">
+    <p>我相信 <strong>设计、营销与包装</strong> 是企业价值的重要体现，致力于用专业技能为每一个项目创造更大价值。</p>
   </div>
 </div>
 
 <style>
-.about {
+.about-container {
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
   padding: 2rem 1rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #333;
 }
+
 .about-header {
-  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
+
 .avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  object-fit: cover;
   margin-bottom: 1rem;
 }
-.about-header h1 {
-  margin: 0.5rem 0;
-  font-size: 2rem;
-  font-weight: 700;
+
+.intro h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
-.tagline {
-  font-size: 1.1rem;
-  color: #4f46e5;
-  margin-bottom: 0.5rem;
+
+.intro p {
+  margin: 0.3rem 0 0;
+  color: #666;
+  font-size: 1rem;
 }
-.location {
-  font-size: 0.95rem;
-  color: #6b7280;
-  margin-bottom: 1rem;
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
 }
-.social a {
-  margin: 0 0.4rem;
-  color: #6b7280;
+
+.card {
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  line-height: 1.7;
+}
+
+.card h3 {
+  margin: 0 0 0.75rem;
   font-size: 1.2rem;
-  transition: all 0.3s ease;
 }
-.social a:hover {
-  color: #4f46e5;
-}
-.about-content {
-  text-align: left;
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: #1f2937;
-}
-.about-content strong {
-  color: #4f46e5;
-}
-blockquote {
-  border-left: 4px solid #4f46e5;
-  padding-left: 1rem;
-  color: #4b5563;
-  font-style: italic;
-  margin: 1.5rem 0;
-}
-.contact a {
-  color: #4f46e5;
-  text-decoration: none;
+
+.card h4 {
+  margin: 0 0 0.75rem;
+  color: #555;
   font-weight: 500;
+  font-size: 1rem;
 }
-.contact a:hover {
-  text-decoration: underline;
+
+.card p {
+  margin: 0.4rem 0;
+  color: #555;
+}
+
+.card ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.card ul li {
+  position: relative;
+  margin-bottom: 0.4rem;
+}
+
+.card ul li::before {
+  content: "•";
+  color: #4f46e5;
+  position: absolute;
+  left: -1rem;
+}
+
+.about-footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.about-footer strong {
+  color: #4f46e5;
+}
+
+@media (max-width: 600px) {
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+
+  .intro h1 {
+    font-size: 1.6rem;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
 }
 </style>
