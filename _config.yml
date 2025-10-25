@@ -17,7 +17,7 @@ baseurl: ""
 
 author:
   name: "王维"
-  avatar: /assets/img/avatar.jpg   # ✅ 侧边栏头像
+  avatar: /assets/img/avatar.jpg
   bio: "终身学习者 · 在职 · 记录旅途与思考"
   location: "上海"
   links:
@@ -29,14 +29,10 @@ author:
       url: "/feed.xml"
 
 # ==========================================================
-# 🎨 主题设置
+# 🎨 主题与插件（GitHub Pages 兼容）
 # ==========================================================
 
 theme: jekyll-theme-chirpy
-
-# ==========================================================
-# 🔧 插件（GitHub Pages 兼容）
-# ==========================================================
 
 plugins:
   - jekyll-paginate
@@ -44,20 +40,36 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-archives
+  - jekyll-pwa-plugin  # ✅ PWA
 
 paginate: 5
 paginate_path: /page:num/
 
 # ==========================================================
-# 🧭 侧边栏导航（显示页面顺序）
+# 🧭 侧边栏导航（完整显示）
 # ==========================================================
+
+sidebar:
+  show: true
+  display_categories: true
+  display_tags: true
+  display_archives: true
+  display_pages: true
+  links_order:
+    - about
+    - categories
+    - media
+    - photo
+    - stop
+    - tags
+    - archives
 
 navbar:
   - title: 首页
     url: /
-  - title: 媒体
+  - title: 消费
     url: /media/
-  - title: 停留
+  - title: 驻足
     url: /stop/
   - title: 照片
     url: /photo/
@@ -81,16 +93,6 @@ category_archive:
   path: /categories/
 
 # ==========================================================
-# 🧩 评论与分析（可选）
-# ==========================================================
-
-comments:
-  provider: false
-
-analytics:
-  provider: false
-
-# ==========================================================
 # ⚙️ 构建选项
 # ==========================================================
 
@@ -107,7 +109,7 @@ kramdown:
 
 excerpt_separator: "<!--more-->"
 excerpt_length: 80
-post_img_size: "large"   # small / medium / large
+post_img_size: "large"
 
 # ==========================================================
 # 🌈 自定义 CSS
@@ -162,3 +164,43 @@ footer:
     license:
       name: "CC BY-NC-SA 4.0"
       url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+
+# ==========================================================
+# ✅ PWA 配置
+# ==========================================================
+
+pwa:
+  enabled: true
+  sw_dest: service-worker.js
+  manifest:
+    name: "地平线"
+    short_name: "地平线"
+    start_url: /
+    background_color: "#ffffff"
+    theme_color: "#4f46e5"
+    display: standalone
+    icons:
+      - src: /assets/img/avatar.jpg
+        sizes: 192x192
+        type: image/png
+      - src: /assets/img/avatar.jpg
+        sizes: 512x512
+        type: image/png
+
+# ==========================================================
+# 🧩 _tabs 页面默认配置
+# ==========================================================
+
+defaults:
+  - scope:
+      path: "_tabs"
+    values:
+      layout: page
+      sidebar: true
+  - scope:
+      path: "_posts"
+    values:
+      layout: post
+      comments: true
+      math: false
+      mermaid: false
