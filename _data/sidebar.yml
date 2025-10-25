@@ -1,22 +1,27 @@
 home:
+home:
+  - title: 首页
+    type: home
+    url: /
   - title: 时间轴
     type: page
     url: /archives/
-  - title: 关于
-    type: page
-    url: /about/
-  - title: 分类
-    type: page
-    url: /categories/
-  - title: 消费
+  - title: 多媒体
     type: page
     url: /media/
   - title: 相册
     type: page
     url: /photo/
-  - title: 驻足点
+  - title: 停留笔记
     type: page
     url: /stop/
+  - title: 分类
+    type: page
+    url: /categories/
   - title: 标签
     type: page
     url: /tags/
+  - title: 关于
+    type: page
+    url: /about/
+ 
