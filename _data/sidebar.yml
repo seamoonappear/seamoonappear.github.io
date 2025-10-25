@@ -1,7 +1,22 @@
 home:
-  - title: "最新文章"
-    type: "posts"
+  - title: "关于我"
+    type: page
+    url: "/about.html"
+  - title: "时间轴"
+    type: page
+    url: "/archives.html"
   - title: "分类"
-    type: "categories"
+    type: page
+    url: "/categories.html"
+  - title: "消费"
+    type: page
+    url: "/media.html"
+  - title: "相册"
+    type: page
+    url: "/photo.html"
+  - title: "驻足"
+    type: page
+    url: "/stop.html"
   - title: "标签"
-    type: "tags"
+    type: page
+    url: "/tags.html"
