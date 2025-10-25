@@ -12,7 +12,7 @@ url: "https://seamoonappear.github.io"
 baseurl: ""
 
 # ==========================================================
-# 👤 作者信息（显示在侧边栏，包括头像）
+# 👤 作者信息（侧边栏显示）
 # ==========================================================
 
 author:
@@ -33,9 +33,14 @@ author:
 # ==========================================================
 
 theme: jekyll-theme-chirpy
+show_sidebar: true   # 显示侧边栏
+
+tabs:
+  path: "_tabs"
+  sort_by: "order"
 
 # ==========================================================
-# 🔧 插件（官方支持，兼容 GitHub Pages）
+# 🔧 插件（GitHub Pages 兼容）
 # ==========================================================
 
 plugins:
@@ -46,29 +51,18 @@ plugins:
   - jekyll-archives
 
 paginate: 5
-paginate_path: /page:num/
+paginate_path: "/page:num/"
 
 # ==========================================================
-# 🧭 侧边栏导航（完全显示）
+# ⚙️ 构建选项
 # ==========================================================
 
-navbar:
-  - title: 首页
-    url: /
-  - title: 媒体
-    url: /media/
-  - title: 停留
-    url: /stop/
-  - title: 照片
-    url: /photo/
-  - title: 分类
-    url: /categories/
-  - title: 标签
-    url: /tags/
-  - title: 关于
-    url: /about/
-  - title: 归档
-    url: /archives/
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    line_numbers: true
 
 # ==========================================================
 # 🏷️ 分类与标签
@@ -87,27 +81,6 @@ category_archive:
   path: /categories/
 
 # ==========================================================
-# 🧩 评论与分析（可选）
-# ==========================================================
-
-comments:
-  provider: false
-
-analytics:
-  provider: false
-
-# ==========================================================
-# ⚙️ 构建选项
-# ==========================================================
-
-markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM
-  syntax_highlighter_opts:
-    line_numbers: true
-
-# ==========================================================
 # 🧩 博客文章显示优化
 # ==========================================================
 
@@ -116,24 +89,13 @@ excerpt_length: 80
 post_img_size: "large"
 
 # ==========================================================
-# 🌈 自定义 CSS / 前端 PWA
+# 🌈 自定义 CSS
 # ==========================================================
 
 sass:
   style: compressed
   load_paths:
     - assets/css
-
-# PWA 前端可以使用 service-worker.js + manifest.json
-pwa:
-  enabled: true
-  name: "地平线"
-  short_name: "地平线"
-  start_url: "/"
-  theme_color: "#ffffff"
-  background_color: "#ffffff"
-  display: "standalone"
-  icon: "/assets/img/favicon.png"
 
 # ==========================================================
 # 📜 SEO / Feed / Social
@@ -179,3 +141,17 @@ footer:
     license:
       name: "CC BY-NC-SA 4.0"
       url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+
+# ==========================================================
+# ⚡ PWA 配置（方案3：不依赖额外插件）
+# ==========================================================
+
+pwa:
+  enable: true
+  name: "地平线"
+  short_name: "地平线"
+  description: "王维的个人博客"
+  theme_color: "#4A90E2"
+  background_color: "#FFFFFF"
+  display: "standalone"
+  icon: "/assets/img/avatar.jpg"
