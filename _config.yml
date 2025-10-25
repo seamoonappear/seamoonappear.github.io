@@ -1,72 +1,50 @@
-# 站点设置
+title: 地平线
+tagline: "王维的个人博客"
+description: "欢迎来到我的个人网站——地平线。记录生活、思考与灵感。"
 lang: zh-CN
-title: "地平线"
-tagline: "学习、感悟、探索"
-description: "seamoonappear 的个人博客"
-keywords: "博客, 技术, 思考, 分享"
+timezone: Asia/Shanghai
 url: "https://seamoonappear.github.io"
+baseurl: ""
 
-# 作者信息
-author: "seamoonappear"
-twitter:
-  username: ""  # 如果需要可以填写Twitter用户名
+author:
+  name: 王维
+  url: https://seamoonappear.github.io
+  avatar: /assets/img/avatar.png
+  bio: "终身学习者，记录旅途与思考。"
 
-# 构建设置
 theme: jekyll-theme-chirpy
 plugins:
-  - jekyll-sitemap
-  - jekyll-seo-tag
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-archives
 
-# 国际化
-timezone: Asia/Shanghai
+paginate: 5
+paginate_path: /page:num/
 
-# 社交信息（根据实际情况填写）
+# 顶部导航
+navbar:
+  - title: 博客
+    url: /
+  - title: 媒体
+    url: /media/
+  - title: 停留
+    url: /stop/
+  - title: 照片
+    url: /photo/
+  - title: 关于
+    url: /about/
+
+# 社交图标
 social:
-  name: seamoonappear
-  links:
-    # - https://twitter.com/your_twitter_username
-    - https://github.com/seamoonappear
-    # - https://www.linkedin.com/in/your_linkedin_username
+  github: seamoonappear
+  rss: true
 
-# 评论系统 - Cusdis
+# 评论可选 (暂时禁用)
 comments:
-  active: "cusdis"
-  cusdis:
-    app_id: "a507d22b-3586-405c-a6b5-50563ba8eb75"
-    host: "https://cusdis.com"
-    lang: "zh-cn"
+  provider: false
 
-# 外观设置
-theme_mode: 
-  light: true
-  dark: true
-
-# 首页设置
-home_posts:
-  sort_by: date  # 按日期排序
-  sort_order: descending  # 降序排列（最新的在前）
-
-# 分析工具（可选）
-# google_analytics:
-#   id: ""
-
-# 其他设置
-paginate: 10
-paginate_path: /page/:num/
-permalink: /posts/:title/
-feed:
-  path: atom.xml
-  posts_limit: 20
-
-# 排除文件
-exclude:
-  - "*.gem"
-  - "*.gemspec"
-  - "Gemfile"
-  - "Gemfile.lock"
-  - "node_modules"
-  - "vendor/bundle/"
-  - "vendor/cache/"
-  - "vendor/gems/"
-  - "vendor/ruby/"
+# 版权信息
+footer:
+  copyright: "© 2025 王维. All rights reserved."
