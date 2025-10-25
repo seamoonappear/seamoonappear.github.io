@@ -1,4 +1,121 @@
-title: "地平线"        # 你的博客名称
-tagline: "学习、感悟、探索"  # 博客副标题，可按需修改
-description: "seamoonappear 的个人博客" # 博客描述
-url: "https://seamoonappear.github.io"  # 你的博客网址
+# ===============================================
+# Jekyll Chirpy 主题配置文件 - 修复版
+# ===============================================
+
+# 基础信息
+title: "地平线"
+tagline: "学习，感悟，探索"
+description: "Seamoon的技术博客，分享编程开发、技术实践和个人思考。"
+url: "https://seamoonappear.github.io"
+baseurl: ""
+lang: "zh-CN"
+timezone: "Asia/Shanghai"
+
+# 主题设置
+remote_theme: "cotes2020/jekyll-theme-chirpy"
+
+# GitHub 信息
+github:
+  username: "seamoonappear"
+
+# 个人信息
+social:
+  name: "王维"
+  email: ""
+  links:
+    - "https://github.com/seamoonappear"
+
+avatar: "/assets/img/avatar.jpg"
+
+# 布局和显示设置
+paginate: 10
+toc: true
+
+# 评论系统
+comments:
+  active: "cusdis"
+  cusdis:
+    app_id: "a507d22b-3586-405c-a6b5-50563ba8eb75"
+    host: "https://cusdis.com"
+    lang: "zh-cn"
+
+# 搜索功能
+search:
+  enabled: true
+
+# 归档设置
+jekyll-archives:
+  enabled: [categories, tags]
+  layouts:
+    category: "category"
+    tag: "tag"
+  permalinks:
+    tag: "/tags/:name/"
+    category: "/categories/:name/"
+
+# Markdown 处理器
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    block:
+      line_numbers: true
+
+# 集合配置
+collections:
+  tabs:
+    output: true
+    sort_by: "order"
+
+# 默认值设置
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true
+      toc: true
+      permalink: "/posts/:year/:month/:day/:title/"
+
+  - scope:
+      path: "_drafts"
+    values:
+      comments: false
+
+  - scope:
+      path: ""
+      type: "tabs"
+    values:
+      layout: "page"
+      permalink: "/:title/"
+
+# 插件设置
+plugins:
+  - "jekyll-paginate"
+  - "jekyll-sitemap"
+  - "jekyll-feed"
+  - "jekyll-seo-tag"
+  - "jekyll-archives"
+
+# 排除文件
+exclude:
+  - "*.gem"
+  - "*.gemspec"
+  - "README.md"
+  - "LICENSE"
+  - "*.config.js"
+  - "package*.json"
+  - "vendor"
+  - "node_modules"
+  - "Gemfile.lock"
+  - ".sass-cache"
+  - ".jekyll-cache"
+  - ".bundle"
+
+# SASS 设置
+sass:
+  style: "compressed"
