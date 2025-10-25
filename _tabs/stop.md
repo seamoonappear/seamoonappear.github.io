@@ -1,11 +1,13 @@
 ---
 layout: page
-title: "驻足"
-permalink: /stop/
-icon: fas fa-map-marker-alt
+title: 停留笔记
+icon: fas fa-sticky-note
 order: 5
 sidebar: true
+permalink: /stop/
 ---
+这里写停留笔记或日常感悟。
+
 
 <!-- 顶部横幅 -->
 <div class="banner">
