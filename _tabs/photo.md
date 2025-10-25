@@ -4,6 +4,7 @@ title: "照片"
 permalink: /photo/
 icon: fas fa-camera
 order: 5
+sidebar: true
 ---
 
 <div class="photo-container">
