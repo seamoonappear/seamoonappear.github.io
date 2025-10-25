@@ -1,5 +1,6 @@
+# _tabs/tags.md
 ---
-layout: page
+layout: tag
 title: 标签
 icon: fas fa-tags
 order: 7
