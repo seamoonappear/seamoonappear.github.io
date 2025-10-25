@@ -8,24 +8,19 @@ description: "记录生活、思考与灵感。"
 lang: zh-CN
 timezone: Asia/Shanghai
 
-# 若启用多语言 SEO，增加英文翻译
-languages:
-  zh: "zh-CN"
-  en: "en"
-
-# 你的网站地址
+# GitHub Pages 地址
 url: "https://seamoonappear.github.io"
-baseurl: ""  # 不要修改
+baseurl: ""
 
 # ==========================================================
-# 👤 作者信息
+# 👤 作者信息（显示在侧边栏，包括头像）
 # ==========================================================
 
 author:
   name: "王维"
-  avatar: /assets/img/avatar.jpg
+  avatar: /assets/img/avatar.jpg   # ✅ 侧边栏头像
   bio: "终身学习者 · 在职 · 记录旅途与思考"
-  location: "杭州, 中国"
+  location: "上海"
   links:
     - label: "GitHub"
       icon: "fab fa-github"
@@ -35,13 +30,13 @@ author:
       url: "/feed.xml"
 
 # ==========================================================
-# 🎨 主题与版本
+# 🎨 主题设置
 # ==========================================================
 
 theme: jekyll-theme-chirpy
 
 # ==========================================================
-# 🔧 插件
+# 🔧 插件（GitHub Pages 兼容）
 # ==========================================================
 
 plugins:
@@ -55,15 +50,16 @@ paginate: 8
 paginate_path: /page:num/
 
 # ==========================================================
-# 🧭 导航栏
+# 🧭 侧边栏导航（显示页面顺序）
 # ==========================================================
 
+# 如果 tabs 下页面 Front Matter 正确，这个 navbar 可选
 navbar:
-  - title: 博客
+  - title: 首页
     url: /
-  - title: 媒体
+  - title: 消费
     url: /media/
-  - title: 停留
+  - title: 驻足
     url: /stop/
   - title: 照片
     url: /photo/
@@ -87,14 +83,14 @@ category_archive:
   path: /categories/
 
 # ==========================================================
-# 🧩 评论与分析
+# 🧩 评论与分析（可选）
 # ==========================================================
 
 comments:
-  provider: false  # 暂时关闭评论系统，可后续启用 Disqus 或 Giscus
+  provider: false
 
 analytics:
-  provider: false  # 暂不启用统计（可选 Google Analytics 或 Plausible）
+  provider: false
 
 # ==========================================================
 # 🧱 构建选项
@@ -108,16 +104,21 @@ kramdown:
     line_numbers: false
 
 # ==========================================================
-# ⚙️ SEO 设置（多语言 + 社交 + Feed）
+# 🧩 博客文章显示优化
 # ==========================================================
 
-# jekyll-seo-tag 自动读取以下字段生成 meta + Open Graph
+# 使用 <!--more--> 分隔摘要
+excerpt_separator: "<!--more-->"
+excerpt_length: 80
+post_img_size: "large"   # small / medium / large
+
+# ==========================================================
+# ⚙️ SEO / Feed / Social
+# ==========================================================
+
 seo:
   type: "Blog"
   locale: "zh_CN"
-  alternate:
-    - lang: "en"
-      href: "https://seamoonappear.github.io/en/"
   twitter:
     username: "seamoonappear"
     card: "summary_large_image"
@@ -127,9 +128,8 @@ social:
   name: "王维"
   links:
     - "https://github.com/seamoonappear"
-    - "https://seamoonappear.github.io/feed.xml"
+    - "/feed.xml"
 
-# Feed (RSS)
 feed:
   path: feed.xml
   posts_limit: 20
@@ -137,16 +137,6 @@ feed:
   description: "王维的个人博客，记录生活、思考与灵感。"
   language: zh-CN
   author_name: "王维"
-
-# ==========================================================
-# 🧠 结构化数据（Google Rich Snippet）
-# ==========================================================
-
-# 通过 jekyll-seo-tag 自动注入 JSON-LD schema
-# 这里补充必要信息供 schema 引用
-social_links:
-  github: https://github.com/seamoonappear
-  rss: https://seamoonappear.github.io/feed.xml
 
 # ==========================================================
 # 📜 页脚信息
@@ -159,10 +149,10 @@ footer:
       url: "https://github.com/seamoonappear"
     - label: "RSS"
       icon: "fas fa-rss"
-      url: "https://seamoonappear.github.io/feed.xml"
+      url: "/feed.xml"
   copyright:
     author: "王维"
-    year: 2020-2025
+    year: 2025
     license:
       name: "CC BY-NC-SA 4.0"
       url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
