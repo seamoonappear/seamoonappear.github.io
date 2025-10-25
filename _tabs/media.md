@@ -5,6 +5,7 @@ permalink: /media/
 icon: fas fa-book
 order: 4
 sidebar: true
+permalink: /media/
 ---
 
 <!-- ✅ 页面顶部 Banner -->
