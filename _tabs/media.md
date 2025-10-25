@@ -4,6 +4,7 @@ title: "消费"
 permalink: /media/
 icon: fas fa-book
 order: 4
+sidebar: true
 ---
 
 <!-- ✅ 页面顶部 Banner -->
