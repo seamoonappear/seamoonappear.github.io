@@ -6,4 +6,4 @@ order: 3
 sidebar: true
 permalink: /categories/
 ---
-{% include categories.html %}
+
