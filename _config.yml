@@ -2,7 +2,7 @@
 # Site settings
 # =====================
 title: 地平线
-author: 学习、感悟及探索
+author: 学习感悟及探索
 description: "王维的个人博客与作品展示"
 lang: zh-CN
 timezone: Asia/Shanghai
@@ -32,7 +32,7 @@ sidebar:
   display_categories: true
   display_tags: true
   display_archives: true
-  display_pages: true  # 显示_pages或_tabs中的页面
+  display_pages: true
   categories_order: asc
   links_order:
     - about
