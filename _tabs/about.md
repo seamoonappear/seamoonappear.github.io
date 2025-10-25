@@ -5,6 +5,7 @@ permalink: /about/
 icon: fas fa-info-circle
 order: 7
 sidebar: true
+permalink: /about/
 ---
 
 <div class="about-container">
