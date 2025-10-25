@@ -6,4 +6,4 @@ order: 1
 sidebar: true
 permalink: /archives/
 ---
-{% include archives.html %}
+
