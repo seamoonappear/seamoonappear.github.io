@@ -1,22 +1,22 @@
 home:
-  - title: "关于我"
+  - title: 时间轴
     type: page
-    url: "/about/"
-  - title: "时间轴"
+    url: /archives/
+  - title: 关于
     type: page
-    url: "/archives/"
-  - title: "分类"
+    url: /about/
+  - title: 分类
     type: page
-    url: "/categories/"
-  - title: "消费"
+    url: /categories/
+  - title: 消费
     type: page
-    url: "/media/"
-  - title: "相册"
+    url: /media/
+  - title: 相册
     type: page
-    url: "/photo/"
-  - title: "驻足点"
+    url: /photo/
+  - title: 驻足点
     type: page
-    url: "/stop/"
-  - title: "标签"
+    url: /stop/
+  - title: 标签
     type: page
-    url: "/tags/"
+    url: /tags/
