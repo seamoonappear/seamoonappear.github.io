@@ -1,11 +1,13 @@
 ---
 layout: page
-title: "消费"
-permalink: /media/
-icon: fas fa-book
+title: 多媒体
+icon: fas fa-photo-video
 order: 4
 sidebar: true
+permalink: /media/
 ---
+
+
 
 <!-- ✅ 页面顶部 Banner -->
 <div class="media-banner">
