@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chirpy Front Matter 生成器</title>
+  <title>Chirpy v7.4 Front Matter 生成器</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 min-h-screen p-6">
   <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl p-8">
-    <h1 class="text-2xl font-bold mb-6 text-center">🪄 Chirpy Front Matter 生成器</h1>
+    <h1 class="text-2xl font-bold mb-6 text-center">🪄 Chirpy v7.4 Front Matter 生成器</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- 左侧输入区 -->
@@ -45,6 +45,26 @@
           <label for="hasImage" class="font-semibold">添加封面图片</label>
         </div>
         <input id="imageName" type="text" class="w-full p-2 border rounded hidden" placeholder="输入图片文件名，例如 cover.jpg" />
+
+        <div class="flex items-center gap-2">
+          <input id="pin" type="checkbox" class="w-4 h-4" />
+          <label for="pin" class="font-semibold">置顶文章</label>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input id="math" type="checkbox" class="w-4 h-4" />
+          <label for="math" class="font-semibold">启用数学公式（KaTeX）</label>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input id="mermaid" type="checkbox" class="w-4 h-4" />
+          <label for="mermaid" class="font-semibold">启用 Mermaid 图表</label>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <input id="comments" type="checkbox" class="w-4 h-4" checked />
+          <label for="comments" class="font-semibold">启用评论</label>
+        </div>
 
         <button id="generate" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full">生成 Markdown</button>
       </div>
@@ -133,7 +153,8 @@ document.getElementById('generate').addEventListener('click', ()=>{
   const filename = `_posts/${fileDate}-${slug}.md`;
 
   let fm = '---\n';
-  fm += `title: ${title}\n`;
+  fm += `layout: post\n`;
+  fm += `title: "${title}"\n`;
   fm += `date: ${dateStr}\n`;
   fm += `last_modified_at: ${dateStr}\n`;
   if(categories.length) fm += `categories: [${categories.join(', ')}]\n`;
@@ -141,7 +162,10 @@ document.getElementById('generate').addEventListener('click', ()=>{
   if(hasImageCheckbox.checked && imageNameInput.value.trim()){
     fm += `image:\n  path: /assets/img/${imageNameInput.value.trim()}\n`;
   }
-  fm += `pin: false\nmath: false\nmermaid: false\ncomments: true\n`;
+  fm += `pin: ${document.getElementById('pin').checked}\n`;
+  fm += `math: ${document.getElementById('math').checked}\n`;
+  fm += `mermaid: ${document.getElementById('mermaid').checked}\n`;
+  fm += `comments: ${document.getElementById('comments').checked}\n`;
   fm += '---\n\n';
 
   let body = '';
