@@ -1,12 +1,13 @@
---
+---
 layout: page
 title: 关于我
-permalink: /about/
-icon: fas fa-info-circle
+icon: fas fa-user
 order: 7
 sidebar: true
 permalink: /about/
 ---
+这里写关于你的介绍内容。
+
 
 <div class="about-container">
   <!-- 头像与简介 -->
