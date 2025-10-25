@@ -1,0 +1,7 @@
+home:
+  - title: "最新文章"
+    type: "posts"
+  - title: "分类"
+    type: "categories"
+  - title: "标签"
+    type: "tags"
