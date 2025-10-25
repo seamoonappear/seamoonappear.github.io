@@ -1,0 +1,20 @@
+- title: 首页
+  url: /
+
+- title: 分类
+  url: /categories/
+
+- title: 标签
+  url: /tags/
+
+- title: 时间轴
+  url: /archives/
+
+- title: 停留
+  url: /stop/
+
+- title: 消费
+  url: /media/
+
+- title: 关于
+  url: /about/

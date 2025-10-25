@@ -1,0 +1,109 @@
+<!-- _includes/comments.html -->
+<!-- 评论系统主入口，根据 `_config.yml` 配置加载指定提供商 -->
+
+<section class="comments-container">
+  {% case site.comments.provider %}
+  
+    {% when 'cusdis' %}
+      <!-- Cusdis 评论系统 - 高度优化 -->
+      <div id="cusdis-comments" class="comments-height-optimized">
+        {% include comments/providers/cusdis.html %}
+      </div>
+
+    {% when 'giscus' %}
+      <!-- Giscus 评论系统 - 高度优化 -->
+      <div id="giscus-comments" class="comments-height-optimized">
+        {% include comments/providers/giscus.html %}
+      </div>
+
+    {% when 'disqus' %}
+      <!-- Disqus 评论系统 - 高度优化 -->
+      <div id="disqus-comments" class="comments-height-optimized">
+        {% include comments/providers/disqus.html %}
+      </div>
+
+    {% else %}
+      <!-- 未配置评论系统时的提示 -->
+      <div class="comments-disabled">
+        <p>评论功能暂未开启。</p>
+      </div>
+      
+  {% endcase %}
+</section>
+
+<style>
+/* 评论系统高度优化样式 */
+.comments-height-optimized {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  min-height: 300px; /* 设置最小高度 */
+}
+
+/* 移动端高度优化 */
+@media screen and (max-width: 768px) {
+  .comments-container {
+    padding: 0 10px;
+  }
+  
+  .comments-height-optimized {
+    min-height: 250px; /* 移动端稍小的高度 */
+    max-height: 70vh; /* 限制最大高度为视口的70% */
+    overflow-y: auto; /* 允许垂直滚动 */
+  }
+  
+  /* 针对 Cusdis 的高度优化 */
+  #cusdis_thread {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-height: 250px;
+  }
+}
+
+/* 小屏手机高度优化 */
+@media screen and (max-width: 480px) {
+  .comments-height-optimized {
+    min-height: 200px;
+    max-height: 60vh;
+  }
+  
+  #cusdis_thread {
+    min-height: 200px;
+  }
+}
+
+/* 桌面端高度优化 */
+@media screen and (min-width: 769px) {
+  .comments-height-optimized {
+    min-height: 400px; /* 桌面端更大的最小高度 */
+  }
+}
+</style>
+
+<script>
+// 动态调整评论框高度
+document.addEventListener('DOMContentLoaded', function() {
+  // 监听窗口大小变化
+  window.addEventListener('resize', function() {
+    adjustCommentsHeight();
+  });
+  
+  // 初始调整
+  adjustCommentsHeight();
+  
+  function adjustCommentsHeight() {
+    const commentsContainer = document.querySelector('.comments-height-optimized');
+    if (!commentsContainer) return;
+    
+    // 根据屏幕尺寸调整高度
+    if (window.innerWidth <= 480) {
+      commentsContainer.style.minHeight = '200px';
+    } else if (window.innerWidth <= 768) {
+      commentsContainer.style.minHeight = '250px';
+    } else {
+      commentsContainer.style.minHeight = '400px';
+    }
+  }
+});
+</script>

@@ -1,0 +1,313 @@
+---
+layout: default
+---
+
+<style>
+/* 文章元信息样式 */
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 15px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.post-meta span {
+  white-space: nowrap;
+}
+
+/* 封面图样式 */
+.post-cover {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.post-cover img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 热门标签样式 */
+.popular-tags {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.popular-tags h3 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-link {
+  display: inline-block;
+  padding: 5px 12px;
+  background-color: #e9ecef;
+  color: #495057;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.tag-link:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* 相关文章样式 */
+.related-posts {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.related-posts h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.related-posts ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.related-posts li {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.related-posts li:before {
+  content: "•";
+  color: #007bff;
+  position: absolute;
+  left: 0;
+}
+
+.related-posts a {
+  color: #495057;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.related-posts a:hover {
+  color: #007bff;
+}
+
+/* 评论区域样式 - 完全展开，无滚动条 */
+.comments-wrapper {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/* 评论系统完全展开样式 */
+.comments-height-optimized {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  min-height: 300px;
+  height: auto; /* 改为自动高度 */
+  overflow-y: visible; /* 改为可见，不显示滚动条 */
+}
+
+/* 隐藏Cusdis中的邮箱输入框 */
+#cusdis_thread .cusdis-input-email-container {
+  display: none !important;
+}
+
+/* 确保Cusdis iframe完全展开 */
+#cusdis_thread iframe {
+  height: auto !important;
+  min-height: 400px;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  .post-meta {
+    gap: 10px;
+    font-size: 0.85em;
+  }
+  
+  .comments-height-optimized {
+    min-height: 300px;
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  #cusdis_thread {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-height: 300px;
+  }
+  
+  .popular-tags,
+  .related-posts {
+    padding: 1rem;
+  }
+  
+  .tag-cloud {
+    gap: 8px;
+  }
+  
+  .tag-link {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+  }
+}
+
+/* 小屏手机优化 */
+@media screen and (max-width: 480px) {
+  .comments-height-optimized {
+    min-height: 300px;
+    height: auto;
+    overflow-y: visible;
+  }
+  
+  #cusdis_thread {
+    min-height: 300px;
+  }
+  
+  .post-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* 桌面端优化 */
+@media screen and (min-width: 769px) {
+  .comments-height-optimized {
+    min-height: 400px;
+    height: auto;
+  }
+}
+</style>
+
+<script>
+// 动态调整评论框高度 - 完全展开版本
+document.addEventListener('DOMContentLoaded', function() {
+  // 等待 Cusdis 加载完成
+  setTimeout(function() {
+    const cusdisContainer = document.getElementById('cusdis_thread');
+    if (cusdisContainer) {
+      // 完全展开评论区域
+      cusdisContainer.style.height = 'auto';
+      cusdisContainer.style.overflowY = 'visible';
+      
+      // 尝试找到Cusdis iframe并设置高度
+      const cusdisFrame = document.querySelector('#cusdis_thread iframe');
+      if (cusdisFrame) {
+        cusdisFrame.style.height = 'auto';
+        cusdisFrame.style.minHeight = '400px';
+      }
+    }
+  }, 2000); // 等待Cusdis完全加载
+  
+  // 监听窗口大小变化
+  window.addEventListener('resize', function() {
+    const cusdisContainer = document.getElementById('cusdis_thread');
+    if (cusdisContainer) {
+      // 确保评论区域保持完全展开
+      cusdisContainer.style.height = 'auto';
+      cusdisContainer.style.overflowY = 'visible';
+    }
+  });
+});
+</script>
+
+<div class="post">
+  <!-- 封面插图 -->
+  {% if page.cover %}
+  <div class="post-cover">
+    <img src="{{ page.cover | relative_url }}" alt="{{ page.title }} 封面插图">
+  </div>
+  {% endif %}
+
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <!-- 作者信息 -->
+      {% if site.social.name %}
+      <span class="post-author">作者: {{ site.social.name }}</span>
+      {% endif %}
+      
+      <!-- 阅读时间 -->
+      {% assign words = content | number_of_words %}
+      {% if words < 360 %}
+        <span class="reading-time">阅读时间: 1分钟</span>
+      {% else %}
+        <span class="reading-time">阅读时间: {{ words | divided_by:180 }}分钟</span>
+      {% endif %}
+      
+      <!-- 创建日期 -->
+      <span class="post-date">发布于: {{ page.date | date: "%Y-%m-%d" }}</span>
+      
+      <!-- 更新日期 - 仅在设置了 last_modified_at 时显示 -->
+      {% if page.last_modified_at %}
+      <span class="post-modify">更新于: {{ page.last_modified_at | date: "%Y-%m-%d" }}</span>
+      {% endif %}
+      
+      <!-- 分类信息 -->
+      {% if page.categories %}
+      <span class="post-categories">分类: {{ page.categories | join: ", " }}</span>
+      {% endif %}
+    </div>
+  </header>
+
+  <article class="post-content">
+    {{ content }}
+  </article>
+
+  <!-- 相关文章推荐 -->
+  {% if site.related_posts and site.related_posts.size > 0 %}
+  <div class="related-posts">
+    <h2>推荐阅读</h2>
+    <ul>
+      {% for post in site.related_posts limit:5 %}
+      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <!-- 热门标签区域 -->
+  <div class="popular-tags">
+    <h3>热门标签</h3>
+    <div class="tag-cloud">
+      {% capture tags %}
+        {% for tag in site.tags %}
+          {{ tag[1].size | times: 1000 | plus: 1000 }}#{{ tag[0] }}#{{ tag[1].size }}
+        {% endfor %}
+      {% endcapture %}
+      {% assign sorted_tags = tags | split:' ' | sort %}
+      {% for tag_info in sorted_tags reversed limit:10 %}
+        {% assign tag_items = tag_info | split: '#' %}
+        {% assign tag_name = tag_items[1] %}
+        {% assign post_count = tag_items[2] %}
+        <a href="{{ '/tags/' | relative_url }}{{ tag_name | slugify }}" class="tag-link" data-count="{{ post_count }}">{{ tag_name }} ({{ post_count }})</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- 评论系统区域 -->
+  <div class="comments-wrapper">
+    {% include comments.html %}
+  </div>
+
+</div>

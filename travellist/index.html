@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅行物品清单 | seamoonappear.github.io</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6b8cbc;
+            --accent-color: #ff7e5f;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --gray-color: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .btn.active {
+            box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary-color);
+        }
+        
+        .checklist-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .category {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .category:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-header {
+            padding: 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .category-actions {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .category-action-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .category-action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .progress {
+            font-size: 0.9rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 3px 8px;
+            border-radius: 20px;
+        }
+        
+        .items-list {
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
+        }
+        
+        .checklist-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+        
+        .checklist-item label {
+            flex: 1;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .checklist-item.checked label {
+            text-decoration: line-through;
+            color: #888;
+        }
+        
+        .priority {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .priority-high {
+            background-color: #ffe6e6;
+            color: var(--danger-color);
+        }
+        
+        .priority-medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .priority-low {
+            background-color: #e6f7ff;
+            color: #0066cc;
+        }
+        
+        .item-actions {
+            display: flex;
+            gap: 5px;
+            margin-left: 10px;
+        }
+        
+        .item-action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .item-action-btn:hover {
+            color: var(--dark-color);
+        }
+        
+        .delete-btn:hover {
+            color: var(--danger-color);
+        }
+        
+        .add-item {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .add-item input {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .add-item button {
+            padding: 8px 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .add-category {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .add-category input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .add-category button {
+            padding: 10px 20px;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: var(--gray-color);
+        }
+        
+        .priority-selector {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        
+        .priority-option {
+            flex: 1;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .priority-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .priority-option[data-priority="high"].selected {
+            background-color: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+        
+        .priority-option[data-priority="medium"].selected {
+            background-color: var(--warning-color);
+            border-color: var(--warning-color);
+            color: var(--dark-color);
+        }
+        
+        .priority-option[data-priority="low"].selected {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+        }
+        
+        @media (max-width: 768px) {
+            .checklist-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+            
+            .category-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-suitcase"></i> 旅行物品清单</h1>
+            <p class="subtitle">出差 · 旅游 · 出行必备物品检查表</p>
+        </header>
+        
+        <div class="controls">
+            <input type="text" class="search-box" placeholder="搜索物品...">
+            <div class="filter-buttons">
+                <button class="btn btn-primary active" id="showAll">
+                    <i class="fas fa-list"></i> 全部物品
+                </button>
+                <button class="btn btn-success" id="showUnpacked">
+                    <i class="fas fa-box-open"></i> 未打包
+                </button>
+                <button class="btn btn-warning" id="showPacked">
+                    <i class="fas fa-box"></i> 已打包
+                </button>
+                <button class="btn btn-danger" id="resetList">
+                    <i class="fas fa-redo"></i> 重置清单
+                </button>
+            </div>
+        </div>
+        
+        <div class="checklist-container" id="checklistContainer">
+            <!-- 清单内容将通过JavaScript动态生成 -->
+        </div>
+        
+        <div class="add-category">
+            <input type="text" id="newCategoryName" placeholder="输入新分类名称...">
+            <button id="addCategoryBtn">
+                <i class="fas fa-plus"></i> 添加新分类
+            </button>
+        </div>
+        
+        <div class="summary">
+            <h2><i class="fas fa-chart-line"></i> 打包进度</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalItems">0</div>
+                    <div class="stat-label">总物品</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="packedItems">0</div>
+                    <div class="stat-label">已打包</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="remainingItems">0</div>
+                    <div class="stat-label">剩余</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="completionRate">0%</div>
+                    <div class="stat-label">完成率</div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2024 <a href="https://seamoonappear.github.io" style="color: var(--primary-color); text-decoration: none;">王维</a> | 旅行物品清单</p>
+        </footer>
+    </div>
+
+    <script>
+        // 清单数据结构
+        const checklistData = [
+            {
+                id: "documents",
+                title: "📄 证件与财务",
+                items: [
+                    { id: "passport", text: "护照/身份证", checked: false, priority: "high" },
+                    { id: "tickets", text: "机票/车票", checked: false, priority: "high" },
+                    { id: "credit-cards", text: "信用卡/银行卡", checked: false, priority: "high" },
+                    { id: "cash", text: "现金", checked: false, priority: "medium" },
+                    { id: "hotel-reservation", text: "酒店预订确认单", checked: false, priority: "medium" },
+                    { id: "insurance", text: "旅行保险单", checked: false, priority: "medium" },
+                    { id: "driver-license", text: "驾照", checked: false, priority: "low" }
+                ]
+            },
+            {
+                id: "electronics",
+                title: "📱 电子产品",
+                items: [
+                    { id: "phone", text: "手机", checked: false, priority: "high" },
+                    { id: "charger", text: "手机充电器", checked: false, priority: "high" },
+                    { id: "power-bank", text: "充电宝", checked: false, priority: "high" },
+                    { id: "laptop", text: "笔记本电脑", checked: false, priority: "medium" },
+                    { id: "headphones", text: "耳机", checked: false, priority: "medium" },
+                    { id: "camera", text: "相机", checked: false, priority: "low" },
+                    { id: "adapters", text: "转换插头", checked: false, priority: "medium" }
+                ]
+            },
+            {
+                id: "clothing",
+                title: "👕 衣物",
+                items: [
+                    { id: "underwear", text: "内衣裤", checked: false, priority: "high" },
+                    { id: "socks", text: "袜子", checked: false, priority: "high" },
+                    { id: "shirts", text: "上衣", checked: false, priority: "high" },
+                    { id: "pants", text: "裤子", checked: false, priority: "high" },
+                    { id: "jacket", text: "外套", checked: false, priority: "medium" },
+                    { id: "sleepwear", text: "睡衣", checked: false, priority: "medium" },
+                    { id: "swimwear", text: "泳衣", checked: false, priority: "low" },
+                    { id: "shoes", text: "鞋子", checked: false, priority: "high" }
+                ]
+            },
+            {
+                id: "toiletries",
+                title: "🧴 洗漱用品",
+                items: [
+                    { id: "toothbrush", text: "牙刷", checked: false, priority: "high" },
+                    { id: "toothpaste", text: "牙膏", checked: false, priority: "high" },
+                    { id: "shampoo", text: "洗发水", checked: false, priority: "medium" },
+                    { id: "soap", text: "沐浴露", checked: false, priority: "medium" },
+                    { id: "towel", text: "毛巾", checked: false, priority: "medium" },
+                    { id: "razor", text: "剃须刀", checked: false, priority: "low" },
+                    { id: "skincare", text: "护肤品", checked: false, priority: "low" },
+                    { id: "sunscreen", text: "防晒霜", checked: false, priority: "medium" }
+                ]
+            },
+            {
+                id: "medications",
+                title: "💊 药品与健康",
+                items: [
+                    { id: "prescription-meds", text: "处方药", checked: false, priority: "high" },
+                    { id: "pain-relievers", text: "止痛药", checked: false, priority: "medium" },
+                    { id: "bandaids", text: "创可贴", checked: false, priority: "medium" },
+                    { id: "motion-sickness", text: "晕车药", checked: false, priority: "low" },
+                    { id: "vitamins", text: "维生素", checked: false, priority: "low" },
+                    { id: "hand-sanitizer", text: "免洗洗手液", checked: false, priority: "medium" },
+                    { id: "face-masks", text: "口罩", checked: false, priority: "medium" }
+                ]
+            },
+            {
+                id: "misc",
+                title: "🎒 其他物品",
+                items: [
+                    { id: "backpack", text: "背包", checked: false, priority: "high" },
+                    { id: "water-bottle", text: "水杯", checked: false, priority: "medium" },
+                    { id: "sunglasses", text: "太阳镜", checked: false, priority: "medium" },
+                    { id: "umbrella", text: "雨伞", checked: false, priority: "low" },
+                    { id: "book", text: "书籍/电子书", checked: false, priority: "low" },
+                    { id: "snacks", text: "零食", checked: false, priority: "low" },
+                    { id: "pen", text: "笔和笔记本", checked: false, priority: "low" }
+                ]
+            }
+        ];
+
+        // 从本地存储加载数据或使用默认数据
+        function loadChecklistData() {
+            const savedData = localStorage.getItem('travelChecklist');
+            if (savedData) {
+                return JSON.parse(savedData);
+            }
+            return checklistData;
+        }
+
+        // 保存数据到本地存储
+        function saveChecklistData(data) {
+            localStorage.setItem('travelChecklist', JSON.stringify(data));
+        }
+
+        // 初始化应用
+        let checklist = loadChecklistData();
+        
+        // 渲染清单
+        function renderChecklist(filter = 'all') {
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = '';
+            
+            let totalItems = 0;
+            let packedItems = 0;
+            
+            if (checklist.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-suitcase-rolling fa-3x" style="margin-bottom: 15px; color: #ccc;"></i>
+                        <h3>暂无清单内容</h3>
+                        <p>请添加分类和物品开始创建您的旅行清单</p>
+                    </div>
+                `;
+                updateStats(0, 0);
+                return;
+            }
+            
+            checklist.forEach(category => {
+                // 计算类别进度
+                const categoryItems = category.items;
+                const categoryPacked = categoryItems.filter(item => item.checked).length;
+                const categoryTotal = categoryItems.length;
+                const categoryProgress = categoryTotal > 0 ? Math.round((categoryPacked / categoryTotal) * 100) : 0;
+                
+                totalItems += categoryTotal;
+                packedItems += categoryPacked;
+                
+                // 创建类别元素
+                const categoryEl = document.createElement('div');
+                categoryEl.className = 'category';
+                
+                // 类别标题和进度
+                categoryEl.innerHTML = `
+                    <div class="category-header">
+                        <div class="category-title">${category.title}</div>
+                        <div class="category-actions">
+                            <button class="category-action-btn delete-category-btn" data-category="${category.id}" title="删除分类">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <div class="progress">${categoryPacked}/${categoryTotal} (${categoryProgress}%)</div>
+                        </div>
+                    </div>
+                    <div class="items-list">
+                        ${categoryItems.length > 0 ? categoryItems.map(item => {
+                            if (filter === 'packed' && !item.checked) return '';
+                            if (filter === 'unpacked' && item.checked) return '';
+                            
+                            return `
+                                <div class="checklist-item ${item.checked ? 'checked' : ''}">
+                                    <input type="checkbox" id="${item.id}" ${item.checked ? 'checked' : ''}>
+                                    <label for="${item.id}">${item.text}</label>
+                                    <span class="priority priority-${item.priority}">${getPriorityText(item.priority)}</span>
+                                    <div class="item-actions">
+                                        <button class="item-action-btn delete-btn" data-id="${item.id}" data-category="${category.id}" title="删除物品">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('') : '<div class="empty-state">此分类暂无物品</div>'}
+                        <div class="add-item">
+                            <input type="text" placeholder="添加新物品..." class="new-item-input" data-category="${category.id}">
+                            <div class="priority-selector">
+                                <div class="priority-option ${getDefaultPriority() === 'high' ? 'selected' : ''}" data-priority="high">高</div>
+                                <div class="priority-option ${getDefaultPriority() === 'medium' ? 'selected' : ''}" data-priority="medium">中</div>
+                                <div class="priority-option ${getDefaultPriority() === 'low' ? 'selected' : ''}" data-priority="low">低</div>
+                            </div>
+                            <button class="add-item-btn" data-category="${category.id}">添加</button>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(categoryEl);
+            });
+            
+            // 更新统计信息
+            updateStats(totalItems, packedItems);
+            
+            // 添加事件监听器
+            addEventListeners();
+        }
+        
+        // 获取默认优先级
+        function getDefaultPriority() {
+            return 'medium';
+        }
+        
+        // 获取优先级文本
+        function getPriorityText(priority) {
+            switch(priority) {
+                case 'high': return '高';
+                case 'medium': return '中';
+                case 'low': return '低';
+                default: return '';
+            }
+        }
+        
+        // 更新统计信息
+        function updateStats(total, packed) {
+            document.getElementById('totalItems').textContent = total;
+            document.getElementById('packedItems').textContent = packed;
+            document.getElementById('remainingItems').textContent = total - packed;
+            
+            const completionRate = total > 0 ? Math.round((packed / total) * 100) : 0;
+            document.getElementById('completionRate').textContent = `${completionRate}%`;
+            document.getElementById('progressFill').style.width = `${completionRate}%`;
+        }
+        
+        // 添加事件监听器
+        function addEventListeners() {
+            // 复选框点击事件
+            document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const itemId = this.id;
+                    const checked = this.checked;
+                    
+                    // 更新数据
+                    checklist.forEach(category => {
+                        const item = category.items.find(item => item.id === itemId);
+                        if (item) {
+                            item.checked = checked;
+                        }
+                    });
+                    
+                    // 保存并重新渲染
+                    saveChecklistData(checklist);
+                    renderChecklist(getCurrentFilter());
+                });
+            });
+            
+            // 删除物品按钮
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = this.getAttribute('data-id');
+                    const categoryId = this.getAttribute('data-category');
+                    
+                    // 从数据中删除物品
+                    const category = checklist.find(cat => cat.id === categoryId);
+                    if (category) {
+                        category.items = category.items.filter(item => item.id !== itemId);
+                    }
+                    
+                    // 保存并重新渲染
+                    saveChecklistData(checklist);
+                    renderChecklist(getCurrentFilter());
+                });
+            });
+            
+            // 删除分类按钮
+            document.querySelectorAll('.delete-category-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-category');
+                    
+                    if (confirm('确定要删除这个分类吗？分类中的所有物品也将被删除。')) {
+                        // 从数据中删除分类
+                        checklist = checklist.filter(cat => cat.id !== categoryId);
+                        
+                        // 保存并重新渲染
+                        saveChecklistData(checklist);
+                        renderChecklist(getCurrentFilter());
+                    }
+                });
+            });
+            
+            // 添加物品按钮
+            document.querySelectorAll('.add-item-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const categoryId = this.getAttribute('data-category');
+                    const input = document.querySelector(`.new-item-input[data-category="${categoryId}"]`);
+                    const text = input.value.trim();
+                    
+                    if (text) {
+                        // 获取选中的优先级
+                        const prioritySelector = input.parentElement.querySelector('.priority-selector');
+                        const selectedPriority = prioritySelector.querySelector('.selected').getAttribute('data-priority');
+                        
+                        // 创建新物品
+                        const newItem = {
+                            id: `custom-${Date.now()}`,
+                            text: text,
+                            checked: false,
+                            priority: selectedPriority
+                        };
+                        
+                        // 添加到数据
+                        const category = checklist.find(cat => cat.id === categoryId);
+                        if (category) {
+                            category.items.push(newItem);
+                        }
+                        
+                        // 保存并重新渲染
+                        saveChecklistData(checklist);
+                        renderChecklist(getCurrentFilter());
+                        
+                        // 清空输入框
+                        input.value = '';
+                    }
+                });
+            });
+            
+            // 优先级选择器
+            document.querySelectorAll('.priority-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('.priority-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+            
+            // 回车键添加物品
+            document.querySelectorAll('.new-item-input').forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const categoryId = this.getAttribute('data-category');
+                        const button = document.querySelector(`.add-item-btn[data-category="${categoryId}"]`);
+                        button.click();
+                    }
+                });
+            });
+            
+            // 搜索功能
+            document.querySelector('.search-box').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                document.querySelectorAll('.checklist-item').forEach(item => {
+                    const label = item.querySelector('label').textContent.toLowerCase();
+                    if (label.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        }
+        
+        // 获取当前筛选状态
+        function getCurrentFilter() {
+            if (document.getElementById('showAll').classList.contains('active')) return 'all';
+            if (document.getElementById('showPacked').classList.contains('active')) return 'packed';
+            if (document.getElementById('showUnpacked').classList.contains('active')) return 'unpacked';
+            return 'all';
+        }
+        
+        // 初始化筛选按钮
+        function initFilterButtons() {
+            document.getElementById('showAll').addEventListener('click', function() {
+                setActiveFilterButton(this);
+                renderChecklist('all');
+            });
+            
+            document.getElementById('showUnpacked').addEventListener('click', function() {
+                setActiveFilterButton(this);
+                renderChecklist('unpacked');
+            });
+            
+            document.getElementById('showPacked').addEventListener('click', function() {
+                setActiveFilterButton(this);
+                renderChecklist('packed');
+            });
+            
+            document.getElementById('resetList').addEventListener('click', function() {
+                if (confirm('确定要重置整个清单吗？所有进度和自定义内容将丢失。')) {
+                    checklist = JSON.parse(JSON.stringify(checklistData));
+                    saveChecklistData(checklist);
+                    renderChecklist(getCurrentFilter());
+                }
+            });
+            
+            // 默认激活"全部物品"按钮
+            setActiveFilterButton(document.getElementById('showAll'));
+        }
+        
+        // 设置激活的筛选按钮
+        function setActiveFilterButton(activeButton) {
+            document.querySelectorAll('.filter-buttons .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            activeButton.classList.add('active');
+        }
+        
+        // 添加新分类
+        function initAddCategory() {
+            document.getElementById('addCategoryBtn').addEventListener('click', function() {
+                const input = document.getElementById('newCategoryName');
+                const categoryName = input.value.trim();
+                
+                if (categoryName) {
+                    // 创建新分类
+                    const newCategory = {
+                        id: `category-${Date.now()}`,
+                        title: categoryName,
+                        items: []
+                    };
+                    
+                    // 添加到数据
+                    checklist.push(newCategory);
+                    
+                    // 保存并重新渲染
+                    saveChecklistData(checklist);
+                    renderChecklist(getCurrentFilter());
+                    
+                    // 清空输入框
+                    input.value = '';
+                }
+            });
+            
+            // 回车键添加分类
+            document.getElementById('newCategoryName').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    document.getElementById('addCategoryBtn').click();
+                }
+            });
+        }
+        
+        // 初始化应用
+        document.addEventListener('DOMContentLoaded', function() {
+            renderChecklist();
+            initFilterButtons();
+            initAddCategory();
+        });
+    </script>
+</body>
+</html>

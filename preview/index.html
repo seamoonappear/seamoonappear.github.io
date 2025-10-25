@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown 文章预览器</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 引入 Marked.js 用于 Markdown 转 HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- 引入 highlight.js 用于代码高亮 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/lib/highlight.min.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+  <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+    <h1 class="text-2xl font-bold mb-6 text-center">🖋️ Markdown 文章预览器</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- 左侧输入区 -->
+      <div class="space-y-4">
+        <label class="block font-semibold">在此粘贴 Markdown 内容：</label>
+        <textarea id="markdownInput" class="w-full p-2 border rounded h-96" placeholder="在这里粘贴或输入 Markdown 内容"></textarea>
+        <button id="renderBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg w-full">渲染预览</button>
+      </div>
+
+      <!-- 右侧预览区 -->
+      <div class="space-y-4">
+        <label class="block font-semibold">实时预览：</label>
+        <div id="preview" class="w-full p-4 border rounded h-96 overflow-auto prose max-w-none bg-gray-50"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+// Markdown 转 HTML 并渲染
+function renderMarkdown() {
+  const markdownText = document.getElementById('markdownInput').value;
+  const previewDiv = document.getElementById('preview');
+  const html = marked.parse(markdownText, {
+    headerIds: true,
+    mangle: false,
+    smartLists: true,
+    smartypants: true
+  });
+  previewDiv.innerHTML = html;
+  // 对代码块进行高亮
+  previewDiv.querySelectorAll('pre code').forEach((block) => {
+    hljs.highlightBlock(block);
+  });
+}
+
+// 点击渲染按钮
+document.getElementById('renderBtn').addEventListener('click', renderMarkdown);
+
+// 实时渲染（可选）
+document.getElementById('markdownInput').addEventListener('input', renderMarkdown);
+</script>
+
+</body>
+</html>
