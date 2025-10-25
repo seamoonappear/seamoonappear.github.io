@@ -2,46 +2,96 @@
 layout: default
 ---
 
+<!-- 将CSS提取到外部文件，这里保持内联以便展示 -->
 <style>
+/* CSS变量定义 */
+:root {
+  --primary-color: #007bff;
+  --text-color: #333;
+  --text-muted: #666;
+  --bg-light: #f8f9fa;
+  --border-color: #e9ecef;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
 /* 文章元信息样式 */
 .post-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  margin: 15px 0;
+  margin: 20px 0;
   font-size: 0.9em;
-  color: #666;
+  color: var(--text-muted);
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .post-meta span {
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.post-meta span::before {
+  content: "•";
+  margin-right: 5px;
+  color: var(--primary-color);
+}
+
+.post-meta span:first-child::before {
+  content: "";
+  margin-right: 0;
 }
 
 /* 封面图样式 */
 .post-cover {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
 }
 
 .post-cover img {
   max-width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.post-cover:hover img {
+  transform: scale(1.02);
 }
 
 /* 热门标签样式 */
 .popular-tags {
-  margin: 2rem 0;
+  margin: 2.5rem 0;
   padding: 1.5rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .popular-tags h3 {
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--text-color);
   font-size: 1.2rem;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.popular-tags h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
 .tag-cloud {
@@ -52,33 +102,49 @@ layout: default
 
 .tag-link {
   display: inline-block;
-  padding: 5px 12px;
+  padding: 6px 14px;
   background-color: #e9ecef;
   color: #495057;
   text-decoration: none;
   border-radius: 20px;
   font-size: 0.85rem;
-  transition: all 0.3s ease;
+  transition: var(--transition);
+  border: 1px solid transparent;
 }
 
 .tag-link:hover {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
   transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
 /* 相关文章样式 */
 .related-posts {
-  margin: 2rem 0;
+  margin: 2.5rem 0;
   padding: 1.5rem;
-  background-color: #f8f9fa;
-  border-radius: 8px;
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .related-posts h2 {
-  margin-bottom: 1rem;
-  color: #333;
+  margin-bottom: 1.2rem;
+  color: var(--text-color);
   font-size: 1.3rem;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.related-posts h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
 }
 
 .related-posts ul {
@@ -87,44 +153,56 @@ layout: default
 }
 
 .related-posts li {
-  margin-bottom: 0.5rem;
-  padding-left: 1rem;
+  margin-bottom: 0.8rem;
+  padding-left: 1.2rem;
   position: relative;
+  transition: var(--transition);
+}
+
+.related-posts li:hover {
+  transform: translateX(5px);
 }
 
 .related-posts li:before {
-  content: "•";
-  color: #007bff;
+  content: "→";
+  color: var(--primary-color);
   position: absolute;
   left: 0;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.related-posts li:hover:before {
+  transform: translateX(3px);
 }
 
 .related-posts a {
-  color: #495057;
+  color: var(--text-color);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: var(--transition);
+  display: block;
+  padding: 4px 0;
 }
 
 .related-posts a:hover {
-  color: #007bff;
+  color: var(--primary-color);
 }
 
-/* 评论区域样式 - 完全展开，无滚动条 */
+/* 评论区域样式 */
 .comments-wrapper {
   margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e9ecef;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-color);
 }
 
-/* 评论系统完全展开样式 */
 .comments-height-optimized {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
   min-height: 300px;
-  height: auto; /* 改为自动高度 */
-  overflow-y: visible; /* 改为可见，不显示滚动条 */
+  height: auto;
+  overflow-y: visible;
 }
 
 /* 隐藏Cusdis中的邮箱输入框 */
@@ -138,11 +216,65 @@ layout: default
   min-height: 400px;
 }
 
+/* 文章标题样式增强 */
+.post-title {
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  line-height: 1.3;
+}
+
+/* 文章内容样式增强 */
+.post-content {
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.post-content h2, 
+.post-content h3, 
+.post-content h4 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.post-content h2 {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.post-content code {
+  background-color: var(--bg-light);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.post-content pre {
+  background-color: var(--bg-light);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+}
+
 /* 移动端适配 */
 @media screen and (max-width: 768px) {
   .post-meta {
     gap: 10px;
     font-size: 0.85em;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .post-meta span::before {
+    display: none;
   }
   
   .comments-height-optimized {
@@ -159,7 +291,7 @@ layout: default
   
   .popular-tags,
   .related-posts {
-    padding: 1rem;
+    padding: 1.2rem;
   }
   
   .tag-cloud {
@@ -168,7 +300,11 @@ layout: default
   
   .tag-link {
     font-size: 0.8rem;
-    padding: 4px 10px;
+    padding: 5px 12px;
+  }
+  
+  .post-title {
+    font-size: 1.6rem;
   }
 }
 
@@ -185,8 +321,11 @@ layout: default
   }
   
   .post-meta {
-    flex-direction: column;
-    gap: 5px;
+    gap: 8px;
+  }
+  
+  .tag-cloud {
+    justify-content: center;
   }
 }
 
@@ -196,14 +335,27 @@ layout: default
     min-height: 400px;
     height: auto;
   }
+  
+  .post-content {
+    font-size: 1.1rem;
+  }
+}
+
+/* 大屏桌面优化 */
+@media screen and (min-width: 1200px) {
+  .post-cover img {
+    max-height: 500px;
+    object-fit: cover;
+    width: 100%;
+  }
 }
 </style>
 
 <script>
-// 动态调整评论框高度 - 完全展开版本
+// 优化后的评论框高度调整
 document.addEventListener('DOMContentLoaded', function() {
   // 等待 Cusdis 加载完成
-  setTimeout(function() {
+  const adjustCommentsHeight = function() {
     const cusdisContainer = document.getElementById('cusdis_thread');
     if (cusdisContainer) {
       // 完全展开评论区域
@@ -216,16 +368,51 @@ document.addEventListener('DOMContentLoaded', function() {
         cusdisFrame.style.height = 'auto';
         cusdisFrame.style.minHeight = '400px';
       }
+      
+      // 添加加载完成标记
+      cusdisContainer.dataset.loaded = 'true';
     }
-  }, 2000); // 等待Cusdis完全加载
+  };
+  
+  // 初始调整
+  setTimeout(adjustCommentsHeight, 1000);
+  
+  // 设置观察器监听评论区域变化
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList') {
+        adjustCommentsHeight();
+      }
+    });
+  });
+  
+  const cusdisContainer = document.getElementById('cusdis_thread');
+  if (cusdisContainer) {
+    observer.observe(cusdisContainer, { childList: true, subtree: true });
+  }
   
   // 监听窗口大小变化
-  window.addEventListener('resize', function() {
-    const cusdisContainer = document.getElementById('cusdis_thread');
-    if (cusdisContainer) {
-      // 确保评论区域保持完全展开
-      cusdisContainer.style.height = 'auto';
-      cusdisContainer.style.overflowY = 'visible';
+  window.addEventListener('resize', adjustCommentsHeight);
+  
+  // 图片懒加载
+  const images = document.querySelectorAll('.post-cover img');
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        img.src = img.dataset.src || img.src;
+        img.classList.remove('lazy');
+        imageObserver.unobserve(img);
+      }
+    });
+  });
+  
+  images.forEach(img => {
+    // 如果图片已经在视图中，直接加载
+    if (img.getBoundingClientRect().top < window.innerHeight) {
+      img.src = img.dataset.src || img.src;
+    } else {
+      imageObserver.observe(img);
     }
   });
 });
@@ -235,7 +422,7 @@ document.addEventListener('DOMContentLoaded', function() {
   <!-- 封面插图 -->
   {% if page.cover %}
   <div class="post-cover">
-    <img src="{{ page.cover | relative_url }}" alt="{{ page.title }} 封面插图">
+    <img src="{{ page.cover | relative_url }}" alt="{{ page.title }} 封面插图" loading="lazy">
   </div>
   {% endif %}
 
