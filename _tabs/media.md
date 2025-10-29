@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 消费
+title: 爱好
 icon: fas fa-wallet
 order: 3
 sidebar: true
