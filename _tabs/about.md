@@ -3,168 +3,141 @@ layout: page
 title: 关于
 icon: fas fa-user
 order: 8
-sidebar: ture
+sidebar: true
 permalink: /about/
 ---
 
-
-<div class="about-container">
-  <!-- 头像与简介 -->
-  <div class="about-header">
-    <img src="{{ '/assets/img/avatar.jpg' | relative_url }}" alt="王维的头像" class="avatar">
-    <div class="intro">
-      <h1>王维</h1>
-      <p>现居杭州｜40岁</p>
-    </div>
+<div class="about-timeline">
+  <div class="intro">
+    <img src="{{ '/assets/img/avatar.jpg' | relative_url }}" alt="王维头像" class="avatar">
+    <h1>王维</h1>
+    <p>居杭州 · 爱好广泛</p>
   </div>
 
-  <!-- 卡片内容 -->
-  <div class="card-grid">
+  <div class="timeline">
 
-    <!-- 在职 -->
-    <div class="card">
-      <h3>💼 在职</h3>
-      <h4>北京同仁堂健康药业（青海）有限公司</h4>
-      <p><strong>职位：</strong>包装解决方案专员</p>
-      <p><strong>主要职责：</strong>为食品及健康产品企业提供全方位包装解决方案，熟悉包装材料、工艺与成本控制。</p>
+    <div class="event">
+      <div class="year">2021 - 至今</div>
+      <div class="desc">
+        <h3>北京同仁堂健康药业（青海）有限公司</h3>
+        <p>包装采购。负责健康食品与保健产品的采购及包装方案规划。从包装材料选型、结构设计、成本控制到供应链协作，提供一体化解决方案，助力品牌在质量与市场之间取得平衡。</p>
+      </div>
     </div>
 
-    <!-- 技能 -->
-    <div class="card">
-      <h3>🚀 技能</h3>
-      <ul>
-        <li>平面设计：精通 Photoshop 与 Illustrator</li>
-        <li>电商与营销：多年运营经验，熟悉平台策略</li>
-        <li>电视购物策划：丰富节目策划与执行经验</li>
-      </ul>
+    <div class="event">
+      <div class="year">2015 - 2021</div>
+      <div class="desc">
+        <h3>杭州觅真生物科技有限公司</h3>
+        <p>担任电商运营与电视购物营销策划。主导品牌电商渠道搭建与运营，策划多档电视购物节目，结合视觉设计与营销策略，推动销售增长与品牌曝光。</p>
+      </div>
     </div>
 
-    <!-- 爱好 -->
-    <div class="card">
-      <h3>❤️ 爱好</h3>
-      <ul>
-        <li>阅读与写作</li>
-        <li>旅行与摄影</li>
-        <li>书法与艺术鉴赏</li>
-        <li>音乐欣赏</li>
-        <li>烹饪与美食探索</li>
-        <li>新技术学习</li>
-      </ul>
+    <div class="event">
+      <div class="year">2012 - 2015</div>
+      <div class="desc">
+        <h3>卡森国际集团（HK0496）</h3>
+        <p>葛岭子公司电商运营人员。负责线上渠道管理、产品规划与推广执行，积累了丰富的零售与电商平台运营经验。</p>
+      </div>
     </div>
 
-  </div>
+    <div class="event">
+      <div class="year">2008 - 2012</div>
+      <div class="desc">
+        <h3>杭州凡洛施服饰有限公司</h3>
+        <p>平面设计师。主要负责品牌视觉设计、服装设计、产品包装与宣传物料制作，建立了扎实的美术与品牌表现能力。</p>
+      </div>
+    </div>
 
-  <div class="about-footer">
-    <p>我相信 <strong>设计、营销与包装</strong> 是企业价值的重要体现，致力于用专业技能为每一个项目创造更大价值。</p>
+    <div class="event">
+      <div class="year">2004 - 2008</div>
+      <div class="desc">
+        <h3>哈尔滨</h3>
+        <p>物流管理专业本科。系统学习供应链管理、采购与市场分析，为后续从事包装与电商行业打下基础。</p>
+      </div>
+    </div>
+
+    <div class="event">
+      <div class="year">兴趣与理念</div>
+      <div class="desc">
+        <p>爱好广泛，关注设计与营销的融合创新。相信兴趣是最好的老师。</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <style>
-.about-container {
+.about-timeline {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
   font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.75;
   color: #333;
 }
 
-.about-header {
+.intro {
   text-align: center;
   margin-bottom: 2.5rem;
 }
 
 .avatar {
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 1rem;
 }
 
-.intro h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  font-weight: 600;
-}
-
-.intro p {
-  margin: 0.3rem 0 0;
-  color: #666;
-  font-size: 1rem;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.2rem;
-  margin-bottom: 2.5rem;
-}
-
-.card {
-  background: #fafafa;
-  border-radius: 12px;
-  padding: 1.5rem;
-  line-height: 1.7;
-}
-
-.card h3 {
-  margin: 0 0 0.75rem;
-  font-size: 1.2rem;
-}
-
-.card h4 {
-  margin: 0 0 0.75rem;
-  color: #555;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.card p {
-  margin: 0.4rem 0;
-  color: #555;
-}
-
-.card ul {
-  list-style: none;
-  padding-left: 1rem;
-  margin: 0;
-}
-
-.card ul li {
+.timeline {
   position: relative;
-  margin-bottom: 0.4rem;
+  margin-left: 1rem;
+  border-left: 2px solid #4f46e5;
+  padding-left: 1.5rem;
 }
 
-.card ul li::before {
-  content: "•";
-  color: #4f46e5;
+.event {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.event::before {
+  content: '';
   position: absolute;
-  left: -1rem;
+  left: -10px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  background: #4f46e5;
+  border-radius: 50%;
 }
 
-.about-footer {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 1rem;
-  color: #555;
-}
-
-.about-footer strong {
+.year {
+  font-weight: bold;
   color: #4f46e5;
+  margin-bottom: 0.3rem;
+}
+
+.desc h3 {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+  color: #111;
+}
+
+.desc p {
+  margin: 0.2rem 0;
+  color: #555;
 }
 
 @media (max-width: 600px) {
-  .avatar {
-    width: 100px;
-    height: 100px;
+  .timeline {
+    border-left: none;
+    padding-left: 0;
   }
-
-  .intro h1 {
-    font-size: 1.6rem;
+  .event::before {
+    display: none;
   }
-
-  .card {
-    padding: 1.2rem;
+  .year {
+    margin-top: 1rem;
   }
 }
 </style>
