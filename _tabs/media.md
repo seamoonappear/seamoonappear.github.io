@@ -62,20 +62,14 @@ permalink: /media/
     <div id="series" class="tab-pane">
       <div class="media-item"><span class="item-name">权力的游戏</span><span class="item-info">美国, 2011</span></div>
       <div class="media-item"><span class="item-name">无耻之徒</span><span class="item-info">美国, 2011</span></div>
-      <div class="media-item"><span class="item-name">怪奇物语</span><span class="item-info">美国, 2016</span></div>
       <div class="media-item"><span class="item-name">漫长的季节</span><span class="item-info">中国, 2023</span></div>
-      <div class="media-item"><span class="item-name">黑暗荣耀</span><span class="item-info">韩国, 2022</span></div>
       <div class="media-item"><span class="item-name">黑镜</span><span class="item-info">英国, 2011</span></div>
       <div class="media-item"><span class="item-name">纸牌屋</span><span class="item-info">美国, 2013</span></div>
     </div>
 
     <!-- 游戏页 -->
     <div id="games" class="tab-pane">
-      <div class="media-item"><span class="item-name">原神</span><span class="item-year">2020</span></div>
       <div class="media-item"><span class="item-name">英雄联盟</span><span class="item-year">2009</span></div>
-      <div class="media-item"><span class="item-name">守望先锋</span><span class="item-year">2016</span></div>
-    </div>
-
     <!-- 其他页 -->
     <div id="others" class="tab-pane">
       <div class="media-item"><span class="item-name">占位内容1</span><span class="item-info">详细信息1</span></div>
