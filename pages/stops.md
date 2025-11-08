@@ -1,3 +1,7 @@
+---
+layout: default
+title: 驻足点
+---
 <!-- 顶部横幅 -->
 <div class="banner">
   <img src="{{ '/assets/banner/stopbanner.jpg' | relative_url }}" alt="Stop Banner">
