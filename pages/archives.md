@@ -1,26 +1,30 @@
 ---
-layout: page
+layout: default
 title: "时间轴"
 permalink: /pages/archives/
+icon: fas fa-calendar-alt
 ---
 
-<div class="timeline-container">
+<!-- 页面说明 -->
+<div class="banner">
+  <img src="{{ '/assets/banner/stopbanner.jpg' | relative_url }}" alt="Timeline Banner">
+</div>
+
+> 回顾博客文章，从最新到最早。
+
+<div class="timeline">
+  <div class="timeline-line"></div>
+
   {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
   
   {% for year in posts_by_year %}
-  <div class="timeline-year">
-    <!-- 年份点 -->
-    <div class="timeline-year-marker">
-      <span class="year">{{ year.name }}</span>
-    </div>
-    
-    <!-- 年份下的文章 -->
-    <div class="timeline-posts">
+  <div class="timeline-item">
+    <div class="timeline-year">{{ year.name }}</div>
+    <div class="timeline-content">
       {% assign posts_by_month = year.items | sort: "date" %}
       {% for post in posts_by_month %}
-      <div class="timeline-post">
-        <div class="post-date">{{ post.date | date: "%m-%d" }}</div>
-        <div class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+      <div>
+        <span>{{ post.date | date: "%m-%d" }}</span> — <a href="{{ post.url }}">{{ post.title }}</a>
       </div>
       {% endfor %}
     </div>
@@ -28,66 +32,108 @@ permalink: /pages/archives/
   {% endfor %}
 </div>
 
-<style>
-.timeline-container {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  padding-left: 60px; /* 给时间轴留空间 */
-}
+---
 
-.timeline-year {
+*最后更新：{{ site.time | date: "%Y年%m月%d日" }}*
+
+<style>
+/* ===== 顶部横幅 ===== */
+.banner {
   position: relative;
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  border-radius: 12px;
   margin-bottom: 40px;
 }
 
-.timeline-year-marker {
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75);
+  transition: all 0.6s ease;
+}
+
+.banner:hover img {
+  filter: brightness(0.9);
+  transform: scale(1.02);
+}
+
+/* ===== 时间轴样式 ===== */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 60px auto;
+  padding-left: 40px;
+}
+
+.timeline-line {
   position: absolute;
-  left: 0;
+  left: 20px;
   top: 0;
-  width: 20px;
-  height: 20px;
-  background: #007BFF;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 20px;
-  color: #fff;
-  font-weight: bold;
+  bottom: 0;
+  width: 2px;
+  background: #000;
 }
 
-.timeline-year-marker .year {
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 40px;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.timeline-item::before {
+  content: "";
   position: absolute;
-  left: 30px;
-  top: -2px;
-  font-size: 18px;
-  color: #007BFF;
+  top: 8px;
+  left: 14px;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 50%;
+  z-index: 1;
 }
 
-.timeline-posts {
-  margin-left: 40px; /* 文章靠右显示 */
-  border-left: 2px solid #007BFF; /* 时间轴线 */
-  padding-left: 20px;
-  padding-top: 5px;
+.timeline-year {
+  font-weight: 600;
+  font-size: 1.05em;
+  color: #000;
+  margin-bottom: 4px;
 }
 
-.timeline-post {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.timeline-post .post-date {
-  width: 60px;
-  font-weight: bold;
+.timeline-content {
   color: #555;
+  font-size: 0.95em;
+  border-left: 2px dashed #ccc;
+  padding-left: 12px;
+  margin-left: 6px;
 }
 
-.timeline-post .post-title a {
+.timeline-content a {
   color: #333;
   text-decoration: none;
 }
 
-.timeline-post .post-title a:hover {
+.timeline-content a:hover {
   text-decoration: underline;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 手机端优化 */
+@media (max-width: 768px) {
+  .banner { height: 200px; border-radius: 0; }
+  .timeline { padding-left: 30px; }
+  .timeline-line { left: 15px; }
+  .timeline-item { padding-left: 36px; }
+  .timeline-item::before { left: 10px; }
 }
 </style>
