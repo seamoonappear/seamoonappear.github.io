@@ -54,6 +54,19 @@ layout: page
         发布日期：{{ post.date | date: date_format }}
       </p>
 
+      {% if site.feed_show_tags != false and post.tags.size > 0 %}
+      <div class="blog-tags">
+        <span>标签：</span>
+        <ul class="d-inline list-inline" role="list">
+          {% for tag in post.tags %}
+          <li class="list-inline-item">
+            <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
       {% if thumbnail != "" %}
       <div class="post-image post-image-small">
         <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
@@ -80,19 +93,6 @@ layout: page
         {% endif %}
       </div>
       {% endunless %}
-
-      {% if site.feed_show_tags != false and post.tags.size > 0 %}
-      <div class="blog-tags">
-        <span>标签：</span>
-        <ul class="d-inline list-inline" role="list">
-          {% for tag in post.tags %}
-          <li class="list-inline-item">
-            <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
 
     </article>
   </li>
