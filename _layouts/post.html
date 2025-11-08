@@ -2,32 +2,30 @@
 layout: base
 ---
 
-<!-- 导入头部模板 -->
+<!-- 引入页面头部 -->
 {% include header.html type="post" %}
 
-<!-- 主体部分 -->
 <main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
   <div class="row">
     <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
 
-      <!-- 如果文章有 GitHub 仓库链接 -->
+      <!-- 如果文章有 GitHub 仓库链接，显示 GitHub 按钮 -->
       {% if page.gh-repo %}
-        {% assign gh_split =  page.gh-repo | split:'/'  %}
-        {% assign gh_user =  gh_split[0]  %}
-        {% assign gh_repo =  gh_split[1]  %}
+        {% assign gh_split =  page.gh-repo | split:'/' %}
+        {% assign gh_user =  gh_split[0] %}
+        {% assign gh_repo =  gh_split[1] %}
 
         <div id="header-gh-btns">
-          <!-- 根据配置渲染 GitHub 按钮 -->
           {% if page.gh-badge.size > 0 %}
             {% for badge in page.gh-badge %}
               {% case badge %}
-                {% when 'star'%}
+                {% when 'star' %}
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-                {% when 'watch'%}
+                {% when 'watch' %}
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=watch&v=2&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-                {% when 'fork'%}
+                {% when 'fork' %}
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=fork&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-                {% when 'follow'%}
+                {% when 'follow' %}
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&type=follow&count=true" frameborder="0" scrolling="0" width="220px" height="20px"></iframe>
               {% endcase %}
             {% endfor %}
@@ -35,20 +33,21 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 如果文章有内容展示 -->
+      <!-- 如果文章有内容前置部分，显示该内容 -->
       {% if page.before-content %}
         <div class="before-content">
           {% for file in page.before-content %}
-            {% include {{ file }} %} <!-- 包含额外的内容 -->
+            {% include {{ file }} %}
           {% endfor %}
         </div>
       {% endif %}
 
+      <!-- 显示文章内容 -->
       <div class="blog-post">
-        {{ content }} <!-- 渲染文章内容 -->
+        {{ content }}
       </div>
 
-      <!-- 如果文章有标签 -->
+      <!-- 显示标签，如果有的话 -->
       {% if page.tags.size > 0 %}
         <div class="blog-tags">
           <span>标签:</span>
@@ -58,21 +57,21 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 如果文章有额外内容展示 -->
+      <!-- 如果文章有内容后置部分，显示该内容 -->
       {% if page.after-content %}
         <div class="after-content">
           {% for file in page.after-content %}
-            {% include {{ file }} %} <!-- 包含额外的内容 -->
+            {% include {{ file }} %}
           {% endfor %}
         </div>
       {% endif %}
 
-      <!-- 如果文章有社交分享按钮 -->
+      <!-- 显示社交分享按钮 -->
       {% if page.social-share %}
         {% include social-share.html %}
       {% endif %}
 
-      <!-- 分页，上一篇和下一篇 -->
+      <!-- 显示分页，上一篇和下一篇 -->
       <ul class="pagination blog-pager">
         {% if page.previous.url %}
         <li class="page-item previous">
@@ -92,8 +91,13 @@ layout: base
         {% endif %}
       </ul>
 
-      <!-- 评论区域 -->
+      <!-- 显示评论部分 -->
       {% include comments.html %}
     </div>
   </div>
 </main>
+
+<!-- 文章发布时间，格式化为中文 -->
+<div class="post-meta">
+  <p>发布时间: {{ page.date | date: "%Y年%m月%d日" }}</p>
+</div>
