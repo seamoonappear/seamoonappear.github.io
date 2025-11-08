@@ -1,5 +1,7 @@
-
-
+---
+layout: default
+title: 爱好
+---
 <!-- ✅ 页面顶部 Banner -->
 <div class="media-banner">
   <img src="{{ '/assets/banner/mediabanner.jpg' | relative_url }}" alt="Media Banner">
