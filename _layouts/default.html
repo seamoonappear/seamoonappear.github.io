@@ -1,25 +1,41 @@
 ---
 layout: base
 ---
+<!-- 使用 base 布局模板，base 通常包含 HTML <head>、头部、页脚等公共结构 -->
 
 <div class="intro-header"></div>
+<!-- 页面顶部的介绍头部区域，可用于背景图、封面或页面标题的展示
+     目前为空 div，可通过 CSS 设置样式或背景图 -->
 
 <main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
+<!-- 页面主体内容区域 -->
+<!-- 使用 Bootstrap 栅格容器：
+     如果 page.full-width 为 true，则使用全宽 container-fluid
+     否则使用固定宽度 container-md -->
+
   {% if page.before-content %}
     <div class="before-content">
+      <!-- before-content 区块，用于在正文内容前插入额外内容 -->
       {% for file in page.before-content %}
         {% include {{ file }} %}
+        <!-- 循环包含 before-content 列表中的每个文件 -->
       {% endfor %}
     </div>
   {% endif %}
 
   {{ content }}
+  <!-- 页面正文内容 -->
+  <!-- 这里会显示当前页面 Markdown 中写入的内容 -->
 
   {% if page.after-content %}
     <div class="after-content">
+      <!-- after-content 区块，用于在正文内容后插入额外内容 -->
       {% for file in page.after-content %}
         {% include {{ file }} %}
+        <!-- 循环包含 after-content 列表中的每个文件 -->
       {% endfor %}
     </div>
   {% endif %}
+
 </main>
+<!-- 结束页面主体 -->
