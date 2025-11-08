@@ -32,6 +32,7 @@ permalink: /pages/hobby/
 
     <!-- 书页 -->
     <div id="books" class="tab-pane">
+      <div class="media-item"><span class="item-name">全球通史</span><span class="item-author">斯塔夫里阿诺斯</span></div>   
       <div class="media-item"><span class="item-name">三体</span><span class="item-author">刘慈欣</span></div>
       <div class="media-item"><span class="item-name">活着</span><span class="item-author">余华</span></div>
       <div class="media-item"><span class="item-name">百年孤独</span><span class="item-author">加西亚·马尔克斯</span></div>
