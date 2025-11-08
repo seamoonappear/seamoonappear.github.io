@@ -2,6 +2,7 @@
 layout: page
 title: "时间轴"
 permalink: /pages/archives/
+icon: fas fa-archive
 ---
 
 <div class="archives-container">
