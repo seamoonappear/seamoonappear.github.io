@@ -2,6 +2,7 @@
 layout: default
 title: 驻足
 permalink: /pages/stops/
+icon: fas fa-map-marker-alt
 ---
 <!-- 顶部横幅 -->
 <div class="banner">
