@@ -1,0 +1,47 @@
+.archives-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline {
+  width: 30%;
+}
+
+.archives-content {
+  width: 65%;
+}
+
+.timeline-item a {
+  font-size: 20px;
+  color: #007BFF;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: block;
+}
+
+.year-section h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.year-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.year-section li {
+  margin-bottom: 10px;
+}
+
+.year-section li a {
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.year-section li span {
+  font-size: 14px;
+  color: #777;
+  margin-left: 10px;
+}
