@@ -20,10 +20,12 @@ author: Gervas
 navbar-links:
   - [首页, /]
   - [博客, /blog]
-  - [关于, /pages/about]
-  - [爱好, /pages/hobby]
-  - [照片, /pages/photos]
-  - [驻足, /pages/stops]
+  - [关于, "#", 
+      [关于我, /pages/about],   
+      [爱好, /pages/hobby], 
+      [照片, /pages/photos], 
+      [驻足, /pages/stops]
+    ]
 ################
 # --- Logo --- #
 ################
