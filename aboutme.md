@@ -1,16 +1,9 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: 关于我
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+嘿，大家好，我是王维，现居杭州。我的兴趣爱好非常广泛，喜欢尝试各种新鲜事物，也乐于结交来自各地的朋友。如果你有机会访问我的博客，看到一些有趣的内容或者想法，欢迎随时和我交流哦！
 
-- I rock a great mustache
-- I'm extremely loyal to my family
-
-What else do you need?
-
-### My story
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+如果你有任何问题或者想聊聊，别客气，直接发邮件到 gervas@foxmail.com
+，期待收到你的来信！
