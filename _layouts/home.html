@@ -1,29 +1,42 @@
 ---
 layout: page
 ---
+<!-- 使用 page 布局模板 -->
 
 {{ content }}
+<!-- 页面正文内容，会显示在列表上方，如果有的话 -->
 
 {% assign posts = paginator.posts | default: site.posts %}
+<!-- 获取文章列表
+     优先使用分页器 paginator.posts（如果启用了分页）
+     如果没有分页，则使用 site.posts（站点所有文章） -->
 
 <ul class="posts-list list-unstyled" role="list">
+  <!-- 文章列表容器，使用无序列表，并去掉默认样式 -->
+
   {% for post in posts %}
   <li class="post-preview">
     <article>
+      <!-- 单篇文章块 -->
 
       {%- capture thumbnail -%}
         {% if post.thumbnail-img %}
           {{ post.thumbnail-img }}
+          <!-- 如果文章定义了缩略图 thumbnail-img，使用它 -->
         {% elsif post.cover-img %}
           {% if post.cover-img.first %}
             {{ post.cover-img[0].first.first }}
+            <!-- 如果 cover-img 是数组格式，取第一个封面图片 -->
           {% else %}
             {{ post.cover-img }}
+            <!-- 否则直接使用 cover-img -->
           {% endif %}
         {% else %}
+          <!-- 如果没有任何封面图片，则不输出 -->
         {% endif %}
       {% endcapture %}
-      {% assign thumbnail=thumbnail | strip %}
+      {% assign thumbnail = thumbnail | strip %}
+      <!-- 保存最终缩略图 URL，并去掉空格 -->
 
       {% if site.feed_show_excerpt == false %}
       {% if thumbnail != "" %}
@@ -34,24 +47,29 @@ layout: page
       </div>
       {% endif %}
       {% endif %}
+      <!-- 如果 feed_show_excerpt 为 false，显示正常尺寸缩略图 -->
 
       <a href="{{ post.url | absolute_url }}">
         <h2 class="post-title">{{ post.title | strip_html }}</h2>
+        <!-- 文章标题，去掉 HTML 标签 -->
 
         {% if post.subtitle %}
           <h3 class="post-subtitle">
-          {{ post.subtitle | strip_html }}
+            {{ post.subtitle | strip_html }}
           </h3>
+          <!-- 如果有副标题 subtitle，则显示 -->
         {% endif %}
       </a>
 
       {% if post.author %}
         <span>作者：<strong>{{ post.author | strip_html }}</strong></span>
+        <!-- 显示作者 -->
       {% endif %}
 
       <p class="post-meta">
         {% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
-        发布日期：{{ post.date | date: date_format }}
+        发布于：{{ post.date | date: date_format }}
+        <!-- 文章发布日期，格式可在 _config.yml 中 site.date_format 定义 -->
       </p>
 
       {% if thumbnail != "" %}
@@ -61,8 +79,11 @@ layout: page
         </a>
       </div>
       {% endif %}
+      <!-- 小尺寸缩略图显示 -->
 
       {% unless site.feed_show_excerpt == false %}
+      <!-- 如果 feed_show_excerpt 不是 false，则显示文章摘要 -->
+
       {% if thumbnail != "" %}
       <div class="post-image post-image-short">
         <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
@@ -70,13 +91,17 @@ layout: page
         </a>
       </div>
       {% endif %}
+      <!-- 小尺寸缩略图显示，用于摘要模式 -->
 
       <div class="post-entry">
         {% assign excerpt_length = site.excerpt_length | default: 50 %}
         {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
+        <!-- 文章摘要，默认截取 50 个单词，可在 site.excerpt_length 调整 -->
+
         {% assign excerpt_word_count = post.excerpt | number_of_words %}
         {% if post.content != post.excerpt or excerpt_word_count > excerpt_length %}
           <a href="{{ post.url | absolute_url }}" class="post-read-more">阅读全文</a>
+          <!-- 如果内容比摘要长，则显示“阅读全文”链接 -->
         {% endif %}
       </div>
       {% endunless %}
@@ -88,11 +113,13 @@ layout: page
           {% for tag in post.tags %}
           <li class="list-inline-item">
             <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
+            <!-- 文章标签列表，每个标签跳转到标签页对应位置 -->
           </li>
           {% endfor %}
         </ul>
       </div>
       {% endif %}
+      <!-- 显示文章标签，如果站点 feed_show_tags 不是 false 且文章有标签 -->
 
     </article>
   </li>
@@ -101,6 +128,8 @@ layout: page
 
 {% if paginator.total_pages > 1 %}
 <ul class="pagination main-pager">
+  <!-- 分页导航，仅在总页数大于 1 时显示 -->
+
   {% if paginator.previous_page %}
   <li class="page-item previous">
     <a class="page-link" href="{{ paginator.previous_page_path | absolute_url }}">
@@ -109,6 +138,8 @@ layout: page
     </a>
   </li>
   {% endif %}
+  <!-- 如果有上一页，则显示上一页按钮 -->
+
   {% if paginator.next_page %}
   <li class="page-item next">
     <a class="page-link" href="{{ paginator.next_page_path | absolute_url }}">
@@ -117,5 +148,7 @@ layout: page
     </a>
   </li>
   {% endif %}
+  <!-- 如果有下一页，则显示下一页按钮 -->
+
 </ul>
 {% endif %}
