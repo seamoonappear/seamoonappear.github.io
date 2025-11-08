@@ -5,7 +5,7 @@ permalink: /pages/archives/
 ---
 
 <div class="timeline-container">
-  {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+  {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
   
   {% for year in posts_by_year %}
   <div class="timeline-year">
@@ -16,7 +16,8 @@ permalink: /pages/archives/
     
     <!-- 年份下的文章 -->
     <div class="timeline-posts">
-      {% for post in year.items %}
+      {% assign posts_by_month = year.items | sort: "date" %}
+      {% for post in posts_by_month %}
       <div class="timeline-post">
         <div class="post-date">{{ post.date | date: "%m-%d" }}</div>
         <div class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></div>
