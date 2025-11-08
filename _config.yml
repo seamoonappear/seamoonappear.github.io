@@ -181,7 +181,7 @@ footer-hover-col: "#0085A1"
 ################
 
 # Ruby 日期格式，用于显示文章日期
-date_format: "%B %-d, %Y"
+date_format: "%Y年%-m月%-d日"
 
 # Facebook App ID
 #fb_app_id: ""
