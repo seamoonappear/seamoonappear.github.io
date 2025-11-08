@@ -19,7 +19,7 @@ author: Gervas
 
 navbar-links:
   - [首页, /]
-  - [博客, /blog]
+  - [标签, /tags]
   - [关于, "#", about]
 ################
 # --- Logo --- #
