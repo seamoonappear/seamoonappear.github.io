@@ -1,6 +1,7 @@
 ---
 layout: default
-title: 驻足点
+title: 驻足
+permalink: /pages/stops/
 ---
 <!-- 顶部横幅 -->
 <div class="banner">
