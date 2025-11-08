@@ -4,9 +4,16 @@ title: 关于
 permalink: /pages/about/
 icon: fas fa-info-circle
 ---
-我是王维，现居杭州。我的兴趣爱好非常广泛，喜欢尝试和学习各种新鲜事物，也乐于结交来自各地的朋友。如果你有机会访问我的博客，看到一些有趣的内容或者想法，欢迎随时和我交流哦！如果你有任何问题或者想聊聊，可以直接加我微信：EastSea0，期待收到你的好友申请！
+
+   网名王维，现居杭州。兴趣广泛，喜欢尝试和学习各种新鲜事物，也乐于结交来自各地的朋友。
+   如果你有机会访问我的博客，看到一些有趣的内容或者想法，欢迎随时和我交流哦！我的微信：EastSea0，期待收到你的好友申请！
+
 <div class="about-container">
   <div class="about-header">
+    <!-- 头像部分 -->
+    <img src="{{ '/assets/img/avatar.jpg' | relative_url }}" alt="王维头像" class="avatar">
+
+    <!-- 简介部分 -->
     <div class="intro">
       <h1>王维</h1>
       <p>现居杭州｜40岁</p>
@@ -74,6 +81,7 @@ icon: fas fa-info-circle
   padding: 2rem 0;
 }
 
+/* 头像样式 */
 .about-header .avatar {
   width: 120px;
   height: 120px;
