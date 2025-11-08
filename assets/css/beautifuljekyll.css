@@ -1,11 +1,7 @@
----
-layout: null
----
-
 @import url("pygment_highlights.css");
 
 :root {
-  /* config file CSS variables */
+  /* 配置变量 */
   --page-col: {{ site.page-col | default: "#FFFFFF" }};
   --text-col: {{ site.text-col | default: "#404040" }};
   --link-col: {{ site.link-col | default: "#008AFF" }};
@@ -18,23 +14,16 @@ layout: null
   --footer-link-col: {{ site.footer-link-col | default: "#404040" }};
   --footer-hover-col: {{ site.footer-hover-col | default: "#0085A1" }};
 
-  /* common CSS variables */
   --body-font: 'Lora', 'Times New Roman', serif;
   --header-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mid-col: #808080;
 }
 
-/* --- General --- */
-
-html {
-  font-size: 100%
-}
-
+/* --- 基础样式 --- */
 body {
   font-family: var(--body-font);
   font-size: 1.125rem;
   color: var(--text-col);
-  position: relative;
   background-color: var(--page-col);
   {% if site.page-img %}
   background-image: url({{ site.page-img | relative_url }});
@@ -45,109 +34,104 @@ body {
   display: flex;
   flex-direction: column;
 }
-body > main {
-  flex: 1;
-}
-p {
-  line-height: 1.5;
-  margin: 1.875rem 0;
-}
+body > main { flex: 1; }
+p { line-height: 1.5; margin: 1.875rem 0; }
 h1,h2,h3,h4,h5,h6 {
   font-family: var(--header-font);
   font-weight: 800;
   line-height: 1.1;
 }
-h1 {
-  font-size: 1.5rem;
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.125rem; }
+h4 { font-size: 1rem; }
+h1,h2,h3,h4 { margin-top: 1.25rem; }
+a { color: var(--link-col); }
+a:hover, a:focus { color: var(--hover-col); }
+blockquote { color: var(--mid-col); font-style: italic; }
+blockquote p:first-child { margin-top: 0; }
+img { max-width: 100%; }
+
+/* --- 首页文章列表调整 Chirpy 风格 --- */
+.post-preview a {
+  text-decoration: none;
+  font-family: var(--header-font);
+  color: var(--text-col);
 }
-h2 {
-  font-size: 1.25rem;
-}
-h3 {
-  font-size: 1.125rem;
-}
-h4 {
-  font-size: 1rem;
-}
-h1, h2, h3, h4 {
-  margin-top: 1.25rem;
-}
-a {
-  color: var(--link-col);
-}
-a:hover,
-a:focus {
+.post-preview a:focus,
+.post-preview a:hover {
+  text-decoration: none;
   color: var(--hover-col);
 }
-blockquote {
-  color: var(--mid-col);
-  font-style: italic;
-}
-blockquote p:first-child {
+
+/* 文章标题 */
+.post-preview .post-title {
+  font-size: 1.2rem;
+  font-weight: normal;
   margin-top: 0;
-}
-.jumbotron {
-  background: #EEE;
-}
-hr.small {
-  max-width: 6.25rem;
-  margin: 1rem auto;
-  border-width: 0.25rem;
-  border-color: inherit;
-  border-radius: 0.1875rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
 }
 
-/* fix in-page anchors to not be behind fixed header */
-:target:before {
-  content: "";
-  display: block;
-  height: 3.125rem; /* navbar height */
-  margin: -3.125rem 0 0;
+/* 副标题 / 摘要 */
+.post-preview .post-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+  color: var(--mid-col);
 }
 
-.hideme {
-  display: none;
+/* 日期、标签信息 */
+.post-preview .post-meta,
+.post-heading .post-meta {
+  font-size: 0.875rem;
+  font-style: normal;
+  color: var(--mid-col);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
 }
 
-::-moz-selection {
-  color: var(--page-col);
-  background-color: var(--hover-col);
-  text-shadow: none;
+/* 标签列表 */
+.post-preview .blog-tags {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
 }
-::selection {
-  color: var(--page-col);
-  background-color: var(--hover-col);
-  text-shadow: none;
-}
-img::selection {
-  color: var(--hover-col);
-  background: transparent;
-}
-img::-moz-selection {
-  color: var(--hover-col);
-  background: transparent;
+.post-preview .blog-tags a {
+  font-size: 0.875rem;
+  opacity: 0.8;
 }
 
-img {
-  max-width: 100%;
+/* 文章图片 */
+.post-preview .post-image {
+  float: right;
+  margin-left: 0.625rem;
+  height: 8rem;
+  width: 8rem;
+  filter: grayscale(40%);
+  transition: filter 0.3s ease;
 }
+.post-preview .post-image:hover { filter: grayscale(0%); }
+.post-preview .post-image img { max-height: 100%; max-width: 100%; }
 
-.linked-section {
-  padding-top: 3.75rem;
-  margin-top: -1.5625rem;
-}
-
-/* Comments */
-
-.disqus-comments {
-  margin-top: 1.875rem;
-}
-
-@media (min-width: 768px) {
-  .disqus-comments {
-    margin-top: 2.5rem;
+/* 小屏幕调整 */
+@media (max-width: 767px) {
+  .post-preview .post-image {
+    float: none;
+    display: block;
+    margin: 0 auto 0.625rem;
+    height: 6rem;
+    width: 6rem;
   }
+  .post-preview .post-image-small { display: none; }
+  .post-preview .post-subtitle { font-size: 0.95rem; }
+  .post-preview .blog-tags { font-size: 0.8rem; }
 }
+
+/* --- 其他保留 Beautiful Jekyll 样式 --- */
+/* 保留原来的 navbar, footer, pagination, code block, table, blockquote 等样式 */
+/* ... 可以把原本的完整 CSS 内容追加在这里 ... */
 
 /* --- Navbar --- */
 
