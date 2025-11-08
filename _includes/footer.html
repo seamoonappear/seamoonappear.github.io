@@ -2,39 +2,76 @@
   <div class="container-md beautiful-jekyll-footer">
     <div class="row">
       <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-      {% include social-networks-links.html %}
-      {% if page.footer-extra %}
-        <div class="footer-custom-content">
-          {% for file in page.footer-extra %}
-            {% include {{ file }} %}
-          {% endfor %}
-        </div>
-      {% endif %}
-      <p class="copyright text-muted">
-      {% if site.author %}
-        {{ site.author }}
-        &nbsp;&bull;&nbsp;
-      {% endif %}
-      {{ site.time | date: '%Y' }}
 
-      {% if site.url-pretty %}
-        &nbsp;&bull;&nbsp;
-        <span class="author-site">
-          <a href="{% if site.url-canonical %}{{ site.url-canonical }}{% else %}{{ '/' | absolute_url }}{% endif %}">{{ site.url-pretty }}</a>
-        </span>
-      {% endif %}
+        {%- comment -%}
+        调用社交媒体链接（在 _config.yml 中配置，如 GitHub、微博、Bilibili 等）
+        {%- endcomment -%}
+        {% include social-networks-links.html %}
 
-      {% if site.matomo %}
-        {% if site.matomo.opt-out %}
-          &nbsp;&bull;&nbsp;
-          <a href="http://{{- site.matomo.uri -}}/index.php?module=CoreAdminHome&action=optOut" target="_blank" class="text_muted">请勿追踪</a>
+        {%- comment -%}
+        如果页面有自定义的 footer-extra（额外页脚内容），则加载
+        可用于插入统计代码、友链等
+        {%- endcomment -%}
+        {% if page.footer-extra %}
+          <div class="footer-custom-content">
+            {% for file in page.footer-extra %}
+              {% include {{ file }} %}
+            {% endfor %}
+          </div>
         {% endif %}
-      {% endif%}
 
-      {% if site.edit_page_button and site.github.repository_url %}
-        &nbsp;&bull;&nbsp;
-        <a title="在 GitHub 上编辑此页面" href="{{ site.github.repository_url }}/edit/{{ site.github.source.branch }}/{{ page.path }}" class="text_muted">编辑页面</a>
-       {% endif%}
+        <!-- 页脚版权信息 -->
+        <p class="copyright text-muted">
+          {%- comment -%}
+          显示作者名（在 _config.yml 中配置 author）
+          {%- endcomment -%}
+          {% if site.author %}
+            {{ site.author }}
+            &nbsp;&bull;&nbsp;
+          {% endif %}
+
+          {%- comment -%}
+          显示当前年份
+          {%- endcomment -%}
+          {{ site.time | date: '%Y' }}
+
+          {%- comment -%}
+          如果设置了网站地址 (url-pretty)，显示一个可点击的站点链接
+          {%- endcomment -%}
+          {% if site.url-pretty %}
+            &nbsp;&bull;&nbsp;
+            <span class="author-site">
+              <a href="{% if site.url-canonical %}{{ site.url-canonical }}{% else %}{{ '/' | absolute_url }}{% endif %}">
+                {{ site.url-pretty }}
+              </a>
+            </span>
+          {% endif %}
+
+          {%- comment -%}
+          如果使用了 Matomo（网站分析工具），并开启了“拒绝追踪”选项，则显示一个“请勿追踪”链接
+          {%- endcomment -%}
+          {% if site.matomo %}
+            {% if site.matomo.opt-out %}
+              &nbsp;&bull;&nbsp;
+              <a href="http://{{- site.matomo.uri -}}/index.php?module=CoreAdminHome&action=optOut" target="_blank" class="text_muted">
+                请勿追踪
+              </a>
+            {% endif %}
+          {% endif %}
+
+          {%- comment -%}
+          如果启用了“编辑页面”按钮 (edit_page_button)，并且配置了 GitHub 仓库地址，
+          则显示一个链接，方便在 GitHub 上直接编辑当前页面。
+          {%- endcomment -%}
+          {% if site.edit_page_button and site.github.repository_url %}
+            &nbsp;&bull;&nbsp;
+            <a title="在 GitHub 上编辑此页面"
+               href="{{ site.github.repository_url }}/edit/{{ site.github.source.branch }}/{{ page.path }}"
+               class="text_muted">
+              编辑此页面
+            </a>
+          {% endif %}
+        </p>
 
       </div>
     </div>
