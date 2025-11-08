@@ -1,7 +1,11 @@
+---
+layout: null
+---
+
 @import url("pygment_highlights.css");
 
 :root {
-  /* 配置变量 */
+  /* config file CSS variables */
   --page-col: {{ site.page-col | default: "#FFFFFF" }};
   --text-col: {{ site.text-col | default: "#404040" }};
   --link-col: {{ site.link-col | default: "#008AFF" }};
@@ -14,16 +18,20 @@
   --footer-link-col: {{ site.footer-link-col | default: "#404040" }};
   --footer-hover-col: {{ site.footer-hover-col | default: "#0085A1" }};
 
+  /* common CSS variables */
   --body-font: 'Lora', 'Times New Roman', serif;
   --header-font: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mid-col: #808080;
 }
 
-/* --- 基础样式 --- */
+/* --- General --- */
+html { font-size: 100%; }
+
 body {
   font-family: var(--body-font);
   font-size: 1.125rem;
   color: var(--text-col);
+  position: relative;
   background-color: var(--page-col);
   {% if site.page-img %}
   background-image: url({{ site.page-img | relative_url }});
@@ -35,10 +43,12 @@ body {
   flex-direction: column;
 }
 body > main { flex: 1; }
+
 p { line-height: 1.5; margin: 1.875rem 0; }
+
 h1,h2,h3,h4,h5,h6 {
   font-family: var(--header-font);
-  font-weight: 800;
+  font-weight: 400; /* 去粗体 */
   line-height: 1.1;
 }
 h1 { font-size: 1.5rem; }
@@ -46,34 +56,34 @@ h2 { font-size: 1.25rem; }
 h3 { font-size: 1.125rem; }
 h4 { font-size: 1rem; }
 h1,h2,h3,h4 { margin-top: 1.25rem; }
+
 a { color: var(--link-col); }
 a:hover, a:focus { color: var(--hover-col); }
+
 blockquote { color: var(--mid-col); font-style: italic; }
 blockquote p:first-child { margin-top: 0; }
+
 img { max-width: 100%; }
 
-/* --- 首页文章列表调整 Chirpy 风格 --- */
+.linked-section { padding-top: 3.75rem; margin-top: -1.5625rem; }
+
+/* --- 首页文章列表 (Chirpy 风格) --- */
 .post-preview a {
   text-decoration: none;
   font-family: var(--header-font);
   color: var(--text-col);
 }
 .post-preview a:focus,
-.post-preview a:hover {
-  text-decoration: none;
-  color: var(--hover-col);
-}
+.post-preview a:hover { color: var(--hover-col); }
 
-/* 文章标题 */
 .post-preview .post-title {
-  font-size: 1.2rem;
-  font-weight: normal;
+  font-size: 1.2rem; /* 缩小标题 */
+  font-weight: 400;
   margin-top: 0;
   margin-bottom: 0.25rem;
   line-height: 1.3;
 }
 
-/* 副标题 / 摘要 */
 .post-preview .post-subtitle {
   font-size: 1rem;
   font-weight: 400;
@@ -82,7 +92,6 @@ img { max-width: 100%; }
   color: var(--mid-col);
 }
 
-/* 日期、标签信息 */
 .post-preview .post-meta,
 .post-heading .post-meta {
   font-size: 0.875rem;
@@ -92,7 +101,6 @@ img { max-width: 100%; }
   line-height: 1.2;
 }
 
-/* 标签列表 */
 .post-preview .blog-tags {
   margin-top: 0.25rem;
   margin-bottom: 0;
@@ -103,7 +111,6 @@ img { max-width: 100%; }
   opacity: 0.8;
 }
 
-/* 文章图片 */
 .post-preview .post-image {
   float: right;
   margin-left: 0.625rem;
@@ -115,7 +122,6 @@ img { max-width: 100%; }
 .post-preview .post-image:hover { filter: grayscale(0%); }
 .post-preview .post-image img { max-height: 100%; max-width: 100%; }
 
-/* 小屏幕调整 */
 @media (max-width: 767px) {
   .post-preview .post-image {
     float: none;
@@ -129,12 +135,16 @@ img { max-width: 100%; }
   .post-preview .blog-tags { font-size: 0.8rem; }
 }
 
-/* --- 其他保留 Beautiful Jekyll 样式 --- */
-/* 保留原来的 navbar, footer, pagination, code block, table, blockquote 等样式 */
-/* ... 可以把原本的完整 CSS 内容追加在这里 ... */
+/* --- 保留原有 Beautiful Jekyll 样式 --- */
+.hideme { display: none; }
+
+::-moz-selection { color: var(--page-col); background-color: var(--hover-col); text-shadow: none; }
+::selection { color: var(--page-col); background-color: var(--hover-col); text-shadow: none; }
+
+img::selection { color: var(--hover-col); background: transparent; }
+img::-moz-selection { color: var(--hover-col); background: transparent; }
 
 /* --- Navbar --- */
-
 .navbar-custom {
   background-color: var(--navbar-col);
   border-bottom: 1px solid var(--navbar-border-col);
@@ -143,253 +153,28 @@ img { max-width: 100%; }
     background-image: url({{ site.navbar-img | relative_url }});
     background-attachment: fixed;
   {% endif %}
-  -webkit-transition: padding .5s ease-in-out;
-  -moz-transition: padding .5s ease-in-out;
   transition: padding .5s ease-in-out;
 }
 
-.navbar-custom,
-.navbar-custom.top-nav-short,
-.navbar-custom.top-nav-short-permanent {
-  padding-top: 0;
-  padding-bottom: 0;
-}
+.navbar-custom, .navbar-custom.top-nav-short, .navbar-custom.top-nav-short-permanent { padding-top: 0; padding-bottom: 0; }
 
-.navbar-custom .navbar-brand {
-  line-height: 1.5;
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-  font-size: 1.125rem;
-}
+.navbar-custom .navbar-brand { line-height: 1.5; padding-top: 0.625rem; padding-bottom: 0.625rem; font-size: 1.125rem; }
+.navbar-custom .navbar-brand-logo { transition: padding .5s ease-in-out; }
+.navbar-custom .navbar-brand-logo img { transition: height .5s ease-in-out; height: 2.5rem; }
 
-.navbar-custom .navbar-brand-logo {
-  -webkit-transition: padding .5s ease-in-out;
-  -moz-transition: padding .5s ease-in-out;
-  transition: padding .5s ease-in-out;
-}
+.navbar-custom .navbar-nav .nav-item { text-transform: uppercase; font-size: 0.8125rem; letter-spacing: 0.0625rem; }
+.navbar-custom .navbar-nav .nav-link { line-height: 1.25rem; padding: 0.9375rem 0; font-weight: 800; color: var(--navbar-text-col); }
+.navbar-toggler { font-size: 1rem; margin: 0.5rem 0; }
 
-.navbar-custom .navbar-brand-logo,
-.navbar-custom.top-nav-short .navbar-brand-logo,
-.navbar-custom.top-nav-short-permanent .navbar-brand-logo {
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
-}
-
-.navbar-custom .navbar-brand-logo img {
-  -webkit-transition: height .5s ease-in-out;
-  -moz-transition: height .5s ease-in-out;
-  transition: height .5s ease-in-out;
-}
-
-.navbar-custom .navbar-brand-logo img,
-.navbar-custom.top-nav-short .navbar-brand-logo img,
-.navbar-custom.top-nav-short-permanent .navbar-brand-logo img {
-  height: 2.5rem;
-}
-
-.navbar-custom .navbar-nav .nav-item {
-  text-transform: uppercase;
-  font-size: 0.8125rem;
-  letter-spacing: 0.0625rem;
-}
-
-.navbar-custom .navbar-nav .nav-link {
-  line-height: 1.25rem;
-  padding-top: 0.9375rem;
-  padding-bottom: 0.9375rem;
-}
-
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-nav .nav-link {
-  font-weight: 800;
-  color: var(--navbar-text-col);
-}
-
-.navbar-toggler {
-  font-size: 1rem;
-  margin: 0.5rem 0;
-}
-.navbar-custom .navbar-toggler:focus,
-.navbar-custom .navbar-toggler:hover {
-  background-color: initial;
-}
-
-.navbar-custom .navbar-toggler[aria-expanded="true"] {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.dropdown-toggle::after {
-  border-width: 0.4em;
-}
+.dropdown-toggle::after { border-width: 0.4em; }
 
 @media (min-width: 1200px) {
-  .navbar-custom {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
-  }
-
-  .navbar-custom .navbar-brand-logo {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-
-  .navbar-custom .navbar-brand-logo img {
-    height: 3.125rem;
-  }
-
-  .navbar-expand-xl .navbar-nav .nav-link {
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
-  }
-
-  .navbar-expand-xl .navbar-nav .nav-item:not(.dropdown):last-child .nav-link {
-    padding-right: 0;
-  }
-}
-
-@media (min-width: 1200px) {
-  .navbar-custom .nav-item.dropdown:hover {
-    background: rgba(0, 0, 0, 0.1);
-  }
-}
-
-.navbar-custom .nav-item.dropdown.show {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.navbar-custom .nav-item.dropdown .dropdown-menu {
-  margin-top: 0;
-  font-size: 1em;
-  border: 0;
-  padding: 0;
-  {% if site.navbar-var-length %}
-  min-width: 100%;
-  {% else %}
-  min-width: 0;
-  width: 100%;
-  word-break: break-word;
-  {% endif %}
-}
-
-.navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item {
-  padding: 0.625rem;
-  background-color: var(--navbar-col);
-  text-decoration: none !important;
-  font-weight: normal;
-  color: var(--navbar-text-col);
-  {% unless site.navbar-var-length %}
-  white-space: normal;
-  {% endunless %}
-}
-
-@media (min-width: 1200px) {
-  .navbar-custom .nav-item.dropdown .dropdown-menu {
-    text-align: center;
-  }
-
-  .navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item {
-    padding-left: 0.625rem;
-    border: 1px solid var(--navbar-border-col);
-    border-width: 0 1px 1px;
-  }
-
-  .navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item:first-child {
-    border-top-width: 1px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .navbar-custom .navbar-collapse {
-    border-top: 1px solid var(--navbar-border-col);
-    margin: 0 -1rem;
-  }
-
-  .navbar-custom .navbar-nav {
-    padding: 0.5rem 0;
-  }
-
-  .navbar-custom .navbar-nav .nav-link {
-    padding: 0.675rem 0 0.675rem 1rem;
-  }
-
-  .navbar-custom .nav-item.dropdown.show {
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .navbar-custom .nav-item.dropdown .dropdown-menu .dropdown-item {
-    padding-left: 2rem;
-  }
-}
-.navbar-custom .navbar-brand:hover,
-.navbar-custom .navbar-brand:focus ,
-.navbar-custom .navbar-nav .nav-link:hover,
-.navbar-custom .navbar-nav .nav-link:focus,
-.navbar-custom .navbar-nav .dropdown-menu .dropdown-item:hover,
-.navbar-custom .navbar-nav .dropdown-menu .dropdown-item:focus {
-  color: var(--hover-col);
-}
-
-.navbar-custom .avatar-container {
-  position: absolute;
-  left: 50%;
-  width: 3.125rem;
-  bottom: -1.5rem;
-  transition: opacity 0.5s ease-in-out;
-  -webkit-transition: opacity 0.5s ease-in-out;
-  -moz-transition: opacity 0.5s ease-in-out;
-}
-.navbar-custom.top-nav-short .avatar-container {
-  opacity: 0;
-  visibility: hidden;
-  transition: visibility linear 0.5s, opacity 0.5s ease-in-out;
-  -webkit-transition: visibility linear 0.5s, opacity 0.5s ease-in-out;
-  -moz-transition: visibility linear 0.5s, opacity 0.5s ease-in-out;
-}
-
-.navbar-custom .avatar-container .avatar-img-border {
-  width: 100%;
-  margin-left: -50%;
-  {% unless site.round-avatar == false %}
-    border-radius: 50%;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, .8);
-    -webkit-box-shadow: 0 0 0.3125rem rgba(0, 0, 0, .8);
-    -moz-box-shadow: 0 0 0.5rem rgba(0, 0, 0, .8);
-  {% endunless %}
-}
-.navbar-custom .avatar-container .avatar-img {
-  width: 100%;
-  {% unless site.round-avatar == false %}
-    border-radius: 50%;
-  {% endunless %}
-  display: block;
-}
-
-.navbar-custom.top-nav-expanded .avatar-container {
-  display: none;
-}
-
-@media (min-width: 1200px) {
-  .navbar-custom.top-nav-regular .avatar-container {
-    width: 6.25rem;
-    bottom: -1.9375rem;
-  }
-
-  .navbar-custom.top-nav-regular .avatar-container .avatar-img-border {
-    width: 100%;
-    {% unless site.round-avatar == false %}
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, .8);
-    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, .8);
-    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, .8);
-    {% endunless %}
-  }
-
-  .navbar-custom.top-nav-regular .avatar-container .avatar-img {
-    width: 100%;
-  }
+  .navbar-custom { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+  .navbar-custom .navbar-brand-logo img { height: 3.125rem; }
+  .navbar-custom .nav-item.dropdown:hover { background: rgba(0,0,0,0.1); }
 }
 
 /* --- Footer --- */
-
 footer {
   padding: 1.875rem 0;
   border-top: 1px var(--footer-col) solid;
@@ -401,220 +186,30 @@ footer {
     background-attachment: fixed;
   {% endif %}
 }
+footer p.text-muted { color: var(--footer-text-col) !important; }
+footer a { color: var(--footer-link-col); }
+footer a:hover, footer a:focus { color: var(--footer-hover-col); }
 
-footer p.text-muted {
-  color: var(--footer-text-col) !important;
-}
-
-footer a {
-  color: var(--footer-link-col);
-}
-footer .footer-links a {
-  color: var(--text-col);
-}
-footer .footer-links .fa-inverse {
-  color: var(--page-col);
-}
-
-footer a:hover,
-footer a:focus {
-  color: var(--footer-hover-col);
-}
-
-footer .list-inline {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 1.375rem;
-}
-footer .list-inline .list-inline-item {
-  margin-bottom: 0.5rem;
-}
-footer .copyright {
+/* --- Pagination --- */
+.pagination .page-item .page-link {
   font-family: var(--header-font);
-  text-align: center;
-  margin-bottom: 0;
-  margin-top: 0;
-}
-footer .theme-by {
-  text-align: center;
-  margin: 0.625rem 0 0;
-}
-footer .footer-custom-content {
-  text-align: center;
-  margin-bottom: 0.9375rem;
-  font-family: var(--header-font);
-}
-
-@media (min-width: 768px) {
-  footer {
-    padding: 3.125rem 0;
-  }
-  footer .footer-links {
-    font-size: 1.125rem;
-  }
-  footer .copyright {
-    font-size: 1rem;
-  }
-  footer .footer-custom-content {
-    font-size: 1rem;
-  }
-}
-
-/* --- Post preview (feed) --- */
-
-.posts-list {
-    margin: 0;
-}
-
-.post-preview {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid #eee;
-  overflow: hidden;
-}
-
-@media (min-width: 768px) {
-  .post-preview {
-    padding: 2.1875rem 0;
-  }
-}
-
-.post-preview:last-child {
-  border-bottom: 0;
-}
-
-/* --- 修改后的 Chirpy 风格 --- */
-.post-preview a {
-  text-decoration: none;
-  font-family: var(--header-font);
-  color: var(--text-col);
-}
-
-.post-preview a:focus,
-.post-preview a:hover {
-  text-decoration: none;
-  color: var(--hover-col);
-}
-
-.post-preview .post-title {
-  font-size: 1.5rem; /* Chirpy 默认首页文章标题 */
-  margin-top: 0;
-}
-
-.post-preview .post-subtitle {
-  font-size: 1rem; /* 副标题 / 摘要 */
-  font-weight: 400;
-  margin-bottom: 0.5rem;
-}
-
-.post-preview .post-meta,
-.post-heading .post-meta {
-  font-size: 0.875rem; /* 日期和标签字体 */
-  font-style: normal;
-  color: var(--mid-col);
-}
-
-.post-heading .post-meta .middot {
-  margin: 0 0.25rem;
-}
-
-.post-preview .post-entry {
-  width: 100%;
-}
-.post-preview .post-image {
-  float: right;
-  margin-left: 0.625rem;
-  height: 12rem;
-  width: 12rem;
-}
-.post-preview .post-image {
-  filter: grayscale(40%);
-}
-.post-preview .post-image:hover {
-  filter: grayscale(0%);
-}
-.post-preview .post-image img {
-  max-height: 100%;
-  max-width: 100%;
-}
-.post-preview .post-image-short {
-  margin-top: -2.1875rem;
-}
-@media (max-width: 767px) {
-  .post-preview .post-image {
-    height: 9rem;
-    width: 9rem;
-  }
-  .post-preview .post-image-short {
-    margin-top: 0;
-  }
-}
-.post-preview .post-image-small {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  display: none;
-}
-.post-preview .post-image-small img {
-  max-width: 6.25rem;
-  max-height: 6.25rem;
-}
-@media (max-width: 500px) {
-  .post-preview .post-image {
-    display: none;
-  }
-  .post-preview .post-image-small {
-    display: block;
-  }
-}
-
-.post-preview .post-read-more {
+  text-transform: uppercase;
+  font-size: 0.875rem;
   font-weight: 800;
-}
-
-@media (min-width: 768px) {
-  .post-preview .post-title {
-    font-size: 1.5rem;
-  }
-}
-
-/* --- Tags --- */
-
-.blog-tags {
-  font-family: var(--header-font);
-  font-size: 0.75rem; /* Chirpy 标签默认大小 */
-  margin: 1.875rem 0;
-}
-
-.blog-tags span {
+  letter-spacing: 1px;
+  padding: 0.75rem 1rem;
+  background-color: var(--page-col);
+  border-radius: 0;
   color: var(--text-col);
-  opacity: 0.8;
+}
+.pagination .page-item .page-link:hover, .pagination .page-item .page-link:focus {
+  color: var(--page-col);
+  border: 1px solid var(--hover-col);
+  background-color: var(--hover-col);
 }
 
-.blog-tags .list-inline-item {
-  margin-right: 0;
-}
-
-.blog-tags a {
-  color: var(--text-col);
-  text-decoration: none;
-  padding: 0 0.3125rem;
-  opacity: 0.8;
-  border: 1px solid transparent;
-  border-radius: 0.1875rem;
-}
-
-.blog-tags a:hover {
-  opacity: 1;
-  color: var(--text-col);
-  border-color: var(--text-col);
-}
-
-.post-preview .blog-tags {
-  margin-top: 0.3125rem;
-  margin-bottom: 0;
-}
-
-@media (min-width: 768px) {
-  .post-preview .blog-tags {
-    margin-top: 0.625rem;
-  }
+/* --- Tables, Code, Blockquote, Misc --- */
+table { display: block; overflow-x: auto; }
+code { padding: 0.125rem 0.25rem; color: #c7254e; background-color: #f9f2f4; border-radius: 0.25rem; }
+pre { font-size: 0.875rem; line-height: 1.5em; border-radius: 0.25rem; padding: 0.59375rem; }
+blockquote { padding: 0.625rem 1.25rem; margin: 0 0 1.25rem; font-size: 1.1rem; border-left: 0.3125rem solid #eee; }
