@@ -2,6 +2,7 @@
 layout: default
 title: 爱好
 permalink: /pages/hobby/
+icon: fas fa-book
 ---
 <!-- ✅ 页面顶部 Banner -->
 <div class="media-banner">
