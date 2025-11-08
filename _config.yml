@@ -18,12 +18,12 @@ author: Gervas
 ###############################################
 
 navbar-links:
-  关于我: "关于"
-  资源:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - 学习 Markdown: "https://www.markdowntutorial.com/"
-  作者主页: "https://deanattali.com"
-
+  - [首页, /]
+  - [博客, /blog]
+  - [关于, /pages/about]
+  - [爱好, /pages/hobby]
+  - [照片, /pages/photos]
+  - [驻足, /pages/stops]
 ################
 # --- Logo --- #
 ################
