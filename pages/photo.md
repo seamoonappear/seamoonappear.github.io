@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 照片
+permalink: /pages/photos/
 ---
 <div class="photo-container">
   <!-- 导航标签 -->
