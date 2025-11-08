@@ -1,48 +1,68 @@
 ---
 common-css:
   - "/assets/css/beautifuljekyll-minimal.css"
+  # 引入站点的主要 CSS 样式文件，这里使用了 Minimal 版本的 Beautiful Jekyll 样式
 common-ext-css:
   - href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     sri: "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    # 外部 CSS，引入 Bootstrap 4.4.1 样式，用于响应式布局及组件
 common-ext-js:
   - href: "https://code.jquery.com/jquery-3.5.1.slim.min.js"
     sri: "sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+    # 外部 JS，引入精简版 jQuery 3.5.1，用于 Bootstrap 的 JS 功能依赖
   - href: "https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     sri: "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    # 外部 JS，引入 Popper.js，用于 Bootstrap 弹出框、下拉菜单等定位
   - href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     sri: "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    # 外部 JS，引入 Bootstrap 4.4.1 的 JavaScript 功能
 ---
-
 <!DOCTYPE html>
 <html lang="{{ page.language | default: site.language | default: 'en' }}">
+  <!-- HTML5 文档类型声明
+       lang 属性设置页面语言，优先使用 page.language，其次 site.language，默认英语 -->
 
   {% include head.html %}
+  <!-- 引入 head.html 文件，其中包含 <head> 标签内的 meta、title、CSS 链接等信息 -->
 
   <body>
+    <!-- 页面主体开始 -->
 
     <main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %} main-content">
+      <!-- 主内容区域
+           判断 page.full-width 是否为 true，如果是则使用 Bootstrap 的 container-fluid（全宽）
+           否则使用 container-md（固定宽度居中）
+           main-content 为自定义样式类，可在 CSS 中定义额外样式 -->
+
       {% if page.before-content %}
         <div class="before-content">
+          <!-- 页面正文前的自定义内容块 -->
           {% for file in page.before-content %}
             {% include {{ file }} %}
+            <!-- 循环包含 before-content 中列出的文件，可插入广告、提示或组件 -->
           {% endfor %}
         </div>
       {% endif %}
 
       {{ content }}
+      <!-- 页面正文内容，由 Jekyll 渲染 Markdown 后输出 -->
 
       {% if page.after-content %}
         <div class="after-content">
+          <!-- 页面正文后的自定义内容块 -->
           {% for file in page.after-content %}
             {% include {{ file }} %}
+            <!-- 循环包含 after-content 中列出的文件，可插入评论、相关文章推荐等 -->
           {% endfor %}
         </div>
       {% endif %}
     </main>
 
     {% include footer-minimal.html %}
+    <!-- 引入简化版页脚 footer-minimal.html -->
 
     {% include footer-scripts.html %}
-
+    <!-- 引入页脚脚本，例如 jQuery、Bootstrap JS 等外部依赖 -->
+    
   </body>
 </html>
