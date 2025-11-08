@@ -70,7 +70,7 @@ share-links-active:
 
 # 如何在页脚显示网站链接
 # 如果你不想显示，可以删除此项
-url-pretty: "MyWebsite.com"
+url-pretty: "首页"
 
 # 在每个页面标题中添加网站标题
 title-on-all-pages: false
@@ -198,7 +198,7 @@ timezone: "America/Toronto"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/
-paginate: 5
+paginate: 10
 
 kramdown:
   input: GFM
