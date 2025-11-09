@@ -1,87 +1,184 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beautiful Jekyll 文章 Front Matter 生成器</title>
-  <style>
-    body {
-      font-family: "Microsoft YaHei", Arial, sans-serif;
-      display: flex;
-      justify-content: space-between;
-      padding: 20px;
-      background: #f5f5f5;
-    }
-    .container {
-      width: 48%;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 10px;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .date-group {
-      display: flex;
-      gap: 10px;
-    }
-    .date-group input {
-      width: 32%;
-      text-align: center;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #007acc;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.2s;
-    }
-    button:hover {
-      background-color: #005ea0;
-    }
-    .output {
-      white-space: pre-wrap;
-      background: #f8f9fa;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 10px;
-      margin-top: 10px;
-      height: 400px;
-      overflow-y: auto;
-    }
-    .copy-btn {
-      background-color: #444;
-      margin-left: 10px;
-      padding: 6px 10px;
-      border-radius: 5px;
-      font-size: 13px;
-      color: #fff;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beautiful Jekyll blog Front Matter 生成器</title>
+<style>
+/* 页面风格与美化保留上一个版本的样式 */
+/* 页面整体风格 */
+body {
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 48%;
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #007acc;
+  font-size: 24px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 15px;
+  color: #333;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input::placeholder, textarea::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #007acc;
+  box-shadow: 0 0 8px rgba(0, 122, 204, 0.2);
+  outline: none;
+}
+input.invalid { border-color: #e74c3c; }
+input.valid { border-color: #2ecc71; }
+
+.group {
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+.date-group {
+  display: flex;
+  gap: 10px;
+}
+.date-group input {
+  width: 32%;
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: linear-gradient(90deg, #007acc, #005ea0);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: background 0.2s, transform 0.1s;
+}
+button:hover { background: linear-gradient(90deg, #005ea0, #007acc); transform: scale(1.03);}
+button:active { transform: scale(0.97); }
+
+.output {
+  white-space: pre-wrap;
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 12px;
+  height: 400px;
+  overflow-y: auto;
+  font-family: "Fira Code", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  counter-reset: line;
+}
+.output div {
+  counter-increment: line;
+}
+.output div::before {
+  content: counter(line);
+  display: inline-block;
+  width: 25px;
+  margin-right: 10px;
+  color: #888;
+  text-align: right;
+}
+.output::-webkit-scrollbar {
+  width: 8px;
+}
+.output::-webkit-scrollbar-thumb {
+  background: #007acc;
+  border-radius: 4px;
+}
+
+.copy-btn {
+  background-color: #444;
+  margin-left: 10px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.copy-btn:hover { background-color: #222; transform: scale(1.05); }
+
+.toast {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #007acc;
+  color: #fff;
+  padding: 6px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s, top 0.3s;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  top: -55px;
+}
+
+@media(max-width: 1000px){
+  body { flex-direction: column; align-items: center; }
+  .container { width: 90%; margin-bottom: 20px; }
+}
+</style>
 </head>
 <body>
-  <!-- 左侧输入区 -->
-  <div class="container">
-    <h2>Front Matter 设置</h2>
 
+<div class="container" id="input-container">
+  <div class="toast" id="toast">生成成功！</div>
+  <h2>Front Matter 设置</h2>
+
+  <div class="group">
     <label>文章标题：</label>
     <input type="text" id="title" placeholder="请输入文章标题">
 
@@ -91,12 +188,22 @@
       <input type="number" id="month" placeholder="月" min="1" max="12">
       <input type="number" id="day" placeholder="日" min="1" max="31">
     </div>
+  </div>
 
+  <div class="group">
     <label>标签 1：</label>
-    <input type="text" id="tag1" placeholder="例如：学习">
+    <input type="text" id="tag1" list="tag-list" placeholder="例如：学习">
+    <datalist id="tag-list">
+      <option value="学习">
+      <option value="感悟">
+      <option value="探索">
+      <option value="职场">
+      <option value="技术">
+      <option value="生活">
+    </datalist>
 
     <label>标签 2：</label>
-    <input type="text" id="tag2" placeholder="例如：思考">
+    <input type="text" id="tag2" list="tag-list" placeholder="例如：思考">
 
     <label>封面图：</label>
     <select id="cover">
@@ -105,63 +212,65 @@
     </select>
 
     <label>分类：</label>
-    <select id="category">
-      <option value="学习">学习</option>
-      <option value="感悟">感悟</option>
-      <option value="探索">探索</option>
-      <option value="职场">职场</option>
-    </select>
+    <input list="category-list" id="category" placeholder="选择分类">
+    <datalist id="category-list">
+      <option value="学习">
+      <option value="感悟">
+      <option value="探索">
+      <option value="职场">
+    </datalist>
+  </div>
 
+  <div class="group">
     <label>正文内容：</label>
     <textarea id="content" rows="8" placeholder="请输入文章正文"></textarea>
-
-    <button onclick="generateMarkdown()">生成 Markdown</button>
   </div>
 
-  <!-- 右侧输出区 -->
-  <div class="container">
-    <h2>生成结果</h2>
+  <button onclick="generateMarkdown()">生成 Markdown</button>
+</div>
 
-    <div>
-      <strong>文件名：</strong>
-      <span id="filename"></span>
-      <button class="copy-btn" onclick="copyText('filename')">复制</button>
-    </div>
-
-    <div class="output" id="output"></div>
-    <button class="copy-btn" onclick="copyText('output')">复制内容</button>
+<div class="container">
+  <h2>生成结果</h2>
+  <div style="display:flex; align-items:center; margin-bottom:10px;">
+    <strong>文件名：</strong>
+    <span id="filename" style="margin-left:10px;"></span>
+    <button class="copy-btn" onclick="copyText('filename')">📋 复制</button>
   </div>
+  <div class="output" id="output"></div>
+  <button class="copy-btn" onclick="copyText('output')">📋 复制内容</button>
+</div>
 
-  <script>
-    function generateMarkdown() {
-      const title = document.getElementById('title').value.trim();
-      const tag1 = document.getElementById('tag1').value.trim();
-      const tag2 = document.getElementById('tag2').value.trim();
-      const cover = document.getElementById('cover').value;
-      const category = document.getElementById('category').value;
-      const content = document.getElementById('content').value.trim();
-      const year = document.getElementById('year').value;
-      const month = document.getElementById('month').value;
-      const day = document.getElementById('day').value;
+<script>
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
 
-      if (!title) {
-        alert('请输入文章标题！');
-        return;
-      }
+function generateMarkdown() {
+  const title = document.getElementById('title').value.trim();
+  const tag1 = document.getElementById('tag1').value.trim();
+  const tag2 = document.getElementById('tag2').value.trim();
+  const cover = document.getElementById('cover').value;
+  const category = document.getElementById('category').value;
+  const content = document.getElementById('content').value.trim();
+  const year = document.getElementById('year').value;
+  const month = document.getElementById('month').value;
+  const day = document.getElementById('day').value;
 
-      const now = new Date();
-      const y = year || now.getFullYear();
-      const m = month || now.getMonth() + 1;
-      const d = day || now.getDate();
+  if (!title) { showToast('请填写文章标题！'); return; }
 
-      const date = y + '-' +
-                   String(m).padStart(2, '0') + '-' +
-                   String(d).padStart(2, '0');
+  const now = new Date();
+  const y = year || now.getFullYear();
+  const m = month || now.getMonth() + 1;
+  const d = day || now.getDate();
+  const date = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');
 
-      const fileName = date + '-' + title.replace(/\s+/g, '-') + '.md';
-      document.getElementById('filename').textContent = fileName;
+  const fileName = date + '-' + title.replace(/\s+/g,'-') + '.md';
+  document.getElementById('filename').textContent = fileName;
 
-      const frontMatter =
+  const frontMatter =
 `---
 layout: post
 title: "${title}"
@@ -176,15 +285,24 @@ ${cover === 'yes' ? 'cover-img: /assets/img/cover.jpg' : ''}
 ${content || '（在这里写正文内容）'}
 `;
 
-      document.getElementById('output').textContent = frontMatter;
-    }
+  const lines = frontMatter.split('\n');
+  const outputDiv = document.getElementById('output');
+  outputDiv.innerHTML = '';
+  lines.forEach(line => {
+    const div = document.createElement('div');
+    div.textContent = line;
+    outputDiv.appendChild(div);
+  });
 
-    function copyText(id) {
-      const el = document.getElementById(id);
-      const text = el.textContent || el.value;
-      navigator.clipboard.writeText(text);
-      alert("已复制到剪贴板！");
-    }
-  </script>
+  showToast('生成成功！');
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  const text = el.textContent || el.value;
+  navigator.clipboard.writeText(text);
+  showToast("已复制到剪贴板！");
+}
+</script>
 </body>
 </html>
