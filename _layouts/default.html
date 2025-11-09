@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title | default: site.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/post.css' | relative_url }}">
-  <!-- 你可以在这里引入其他全局 CSS 或字体 -->
+  <!-- 可引入其他全局 CSS 或字体 -->
 </head>
 <body>
 
-  <!-- 页面顶部 header 或导航 -->
+  <!-- 顶部 header 或导航 -->
   {% include header.html %}
 
   <!-- 页面顶部介绍区域（可放封面或背景图） -->
@@ -19,8 +19,8 @@
   <main>
     <div class="container">
       <div class="row justify-content-center">
-        <!-- 文章宽度固定 col-lg-8，中等屏幕 col-md-10，小屏幕 col-sm-12 -->
-        <div class="col-lg-8 col-md-10 col-sm-12">
+        <!-- 大屏 col-lg-8，中屏 col-md-10，小屏 col-sm-12 -->
+        <div class="col-lg-8 col-md-10 col-sm-12 px-3">
 
           <!-- 页面内容前的额外 include -->
           {% if page.before-content %}
@@ -48,7 +48,7 @@
     </div>
   </main>
 
-  <!-- 页面底部 footer -->
+  <!-- 底部 footer -->
   {% include footer.html %}
 
 </body>
