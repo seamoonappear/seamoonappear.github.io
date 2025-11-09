@@ -3,37 +3,106 @@ layout: default
 title: 标签
 permalink: /pages/tags/
 ---
-{% assign date_format = site.date_format | default: "%B %-d, %Y" %}  <!-- 设置日期格式，如果没有设置则使用默认格式 -->
+{% assign date_format = site.date_format | default: "%B %-d, %Y" %}
 
-{%- capture site_tags -%}  <!-- 捕捉所有标签 -->
-    {%- for tag in site.tags -%}  <!-- 遍历所有标签 -->
-        {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%}  <!-- 获取标签的第一个字符，并且标签之间用逗号隔开 -->
+{%- capture site_tags -%}
+    {%- for tag in site.tags -%}
+        {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%}
     {%- endfor -%}
 {%- endcapture -%}
+{%- assign tags_list = site_tags | split:',' | sort -%}
 
-{%- assign tags_list = site_tags | split:',' | sort -%}  <!-- 将捕捉到的标签按逗号拆分，转换为列表，并排序 -->
+<!-- 标签按钮 -->
+<div class="tag-buttons">
+    {%- for tag in tags_list -%}
+        <a href="#{{- tag -}}" class="tag-btn">{{- tag -}} ({{site.tags[tag].size}})</a>
+    {%- endfor -%}
+</div>
 
-{%- for tag in tags_list -%}  <!-- 遍历所有排序后的标签 -->
-    <a href="#{{- tag -}}" class="btn btn-primary tag-btn">
-        <i class="fas fa-tag" aria-hidden="true"></i>&nbsp;{{- tag -}}&nbsp;({{site.tags[tag].size}})  <!-- 显示每个标签和其对应的文章数量 -->
-    </a>
-{%- endfor -%}
-
+<!-- 标签详细内容 -->
 <div id="full-tags-list">
-    {%- for tag in tags_list -%}  <!-- 再次遍历所有标签 -->
+    {%- for tag in tags_list -%}
         <h2 id="{{- tag -}}" class="linked-section">
-            <i class="fas fa-tag" aria-hidden="true"></i>
-            &nbsp;{{- tag -}}&nbsp;({{site.tags[tag].size}})  <!-- 显示标签的名称和数量 -->
+            {{- tag -}} ({{site.tags[tag].size}})
         </h2>
         <div class="post-list">
-            {%- for post in site.tags[tag] -%}  <!-- 遍历每个标签下的文章 -->
+            {%- for post in site.tags[tag] -%}
                 <div class="tag-entry">
-                    <a href="{{ post.url | relative_url }}">{{- post.title | strip_html -}}</a>  <!-- 显示文章标题，去除HTML标签 -->
+                    <a href="{{ post.url | relative_url }}" class="post-link">{{- post.title | strip_html -}}</a>
                     <div class="entry-date">
-                        <time datetime="{{- post.date | date_to_xmlschema -}}">{{- post.date | date: date_format -}}</time>  <!-- 显示文章的发布日期 -->
+                        <time datetime="{{- post.date | date_to_xmlschema -}}">{{- post.date | date: date_format -}}</time>
                     </div>
                 </div>
             {%- endfor -%}
         </div>
     {%- endfor -%}
 </div>
+
+<!-- 在页面中加入以下 CSS 代码 -->
+<style>
+    /* 样式：标签按钮 */
+    .tag-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+    }
+    .tag-btn {
+        background-color: #3498db;
+        color: white;
+        border-radius: 20px;
+        font-size: 1rem;
+        padding: 6px 15px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+    .tag-btn:hover {
+        background-color: #2980b9;
+    }
+
+    /* 样式：标签标题 */
+    .linked-section {
+        margin-top: 2.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #2c3e50;
+        text-align: center;
+        border-bottom: 1px solid #eaeaea;
+        padding-bottom: 1rem;
+    }
+
+    /* 样式：文章条目 */
+    .tag-entry {
+        margin-bottom: 1.2rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid #eaeaea;
+    }
+    .tag-entry:hover {
+        background-color: #f4f6f8;
+    }
+    .post-link {
+        font-size: 1.2rem;
+        color: #34495e;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+    .post-link:hover {
+        color: #2980b9;
+    }
+    .entry-date {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        margin-top: 0.5rem;
+    }
+
+    /* 响应式：手机屏幕下标签按钮 */
+    @media (max-width: 768px) {
+        .tag-btn {
+            font-size: 0.9rem;
+            padding: 6px 12px;
+        }
+    }
+</style>
+
