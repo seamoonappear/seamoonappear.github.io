@@ -1,14 +1,17 @@
 ---
 layout: page
-title: "分类"
+title: "文章分类"
 permalink: /categories/
-icon: fas fa-list-alt
 ---
 
-<h2>文章分类</h2>
+<h1>文章分类</h1>
 
 <ul>
   {% for category in site.categories %}
-    <li><a href="{{ site.baseurl }}/categories/{{ category[0] }}">{{ category[0] }}</a> ({{ category[1].size }})</li>
+    <li>
+      <a href="{{ site.baseurl }}/categories/{{ category[0] | slugify }}/">
+        {{ category[0] }} ({{ category[1].size }}篇文章)
+      </a>
+    </li>
   {% endfor %}
 </ul>
