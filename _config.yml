@@ -178,6 +178,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+      categories: []
       comments: true          # 启用文章评论
       social-share: true      # 启用社交分享
   - scope:
