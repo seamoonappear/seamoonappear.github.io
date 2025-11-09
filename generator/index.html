@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beautiful Jekyll blog Front Matter 生成器</title>
+<title>Beautiful Jekyll 文章 Front Matter 生成器</title>
 <style>
-/* 页面风格与美化保留上一个版本的样式 */
-/* 页面整体风格 */
 body {
   font-family: "Microsoft YaHei", Arial, sans-serif;
   background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
@@ -58,10 +56,7 @@ input, textarea, select {
   font-size: 14px;
   transition: border 0.2s, box-shadow 0.2s;
 }
-input::placeholder, textarea::placeholder {
-  color: #aaa;
-  font-style: italic;
-}
+input::placeholder, textarea::placeholder { color: #aaa; font-style: italic; }
 input:focus, textarea:focus, select:focus {
   border-color: #007acc;
   box-shadow: 0 0 8px rgba(0, 122, 204, 0.2);
@@ -82,10 +77,7 @@ input.valid { border-color: #2ecc71; }
   display: flex;
   gap: 10px;
 }
-.date-group input {
-  width: 32%;
-  text-align: center;
-}
+.date-group input { width: 32%; text-align: center; }
 
 button {
   margin-top: 20px;
@@ -116,9 +108,7 @@ button:active { transform: scale(0.97); }
   line-height: 1.5;
   counter-reset: line;
 }
-.output div {
-  counter-increment: line;
-}
+.output div { counter-increment: line; }
 .output div::before {
   content: counter(line);
   display: inline-block;
@@ -127,13 +117,8 @@ button:active { transform: scale(0.97); }
   color: #888;
   text-align: right;
 }
-.output::-webkit-scrollbar {
-  width: 8px;
-}
-.output::-webkit-scrollbar-thumb {
-  background: #007acc;
-  border-radius: 4px;
-}
+.output::-webkit-scrollbar { width: 8px; }
+.output::-webkit-scrollbar-thumb { background: #007acc; border-radius: 4px; }
 
 .copy-btn {
   background-color: #444;
@@ -187,6 +172,13 @@ button:active { transform: scale(0.97); }
       <input type="number" id="year" placeholder="年" min="2000" max="2100">
       <input type="number" id="month" placeholder="月" min="1" max="12">
       <input type="number" id="day" placeholder="日" min="1" max="31">
+    </div>
+
+    <label>更新时间：</label>
+    <div class="date-group">
+      <input type="number" id="update-year" placeholder="年" min="2000" max="2100">
+      <input type="number" id="update-month" placeholder="月" min="1" max="12">
+      <input type="number" id="update-day" placeholder="日" min="1" max="31">
     </div>
   </div>
 
@@ -258,6 +250,9 @@ function generateMarkdown() {
   const year = document.getElementById('year').value;
   const month = document.getElementById('month').value;
   const day = document.getElementById('day').value;
+  const updateYear = document.getElementById('update-year').value;
+  const updateMonth = document.getElementById('update-month').value;
+  const updateDay = document.getElementById('update-day').value;
 
   if (!title) { showToast('请填写文章标题！'); return; }
 
@@ -267,6 +262,11 @@ function generateMarkdown() {
   const d = day || now.getDate();
   const date = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');
 
+  const ly = updateYear || y;
+  const lm = updateMonth || m;
+  const ld = updateDay || d;
+  const lastUpdated = ly + '-' + String(lm).padStart(2,'0') + '-' + String(ld).padStart(2,'0');
+
   const fileName = date + '-' + title.replace(/\s+/g,'-') + '.md';
   document.getElementById('filename').textContent = fileName;
 
@@ -275,8 +275,8 @@ function generateMarkdown() {
 layout: post
 title: "${title}"
 date: ${date}
-last_modified_at: ${date}
-author: Gervas
+author: 王维
+last-updated: ${lastUpdated}
 categories: [${category}]
 tags: [${tag1}${tag2 ? ', ' + tag2 : ''}]
 ${cover === 'yes' ? 'cover-img: /assets/img/cover.jpg' : ''}
