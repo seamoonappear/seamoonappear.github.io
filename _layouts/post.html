@@ -3,11 +3,9 @@ layout: default
 ---
 
 {% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
-{%- comment -%}
-使用中文日期格式，如 “2025年11月8日”
-{%- endcomment -%}
+{%- comment -%} 使用中文日期格式，如 “2025年11月8日” {%- endcomment -%}
 
-<div class="post-container" style="margin-top: 5rem;">  <!-- 增加顶部外边距，避免标题被导航栏遮挡 -->
+<div class="post-container" style="margin-top: 5rem;">  <!-- 顶部外边距，避免导航栏遮挡 -->
   <div class="container-md">
     <div class="row">
       <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
@@ -21,7 +19,7 @@ layout: default
               <h2 class="post-subtitle">{{ page.subtitle | strip_html }}</h2>
             {% endif %}
 
-            <!-- 元数据 -->
+            <!-- 元数据：一行显示 -->
             <div class="post-meta mt-2">
               {% if page.author %}
                 <span class="author">作者：<strong>{{ page.author | strip_html }}</strong></span>
@@ -33,7 +31,6 @@ layout: default
                 <span class="updated-date"><span class="middot d-none d-md-inline">&middot;</span> 更新于 {{ page.last-updated | date: date_format }}</span>
               {% endif %}
 
-              <!-- 阅读时间（GitHub Pages 兼容版） -->
               {% assign words = content | number_of_words %}
               {% assign minutes = words | divided_by: 200 %}
               {% if minutes < 1 %}
@@ -65,21 +62,21 @@ layout: default
           <!-- 页脚：标签与分类 -->
           <footer class="post-footer mt-5">
             {% if page.tags %}
-              <p class="post-tags">
-                <i class="fas fa-tags"></i>
+              <div class="post-tags mb-2">
+                <strong>标签：</strong>
                 {% for tag in page.tags %}
-                  <a href="{{ '/tags#' | append: tag | relative_url }}" class="badge bg-light text-dark">{{ tag }}</a>
+                  <a href="{{ '/tags#' | append: tag | relative_url }}" class="tag-badge">{{ tag }}</a>
                 {% endfor %}
-              </p>
+              </div>
             {% endif %}
 
             {% if page.categories %}
-              <p class="post-categories">
-                <i class="fas fa-folder-open"></i>
+              <div class="post-categories">
+                <strong>分类：</strong>
                 {% for category in page.categories %}
-                  <a href="{{ '/categories#' | append: category | relative_url }}" class="badge bg-light text-dark">{{ category }}</a>
+                  <a href="{{ '/categories#' | append: category | relative_url }}" class="category-badge">{{ category }}</a>
                 {% endfor %}
-              </p>
+              </div>
             {% endif %}
           </footer>
 
@@ -89,33 +86,3 @@ layout: default
     </div>
   </div>
 </div>
-
-<!-- 简单样式微调 -->
-<style>
-  .post-container {
-    padding-bottom: 4rem;
-  }
-  .post-header h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-  }
-  .post-subtitle {
-    font-size: 1.2rem;
-    color: #6c757d;
-  }
-  .post-meta {
-    color: #888;
-    font-size: 0.9rem;
-  }
-  .post-meta span {
-    margin-right: 0.5rem;
-  }
-  .post-body p {
-    line-height: 1.75;
-    margin-bottom: 1.2rem;
-  }
-  .post-footer i {
-    color: #666;
-    margin-right: 0.3rem;
-  }
-</style>
