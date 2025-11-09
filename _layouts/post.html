@@ -1,78 +1,121 @@
 ---
-layout: base
+layout: default
 ---
 
-<article class="post">
+{% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
+{%- comment -%}
+使用中文日期格式，如 “2025年11月8日”
+{%- endcomment -%}
 
-  <!-- 文章标题与元信息 -->
-  <header class="post-header text-center">
-    <!-- 标题 -->
-    <h1 class="post-title">{{ page.title | escape }}</h1>
+<div class="post-container" style="margin-top: 5rem;">  <!-- 增加顶部外边距，避免标题被导航栏遮挡 -->
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
 
-    <!-- 副标题 -->
-    {% if page.subtitle %}
-      <h2 class="post-subtitle text-muted">{{ page.subtitle | strip_html }}</h2>
-    {% endif %}
+        <article class="post-content">
+          <!-- 标题 -->
+          <header class="post-header text-center">
+            <h1 class="post-title">{{ page.title | strip_html }}</h1>
 
-    <!-- 元信息行 -->
-    <div class="post-meta">
-      {% if page.author %}
-        <span class="author">作者：<strong>{{ page.author | strip_html }}</strong></span>
-      {% endif %}
+            {% if page.subtitle %}
+              <h2 class="post-subtitle">{{ page.subtitle | strip_html }}</h2>
+            {% endif %}
 
-      <span class="published-date">
-        <span class="middot d-none d-md-inline">&middot;</span>
-        发表于 {{ page.date | date: "%Y年%-m月%-d日" }}
-      </span>
+            <!-- 元数据 -->
+            <div class="post-meta mt-2">
+              {% if page.author %}
+                <span class="author">作者：<strong>{{ page.author | strip_html }}</strong></span>
+              {% endif %}
 
-      {% if page.last-updated %}
-        <span class="updated-date">
-          <span class="middot d-none d-md-inline">&middot;</span>
-          更新于 {{ page.last-updated | date: "%Y年%-m月%-d日" }}
-        </span>
-      {% endif %}
+              <span class="published-date"><span class="middot d-none d-md-inline">&middot;</span> 发表于 {{ page.date | date: date_format }}</span>
 
-      {% if page.readtime %}
-        <span class="reading-time">
-          <span class="middot d-none d-md-inline">&middot;</span>
-          阅读时间：{{ page.readtime }} 分钟
-        </span>
-      {% endif %}
-    </div>
-  </header>
+              {% if page.last-updated %}
+                <span class="updated-date"><span class="middot d-none d-md-inline">&middot;</span> 更新于 {{ page.last-updated | date: date_format }}</span>
+              {% endif %}
 
-  <!-- 正文内容 -->
-  <div class="post-content">
-    {{ content }}
-  </div>
+              <!-- 阅读时间（GitHub Pages 兼容版） -->
+              {% assign words = content | number_of_words %}
+              {% assign minutes = words | divided_by: 200 %}
+              {% if minutes < 1 %}
+                {% assign minutes = 1 %}
+              {% endif %}
+              <span class="reading-time"><span class="middot d-none d-md-inline">&middot;</span> 阅读时间：{{ minutes }} 分钟</span>
+            </div>
+          </header>
 
-  <!-- 页脚信息，例如标签、导航等 -->
-  <footer class="post-footer">
-    {% if page.tags %}
-      <div class="post-tags">
-        <i class="fas fa-tags"></i>
-        {% for tag in page.tags %}
-          <a href="{{ '/tags/#' | append: tag | relative_url }}" class="tag">{{ tag }}</a>
-        {% endfor %}
+          <!-- 封面图 -->
+          {% if page.cover-img %}
+            <div class="post-cover text-center mt-4">
+              {% if page.cover-img.first %}
+                <img src="{{ page.cover-img[0].first.first | relative_url }}" alt="Cover image" class="img-fluid rounded">
+              {% else %}
+                <img src="{{ page.cover-img | relative_url }}" alt="Cover image" class="img-fluid rounded">
+              {% endif %}
+              {% if page.cover-img-desc %}
+                <p class="img-desc mt-2 text-muted small">{{ page.cover-img-desc }}</p>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <!-- 正文 -->
+          <div class="post-body mt-4">
+            {{ content }}
+          </div>
+
+          <!-- 页脚：标签与分类 -->
+          <footer class="post-footer mt-5">
+            {% if page.tags %}
+              <p class="post-tags">
+                <i class="fas fa-tags"></i>
+                {% for tag in page.tags %}
+                  <a href="{{ '/tags#' | append: tag | relative_url }}" class="badge bg-light text-dark">{{ tag }}</a>
+                {% endfor %}
+              </p>
+            {% endif %}
+
+            {% if page.categories %}
+              <p class="post-categories">
+                <i class="fas fa-folder-open"></i>
+                {% for category in page.categories %}
+                  <a href="{{ '/categories#' | append: category | relative_url }}" class="badge bg-light text-dark">{{ category }}</a>
+                {% endfor %}
+              </p>
+            {% endif %}
+          </footer>
+
+        </article>
+
       </div>
-    {% endif %}
+    </div>
+  </div>
+</div>
 
-    <!-- 上一篇 / 下一篇导航 -->
-    <nav class="post-nav d-flex justify-content-between mt-4">
-      {% if page.previous %}
-        <a class="prev-post" href="{{ page.previous.url | relative_url }}">
-          &larr; {{ page.previous.title }}
-        </a>
-      {% else %}
-        <span></span>
-      {% endif %}
-
-      {% if page.next %}
-        <a class="next-post" href="{{ page.next.url | relative_url }}">
-          {{ page.next.title }} &rarr;
-        </a>
-      {% endif %}
-    </nav>
-  </footer>
-
-</article>
+<!-- 简单样式微调 -->
+<style>
+  .post-container {
+    padding-bottom: 4rem;
+  }
+  .post-header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+  .post-subtitle {
+    font-size: 1.2rem;
+    color: #6c757d;
+  }
+  .post-meta {
+    color: #888;
+    font-size: 0.9rem;
+  }
+  .post-meta span {
+    margin-right: 0.5rem;
+  }
+  .post-body p {
+    line-height: 1.75;
+    margin-bottom: 1.2rem;
+  }
+  .post-footer i {
+    color: #666;
+    margin-right: 0.3rem;
+  }
+</style>
