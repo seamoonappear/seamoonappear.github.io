@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<h1>{{ page.category_name }} 分类下的文章</h1>
+
+<ul>
+  {% assign posts_in_category = site.categories[page.category_key] %}
+  {% for post in posts_in_category %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%Y-%m-%d" }}
+    </li>
+  {% endfor %}
+</ul>
