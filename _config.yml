@@ -28,15 +28,7 @@ navbar-links:
 # --- 页脚社交媒体链接 --- #
 #####################################
 
-social-network-links:
-  email: "someone@example.com"
-  github: seamoonappear
-# 其他可选平台示例：
-#  linkedin: your-linkedin
-#  twitter: your-twitter
 
-# RSS 订阅说明（订阅地址自动为 /feed.xml）
-rss-description: 这个网站是我酷炫的证明
 
 ###########################
 # --- 一般功能设置 --- #
