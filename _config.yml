@@ -1,20 +1,21 @@
 ###########################################################
 ### 欢迎使用 Beautiful Jekyll！
-### 这个配置文件用于设置影响你整个网站的选项。首次设置时，你应该遍历这些设置并进行修改，但在初始化设置后，你通常不需要频繁修改此文件。
+### 本配置文件用于设置影响整个网站的选项。
+### 建议在初次搭建时逐项检查，之后一般无需频繁修改。
 ###########################################################
 
 ############################
-# --- 必填选项 --- #
+# --- 必填信息 --- #
 ############################
 
-# 网站名称
+# 网站标题
 title: 地平线
 
-# 在页脚显示的作者名称
+# 页脚显示的作者名称
 author: ©️ Gervas
 
 ###############################################
-# --- 导航栏中的链接列表 --- #
+# --- 导航栏链接设置 --- #
 ###############################################
 
 navbar-links:
@@ -22,29 +23,25 @@ navbar-links:
   - [时间轴, /archives/]
   - [关于, "#", about]
 
-
 #####################################
 # --- 页脚社交媒体链接 --- #
 #####################################
 
-# 选择要在页脚显示的社交网络链接。
-# 你可以通过改变此处的顺序来调整它们显示的顺序。
-# 取消注释你希望显示的链接，并填写相应的信息。
 social-network-links:
   email: "someone@example.com"
   github: seamoonappear
-# 其他社交平台可以根据需要取消注释并添加信息
-# 例如: medium、reddit、linkedin 等
+# 其他可选平台示例：
+#  linkedin: your-linkedin
+#  twitter: your-twitter
 
-# 如果你希望你的博客支持 RSS 订阅，请提供一个描述
-# 订阅链接将为 https://<your_website>/feed.xml
+# RSS 订阅说明（订阅地址自动为 /feed.xml）
 rss-description: 这个网站是我酷炫的证明
 
 ###########################
-# --- 一般设置 --- #
+# --- 一般功能设置 --- #
 ###########################
 
-# 选择在文章中显示哪些社交分享按钮
+# 是否在文章中显示社交分享按钮
 share-links-active:
   twitter: false
   facebook: false
@@ -52,40 +49,31 @@ share-links-active:
   vk: false
   reddit: false
 
-# 如何在页脚显示网站链接
-# 如果你不想显示，可以删除此项
+# 页脚显示的网站链接
 url-pretty: "首页"
 
-# 在每个页面标题中添加网站标题
+# 是否在每个页面标题中添加网站标题
 title-on-all-pages: false
 
-# 摘要的字数长度 - 在 feed 页面中截断每篇文章的摘要至指定的字数
+# Feed 页面中摘要字数限制
 excerpt_length: 50
 
-# 是否在 feed 页面中显示每篇博客文章的摘要
+# Feed 页面中是否显示摘要与标签
 feed_show_excerpt: false
-
-# 是否在 feed 页面中显示每篇文章的标签
 feed_show_tags: true
 
-# 在导航栏中添加搜索按钮
+# 导航栏是否启用搜索按钮
 post_search: false
 
-# 在页脚添加编辑当前页面的按钮。如果网站托管在 GitHub 上，则可以使用此功能
+# 在页脚添加“编辑此页”按钮（适用于 GitHub Pages）
 edit_page_button: true
 
-# 允许子菜单项（第二级导航菜单项）超过顶级菜单项长度
-# 如果此设置关闭，长子菜单项可能会被截断
+# 长子菜单是否允许超出顶级宽度
 navbar-var-length: false
 
-# 为了SEO，指定与网站相关的关键词
-#keywords: "my,list,of,keywords"
-
 ######################################
-# --- 颜色 / 背景图片 --- #
+# --- 网站配色与样式 --- #
 ######################################
-
-# 自定义网站的颜色，颜色值可以是任何有效的 CSS 颜色
 
 page-col: "#FFFFFF"
 text-col: "#404040"
@@ -99,109 +87,106 @@ footer-text-col: "#777777"
 footer-link-col: "#404040"
 footer-hover-col: "#0085A1"
 
-# 或者，可以将导航栏、页脚和页面背景设置为图片，而不是颜色
-
+# 可选背景图示例：
 #navbar-img: "/assets/img/bgimage.png"
 #footer-img: "/assets/img/bgimage.png"
 #page-img: "/assets/img/bgimage.png"
 
-# 为移动浏览器建议一个颜色作为浏览器的主题（仅少数移动浏览器支持此功能）
+# 移动端主题色（仅部分浏览器支持）
 #mobile-theme-col: "#0085A1"
 
-# 如有额外的视觉定制，可以在每个页面中包含额外的 CSS 文件。列出所有自定义 CSS 文件
+# 额外 CSS 或 JS 文件（可扩展个性样式）
 #site-css:
 #  - "/assets/css/custom-styles.css"
-
-# 如果有常用的 JavaScript 文件需要在每个页面中加载，可以列出这些文件
 #site-js:
 #  - "/assets/js/custom-script.js"
 
 #################################
-# --- 网站分析部分 --- #
+# --- 网站分析设置 --- #
 #################################
 
-# 填写你的 Google Analytics 标签 ID（或“测量 ID”）来跟踪网站使用情况
+# Google Analytics 4 测量 ID
 #gtag: "G-XXXXXXXXXX"
 
-# 填写你的 Cloudflare Analytics beacon token 来通过 Cloudflare Analytics 跟踪你的网站
+# Cloudflare Analytics Beacon Token
 #cloudflare_analytics: ""
 
 # Google Tag Manager ID
 #gtm: ""
 
-# Matomo (前身为 Piwik) 网站统计
-# 取消下面的注释启用 Matomo。opt-out 参数控制是否允许用户选择不被跟踪。
+# Matomo（Piwik）分析支持（可选）
 #matomo:
 #  site_id: "9"
 #  uri: "demo.wiki.pro"
 #  opt-out: true
 
-# Google Universal Analytics ID -- 已弃用
-# 从 2023 年 7 月开始，Google 不再支持该功能！如果你还在使用 `google_analytics`，
-# 请切换到使用上面的 `gtag` 字段。
+# 已弃用的 Universal Analytics（请勿使用）
 #google_analytics: "UA-XXXXXXXX-X"
 
 ####################
-# --- 评论 --- #
+# --- 评论系统 --- #
 ####################
 
-# 要使用 Disqus 评论，请在 https://disqus.com 注册并填写你的 Disqus shortname（不是用户 ID）
-#disqus: ""
+#disqus: ""       # Disqus shortname
+#fb_comment_id: "" # Facebook App ID
+#commentbox: ""    # CommentBox 项目 ID
 
-# 要使用 Facebook 评论，请创建一个 Facebook 应用并填写 Facebook App ID
-#fb_comment_id: ""
-
-# 要使用 CommentBox，请在 https://commentbox.io 注册一个项目 ID
-#commentbox: ""  # 项目 ID，例如 "5694267682979840-proj"
-
-# 要使用 Utterances 评论：（1）取消以下部分的注释，（2）填写 "repository"（确保仓库为公开仓库），
-# （3）在 GitHub 仓库启用 Issues，（4）安装 Utterances 应用（https://github.com/apps/utterances）
-# 更多细节请参见 https://utteranc.es/
+# Utterances 评论（推荐与 GitHub 集成）
 #utterances:
-#  repository: "daattali/beautiful-jekyll"  # GitHub 用户名/仓库名
-#  issue-term: title   # 映射博客文章和 GitHub issues
-#  theme: github-light # Utterances 主题
-#  label: blog-comments # 为 Utterances 创建的 GitHub issues 分配的标签
+#  repository: "seamoonappear/seamoonappear.github.io"
+#  issue-term: title
+#  theme: github-light
+#  label: blog-comments
 
 ################
-# --- 其他 --- #
+# --- 其他设置 --- #
 ################
 
-# Ruby 日期格式，用于显示文章日期
+# 日期格式（中文）
 date_format: "%Y年%-m月%-d日"
 
-# Facebook App ID
-#fb_app_id: ""
+# 网站时区（改为中国上海）
+timezone: "Asia/Shanghai"
 
 #################################################################################
-# --- 以下内容无需修改（除非你知道自己在做什么） --- #
+# --- 以下内容通常无需修改（除非你知道自己在做什么） --- #
 #################################################################################
 
-# 输出选项（更多信息请参考 Jekyll 官方网站）
-timezone: "America/Toronto"
+# Markdown 与高亮配置
 markdown: kramdown
 highlighter: rouge
+
+# 永久链接格式
 permalink: /:year-:month-:day-:title/
+
+# 每页文章数量
 paginate: 10
 
+# 启用 GitHub Pages 支持的插件
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-reading-time  # 自动计算文章阅读时间
+
+# Kramdown Markdown 引擎设置
 kramdown:
   input: GFM
 
-# 默认 YAML 值（更多信息请参考 Jekyll 官方网站）
+# 默认值定义
 defaults:
   - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
-      comments: true  # 启用所有博客文章的评论
-      social-share: true # 启用所有博客文章的社交媒体分享按钮
+      comments: true          # 启用文章评论
+      social-share: true      # 启用社交分享
   - scope:
-      path: "" # 非文章类型的页面使用 "page" 布局
+      path: ""                # 其他页面默认使用 page 布局
     values:
       layout: "page"
 
-# 排除这些文件不包含在生产站点中
+# 构建时排除的文件
 exclude:
   - CHANGELOG.md
   - CNAME
@@ -211,8 +196,3 @@ exclude:
   - README.md
   - screenshot.png
   - docs/
-
-plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-reading-time
