@@ -6,7 +6,6 @@ layout: page
 
 {% assign posts = paginator.posts | default: site.posts %}
 
-<!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
 <ul class="posts-list list-unstyled" role="list">
   {% for post in posts %}
   <li class="post-preview">
@@ -26,41 +25,20 @@ layout: page
       {% endcapture %}
       {% assign thumbnail=thumbnail | strip %}
 
-      {% if site.feed_show_excerpt == false %}
-      {% if thumbnail != "" %}
+      {% if site.feed_show_excerpt == false and thumbnail != "" %}
       <div class="post-image post-image-normal">
         <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
           <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
         </a>
       </div>
       {% endif %}
-      {% endif %}
 
       <a href="{{ post.url | absolute_url }}">
         <h2 class="post-title">{{ post.title | strip_html }}</h2>
-
         {% if post.subtitle %}
-          <h3 class="post-subtitle">
-          {{ post.subtitle | strip_html }}
-          </h3>
+        <h3 class="post-subtitle">{{ post.subtitle | strip_html }}</h3>
         {% endif %}
       </a>
-
-      {% if post.author %}
-        <span>作者: <strong>{{ post.author | strip_html }}</strong></span>
-      {% endif %}
-      <p class="post-meta">
-        {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
-        发表于: {{ post.date | date: date_format }}
-      </p>
-
-      {% if thumbnail != "" %}
-      <div class="post-image post-image-small">
-        <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-        </a>
-      </div>
-      {% endif %}
 
       {% unless site.feed_show_excerpt == false %}
       {% if thumbnail != "" %}
@@ -81,42 +59,55 @@ layout: page
       </div>
       {% endunless %}
 
-      {% if site.feed_show_tags != false and post.tags.size > 0 %}
-      <div class="blog-tags">
-        <span>标签:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          {% for tag in post.tags %}
-          <li class="list-inline-item">
-            <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
-          </li>
-          {% endfor %}
-        </ul>
+      <!-- 元数据一行显示 -->
+      <div class="post-meta d-flex flex-wrap align-items-center justify-content-between mt-2">
+        <div>
+          {% if post.author %}
+          <span>作者: <strong>{{ post.author | strip_html }}</strong></span>
+          {% endif %}
+          <span> 发表于: {{ post.date | date: site.date_format | default: "%B %-d, %Y" }}</span>
+        </div>
+
+        {% if site.feed_show_tags != false and post.tags.size > 0 %}
+        <div class="blog-tags">
+          <span>标签:</span>
+          <ul class="d-inline list-inline mb-0" role="list">
+            {% for tag in post.tags %}
+            <li class="list-inline-item">
+              <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
       </div>
-      {% endif %}
 
     </article>
   </li>
   {% endfor %}
 </ul>
 
+<!-- 分页 -->
 {% if paginator.total_pages > 1 %}
-<ul class="pagination main-pager">
+<ul class="pagination main-pager d-flex justify-content-between">
   {% if paginator.previous_page %}
   <li class="page-item previous">
     <a class="page-link" href="{{ paginator.previous_page_path | absolute_url }}">
-      <i class="fas fa-arrow-left" alt="上一页"></i>
-      <span class="d-none d-sm-inline-block">上一页</span>
+      <i class="fas fa-arrow-left"></i> 上一页
     </a>
   </li>
+  {% else %}
+  <li></li>
   {% endif %}
+
   {% if paginator.next_page %}
   <li class="page-item next">
     <a class="page-link" href="{{ paginator.next_page_path | absolute_url }}">
-      <span class="d-none d-sm-inline-block">下一下</span>
-      <i class="fas fa-arrow-right" alt="下一页"></i>
+      下一页 <i class="fas fa-arrow-right"></i>
     </a>
   </li>
+  {% else %}
+  <li></li>
   {% endif %}
 </ul>
 {% endif %}
