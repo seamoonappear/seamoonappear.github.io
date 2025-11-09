@@ -19,7 +19,6 @@ author: ©️ Gervas
 
 navbar-links:
   - [首页, /]
-  - [标签, /pages/tags/]
   - [时间轴, /pages/archives/]
   - [关于, "#", about]
 
