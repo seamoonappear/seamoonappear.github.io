@@ -6,9 +6,6 @@ icon: fas fa-calendar-alt
 ---
 
 <!-- 页面说明 -->
-<div class="banner">
-  <img src="{{ '/assets/banner/stopbanner.jpg' | relative_url }}" alt="Timeline Banner">
-</div>
 
 > 回顾博客文章，从最新到最早。
 
@@ -21,7 +18,7 @@ icon: fas fa-calendar-alt
   <div class="timeline-item">
     <div class="timeline-year">{{ year.name }}</div>
     <div class="timeline-content">
-      {% assign posts_by_month = year.items | sort: "date" %}
+      {% assign posts_by_month = year.items | sort: "date" | reverse %}
       {% for post in posts_by_month %}
       <div>
         <span>{{ post.date | date: "%m-%d" }}</span> — <a href="{{ post.url }}">{{ post.title }}</a>
