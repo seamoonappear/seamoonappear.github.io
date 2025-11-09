@@ -3,19 +3,22 @@
   padding-bottom: 4rem;
 }
 
-/* 标题与副标题 */
+/* 文章标题与副标题 */
 .post-header h1.post-title {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
-}
-.post-subtitle {
-  font-size: 1.2rem;
-  color: #6c757d;
-  text-align: center;
+  margin-bottom: 1rem;
 }
 
-/* 元数据一行显示 */
+.post-subtitle {
+  font-size: 1.4rem;
+  color: #6c757d;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* 元数据：一行显示 */
 .post-meta {
   display: flex;
   flex-wrap: wrap;
@@ -25,9 +28,12 @@
   color: #888;
   margin-top: 0.5rem;
 }
+
 .post-meta span {
-  margin-right: 0.8rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
 }
+
 .post-meta .middot {
   margin: 0 0.3rem;
 }
@@ -37,7 +43,9 @@
   max-width: 100%;
   height: auto;
   border-radius: 0.3rem;
+  margin-bottom: 1rem;
 }
+
 .post-cover .img-desc {
   font-size: 0.85rem;
   color: #6c757d;
@@ -48,7 +56,7 @@
 /* 正文 */
 .post-body p {
   line-height: 1.75;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 /* 标签和分类卡片 */
@@ -57,17 +65,19 @@
   display: inline-block;
   background-color: #f0f0f0;
   color: #333;
-  padding: 0.25rem 0.6rem;
+  padding: 0.3rem 0.8rem;
   margin: 0.2rem;
-  border-radius: 0.4rem;
+  border-radius: 0.5rem;
   text-decoration: none;
-  transition: all 0.2s;
-  font-size: 0.85rem;
+  transition: all 0.3s;
+  font-size: 0.9rem;
 }
+
 .tag-badge:hover,
 .category-badge:hover {
   background-color: #007bff;
   color: #fff;
+  transform: scale(1.05);
 }
 
 /* 页脚文字加粗间距 */
@@ -75,17 +85,25 @@
   margin-right: 0.5rem;
 }
 
-/* 手机屏幕自适应：元数据自动换行 */
+/* 手机屏幕自适应：元数据换行 */
 @media (max-width: 767.98px) {
   .post-meta {
     flex-direction: column;
     align-items: center;
   }
+
   .post-meta span {
     margin-right: 0;
     margin-bottom: 0.3rem;
   }
+
   .post-meta .middot {
-    display: none; /* 小屏幕去掉中点分隔符 */
+    display: none;
+  }
+
+  .tag-badge,
+  .category-badge {
+    font-size: 0.85rem;
+    padding: 0.2rem 0.6rem;
   }
 }
