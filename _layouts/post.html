@@ -1,13 +1,8 @@
----
-layout: default
----
-
-{% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
-
 <div class="post-container py-5" style="background-color:#fff;">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-xl-8 col-lg-10 col-md-12 px-3">
+      <!-- 修改宽度 -->
+      <div class="col-lg-8 col-md-10 col-sm-12 px-3">
 
         <article class="post-content">
 
@@ -19,18 +14,18 @@ layout: default
             {% endif %}
 
             <!-- 元数据一行显示 -->
-            <div class="post-meta mt-3 small text-muted">
+            <div class="post-meta mt-3 small text-muted d-flex flex-wrap justify-content-center gap-2">
               {% if page.author %}
                 <span class="author">作者：<strong>{{ page.author | strip_html }}</strong></span>
               {% endif %}
-              <span class="published-date"><span class="middot d-none d-md-inline">&middot;</span> 发表于 {{ page.date | date: date_format }}</span>
+              <span class="published-date">&middot; 发表于 {{ page.date | date: date_format }}</span>
               {% if page.last-updated %}
-                <span class="updated-date"><span class="middot d-none d-md-inline">&middot;</span> 更新于 {{ page.last-updated | date: date_format }}</span>
+                <span class="updated-date">&middot; 更新于 {{ page.last-updated | date: date_format }}</span>
               {% endif %}
               {% assign words = content | number_of_words %}
               {% assign minutes = words | divided_by:200 %}
               {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
-              <span class="reading-time"><span class="middot d-none d-md-inline">&middot;</span> 阅读时间：{{ minutes }} 分钟</span>
+              <span class="reading-time">&middot; 阅读时间：{{ minutes }} 分钟</span>
             </div>
           </header>
 
@@ -54,9 +49,9 @@ layout: default
           </div>
 
           <!-- 页脚：标签和分类 -->
-          <footer class="post-footer mt-5 pt-3 border-top">
+          <footer class="post-footer mt-5 pt-3 border-top d-flex flex-wrap gap-3">
             {% if page.tags %}
-              <div class="post-tags mb-2">
+              <div class="post-tags">
                 <strong>标签：</strong>
                 {% for tag in page.tags %}
                   <a href="{{ '/tags#' | append: tag | relative_url }}" class="tag-badge">{{ tag }}</a>
