@@ -1,4 +1,4 @@
-/* 页面容器底部间距 */
+/* 文章容器底部间距 */
 .post-container {
   padding-bottom: 4rem;
 }
@@ -7,13 +7,15 @@
 .post-header h1.post-title {
   font-size: 2.2rem;
   font-weight: 700;
+  text-align: center;
 }
 .post-subtitle {
   font-size: 1.2rem;
   color: #6c757d;
+  text-align: center;
 }
 
-/* 元数据：一行显示 */
+/* 元数据一行显示 */
 .post-meta {
   display: flex;
   flex-wrap: wrap;
@@ -23,28 +25,27 @@
   color: #888;
   margin-top: 0.5rem;
 }
-
 .post-meta span {
   margin-right: 0.8rem;
 }
-
 .post-meta .middot {
   margin: 0 0.3rem;
 }
 
-/* 封面图样式 */
+/* 封面图 */
 .post-cover img {
   max-width: 100%;
   height: auto;
   border-radius: 0.3rem;
 }
-
 .post-cover .img-desc {
   font-size: 0.85rem;
   color: #6c757d;
+  text-align: center;
+  margin-top: 0.3rem;
 }
 
-/* 正文内容 */
+/* 正文 */
 .post-body p {
   line-height: 1.75;
   margin-bottom: 1.2rem;
@@ -63,14 +64,28 @@
   transition: all 0.2s;
   font-size: 0.85rem;
 }
-
 .tag-badge:hover,
 .category-badge:hover {
   background-color: #007bff;
   color: #fff;
 }
 
-/* 图标样式（可选） */
+/* 页脚文字加粗间距 */
 .post-footer strong {
   margin-right: 0.5rem;
+}
+
+/* 手机屏幕自适应：元数据自动换行 */
+@media (max-width: 767.98px) {
+  .post-meta {
+    flex-direction: column;
+    align-items: center;
+  }
+  .post-meta span {
+    margin-right: 0;
+    margin-bottom: 0.3rem;
+  }
+  .post-meta .middot {
+    display: none; /* 小屏幕去掉中点分隔符 */
+  }
 }
