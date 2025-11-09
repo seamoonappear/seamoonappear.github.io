@@ -72,7 +72,7 @@ feed_show_tags: true
 post_search: false
 
 # 在页脚添加编辑当前页面的按钮。如果网站托管在 GitHub 上，则可以使用此功能
-edit_page_button: false
+edit_page_button: true
 
 # 允许子菜单项（第二级导航菜单项）超过顶级菜单项长度
 # 如果此设置关闭，长子菜单项可能会被截断
