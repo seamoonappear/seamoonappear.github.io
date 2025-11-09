@@ -1,7 +1,13 @@
+---
+layout: default
+---
+
+{% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
+
 <div class="post-container py-5" style="background-color:#fff;">
   <div class="container">
     <div class="row justify-content-center">
-      <!-- 修改宽度 -->
+      <!-- 大屏 col-lg-8，中屏 col-md-10，小屏 col-sm-12 -->
       <div class="col-lg-8 col-md-10 col-sm-12 px-3">
 
         <article class="post-content">
@@ -13,7 +19,7 @@
               <h2 class="post-subtitle">{{ page.subtitle | strip_html }}</h2>
             {% endif %}
 
-            <!-- 元数据一行显示 -->
+            <!-- 元数据一行显示，手机端自动换行 -->
             <div class="post-meta mt-3 small text-muted d-flex flex-wrap justify-content-center gap-2">
               {% if page.author %}
                 <span class="author">作者：<strong>{{ page.author | strip_html }}</strong></span>
@@ -49,7 +55,7 @@
           </div>
 
           <!-- 页脚：标签和分类 -->
-          <footer class="post-footer mt-5 pt-3 border-top d-flex flex-wrap gap-3">
+          <footer class="post-footer mt-5 pt-3 border-top d-flex flex-wrap gap-3 justify-content-start">
             {% if page.tags %}
               <div class="post-tags">
                 <strong>标签：</strong>
