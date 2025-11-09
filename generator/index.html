@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beautiful Jekyll 文章 Front Matter 生成器</title>
+<title>Beautiful Jekyll Front Matter</title>
 <style>
 body {
   font-family: "Microsoft YaHei", Arial, sans-serif;
@@ -146,7 +146,7 @@ textarea.output {
 
 <div class="container" id="input-container">
   <div class="toast" id="toast">生成成功！</div>
-  <h2>Front Matter 设置</h2>
+  <h2>Gervas Front Matter</h2>
 
   <div class="group">
     <label>文章标题：</label>
@@ -260,7 +260,7 @@ function generateMarkdown() {
 layout: post
 title: "${title}"
 date: ${date}
-author: Gervas
+author: 王维
 last-updated: ${lastUpdated}
 categories: [${category}]
 tags: [${tag1}${tag2 ? ', ' + tag2 : ''}]
@@ -274,11 +274,27 @@ ${content || '（在这里写正文内容）'}
   showToast('生成成功！');
 }
 
+// 安全复制函数：支持 span、textarea 或其他元素
 function copyText(id){
+  let text = '';
   const el = document.getElementById(id);
-  el.select();
-  navigator.clipboard.writeText(el.value);
-  showToast("已复制到剪贴板！");
+  if(el.tagName === 'TEXTAREA' || el.tagName === 'INPUT'){
+    text = el.value;
+  } else {
+    text = el.textContent || '';
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  try {
+    document.execCommand('copy');
+    showToast("已复制到剪贴板！");
+  } catch(e){
+    alert('复制失败，请手动复制');
+  }
+  document.body.removeChild(textarea);
 }
 </script>
 </body>
