@@ -24,3 +24,68 @@
   ></div>
 {% endif %}
 
+<header class="header-section {% if page.cover-img %}has-img{% endif %}">
+  <div class="intro-header {% if page.cover-img %} big-img {% endif %}">
+    {% if page.cover-img or page.title %}
+    <div class="container-md">
+      <div class="row">
+        <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+          <div class="{{ include.type }}-heading">
+
+            <!-- 页面标题 -->
+            <h1>{% if page.title %}{{ page.title | strip_html }}{% else %}<br/>{% endif %}</h1>
+
+            <!-- 副标题 -->
+            {% if page.subtitle %}
+              {% if include.type == "page" %}
+                <hr class="small">
+                <span class="{{ include.type }}-subheading">{{ page.subtitle | strip_html }}</span>
+              {% else %}
+                <h2 class="{{ include.type }}-subheading">{{ page.subtitle | strip_html }}</h2>
+              {% endif %}
+            {% endif %}
+            
+            {% if include.type == "post" %}
+              <!-- 仅在文章页面显示元数据 -->
+              <div class="post-meta">
+                <!-- 作者 -->
+                {% if page.author %}
+                  <span class="author">作者：<strong>{{ page.author | strip_html }}</strong></span>
+                {% endif %}
+
+                <!-- 发布时间 -->
+                <span class="published-date">发表于 {{ page.date | date: date_format }}</span>
+
+                <!-- 更新时间 -->
+                {% if page.last-updated %}
+                  <span class="updated-date">
+                    <span class="d-none d-md-inline middot">&middot;</span>
+                    更新于 {{ page.last-updated | date: date_format }}
+                  </span>
+                {% else %}
+                  <span class="updated-date"><span class="d-none d-md-inline middot">&middot;</span> 更新于暂无更新</span>
+                {% endif %}
+
+                <!-- 阅读时间 -->
+                {% if page.readtime %}
+                  <span class="reading-time"><span class="d-none d-md-inline middot">&middot;</span> 阅读时间：{{ page.readtime }}分钟</span>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- 如果有封面图片，则显示图片描述（可在 front matter 中定义） -->
+    {% if page.cover-img %}<span class='img-desc'>{{ page.cover-img-desc }}</span>{% endif %}
+  </div>
+
+  <!-- 页面额外头部扩展，可自定义 include 文件 -->
+  {% if page.header-extra %}
+    {% for file in page.header-extra %}
+      {% include {{ file }} %}
+    {% endfor %}
+  {% endif %}
+</header>
