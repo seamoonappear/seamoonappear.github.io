@@ -1,83 +1,101 @@
 ---
-layout: default
+layout: base
 ---
 
-{% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
+{% include header.html type="post" %}
 
-<div class="post-container py-5" style="background-color:#fff;">
-  <div class="container" style="padding-left: 15px; padding-right: 15px;">
-    <div class="row justify-content-center">
-      <!-- 大屏 col-lg-8，中屏 col-md-10，小屏 col-sm-12 -->
-      <div class="col-lg-8 col-md-10 col-sm-12 px-3">
+<main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
+  <div class="row">
+    <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
 
-        <article class="post-content">
+      <!-- GitHub 按钮部分 -->
+      {% if page.gh-repo %}
+        {% assign gh_split =  page.gh-repo | split:'/'  %}
+        {% assign gh_user =  gh_split[0]  %}
+        {% assign gh_repo =  gh_split[1]  %}
 
-          <!-- 文章标题和副标题 -->
-          <header class="post-header text-center mb-4">
-            <h1 class="post-title">{{ page.title | strip_html }}</h1>
-            {% if page.subtitle %}
-              <h2 class="post-subtitle text-muted">{{ page.subtitle | strip_html }}</h2>
-            {% endif %}
-
-            <!-- 元数据一行显示，手机端自动换行 -->
-            <div class="post-meta mt-3 small text-muted d-flex flex-wrap justify-content-center gap-3">
-              {% if page.author %}
-                <span class="author">作者：<strong>{{ page.author | strip_html }}</strong></span>
-              {% endif %}
-              <span class="published-date">&middot; 发表于 {{ page.date | date: date_format }}</span>
-              {% if page.last-updated %}
-                <span class="updated-date">&middot; 更新于 {{ page.last-updated | date: date_format }}</span>
-              {% endif %}
-              {% assign words = content | number_of_words %}
-              {% assign minutes = words | divided_by:200 %}
-              {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
-              <span class="reading-time">&middot; 阅读时间：{{ minutes }} 分钟</span>
-            </div>
-          </header>
-
-          <!-- 封面图 -->
-          {% if page.cover-img %}
-            <div class="post-cover text-center mb-4">
-              {% if page.cover-img.first %}
-                <img src="{{ page.cover-img[0].first.first | relative_url }}" alt="Cover image" class="img-fluid rounded shadow-sm">
-              {% else %}
-                <img src="{{ page.cover-img | relative_url }}" alt="Cover image" class="img-fluid rounded shadow-sm">
-              {% endif %}
-              {% if page.cover-img-desc %}
-                <p class="img-desc mt-2 text-muted small">{{ page.cover-img-desc }}</p>
-              {% endif %}
-            </div>
+        <div id="header-gh-btns">
+          {% if page.gh-badge.size > 0 %}
+            {% for badge in page.gh-badge %}
+              {% case badge %}
+                {% when 'star'%}
+                  <!-- 星标按钮 -->
+                  <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+                {% when 'watch'%}
+                  <!-- 观看按钮 -->
+                  <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=watch&v=2&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+                {% when 'fork'%}
+                  <!-- 派生按钮 -->
+                  <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=fork&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+                {% when 'follow'%}
+                  <!-- 关注按钮 -->
+                  <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&type=follow&count=true" frameborder="0" scrolling="0" width="220px" height="20px"></iframe>
+              {% endcase %}
+            {% endfor %}
           {% endif %}
+        </div>
+      {% endif %}
 
-          <!-- 正文内容 -->
-          <div class="post-body" style="line-height:1.8; font-size:1.1rem;">
-            {{ content }}
-          </div>
+      <!-- 文章前内容部分 -->
+      {% if page.before-content %}
+        <div class="before-content">
+          {% for file in page.before-content %}
+            {% include {{ file }} %}
+          {% endfor %}
+        </div>
+      {% endif %}
 
-          <!-- 页脚：标签和分类 -->
-          <footer class="post-footer mt-5 pt-3 border-top d-flex flex-wrap gap-3 justify-content-between">
-            {% if page.tags %}
-              <div class="post-tags">
-                <strong>标签：</strong>
-                {% for tag in page.tags %}
-                  <a href="{{ '/tags#' | append: tag | relative_url }}" class="tag-badge">{{ tag }}</a>
-                {% endfor %}
-              </div>
-            {% endif %}
-
-            {% if page.categories %}
-              <div class="post-categories">
-                <strong>分类：</strong>
-                {% for category in page.categories %}
-                  <a href="{{ '/categories#' | append: category | relative_url }}" class="category-badge">{{ category }}</a>
-                {% endfor %}
-              </div>
-            {% endif %}
-          </footer>
-
-        </article>
-
+      <!-- 博文正文内容 -->
+      <div class="blog-post">
+        {{ content }}
       </div>
+
+      <!-- 如果有标签，显示标签部分 -->
+      {% if page.tags.size > 0 %}
+        <div class="blog-tags">
+          <span>标签：</span>
+          {% for tag in page.tags %}
+            <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- 文章后内容部分 -->
+      {% if page.after-content %}
+        <div class="after-content">
+          {% for file in page.after-content %}
+            {% include {{ file }} %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- 如果有社交分享按钮，显示分享部分 -->
+      {% if page.social-share %}
+        {% include social-share.html %}
+      {% endif %}
+
+      <!-- 分页按钮，上一页和下一页 -->
+      <ul class="pagination blog-pager">
+        {% if page.previous.url %}
+        <li class="page-item previous">
+          <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title | strip_html | xml_escape}}">
+            <i class="fas fa-arrow-left" alt="上一篇"></i>
+            <span class="d-none d-sm-inline-block">上一篇</span>
+          </a>
+        </li>
+        {% endif %}
+        {% if page.next.url %}
+        <li class="page-item next">
+          <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
+            <span class="d-none d-sm-inline-block">下一篇</span>
+            <i class="fas fa-arrow-right" alt="下一篇"></i>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+
+      <!-- 评论部分 -->
+      {% include comments.html %}
     </div>
   </div>
-</div>
+</main>
