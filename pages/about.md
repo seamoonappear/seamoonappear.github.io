@@ -5,8 +5,7 @@ permalink: /pages/about/
 icon: fas fa-info-circle
 ---
 
-   网名王维，现居杭州。兴趣广泛，喜欢尝试和学习各种新鲜事物，也乐于结交来自各地的朋友。
-   如果你有机会访问我的博客，看到一些有趣的内容或者想法，欢迎随时和我交流哦！我的微信：EastSea0，期待收到你的好友申请！
+如果你有机会访问我的博客，看到一些有趣的内容或者想法，欢迎随时和我交流哦！我的微信：EastSea0，期待收到你的好友申请！
 
 <div class="about-container">
   <div class="about-header">
@@ -24,27 +23,16 @@ icon: fas fa-info-circle
   <div class="card-grid">
 
     <!-- 在职 -->
-    <div class="card">
+    <div class="card" data-color="#4f46e5">
       <div class="card-icon">💼</div>
       <h3>在职</h3>
       <h4>北京同仁堂健康药业（青海）有限公司</h4>
       <p><strong>职位：</strong> 包装解决方案专员</p>
       <p><strong>主要职责：</strong> 为食品及健康产品企业提供全方位包装解决方案，熟悉包装材料、工艺与成本控制。</p>
     </div>
-    
-    <!-- 技能 -->
-    <div class="card">
-      <div class="card-icon">🚀</div>
-      <h3>技能</h3>
-      <ul>
-        <li>平面设计：精通 Photoshop 与 Illustrator</li>
-        <li>电商与营销：多年运营经验，熟悉平台策略</li>
-        <li>电视购物策划：丰富节目策划与执行经验</li>
-      </ul>
-    </div>
-    
+
     <!-- 爱好 -->
-    <div class="card">
+    <div class="card" data-color="#e11d48">
       <div class="card-icon">❤️</div>
       <h3>爱好</h3>
       <ul>
@@ -57,6 +45,11 @@ icon: fas fa-info-circle
       </ul>
     </div>
 
+  </div>
+
+  <!-- 分隔条 -->
+  <div class="footer-divider">
+    <div class="divider-bar"></div>
   </div>
 
   <div class="about-footer">
@@ -81,19 +74,19 @@ icon: fas fa-info-circle
   padding: 2rem 0;
 }
 
-/* 头像样式 */
 .about-header .avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
 
 .about-header .avatar:hover {
-  transform: translateY(-6px) scale(1.04);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  transform: translateY(-6px) scale(1.05) rotate(-2deg);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  filter: brightness(1.1);
 }
 
 .about-header .intro {
@@ -122,23 +115,30 @@ icon: fas fa-info-circle
 }
 
 .card {
-  background: #fff;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   border: 1px solid rgba(15, 23, 42, 0.05);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, transform 0.4s ease;
   position: relative;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+  border-color: #4f46e5;
 }
 
 .card-icon {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.card:hover .card-icon {
+  transform: scale(1.3) rotate(10deg);
+  color: #4f46e5;
 }
 
 .card h3 {
@@ -172,6 +172,7 @@ icon: fas fa-info-circle
   padding: 0.4rem 0 0.4rem 1.5rem;
   color: #4b5563;
   line-height: 1.5;
+  transition: color 0.3s ease;
 }
 
 .card ul li::before {
@@ -181,6 +182,10 @@ icon: fas fa-info-circle
   position: absolute;
   left: 0.5rem;
   font-size: 1.2rem;
+}
+
+.card ul li:hover {
+  color: #4f46e5;
 }
 
 .about-footer {
@@ -201,49 +206,102 @@ icon: fas fa-info-circle
   color: #4f46e5;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .about-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .about-header .intro h1 {
-    font-size: 1.8rem;
-  }
-
-  .about-header .intro p {
-    font-size: 1rem;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .card {
-    padding: 1.5rem;
-  }
-
-  .about-footer p {
-    font-size: 1rem;
-  }
+/* 分隔条 + 粒子效果 */
+.footer-divider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 480px) {
-  .about-header .avatar {
-    width: 100px;
-    height: 100px;
-  }
+.divider-bar {
+  width: 60%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(270deg, #4f46e5, #8b5cf6, #4f46e5);
+  background-size: 600% 600%;
+  animation: gradientMove 4s ease infinite;
+  transition: background 0.5s ease, transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
 
-  .card {
-    padding: 1.25rem;
-  }
+.divider-bar::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -10%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 20px 0 0 rgba(255,255,255,0.5), 40px 0 0 rgba(255,255,255,0.3), 60px 0 0 rgba(255,255,255,0.5);
+  animation: particleMove 2s linear infinite;
+  z-index: 2;
+}
 
-  .card h3 {
-    font-size: 1.3rem;
-  }
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes particleMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+/* 响应式 */
+@media (max-width: 768px) { 
+  .about-header .intro h1 { font-size: 1.8rem; }
+  .about-header .intro p { font-size: 1rem; }
+  .card-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .card { padding: 1.5rem; }
+  .about-footer p { font-size: 1rem; }
+  .divider-bar { width: 80%; }
+}
+
+@media (max-width: 480px) { 
+  .about-header .avatar { width: 100px; height: 100px; }
+  .card { padding: 1.25rem; }
+  .card h3 { font-size: 1.3rem; }
+  .divider-bar { width: 90%; }
 }
 </style>
+
+<script>
+const divider = document.querySelector('.divider-bar');
+const defaultGradient = 'linear-gradient(270deg, #4f46e5, #8b5cf6, #4f46e5)';
+const avatar = document.querySelector('.about-header .avatar');
+const cards = document.querySelectorAll('.card');
+
+// 头像悬停 → 多彩渐变
+avatar.addEventListener('mouseenter', () => {
+  divider.style.background = 'linear-gradient(270deg, #ff6b6b, #facc15, #4ade80, #4f46e5)';
+  divider.style.animationDuration = '1.5s';
+  divider.style.transform = 'scaleX(1.05)';
+});
+
+avatar.addEventListener('mouseleave', () => {
+  divider.style.background = defaultGradient;
+  divider.style.animationDuration = '4s';
+  divider.style.transform = 'scaleX(1)';
+});
+
+// 卡片悬停 → 卡片主题色渐变
+cards.forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    const color = card.dataset.color || '#4f46e5';
+    divider.style.background = `linear-gradient(270deg, ${color}, ${color}80, ${color})`;
+    divider.style.animationDuration = '2s';
+    divider.style.transform = 'scaleX(1.05)';
+  });
+  card.addEventListener('mouseleave', () => {
+    divider.style.background = defaultGradient;
+    divider.style.animationDuration = '4s';
+    divider.style.transform = 'scaleX(1)';
+  });
+});
+</script>
