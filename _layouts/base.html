@@ -35,9 +35,7 @@ common-js:
   <!-- 主体内容区域 -->
   <main role="main" class="main-content">
     <div class="container-md">
-      {% block content %}
-        {{ content }}
-      {% endblock %}
+      {{ content }} <!-- 直接渲染页面内容 -->
     </div>
   </main>
 
