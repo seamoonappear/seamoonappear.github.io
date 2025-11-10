@@ -58,7 +58,7 @@ feed_show_tags: true
 post_search: false
 
 # 在页脚添加“编辑此页”按钮（适用于 GitHub Pages）
-edit_page_button: true
+edit_page_button: false
 
 # 长子菜单是否允许超出顶级宽度
 navbar-var-length: false
