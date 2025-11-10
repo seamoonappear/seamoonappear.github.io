@@ -16,11 +16,11 @@ layout: default
           <header class="post-header text-center mb-4">
             <h1 class="post-title">{{ page.title | strip_html }}</h1>
             {% if page.subtitle %}
-              <h2 class="post-subtitle">{{ page.subtitle | strip_html }}</h2>
+              <h2 class="post-subtitle text-muted">{{ page.subtitle | strip_html }}</h2>
             {% endif %}
 
             <!-- 元数据一行显示，手机端自动换行 -->
-            <div class="post-meta mt-3 small text-muted d-flex flex-wrap justify-content-center gap-2">
+            <div class="post-meta mt-3 small text-muted d-flex flex-wrap justify-content-center gap-3">
               {% if page.author %}
                 <span class="author">作者：<strong>{{ page.author | strip_html }}</strong></span>
               {% endif %}
@@ -39,9 +39,9 @@ layout: default
           {% if page.cover-img %}
             <div class="post-cover text-center mb-4">
               {% if page.cover-img.first %}
-                <img src="{{ page.cover-img[0].first.first | relative_url }}" alt="Cover image" class="img-fluid rounded">
+                <img src="{{ page.cover-img[0].first.first | relative_url }}" alt="Cover image" class="img-fluid rounded shadow-sm">
               {% else %}
-                <img src="{{ page.cover-img | relative_url }}" alt="Cover image" class="img-fluid rounded">
+                <img src="{{ page.cover-img | relative_url }}" alt="Cover image" class="img-fluid rounded shadow-sm">
               {% endif %}
               {% if page.cover-img-desc %}
                 <p class="img-desc mt-2 text-muted small">{{ page.cover-img-desc }}</p>
@@ -50,12 +50,12 @@ layout: default
           {% endif %}
 
           <!-- 正文内容 -->
-          <div class="post-body" style="line-height:1.8; font-size:1rem;">
+          <div class="post-body" style="line-height:1.8; font-size:1.1rem;">
             {{ content }}
           </div>
 
           <!-- 页脚：标签和分类 -->
-          <footer class="post-footer mt-5 pt-3 border-top d-flex flex-wrap gap-3 justify-content-start">
+          <footer class="post-footer mt-5 pt-3 border-top d-flex flex-wrap gap-3 justify-content-between">
             {% if page.tags %}
               <div class="post-tags">
                 <strong>标签：</strong>
