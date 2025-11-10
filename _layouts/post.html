@@ -75,24 +75,26 @@ layout: base
       {% endif %}
 
       <!-- 分页按钮，上一页和下一页 -->
-      <ul class="pagination blog-pager">
-        {% if page.previous.url %}
-        <li class="page-item previous">
-          <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title | strip_html | xml_escape}}">
-            <i class="fas fa-arrow-left" alt="上一篇"></i>
-            <span class="d-none d-sm-inline-block">上一篇</span>
-          </a>
-        </li>
-        {% endif %}
-        {% if page.next.url %}
-        <li class="page-item next">
-          <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
-            <span class="d-none d-sm-inline-block">下一篇</span>
-            <i class="fas fa-arrow-right" alt="下一篇"></i>
-          </a>
-        </li>
-        {% endif %}
-      </ul>
+<ul class="pagination blog-pager justify-content-between">
+  {% if page.previous.url %}
+  <li class="page-item previous">
+    <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title | strip_html | xml_escape}}">
+      <i class="fas fa-arrow-left" alt="上一篇"></i>
+      <span class="d-none d-sm-inline-block">上一篇</span>
+    </a>
+  </li>
+  {% endif %}
+  
+  {% if page.next.url %}
+  <li class="page-item next">
+    <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
+      <span class="d-none d-sm-inline-block">下一篇</span>
+      <i class="fas fa-arrow-right" alt="下一篇"></i>
+    </a>
+  </li>
+  {% endif %}
+</ul>
+
 
       <!-- 评论部分 -->
       {% include comments.html %}
