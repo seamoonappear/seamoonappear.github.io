@@ -1,17 +1,12 @@
 <footer>
-  <div class="container-md beautiful-jekyll-footer py-4">
+  <!-- 页脚容器，确保在所有页面都能自适应宽度 -->
+  <div class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %} beautiful-jekyll-footer py-4">
     <div class="row justify-content-center">
-      <div class="col-xl-8 col-lg-10 text-center">
+      <!-- 居中显示内容，根据页面宽度选择列宽 -->
+      <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 text-center {% endif %}">
         
-        {%- comment -%}
-        调用社交媒体链接（在 _config.yml 中配置，如 GitHub、微博、Bilibili 等）
-        {%- endcomment -%}
         {% include social-networks-links.html %}
-
-        {%- comment -%}
-        如果页面有自定义的 footer-extra（额外页脚内容），则加载
-        可用于插入统计代码、友链等
-        {%- endcomment -%}
+        
         {% if page.footer-extra %}
           <div class="footer-custom-content my-3">
             {% for file in page.footer-extra %}
@@ -19,15 +14,13 @@
             {% endfor %}
           </div>
         {% endif %}
-
+        
         <!-- 页脚版权信息 -->
         <p class="copyright text-muted mb-0">
           {% if site.author %}
             {{ site.author }} &nbsp;&bull;&nbsp;
           {% endif %}
-
           {{ site.time | date: '%Y' }}
-
           {% if site.url-pretty %}
             &nbsp;&bull;&nbsp;
             <span class="author-site">
@@ -36,25 +29,18 @@
               </a>
             </span>
           {% endif %}
-
           {% if site.matomo and site.matomo.opt-out %}
             &nbsp;&bull;&nbsp;
             <a href="http://{{- site.matomo.uri -}}/index.php?module=CoreAdminHome&action=optOut"
-               target="_blank" class="text-muted">
-              请勿追踪
-            </a>
+               target="_blank" class="text-muted">请勿追踪</a>
           {% endif %}
-
           {% if site.edit_page_button and site.github.repository_url %}
             &nbsp;&bull;&nbsp;
             <a title="在 GitHub 上编辑此页面"
                href="{{ site.github.repository_url }}/edit/{{ site.github.source.branch }}/{{ page.path }}"
-               class="text-muted">
-              编辑此页面
-            </a>
+               class="text-muted">编辑此页面</a>
           {% endif %}
         </p>
-
       </div>
     </div>
   </div>
