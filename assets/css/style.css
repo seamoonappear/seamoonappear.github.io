@@ -42,6 +42,29 @@
 
 .year-section li span {
   font-size: 14px;
+
+  /* 确保全局容器有足够的空间来居中内容 */
+.container-md {
+  max-width: 1140px;  /* 根据需要设置最大宽度 */
+  margin: 0 auto;     /* 水平居中 */
+}
+
+/* 页脚样式 */
+footer {
+  background-color: #f8f9fa;  /* 背景颜色 */
+  padding: 20px 0;  /* 上下内边距 */
+}
+
+footer .copyright {
+  text-align: center;  /* 文字居中 */
+  margin-bottom: 0;
+}
+
+footer .footer-custom-content {
+  text-align: center;  /* 自定义内容居中 */
+  margin-top: 10px;
+}
+
   color: #777;
   margin-left: 10px;
 }
