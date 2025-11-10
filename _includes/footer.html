@@ -1,8 +1,8 @@
 <footer>
   <div class="container-md beautiful-jekyll-footer py-4">
     <div class="row justify-content-center">
-      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 text-center">
-
+      <div class="col-xl-8 col-lg-10 text-center">
+        
         {%- comment -%}
         调用社交媒体链接（在 _config.yml 中配置，如 GitHub、微博、Bilibili 等）
         {%- endcomment -%}
@@ -13,7 +13,7 @@
         可用于插入统计代码、友链等
         {%- endcomment -%}
         {% if page.footer-extra %}
-          <div class="footer-custom-content my-2">
+          <div class="footer-custom-content my-3">
             {% for file in page.footer-extra %}
               {% include {{ file }} %}
             {% endfor %}
