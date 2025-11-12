@@ -1,66 +1,141 @@
 ---
-layout: default
-title: 分类
-permalink: /categories.html
+layout: page
+title: '分类索引'
 ---
 
-{% assign sorted_categories = site.categories | sort %}
+{% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
 
-<div class="container my-5">
+{%- capture site_categories -%}
+  {%- for category in site.categories -%}
+    {{ category | first }}{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign categories_list = site_categories | split:',' | sort -%}
 
-  {% if sorted_categories.size > 0 %}
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for category in sorted_categories %}
-        {% assign category_name = category | first %}
-        {% assign posts = category | last %}
+<section class="categories-page">
 
-        <div class="col">
-          <div class="card h-100 shadow-sm border-light">
-            <div class="card-header bg-primary text-white d-flex align-items-center">
-              <i class="fas fa-folder-open me-2"></i>
-              <span>{{ category_name }}</span>
-              <span class="ms-auto badge bg-light text-dark">{{ posts.size }}</span>
-            </div>
-            <ul class="list-group list-group-flush">
-              {% for post in posts %}
-                <li class="list-group-item">
-                  <a href="{{ post.url | relative_url }}" class="text-decoration-none d-block text-dark">
-                    <i class="fas fa-file-alt me-2 text-muted"></i>{{ post.title }}
-                  </a>
-                  <small class="text-muted d-block mt-1">{{ post.date | date: "%Y年%-m月%-d日" }}</small>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
+  <!-- 顶部分类导航 -->
+  <div class="categories-nav">
+    <strong>全部分类：</strong>
+    {%- for category in categories_list -%}
+      <a href="#category-{{ category | slugify }}" class="category-nav-item">{{ category }}</a>
+    {%- endfor -%}
+  </div>
 
-      {% endfor %}
+  <!-- 遍历所有分类及其文章 -->
+  {%- for category in categories_list -%}
+    <div class="category-block" id="category-{{ category | slugify }}">
+      <h2 class="category-title">
+        {{ category }} <span class="category-count">{{ site.categories[category].size }}</span>
+      </h2>
+
+      <ul class="category-posts">
+        {%- for post in site.categories[category] -%}
+          <li class="category-post-item">
+            <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+            <span class="post-date">{{ post.date | date: date_format }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
     </div>
-  {% else %}
-    <p class="text-center text-muted">暂时还没有分类内容。</p>
-  {% endif %}
-</div>
+  {%- endfor -%}
 
+</section>
+
+<!-- CSS 美化 -->
 <style>
-/* 鼠标悬停卡片阴影效果 */
-.card:hover {
-  transform: translateY(-3px);
-  transition: 0.3s ease;
-}
+  .categories-page {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
 
-/* 鼠标悬停文章标题变色 */
-.list-group-item a:hover {
-  color: #0d6efd;
-  text-decoration: underline;
-}
+  /* 分类导航 */
+  .categories-nav {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .categories-nav strong {
+    margin-right: 0.5rem;
+  }
+  .category-nav-item {
+    display: inline-block;
+    margin: 0 6px 6px 0;
+    padding: 4px 10px;
+    background-color: #f0f0f0;
+    color: #e67e22;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .category-nav-item:hover {
+    background-color: #e67e22;
+    color: white;
+  }
 
-/* 卡片圆角 */
-.card {
-  border-radius: 0.5rem;
-}
+  /* 分类区块 */
+  .category-block {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 1.5rem;
+  }
 
-/* 卡片标题图标大小 */
-.card-header i {
-  font-size: 1.2rem;
-}
+  .category-title {
+    font-size: 1.5rem;
+    color: #e67e22;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-left: 5px solid #e67e22;
+    padding-left: 10px;
+  }
+
+  .category-count {
+    background-color: #e67e22;
+    color: white;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    margin-left: 6px;
+  }
+
+  /* 文章列表 */
+  .category-posts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .category-post-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #ddd;
+    padding: 0.6rem 0;
+  }
+
+  .post-link {
+    text-decoration: none;
+    color: #2c3e50;
+    transition: color 0.2s;
+  }
+
+  .post-link:hover {
+    color: #d35400;
+  }
+
+  .post-date {
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+  /* 响应式：手机端优化 */
+  @media (max-width: 768px) {
+    .category-post-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .post-date {
+      margin-top: 4px;
+    }
+  }
 </style>
