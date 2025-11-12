@@ -60,7 +60,7 @@ layout: base
 
       <!-- ✅ 新增：文章分类部分 -->
       {% if page.categories.size > 0 %}
-        <div class="blog-categories mt-5 mb-3">
+        <div class="blog-categories">
           <span>分类：</span>
           {% for category in page.categories %}
             <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge bg-light text-dark border">{{ category }}</a>
@@ -70,7 +70,7 @@ layout: base
 
       <!-- 如果有标签，显示标签部分 -->
       {% if page.tags.size > 0 %}
-        <div class="blog-tags mb-4">
+        <div class="blog-tags">
           <span>标签：</span>
           {% for tag in page.tags %}
             <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge bg-light text-dark border">{{- tag -}}</a>
