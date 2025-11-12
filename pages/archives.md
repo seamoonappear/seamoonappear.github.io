@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "时间轴"
+title: "回顾"
 permalink: /pages/archives/
 icon: fas fa-calendar-alt
 ---
