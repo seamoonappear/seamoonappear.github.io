@@ -3,71 +3,116 @@ layout: default
 title: 标签
 permalink: /pages/tags/
 ---
-{% assign date_format = site.date_format | default: "%B %-d, %Y" %}
+
+{% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
 
 {%- capture site_tags -%}
-    {%- for tag in site.tags -%}
-        {{- tag | first -}}{%- unless forloop.last -%},{%- endunless -%}
-    {%- endfor -%}
+  {%- for tag in site.tags -%}
+    {{ tag | first }}{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
 {%- endcapture -%}
 {%- assign tags_list = site_tags | split:',' | sort -%}
 
-<!-- 标签按钮 -->
-<div class="tag-buttons">
-    {%- for tag in tags_list -%}
-        <a href="#{{- tag -}}" class="tag-btn">{{- tag -}} ({{site.tags[tag].size}})</a>
-    {%- endfor -%}
-</div>
+<section class="tags-page">
+  <h1 class="page-title">标签索引</h1>
 
-<!-- 标签详细内容 -->
-<div id="full-tags-list">
-    {%- for tag in tags_list -%}
-        <h2 id="{{- tag -}}" class="linked-section">
-            {{- tag -}} ({{site.tags[tag].size}})
-        </h2>
-    {%- endfor -%}
-</div>
+  <!-- 遍历所有标签及其文章 -->
+  {%- for tag in tags_list -%}
+    <div class="tag-block">
+      <h2 class="tag-title">
+        #{{ tag }} <span class="tag-count">{{ site.tags[tag].size }}</span>
+      </h2>
 
-<!-- 在页面中加入以下 CSS 代码 -->
+      <ul class="tag-posts">
+        {%- for post in site.tags[tag] -%}
+          <li class="tag-post-item">
+            <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+            <span class="post-date">{{ post.date | date: date_format }}</span>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endfor -%}
+</section>
+
+<!-- CSS 美化 -->
 <style>
-    /* 样式：标签按钮 */
-    .tag-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 1.5rem;
-    }
-    .tag-btn {
-        background-color: #3498db;
-        color: white;
-        border-radius: 20px;
-        font-size: 1rem;
-        padding: 6px 15px;
-        text-decoration: none;
-        transition: background-color 0.3s;
-    }
-    .tag-btn:hover {
-        background-color: #2980b9;
-    }
+  .tags-page {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
 
-    /* 样式：标签标题 */
-    .linked-section {
-        margin-top: 2.5rem;
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #2c3e50;
-        text-align: center;
-        border-bottom: 1px solid #eaeaea;
-        padding-bottom: 1rem;
-    }
+  .page-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+  }
 
-    /* 响应式：手机屏幕下标签按钮 */
-    @media (max-width: 768px) {
-        .tag-btn {
-            font-size: 0.9rem;
-            padding: 6px 12px;
-        }
+  /* 标签区块 */
+  .tag-block {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 1.5rem;
+  }
+
+  .tag-title {
+    font-size: 1.5rem;
+    color: #3498db;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-left: 5px solid #3498db;
+    padding-left: 10px;
+  }
+
+  .tag-count {
+    background-color: #3498db;
+    color: white;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    padding: 2px 8px;
+    margin-left: 6px;
+  }
+
+  /* 文章列表 */
+  .tag-posts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tag-post-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #ddd;
+    padding: 0.6rem 0;
+  }
+
+  .post-link {
+    text-decoration: none;
+    color: #2c3e50;
+    transition: color 0.2s;
+  }
+
+  .post-link:hover {
+    color: #2980b9;
+  }
+
+  .post-date {
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+  /* 响应式：手机端优化 */
+  @media (max-width: 768px) {
+    .tag-post-item {
+      flex-direction: column;
+      align-items: flex-start;
     }
+    .post-date {
+      margin-top: 4px;
+    }
+  }
 </style>
-
