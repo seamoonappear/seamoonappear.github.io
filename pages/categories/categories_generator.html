@@ -1,9 +1,0 @@
----
-layout: null
-permalink: /categories-generator/
----
-
-{% for category in site.categories %}
-  {% assign category_slug = category[0] | slugify %}
-  <a href="{{ site.baseurl }}/categories/{{ category_slug }}/" style="display:none;"></a>
-{% endfor %}
