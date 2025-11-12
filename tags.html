@@ -3,28 +3,49 @@ layout: page
 title: '标签索引'
 ---
 
-
 {% assign date_format = site.date_format | default: "%Y年%-m月%-d日" %}
 
-{%- capture site_tags -%}
-  {%- for tag in site.tags -%}
-    {{ tag | first }}{%- unless forloop.last -%},{%- endunless -%}
-  {%- endfor -%}
-{%- endcapture -%}
-{%- assign tags_list = site_tags | split:',' | sort -%}
+{%- assign tags_hash = site.tags -%}
+{%- assign tags_list = tags_hash | sort_natural: 'size' | reverse -%}
+
+{%- comment -%}
+  Jekyll 默认无法直接根据 size 排序，我们可以先把标签和文章数放入一个数组，再排序
+{%- endcomment -%}
+{%- assign tags_array = "" | split: "" -%}
+{%- for tag in site.tags -%}
+  {%- assign tags_array = tags_array | push: tag -%}
+{%- endfor -%}
+{%- assign tags_array = tags_array | sort: "size" | reverse -%}
+
+{%- assign tags_list = site.tags | sort: "size" | reverse -%}
 
 <section class="tags-page">
-  <h1 class="page-title">标签索引</h1>
+
+  <!-- 顶部标签导航 -->
+  <div class="tags-nav">
+    <strong>全部标签：</strong>
+    {%- assign sorted_tags = site.tags | sort: 'last' -%} {# 占位，下面用循环 #}
+    {%- assign sorted_tags = site.tags | sort: 'size' -%}
+    {%- assign sorted_tags = site.tags | sort_natural: 'size' -%}
+    {%- for tag in site.tags -%}
+      {%- assign tag_name = tag[0] -%}
+      <a href="#tag-{{ tag_name | slugify }}" class="tag-nav-item">
+        {{ tag_name }} ({{ site.tags[tag_name].size }})
+      </a>
+    {%- endfor -%}
+  </div>
 
   <!-- 遍历所有标签及其文章 -->
-  {%- for tag in tags_list -%}
-    <div class="tag-block">
+  {%- assign sorted_tags = site.tags | sort: 'size' | reverse -%}
+  {%- for tag in sorted_tags -%}
+    {%- assign tag_name = tag[0] -%}
+    <div class="tag-block" id="tag-{{ tag_name | slugify }}">
       <h2 class="tag-title">
-        #{{ tag }} <span class="tag-count">{{ site.tags[tag].size }}</span>
+        #{{ tag_name }} <span class="tag-count">{{ site.tags[tag_name].size }}</span>
       </h2>
 
       <ul class="tag-posts">
-        {%- for post in site.tags[tag] -%}
+        {%- for post in site.tags[tag_name] -%}
           <li class="tag-post-item">
             <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
             <span class="post-date">{{ post.date | date: date_format }}</span>
@@ -43,12 +64,28 @@ title: '标签索引'
     padding: 0 1rem;
   }
 
-  .page-title {
-    font-size: 2rem;
-    color: #2c3e50;
+  /* 标签导航 */
+  .tags-nav {
+    margin-bottom: 2rem;
     text-align: center;
-    margin-bottom: 2.5rem;
-    font-weight: 700;
+  }
+  .tags-nav strong {
+    margin-right: 0.5rem;
+  }
+  .tag-nav-item {
+    display: inline-block;
+    margin: 0 6px 6px 0;
+    padding: 4px 10px;
+    background-color: #f0f0f0;
+    color: #3498db;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .tag-nav-item:hover {
+    background-color: #3498db;
+    color: white;
   }
 
   /* 标签区块 */
