@@ -31,16 +31,12 @@ layout: base
             {% for badge in page.gh-badge %}
               {% case badge %}
                 {% when 'star'%}
-                  <!-- 星标按钮 -->
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
                 {% when 'watch'%}
-                  <!-- 观看按钮 -->
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=watch&v=2&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
                 {% when 'fork'%}
-                  <!-- 派生按钮 -->
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=fork&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
                 {% when 'follow'%}
-                  <!-- 关注按钮 -->
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&type=follow&count=true" frameborder="0" scrolling="0" width="220px" height="20px"></iframe>
               {% endcase %}
             {% endfor %}
@@ -62,12 +58,22 @@ layout: base
         {{ content }}
       </div>
 
+      <!-- ✅ 新增：文章分类部分 -->
+      {% if page.categories.size > 0 %}
+        <div class="blog-categories mt-5 mb-3">
+          <span>分类：</span>
+          {% for category in page.categories %}
+            <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge bg-light text-dark border">{{ category }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
       <!-- 如果有标签，显示标签部分 -->
       {% if page.tags.size > 0 %}
-        <div class="blog-tags">
+        <div class="blog-tags mb-4">
           <span>标签：</span>
           {% for tag in page.tags %}
-            <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>
+            <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge bg-light text-dark border">{{- tag -}}</a>
           {% endfor %}
         </div>
       {% endif %}
