@@ -1,12 +1,39 @@
 ---
 layout: base
 ---
+<!--
+指定这个页面使用 `base` 布局作为父模板。
+Jekyll 会先渲染 base 布局，然后再渲染这里的内容。
+-->
 
 {% include header.html type="page" %}
+<!--
+引入头部模板 header.html，并传入参数 type="page"。
+这个参数可能会控制 header 的样式或显示内容，比如页面标题、导航等。
+-->
 
 <main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
+<!--
+主内容区域 <main>。
+根据页面的 front-matter 中是否设置 `full-width: true` 决定使用哪种 Bootstrap 容器：
+- full-width 为 true → container-fluid (全宽)
+- 否则 → container-md (固定宽度，中等屏幕适配)
+-->
+
   <div class="row justify-content-center">
+  <!--
+  使用 Bootstrap 的行布局，并水平居中内容。
+  -->
+
     <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
+    <!--
+    内容列：
+    - full-width 为 true → 占满整行 (col)
+    - 否则 → 在 xl 屏幕宽度时占 8/12 列，左右各偏移 2 列
+               lg 屏幕宽度时占 10/12 列，左右各偏移 1 列
+    这样可以让页面内容在大屏幕上居中且有边距。
+    -->
+
       {% if page.before-content %}
         <div class="before-content">
           {% for file in page.before-content %}
@@ -14,8 +41,17 @@ layout: base
           {% endfor %}
         </div>
       {% endif %}
+      <!--
+      如果 front-matter 中定义了 before-content（数组），
+      会在正文前渲染指定的文件。
+      每个文件都通过 include 引入，通常用于页面顶部的额外模块或说明。
+      -->
 
       {{ content }}
+      <!--
+      页面主体内容。
+      Jekyll 会把 Markdown 或 HTML 内容渲染成这里。
+      -->
 
       {% if page.after-content %}
         <div class="after-content">
@@ -24,8 +60,18 @@ layout: base
           {% endfor %}
         </div>
       {% endif %}
+      <!--
+      如果 front-matter 中定义了 after-content（数组），
+      会在正文后渲染指定的文件。
+      用于插入额外模块，比如推荐文章、广告或表单等。
+      -->
 
       {% include comments.html %}
+      <!--
+      引入评论模板 comments.html。
+      页面底部显示评论区域。
+      -->
+
     </div>
   </div>
 </main>
