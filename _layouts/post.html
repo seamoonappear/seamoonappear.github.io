@@ -8,7 +8,7 @@ layout: base
   <div class="row">
     <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
 
-      <!-- 文章标题和元数据 -->
+      <!-- 文章标题和元数据部分 -->
       <div class="post-header mb-4">
         <h1 class="post-title">{{ page.title }}</h1>
         <div class="post-meta text-muted">
@@ -20,11 +20,11 @@ layout: base
         </div>
       </div>
 
-      <!-- GitHub 按钮 -->
+      <!-- GitHub 按钮部分 -->
       {% if page.gh-repo %}
-        {% assign gh_split =  page.gh-repo | split:'/' %}
-        {% assign gh_user =  gh_split[0] %}
-        {% assign gh_repo =  gh_split[1] %}
+        {% assign gh_split =  page.gh-repo | split:'/'  %}
+        {% assign gh_user =  gh_split[0]  %}
+        {% assign gh_repo =  gh_split[1]  %}
 
         <div id="header-gh-btns">
           {% if page.gh-badge.size > 0 %}
@@ -58,30 +58,30 @@ layout: base
         {{ content }}
       </div>
 
-<!-- ✅ 文章底部分类和标签条 -->
-{% if page.categories.size > 0 or page.tags.size > 0 %}
-<div class="post-meta-badge-bar d-flex flex-wrap justify-content-center align-items-center mt-4">
+      <!-- ✅ 文章底部分类和标签 -->
+      {% if page.categories.size > 0 or page.tags.size > 0 %}
+      <div class="post-meta-badge-bar d-flex flex-wrap justify-content-center align-items-center mt-4">
 
-  {% if page.categories.size > 0 %}
-  <div class="blog-categories d-flex align-items-center me-3 mb-1">
-    <span><i class="fas fa-folder-open"></i>分类：</span>
-    {% for category in page.categories %}
-      <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge badge-meta">{{ category }}</a>
-    {% endfor %}
-  </div>
-  {% endif %}
+        {% if page.categories.size > 0 %}
+        <div class="blog-categories d-flex align-items-center me-3 mb-1">
+          <span><i class="fas fa-folder-open"></i>分类：</span>
+          {% for category in page.categories %}
+            <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge badge-meta">{{ category }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
 
-  {% if page.tags.size > 0 %}
-  <div class="blog-tags d-flex align-items-center mb-1">
-    <span><i class="fas fa-tags"></i>标签：</span>
-    {% for tag in page.tags %}
-      <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge badge-meta">{{ tag }}</a>
-    {% endfor %}
-  </div>
-  {% endif %}
+        {% if page.tags.size > 0 %}
+        <div class="blog-tags d-flex align-items-center mb-1">
+          <span><i class="fas fa-tags"></i>标签：</span>
+          {% for tag in page.tags %}
+            <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge badge-meta">{{ tag }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
 
-</div>
-{% endif %}
+      </div>
+      {% endif %}
 
       <!-- 文章后内容 -->
       {% if page.after-content %}
@@ -97,7 +97,7 @@ layout: base
         {% include social-share.html %}
       {% endif %}
 
-      <!-- 分页 -->
+      <!-- 分页按钮 -->
       <ul class="pagination blog-pager justify-content-between">
         {% if page.previous.url %}
         <li class="page-item previous">
@@ -107,7 +107,7 @@ layout: base
           </a>
         </li>
         {% endif %}
-
+        
         {% if page.next.url %}
         <li class="page-item next">
           <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
