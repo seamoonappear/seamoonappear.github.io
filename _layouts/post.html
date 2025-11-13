@@ -8,7 +8,7 @@ layout: base
   <div class="row">
     <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
 
-      <!-- 文章标题和元数据部分 -->
+      <!-- 文章标题和元数据 -->
       <div class="post-header mb-4">
         <h1 class="post-title">{{ page.title }}</h1>
         <div class="post-meta text-muted">
@@ -18,13 +18,38 @@ layout: base
             <span class="post-updated">更新时间: {{ page.last-updated | date: "%Y年%-m月%-d日" }}</span>
           {% endif %}
         </div>
+
+        <!-- ✅ 分类和标签放在标题和元数据下方 -->
+        {% if page.categories.size > 0 or page.tags.size > 0 %}
+        <div class="post-meta-badge-bar d-flex flex-wrap align-items-center mt-2">
+
+          {% if page.categories.size > 0 %}
+          <div class="blog-categories d-flex align-items-center me-3 mb-1">
+            <span>分类：</span>
+            {% for category in page.categories %}
+              <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge badge-meta">{{ category }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          {% if page.tags.size > 0 %}
+          <div class="blog-tags d-flex align-items-center mb-1">
+            <span>标签：</span>
+            {% for tag in page.tags %}
+              <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge badge-meta">{{ tag }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+        </div>
+        {% endif %}
       </div>
 
-      <!-- GitHub 按钮部分 -->
+      <!-- GitHub 按钮 -->
       {% if page.gh-repo %}
-        {% assign gh_split =  page.gh-repo | split:'/'  %}
-        {% assign gh_user =  gh_split[0]  %}
-        {% assign gh_repo =  gh_split[1]  %}
+        {% assign gh_split = page.gh-repo | split:'/' %}
+        {% assign gh_user = gh_split[0] %}
+        {% assign gh_repo = gh_split[1] %}
 
         <div id="header-gh-btns">
           {% if page.gh-badge.size > 0 %}
@@ -57,32 +82,6 @@ layout: base
       <div class="blog-post">
         {{ content }}
       </div>
-
-      <!-- ✅ 文章底部分类和标签，统一一行显示 -->
-{% if page.categories.size > 0 or page.tags.size > 0 %}
-<div class="post-meta-badge-bar d-flex flex-wrap align-items-center mt-3">
-
-  {% if page.categories.size > 0 %}
-  <div class="blog-categories d-flex align-items-center me-3 mb-1">
-    <span>分类：</span>
-    {% for category in page.categories %}
-      <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge badge-meta">{{ category }}</a>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-  {% if page.tags.size > 0 %}
-  <div class="blog-tags d-flex align-items-center mb-1">
-    <span>标签：</span>
-    {% for tag in page.tags %}
-      <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge badge-meta">{{ tag }}</a>
-    {% endfor %}
-  </div>
-  {% endif %}
-
-</div>
-{% endif %}
-
 
       <!-- 文章后内容 -->
       {% if page.after-content %}
@@ -121,6 +120,7 @@ layout: base
 
       <!-- 评论 -->
       {% include comments.html %}
+
     </div>
   </div>
 </main>
