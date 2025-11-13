@@ -8,7 +8,7 @@ layout: base
   <div class="row">
     <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
 
-      <!-- 文章标题和元数据部分 -->
+      <!-- 文章标题和元数据 -->
       <div class="post-header mb-4">
         <h1 class="post-title">{{ page.title }}</h1>
         <div class="post-meta text-muted">
@@ -20,11 +20,11 @@ layout: base
         </div>
       </div>
 
-      <!-- GitHub 按钮部分 -->
+      <!-- GitHub 按钮 -->
       {% if page.gh-repo %}
-        {% assign gh_split =  page.gh-repo | split:'/'  %}
-        {% assign gh_user =  gh_split[0]  %}
-        {% assign gh_repo =  gh_split[1]  %}
+        {% assign gh_split =  page.gh-repo | split:'/' %}
+        {% assign gh_user =  gh_split[0] %}
+        {% assign gh_repo =  gh_split[1] %}
 
         <div id="header-gh-btns">
           {% if page.gh-badge.size > 0 %}
@@ -44,7 +44,7 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 文章前内容部分 -->
+      <!-- 文章前内容 -->
       {% if page.before-content %}
         <div class="before-content">
           {% for file in page.before-content %}
@@ -53,33 +53,29 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 博文正文内容 -->
+      <!-- 博文正文 -->
       <div class="blog-post">
         {{ content }}
       </div>
 
-            <!-- ✅ 分类与标签并排显示 + 图标 -->
+      <!-- ✅ 分类与标签整行徽章条 -->
       {% if page.categories.size > 0 or page.tags.size > 0 %}
-      <div class="post-meta-bottom d-flex flex-wrap align-items-center mt-4">
+      <div class="post-meta-badge-bar d-flex flex-wrap justify-content-center align-items-center mt-4">
 
         {% if page.categories.size > 0 %}
-        <div class="blog-categories me-3 d-flex align-items-center">
-          <span class="me-1 text-muted"><i class="fas fa-folder-open me-1"></i>分类：</span>
+        <div class="blog-categories d-flex align-items-center me-3 mb-1">
+          <span><i class="fas fa-folder-open"></i>分类：</span>
           {% for category in page.categories %}
-            <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge bg-light text-dark border me-1">
-              {{ category }}
-            </a>
+            <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge">{{ category }}</a>
           {% endfor %}
         </div>
         {% endif %}
 
         {% if page.tags.size > 0 %}
-        <div class="blog-tags d-flex align-items-center">
-          <span class="me-1 text-muted"><i class="fas fa-tags me-1"></i>标签：</span>
+        <div class="blog-tags d-flex align-items-center mb-1">
+          <span><i class="fas fa-tags"></i>标签：</span>
           {% for tag in page.tags %}
-            <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge bg-light text-dark border me-1">
-              {{ tag }}
-            </a>
+            <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge">{{ tag }}</a>
           {% endfor %}
         </div>
         {% endif %}
@@ -87,8 +83,7 @@ layout: base
       </div>
       {% endif %}
 
-
-      <!-- 文章后内容部分 -->
+      <!-- 文章后内容 -->
       {% if page.after-content %}
         <div class="after-content">
           {% for file in page.after-content %}
@@ -97,12 +92,12 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 如果有社交分享按钮，显示分享部分 -->
+      <!-- 社交分享 -->
       {% if page.social-share %}
         {% include social-share.html %}
       {% endif %}
 
-      <!-- 分页按钮，上一页和下一页 -->
+      <!-- 分页 -->
       <ul class="pagination blog-pager justify-content-between">
         {% if page.previous.url %}
         <li class="page-item previous">
@@ -112,7 +107,7 @@ layout: base
           </a>
         </li>
         {% endif %}
-        
+
         {% if page.next.url %}
         <li class="page-item next">
           <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
@@ -123,7 +118,7 @@ layout: base
         {% endif %}
       </ul>
 
-      <!-- 评论部分 -->
+      <!-- 评论 -->
       {% include comments.html %}
     </div>
   </div>
