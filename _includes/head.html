@@ -76,6 +76,9 @@
     {% endfor %}
   {% endif %}
 
+  <!-- ✅ 引入 Font Awesome 图标库（用于分类、标签、小图标） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   {% if site.site-css %}
     {% for css in site.site-css %}
       <link rel="stylesheet" href="{{ css | relative_url }}">
@@ -171,5 +174,4 @@
       {% include {{ file }} %}
     {% endfor %}
   {% endif %}
-
 </head>
