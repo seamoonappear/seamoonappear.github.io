@@ -1,8 +1,6 @@
 ---
-layout: default
-title: "时间轴"
-permalink: /archives/
-icon: fas fa-calendar-alt
+layout: page
+title: "回顾"
 ---
 
 <!-- 页面说明 -->
