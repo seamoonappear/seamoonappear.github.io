@@ -8,7 +8,7 @@ layout: base
   <div class="row">
     <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
 
-      <!-- 文章标题和元数据 -->
+      <!-- 文章标题和元数据部分 -->
       <div class="post-header mb-4">
         <h1 class="post-title">{{ page.title }}</h1>
         <div class="post-meta text-muted">
@@ -18,15 +18,13 @@ layout: base
             <span class="post-updated">更新时间: {{ page.last-updated | date: "%Y年%-m月%-d日" }}</span>
           {% endif %}
         </div>
-        </div>
-        {% endif %}
       </div>
 
-      <!-- GitHub 按钮 -->
+      <!-- GitHub 按钮部分 -->
       {% if page.gh-repo %}
-        {% assign gh_split = page.gh-repo | split:'/' %}
-        {% assign gh_user = gh_split[0] %}
-        {% assign gh_repo = gh_split[1] %}
+        {% assign gh_split =  page.gh-repo | split:'/'  %}
+        {% assign gh_user =  gh_split[0]  %}
+        {% assign gh_repo =  gh_split[1]  %}
 
         <div id="header-gh-btns">
           {% if page.gh-badge.size > 0 %}
@@ -46,7 +44,7 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 文章前内容 -->
+      <!-- 文章前内容部分 -->
       {% if page.before-content %}
         <div class="before-content">
           {% for file in page.before-content %}
@@ -55,12 +53,22 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 博文正文 -->
+      <!-- 博文正文内容 -->
       <div class="blog-post">
         {{ content }}
       </div>
-<!-- 如果有标签，显示标签部分 --> {% if page.tags.size > 0 %} <div class="blog-tags"> <span>标签：</span> {% for tag in page.tags %} <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge bg-light text-dark border">{{- tag -}}</a> {% endfor %} </div> {% endif %}
-      <!-- 文章后内容 -->
+
+      <!-- 文章底部只显示标签，字号统一 -->
+      {% if page.tags.size > 0 %}
+        <div class="blog-tags d-flex flex-wrap align-items-center" style="font-size: 0.9rem; margin-top: 1rem;">
+          <span class="me-2">标签：</span>
+          {% for tag in page.tags %}
+            <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge bg-light text-dark border me-1 mb-1">{{- tag -}}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- 文章后内容部分 -->
       {% if page.after-content %}
         <div class="after-content">
           {% for file in page.after-content %}
@@ -69,7 +77,7 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 社交分享 -->
+      <!-- 如果有社交分享按钮，显示分享部分 -->
       {% if page.social-share %}
         {% include social-share.html %}
       {% endif %}
@@ -95,9 +103,8 @@ layout: base
         {% endif %}
       </ul>
 
-      <!-- 评论 -->
+      <!-- 评论部分 -->
       {% include comments.html %}
-
     </div>
   </div>
 </main>
