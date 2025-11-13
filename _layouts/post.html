@@ -58,25 +58,35 @@ layout: base
         {{ content }}
       </div>
 
-      <!-- ✅ 新增：文章分类部分 -->
-      {% if page.categories.size > 0 %}
-        <div class="blog-categories">
-          <span>分类：</span>
+            <!-- ✅ 分类与标签并排显示 + 图标 -->
+      {% if page.categories.size > 0 or page.tags.size > 0 %}
+      <div class="post-meta-bottom d-flex flex-wrap align-items-center mt-4">
+
+        {% if page.categories.size > 0 %}
+        <div class="blog-categories me-3 d-flex align-items-center">
+          <span class="me-1 text-muted"><i class="fas fa-folder-open me-1"></i>分类：</span>
           {% for category in page.categories %}
-            <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge bg-light text-dark border">{{ category }}</a>
+            <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge bg-light text-dark border me-1">
+              {{ category }}
+            </a>
           {% endfor %}
         </div>
+        {% endif %}
+
+        {% if page.tags.size > 0 %}
+        <div class="blog-tags d-flex align-items-center">
+          <span class="me-1 text-muted"><i class="fas fa-tags me-1"></i>标签：</span>
+          {% for tag in page.tags %}
+            <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge bg-light text-dark border me-1">
+              {{ tag }}
+            </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+      </div>
       {% endif %}
 
-      <!-- 如果有标签，显示标签部分 -->
-      {% if page.tags.size > 0 %}
-        <div class="blog-tags">
-          <span>标签：</span>
-          {% for tag in page.tags %}
-            <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge bg-light text-dark border">{{- tag -}}</a>
-          {% endfor %}
-        </div>
-      {% endif %}
 
       <!-- 文章后内容部分 -->
       {% if page.after-content %}
