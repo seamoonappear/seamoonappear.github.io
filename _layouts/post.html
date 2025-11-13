@@ -58,30 +58,31 @@ layout: base
         {{ content }}
       </div>
 
-      <!-- ✅ 文章底部分类和标签 -->
-      {% if page.categories.size > 0 or page.tags.size > 0 %}
-      <div class="post-meta-badge-bar d-flex flex-wrap justify-content-center align-items-center mt-4">
+      <!-- ✅ 文章底部分类和标签，统一一行显示 -->
+{% if page.categories.size > 0 or page.tags.size > 0 %}
+<div class="post-meta-badge-bar d-flex flex-wrap align-items-center mt-3">
 
-        {% if page.categories.size > 0 %}
-        <div class="blog-categories d-flex align-items-center me-3 mb-1">
-          <span><i class="fas fa-folder-open"></i>分类：</span>
-          {% for category in page.categories %}
-            <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge badge-meta">{{ category }}</a>
-          {% endfor %}
-        </div>
-        {% endif %}
+  {% if page.categories.size > 0 %}
+  <div class="blog-categories d-flex align-items-center me-3 mb-1">
+    <span>分类：</span>
+    {% for category in page.categories %}
+      <a href="{{ '/categories' | relative_url }}#{{- category -}}" class="badge badge-meta">{{ category }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
 
-        {% if page.tags.size > 0 %}
-        <div class="blog-tags d-flex align-items-center mb-1">
-          <span><i class="fas fa-tags"></i>标签：</span>
-          {% for tag in page.tags %}
-            <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge badge-meta">{{ tag }}</a>
-          {% endfor %}
-        </div>
-        {% endif %}
+  {% if page.tags.size > 0 %}
+  <div class="blog-tags d-flex align-items-center mb-1">
+    <span>标签：</span>
+    {% for tag in page.tags %}
+      <a href="{{ '/tags' | relative_url }}#{{- tag -}}" class="badge badge-meta">{{ tag }}</a>
+    {% endfor %}
+  </div>
+  {% endif %}
 
-      </div>
-      {% endif %}
+</div>
+{% endif %}
+
 
       <!-- 文章后内容 -->
       {% if page.after-content %}
