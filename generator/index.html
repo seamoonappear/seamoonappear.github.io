@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beautiful Jekyll Front Matter</title>
+<title>Front Matter 生成器</title>
 <style>
 body {
   font-family: "Microsoft YaHei", Arial, sans-serif;
-  background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
+  background: #f5f5f5;
   margin: 0;
   padding: 20px;
   display: flex;
@@ -19,124 +19,45 @@ body {
 .container {
   width: 48%;
   background: #fff;
-  padding: 25px 20px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s, box-shadow 0.2s;
   position: relative;
 }
-.container:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-}
 
-h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #007acc;
-  font-size: 24px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
+h2 { text-align: center; margin-bottom: 20px; color: #007acc; }
 
-label {
-  font-weight: 600;
-  display: block;
-  margin-top: 15px;
-  color: #333;
-}
+label { font-weight: 600; margin-right: 8px; }
 
-input, textarea, select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
+input, select, textarea, button {
+  padding: 8px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  border-radius: 8px;
   font-size: 14px;
-  transition: border 0.2s, box-shadow 0.2s;
-}
-input::placeholder, textarea::placeholder { color: #aaa; font-style: italic; }
-input:focus, textarea:focus, select:focus {
-  border-color: #007acc;
-  box-shadow: 0 0 8px rgba(0, 122, 204, 0.2);
-  outline: none;
 }
 
-.group {
-  padding: 10px 15px;
-  margin-bottom: 15px;
-  background: #f9fafb;
-  border-radius: 10px;
-  border: 1px solid #eee;
-}
+input, select, textarea { width: 100%; margin-top: 5px; }
+textarea { resize: none; font-family: monospace; height: 300px; }
 
-.date-group {
-  display: flex;
-  gap: 10px;
-}
-.date-group input { width: 32%; text-align: center; }
+.row { display: flex; gap: 10px; margin-top: 10px; }
+.row > * { flex: 1; }
 
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: linear-gradient(90deg, #007acc, #005ea0);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 15px;
-  transition: background 0.2s, transform 0.1s;
-}
-button:hover { background: linear-gradient(90deg, #005ea0, #007acc); transform: scale(1.03);}
-button:active { transform: scale(0.97); }
+button { background: #007acc; color: #fff; border: none; cursor: pointer; font-weight: bold; }
+button:hover { background: #005ea0; }
 
-textarea.output {
-  height: 400px;
-  resize: none;
-  font-family: "Fira Code", monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #fdfdfd;
-  overflow-y: auto;
-}
-
-.copy-btn {
-  background-color: #444;
-  margin-left: 10px;
-  padding: 6px 12px;
-  border-radius: 5px;
-  font-size: 13px;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-.copy-btn:hover { background-color: #222; transform: scale(1.05); }
+.copy-btn { margin-left: 10px; padding: 6px 12px; border-radius: 5px; font-size: 13px; cursor: pointer; background: #444; color: #fff; }
+.copy-btn:hover { background: #222; }
 
 .toast {
-  position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #007acc;
-  color: #fff;
-  padding: 6px 15px;
-  border-radius: 8px;
-  font-size: 14px;
-  opacity: 0;
-  transition: opacity 0.3s, top 0.3s;
-  pointer-events: none;
+  position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+  background: #007acc; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 14px;
+  opacity: 0; transition: opacity 0.3s, top 0.3s; pointer-events: none;
 }
-.toast.show {
-  opacity: 1;
-  top: -55px;
-}
+.toast.show { opacity: 1; top: -55px; }
 
-@media(max-width: 1000px){
+@media(max-width:1000px){
   body { flex-direction: column; align-items: center; }
   .container { width: 90%; margin-bottom: 20px; }
 }
@@ -144,68 +65,61 @@ textarea.output {
 </head>
 <body>
 
-<div class="container" id="input-container">
+<!-- 左侧输入区域 -->
+<div class="container">
   <div class="toast" id="toast">生成成功！</div>
-  <h2>Gervas Front Matter</h2>
+  <h2>Front Matter 输入</h2>
 
-  <div class="group">
-    <label>文章标题：</label>
-    <input type="text" id="title" placeholder="请输入文章标题">
-
-    <label>发布时间：</label>
-    <div class="date-group">
-      <input type="number" id="year" placeholder="年" min="2000" max="2100">
-      <input type="number" id="month" placeholder="月" min="1" max="12">
-      <input type="number" id="day" placeholder="日" min="1" max="31">
-    </div>
-
-    <label>更新时间：</label>
-    <div class="date-group">
-      <input type="number" id="update-year" placeholder="年" min="2000" max="2100">
-      <input type="number" id="update-month" placeholder="月" min="1" max="12">
-      <input type="number" id="update-day" placeholder="日" min="1" max="31">
-    </div>
+  <!-- 第一行：文章标题 -->
+  <div class="row">
+    <input type="text" id="title" placeholder="文章标题">
   </div>
 
-  <div class="group">
-    <label>标签 1：</label>
-    <input type="text" id="tag1" list="tag-list" placeholder="例如：学习">
+  <!-- 第二行：发布时间和修改时间 -->
+  <div class="row">
+    <input type="number" id="year" placeholder="年" min="2000" max="2100">
+    <input type="number" id="month" placeholder="月" min="1" max="12">
+    <input type="number" id="day" placeholder="日" min="1" max="31">
+    <input type="number" id="update-year" placeholder="修改年" min="2000" max="2100">
+    <input type="number" id="update-month" placeholder="修改月" min="1" max="12">
+    <input type="number" id="update-day" placeholder="修改日" min="1" max="31">
+  </div>
+
+  <!-- 第三行：标签1、标签2、分类 -->
+  <div class="row">
+    <input type="text" id="tag1" list="tag-list" placeholder="标签1">
+    <input type="text" id="tag2" list="tag-list" placeholder="标签2">
+    <input list="category-list" id="category" placeholder="分类">
     <datalist id="tag-list">
-      <option value="学习">
-      <option value="感悟">
-      <option value="探索">
-      <option value="职场">
-      <option value="技术">
-      <option value="生活">
+      <option value="学习"><option value="生活"><option value="感悟"><option value="探索"><option value="职场">
     </datalist>
+    <datalist id="category-list">
+      <option value="学习"><option value="生活"><option value="感悟"><option value="探索"><option value="职场">
+    </datalist>
+  </div>
 
-    <label>标签 2：</label>
-    <input type="text" id="tag2" list="tag-list" placeholder="例如：思考">
-
-    <label>封面图：</label>
+  <!-- 第四行：封面选择 + 路径 -->
+  <div class="row">
     <select id="cover">
       <option value="no">否</option>
       <option value="yes">是</option>
     </select>
-
-    <label>分类：</label>
-    <input list="category-list" id="category" placeholder="选择分类">
-    <datalist id="category-list">
-      <option value="学习">
-      <option value="感悟">
-      <option value="探索">
-      <option value="职场">
-    </datalist>
+    <input type="text" id="cover-path" placeholder="封面路径，例如 /assets/img/cover.jpg">
   </div>
 
-  <div class="group">
-    <label>正文内容：</label>
-    <textarea id="content" rows="8" placeholder="请输入文章正文"></textarea>
+  <!-- 第五行：正文标题 + 生成按钮 -->
+  <div class="row">
+    <label style="flex:none; line-height:32px;">正文内容</label>
+    <button onclick="generateMarkdown()" style="flex:none;">生成 Markdown</button>
   </div>
 
-  <button onclick="generateMarkdown()">生成 Markdown</button>
+  <!-- 第六行：正文输入 -->
+  <div class="row">
+    <textarea id="content" placeholder="在这里写文章正文"></textarea>
+  </div>
 </div>
 
+<!-- 右侧输出区域 -->
 <div class="container">
   <h2>生成结果</h2>
   <div style="display:flex; align-items:center; margin-bottom:10px;">
@@ -213,8 +127,8 @@ textarea.output {
     <span id="filename" style="margin-left:10px;"></span>
     <button class="copy-btn" onclick="copyText('filename')">📋 复制</button>
   </div>
+  <button class="copy-btn" onclick="copyText('output')" style="margin-bottom:8px;">📋 复制全文</button>
   <textarea class="output" id="output" readonly></textarea>
-  <button class="copy-btn" onclick="copyText('output')">📋 复制内容</button>
 </div>
 
 <script>
@@ -230,8 +144,10 @@ function generateMarkdown() {
   const tag1 = document.getElementById('tag1').value.trim();
   const tag2 = document.getElementById('tag2').value.trim();
   const cover = document.getElementById('cover').value;
+  const coverPath = document.getElementById('cover-path').value.trim();
   const category = document.getElementById('category').value;
   const content = document.getElementById('content').value.trim();
+
   const year = document.getElementById('year').value;
   const month = document.getElementById('month').value;
   const day = document.getElementById('day').value;
@@ -264,7 +180,7 @@ author: Gervas
 last-updated: ${lastUpdated}
 categories: [${category}]
 tags: [${tag1}${tag2 ? ', ' + tag2 : ''}]
-${cover === 'yes' ? 'cover-img: /assets/img/cover.jpg' : ''}
+${cover === 'yes' && coverPath ? 'cover-img: ' + coverPath : ''}
 ---
 
 ${content || '（在这里写正文内容）'}
@@ -274,28 +190,21 @@ ${content || '（在这里写正文内容）'}
   showToast('生成成功！');
 }
 
-// 安全复制函数：支持 span、textarea 或其他元素
 function copyText(id){
   let text = '';
   const el = document.getElementById(id);
-  if(el.tagName === 'TEXTAREA' || el.tagName === 'INPUT'){
-    text = el.value;
-  } else {
-    text = el.textContent || '';
-  }
+  if(el.tagName === 'TEXTAREA' || el.tagName === 'INPUT'){ text = el.value; }
+  else { text = el.textContent || ''; }
 
   const textarea = document.createElement('textarea');
   textarea.value = text;
   document.body.appendChild(textarea);
   textarea.select();
-  try {
-    document.execCommand('copy');
-    showToast("已复制到剪贴板！");
-  } catch(e){
-    alert('复制失败，请手动复制');
-  }
+  try { document.execCommand('copy'); showToast("已复制到剪贴板！"); }
+  catch(e){ alert('复制失败，请手动复制'); }
   document.body.removeChild(textarea);
 }
 </script>
+
 </body>
 </html>
