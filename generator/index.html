@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Front Matter 生成器</title>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Microsoft+YaHei&display=swap" rel="stylesheet">
 <style>
 body {
-  font-family: "Microsoft YaHei", Arial, sans-serif;
-  background: #f5f5f5;
+  font-family: "Microsoft YaHei", "Fira Code", monospace, Arial, sans-serif;
+  background: linear-gradient(135deg, #e0f7fa, #f5f5f5);
   margin: 0;
   padding: 20px;
   display: flex;
@@ -19,45 +20,105 @@ body {
 .container {
   width: 48%;
   background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-h2 { text-align: center; margin-bottom: 20px; color: #007acc; }
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #007acc;
+  font-size: 26px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
 
 label { font-weight: 600; margin-right: 8px; }
 
 input, select, textarea, button {
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 14px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007acc;
+  box-shadow: 0 0 8px rgba(0,122,204,0.2);
+  outline: none;
 }
 
 input, select, textarea { width: 100%; margin-top: 5px; }
-textarea { resize: none; font-family: monospace; height: 300px; }
+textarea { resize: none; font-family: "Fira Code", monospace; height: 300px; }
 
-.row { display: flex; gap: 10px; margin-top: 10px; }
+.row { display: flex; gap: 10px; margin-top: 15px; }
 .row > * { flex: 1; }
 
-button { background: #007acc; color: #fff; border: none; cursor: pointer; font-weight: bold; }
-button:hover { background: #005ea0; }
+button {
+  background: linear-gradient(90deg, #007acc, #005ea0);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.1s;
+}
+button:hover { background: linear-gradient(90deg, #005ea0, #007acc); transform: scale(1.03);}
+button:active { transform: scale(0.97); }
 
-.copy-btn { margin-left: 10px; padding: 6px 12px; border-radius: 5px; font-size: 13px; cursor: pointer; background: #444; color: #fff; }
-.copy-btn:hover { background: #222; }
+.copy-btn {
+  margin-left: 10px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #444;
+  transition: background 0.2s, transform 0.1s;
+}
+.copy-btn:hover { background-color: #222; transform: scale(1.05); }
+
+textarea.output {
+  height: 400px;
+  resize: none;
+  font-family: "Fira Code", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fdfdfd;
+  overflow-y: auto;
+}
 
 .toast {
-  position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
-  background: #007acc; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 14px;
-  opacity: 0; transition: opacity 0.3s, top 0.3s; pointer-events: none;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #007acc;
+  color: #fff;
+  padding: 6px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s, top 0.3s;
+  pointer-events: none;
 }
-.toast.show { opacity: 1; top: -55px; }
+.toast.show {
+  opacity: 1;
+  top: -55px;
+}
 
-@media(max-width:1000px){
+@media(max-width: 1000px){
   body { flex-direction: column; align-items: center; }
   .container { width: 90%; margin-bottom: 20px; }
 }
@@ -65,7 +126,6 @@ button:hover { background: #005ea0; }
 </head>
 <body>
 
-<!-- 左侧输入区域 -->
 <div class="container">
   <div class="toast" id="toast">生成成功！</div>
   <h2>Front Matter 输入</h2>
@@ -118,7 +178,6 @@ button:hover { background: #005ea0; }
   </div>
 </div>
 
-<!-- 右侧输出区域 -->
 <div class="container">
   <h2>生成结果</h2>
   <div style="display:flex; align-items:center; margin-bottom:10px;">
@@ -169,7 +228,6 @@ function generateMarkdown() {
   const fileName = date + '-' + title.replace(/\s+/g,'-') + '.md';
   document.getElementById('filename').textContent = fileName;
 
-  // 自动生成封面路径
   const coverLine = cover === 'yes' ? 'cover-img: /assets/img/blog/' + title.replace(/\s+/g,'-') + '.png' : '';
 
   const frontMatter =
