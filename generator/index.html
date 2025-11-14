@@ -98,13 +98,12 @@ button:hover { background: #005ea0; }
     </datalist>
   </div>
 
-  <!-- 第四行：封面选择 + 路径 -->
+  <!-- 第四行：封面选择 -->
   <div class="row">
     <select id="cover">
       <option value="no">否</option>
       <option value="yes">是</option>
     </select>
-    <input type="text" id="cover-path" placeholder="封面路径，例如 /assets/img/cover.jpg">
   </div>
 
   <!-- 第五行：正文标题 + 生成按钮 -->
@@ -144,7 +143,6 @@ function generateMarkdown() {
   const tag1 = document.getElementById('tag1').value.trim();
   const tag2 = document.getElementById('tag2').value.trim();
   const cover = document.getElementById('cover').value;
-  const coverPath = document.getElementById('cover-path').value.trim();
   const category = document.getElementById('category').value;
   const content = document.getElementById('content').value.trim();
 
@@ -171,6 +169,9 @@ function generateMarkdown() {
   const fileName = date + '-' + title.replace(/\s+/g,'-') + '.md';
   document.getElementById('filename').textContent = fileName;
 
+  // 自动生成封面路径
+  const coverLine = cover === 'yes' ? 'cover-img: /assets/img/blog/' + title.replace(/\s+/g,'-') + '.png' : '';
+
   const frontMatter =
 `---
 layout: post
@@ -180,7 +181,7 @@ author: Gervas
 last-updated: ${lastUpdated}
 categories: [${category}]
 tags: [${tag1}${tag2 ? ', ' + tag2 : ''}]
-${cover === 'yes' && coverPath ? 'cover-img: ' + coverPath : ''}
+${coverLine}
 ---
 
 ${content || '（在这里写正文内容）'}
