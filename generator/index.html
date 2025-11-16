@@ -217,78 +217,80 @@ textarea::-webkit-scrollbar-track {
 </div>
 
 <script>
-function showToast(msg) {
-  const toast = document.getElementById('toast');
-  toast.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2000);
-}
+function showToast(msg) {  
+  const toast = document.getElementById('toast');  
+  toast.textContent = msg;  
+  toast.classList.add('show');  
+  setTimeout(() => toast.classList.remove('show'), 2000);  
+}  
+  
+function generateMarkdown() {  
+  const title = document.getElementById('title').value.trim();  
+  const tag1 = document.getElementById('tag1').value.trim();  
+  const tag2 = document.getElementById('tag2').value.trim();  
+  const cover = document.getElementById('cover').value;  
+  const category = document.getElementById('category').value;  
+  const content = document.getElementById('content').value.trim();  
+  
+  const year = document.getElementById('year').value;  
+  const month = document.getElementById('month').value;  
+  const day = document.getElementById('day').value;  
+  const updateYear = document.getElementById('update-year').value;  
+  const updateMonth = document.getElementById('update-month').value;  
+  const updateDay = document.getElementById('update-day').value;  
+  
+  if (!title) { showToast('请填写文章标题！'); return; }  
+  
+  const now = new Date();  
+  const y = year || now.getFullYear();  
+  const m = month || now.getMonth() + 1;  
+  const d = day || now.getDate();  
+  const date = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');  
+  
+  const ly = updateYear || y;  
+  const lm = updateMonth || m;  
+  const ld = updateDay || d;  
+  const lastUpdated = ly + '-' + String(lm).padStart(2,'0') + '-' + String(ld).padStart(2,'0');  
+  
+  const fileName = date + '-' + title.replace(/\s+/g,'-') + '.md';  
+  document.getElementById('filename').textContent = fileName;  
+  
+  const coverLine = cover === 'yes' ? 'cover-img: /assets/img/blog/' + title.replace(/\s+/g,'-') + '.png' : '';  
 
-function generateMarkdown() {
-  const title = document.getElementById('title').value.trim();
-  const tag1 = document.getElementById('tag1').value.trim();
-  const tag2 = document.getElementById('tag2').value.trim();
-  const cover = document.getElementById('cover').value;
-  const category = document.getElementById('category').value;
-  const content = document.getElementById('content').value.trim();
-
-  const year = document.getElementById('year').value;
-  const month = document.getElementById('month').value;
-  const day = document.getElementById('day').value;
-  const updateYear = document.getElementById('update-year').value;
-  const updateMonth = document.getElementById('update-month').value;
-  const updateDay = document.getElementById('update-day').value;
-
-  if (!title) { showToast('请填写文章标题！'); return; }
-
-  const now = new Date();
-  const y = year || now.getFullYear();
-  const m = month || now.getMonth() + 1;
-  const d = day || now.getDate();
-  const date = y + '-' + String(m).padStart(2,'0') + '-' + String(d).padStart(2,'0');
-
-  const ly = updateYear || y;
-  const lm = updateMonth || m;
-  const ld = updateDay || d;
-  const lastUpdated = ly + '-' + String(lm).padStart(2,'0') + '-' + String(ld).padStart(2,'0');
-
-  const fileName = date + '-' + title.replace(/\s+/g,'-') + '.md';
-  document.getElementById('filename').textContent = fileName;
-
-  const coverLine = cover === 'yes' ? 'cover-img: /assets/img/blog/' + title.replace(/\s+/g,'-') + '.png' : '';
-
-  const frontMatter =
-`---
-layout: post
-title: "${title}"
-date: ${date}
-author: Gervas
-last-updated: ${lastUpdated}
-categories: [${category}]
-tags: [${tag1}${tag2 ? ', ' + tag2 : ''}]
-${coverLine}
----
-
-${content || '（在这里写正文内容）'}
-`;
-
-  document.getElementById('output').value = frontMatter;
-  showToast('生成成功！');
-}
-
-function copyText(id){
-  let text = '';
-  const el = document.getElementById(id);
-  if(el.tagName === 'TEXTAREA' || el.tagName === 'INPUT'){ text = el.value; }
-  else { text = el.textContent || ''; }
-
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  try { document.execCommand('copy'); showToast("已复制到剪贴板！"); }
-  catch(e){ alert('复制失败，请手动复制'); }
-  document.body.removeChild(textarea);
+  // 生成 Front Matter，包括 comments: true
+  const frontMatter =  
+`---  
+layout: post  
+title: "${title}"  
+date: ${date}  
+author: Gervas  
+last-updated: ${lastUpdated}  
+categories: [${category}]  
+tags: [${tag1}${tag2 ? ', ' + tag2 : ''}]  
+${coverLine}  
+comments: true  # 启用评论区  
+---  
+  
+${content || '（在这里写正文内容）'}  
+`;  
+  
+  document.getElementById('output').value = frontMatter;  
+  showToast('生成成功！');  
+}  
+  
+function copyText(id){  
+  let text = '';  
+  const el = document.getElementById(id);  
+  if(el.tagName === 'TEXTAREA' || el.tagName === 'INPUT'){ text = el.value; }  
+  else { text = el.textContent || ''; }  
+  
+  const textarea = document.createElement('textarea');  
+  textarea.value = text;  
+  document.body.appendChild(textarea);  
+  textarea.select();  
+  try { document.execCommand('copy'); showToast("已复制到剪贴板！"); }  
+  catch(e){ alert('复制失败，请手动复制'); }  
+  document.body.removeChild(textarea);  
 }
 </script>
 
