@@ -1,0 +1,61 @@
+{% if page.comments %}
+  <!-- Twikoo 评论区 -->
+  <div id="twikoo" class="twikoo-container"></div>
+
+  <!-- 引入 Twikoo JS 文件 -->
+  <script src="https://twikoo-9owq0elrd-gervas-projects.vercel.app/twikoo.all.min.js"></script>
+  <script>
+    twikoo.init({
+      envId: 'https://twikoo-9owq0elrd-gervas-projects.vercel.app', // 换成你的 Vercel URL
+      el: '#twikoo',
+      path: '{{ page.url | relative_url }}'
+    });
+  </script>
+
+  <!-- 美化样式 -->
+  <style>
+    .twikoo-container {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background-color: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 0.95rem;
+
+      /* 自适应宽度 */
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .twikoo-container .twikoo-comment {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .twikoo-container a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+
+    .twikoo-container a:hover {
+      text-decoration: underline;
+    }
+
+    /* 适配文章列宽 */
+    @media (min-width: 1200px) {
+      .twikoo-container {
+        width: 100%;
+        max-width: 900px; /* 中宽文章最大宽度 */
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* 手机端自适应 */
+    @media (max-width: 768px) {
+      .twikoo-container {
+        padding: 1rem;
+      }
+    }
+  </style>
+{% endif %}
