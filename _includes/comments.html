@@ -1,12 +1,11 @@
 {% if page.comments %}
-  <!-- Twikoo 评论 -->
   <div id="twikoo"></div>
   <script src="https://twikoo-9owq0elrd-gervas-projects.vercel.app/twikoo.all.min.js"></script>
   <script>
     twikoo.init({
-      envId: 'https://twikoo-9owq0elrd-gervas-projects.vercel.app', // 替换为你的 Vercel URL
+      envId: 'https://twikoo-9owq0elrd-gervas-projects.vercel.app',  // 替换为你的 Vercel URL
       el: '#twikoo',
-      path: '{{ page.url }}'  // 保证每篇文章独立评论
+      path: '{{ page.url | relative_url }}'
     });
   </script>
 {% endif %}
