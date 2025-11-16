@@ -77,11 +77,6 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 如果有社交分享按钮，显示分享部分 -->
-      {% if page.social-share %}
-        {% include social-share.html %}
-      {% endif %}
-
       <!-- 分页按钮 -->
       <ul class="pagination blog-pager justify-content-between">
         {% if page.previous.url %}
@@ -103,8 +98,19 @@ layout: base
         {% endif %}
       </ul>
 
-      <!-- 评论部分 -->
-      {% include comments.html %}
+      <!-- 评论部分：Twikoo -->
+      {% if page.comments %}
+        <div id="twikoo"></div>
+        <script src="https://twikoo-9owq0elrd-gervas-projects.vercel.app/twikoo.all.min.js"></script>
+        <script>
+          twikoo.init({
+            envId: 'https://twikoo-9owq0elrd-gervas-projects.vercel.app',
+            el: '#twikoo',
+            path: '{{ page.url }}'  // 每篇文章独立评论
+          });
+        </script>
+      {% endif %}
+
     </div>
   </div>
 </main>
