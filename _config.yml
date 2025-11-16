@@ -20,13 +20,9 @@ author: ©️ Gervas
 
 navbar-links:
   - [首页, /]
-  # 回顾改成下拉菜单
-  - 文章回顾:
-      归档: "/archives/"
-      分类索引: "/categories/"
-      标签索引: "/tags/"
-
-  # 更多的下拉保持不变
+  - [回顾, /archives/]
+  - [分类, /categories/]
+  - [标签, /tags/]
   - [更多, "#", about]
 
 #####################################
