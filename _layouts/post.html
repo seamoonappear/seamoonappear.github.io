@@ -22,21 +22,21 @@ layout: base
 
       <!-- GitHub 按钮部分 -->
       {% if page.gh-repo %}
-        {% assign gh_split = page.gh-repo | split:'/' %}
-        {% assign gh_user = gh_split[0] %}
-        {% assign gh_repo = gh_split[1] %}
+        {% assign gh_split =  page.gh-repo | split:'/' %}
+        {% assign gh_user =  gh_split[0] %}
+        {% assign gh_repo =  gh_split[1] %}
 
         <div id="header-gh-btns">
           {% if page.gh-badge.size > 0 %}
             {% for badge in page.gh-badge %}
               {% case badge %}
-                {% when 'star' %}
+                {% when 'star'%}
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-                {% when 'watch' %}
+                {% when 'watch'%}
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=watch&v=2&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-                {% when 'fork' %}
+                {% when 'fork'%}
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&repo={{ gh_repo }}&type=fork&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
-                {% when 'follow' %}
+                {% when 'follow'%}
                   <iframe src="https://ghbtns.com/github-btn.html?user={{ gh_user }}&type=follow&count=true" frameborder="0" scrolling="0" width="220px" height="20px"></iframe>
               {% endcase %}
             {% endfor %}
@@ -58,7 +58,7 @@ layout: base
         {{ content }}
       </div>
 
-      <!-- 文章底部标签 -->
+      <!-- 文章底部只显示标签，字号统一 -->
       {% if page.tags.size > 0 %}
         <div class="blog-tags d-flex flex-wrap align-items-center" style="font-size: 0.9rem; margin-top: 1rem;">
           <span class="me-2">标签：</span>
@@ -77,25 +77,20 @@ layout: base
         </div>
       {% endif %}
 
-      <!-- 社交分享 -->
-      {% if page.social-share %}
-        {% include social-share.html %}
-      {% endif %}
-
       <!-- 分页按钮 -->
       <ul class="pagination blog-pager justify-content-between">
         {% if page.previous.url %}
         <li class="page-item previous">
-          <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{ page.previous.title | strip_html | xml_escape }}">
+          <a class="page-link" href="{{ page.previous.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title | strip_html | xml_escape}}">
             <i class="fas fa-arrow-left" alt="上一篇"></i>
             <span class="d-none d-sm-inline-block">上一篇</span>
           </a>
         </li>
         {% endif %}
-
+        
         {% if page.next.url %}
         <li class="page-item next">
-          <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{ page.next.title | strip_html | xml_escape }}">
+          <a class="page-link" href="{{ page.next.url | relative_url }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title | strip_html | xml_escape}}">
             <span class="d-none d-sm-inline-block">下一篇</span>
             <i class="fas fa-arrow-right" alt="下一篇"></i>
           </a>
@@ -103,8 +98,18 @@ layout: base
         {% endif %}
       </ul>
 
-      <!-- Twikoo 评论区 -->
-      {% include twikoo-comment.html %}
+      <!-- Twikoo 评论部分 -->
+      {% if page.comments %}
+        <div id="twikoo"></div>
+        <script src="https://twikoo-9owq0elrd-gervas-projects.vercel.app/twikoo.all.min.js"></script>
+        <script>
+          twikoo.init({
+            envId: 'https://twikoo-9owq0elrd-gervas-projects.vercel.app',  // 替换为你的 Vercel URL
+            el: '#twikoo',
+            path: '{{ page.url | relative_url }}'
+          });
+        </script>
+      {% endif %}
 
     </div>
   </div>
